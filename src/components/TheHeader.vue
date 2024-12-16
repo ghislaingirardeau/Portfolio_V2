@@ -1,11 +1,11 @@
 <template>
-  <q-header elevated class="bg-primary text-white">
+  <q-header elevated>
     <q-toolbar>
       <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
       <q-toolbar-title> Title </q-toolbar-title>
       <q-space />
-      <q-btn flat :icon="mdiThemeLightDark" @click="() => $q.dark.toggle()" />
+      <SwitchModeBtn />
       <SwitchLangBtn />
     </q-toolbar>
   </q-header>
@@ -13,8 +13,8 @@
 
 <script setup lang="ts">
 const leftDrawerOpen = defineModel('leftDrawerOpen')
-import { mdiThemeLightDark } from '@quasar/extras/mdi-v7'
 import SwitchLangBtn from './header/SwitchLangBtn.vue'
+import SwitchModeBtn from './header/SwitchModeBtn.vue'
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
