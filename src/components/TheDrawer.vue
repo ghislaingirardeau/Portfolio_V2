@@ -3,7 +3,7 @@
     show-if-above
     v-model="leftDrawerOpen"
     side="left"
-    :behavior="deviceOrientation"
+    :behavior="deviceDetail.deviceOrientation"
     bordered
   >
     <q-list>
@@ -28,17 +28,16 @@ import {
   mdiHomeCircleOutline,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
-import { useScreenOrientation } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { useDeviceDetail } from 'src/stores/deviceDetails'
+
+const deviceDetail = useDeviceDetail()
+
 const { t } = useI18n()
-const { orientation } = useScreenOrientation()
 
 const leftDrawerOpen = defineModel('leftDrawerOpen', { type: Boolean, required: true })
-const deviceOrientation = computed(() => {
-  return orientation.value === 'landscape-primary' ? 'desktop' : 'mobile'
-})
 
 const menuList = ref([
   {
