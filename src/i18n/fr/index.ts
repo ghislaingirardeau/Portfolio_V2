@@ -5,6 +5,12 @@ export default {
     services: 'Mes services',
     aboutMe: 'A propos de moi',
   },
+  routes: {
+    index: '/Accueil',
+    projects: '/projets',
+    services: '/services',
+    aboutMe: '/moi',
+  },
   index: {
     me: {
       p1: 'Bonjour,',
