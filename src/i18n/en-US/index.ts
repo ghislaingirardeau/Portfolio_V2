@@ -61,18 +61,30 @@ export default {
     },
     stepOne: {
       h3: 'Step 1',
-      description:
-        '<ul> <li> Projects presentation and willingness</li> <li>Define your need, strategy and resource</li><li> What and how can I help you in your digitalisation process</li><li>First feedback on your projects sharing about my knowledge/skills fitting or not your project</li> </ul>',
+      description: [
+        'Projects presentation and willingness',
+        'Define your need, strategy and resource',
+        'What and how can I help you in your digitalisation process',
+        'First feedback on your projects sharing about my knowledge/skills fitting or not your project',
+      ],
     },
     stepTwo: {
       h3: 'Step 2',
-      description:
-        "<ul> <li>Get the specific details (need, scope and features) for your new application</li> <li>Possibilities, solutions and recommendations regarding your strategy</li><li> Offer, deadlines and clear detail about the expected outcome for both of us</li><li>Questions and answers if it's still not clear</li> </ul>",
+      description: [
+        'Get the specific details (need, scope and features) for your new application',
+        'Possibilities, solutions and recommendations regarding your strategy',
+        'Offer, deadlines and clear detail about the expected outcome for both of us',
+        "Questions and answers if it's still not clear",
+      ],
     },
     stepThree: {
       h3: 'Step 3',
-      description:
-        '<ul> <li>After quote validation, project development start</li> <li>Steps planifications to see the project forwards </li><li> Weekly report </li><li>Exchange and feedback regularly to get the first impressions or made corrections</li> </ul>',
+      description: [
+        'After quote validation, project development start',
+        'Steps planifications to see the project forwards',
+        'Weekly report ',
+        'Exchange and feedback regularly to get the first impressions or made corrections',
+      ],
     },
     footer: 'Schedule a visio conference',
   },

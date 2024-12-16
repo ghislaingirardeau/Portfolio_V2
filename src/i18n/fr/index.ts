@@ -64,18 +64,30 @@ export default {
     },
     stepOne: {
       h3: 'Etapes 1',
-      description:
-        '<ul> <li>Présentation et échange sur votre projet</li> <li>Définir ensemble votre stratégie, vos ressources et vos besoins</li><li>Ce que je peux vous apporter dans votre digitalisation</li><li>Premier retour sur la faisabilité et la viabilité de votre projet</li> </ul>',
+      description: [
+        'Présentation et échange sur votre projet',
+        'Définir ensemble votre stratégie, vos ressources et vos besoins',
+        'Ce que je peux vous apporter dans votre digitalisation',
+        'Premier retour sur la faisabilité et la viabilité de votre projet',
+      ],
     },
     stepTwo: {
       h3: 'Etapes 2',
-      description:
-        '<ul> <li>Etude individualisée de votre projet</li> <li>Evaluation des possibilités, recommandations et solutions adaptées</li><li> Proposition de devis, délai et cahier des charges reprenant le résultat convenu</li><li>Réponse à vos interrogations et questionnements</li> </ul>',
+      description: [
+        'Etude individualisée de votre projet',
+        'Evaluation des possibilités, recommandations et solutions adaptées',
+        'Proposition de devis, délai et cahier des charges reprenant le résultat convenu',
+        'Réponse à vos interrogations et questionnements',
+      ],
     },
     stepThree: {
       h3: 'Etapes 3',
-      description:
-        "<ul> <li>Lancement et développement du projet</li> <li>Plannification des étapes pour le développement</li><li> Un rapport hebdomadaire sur l'avancement du projet</li><li>Un échange visio pour avoir les impressions du rendu</li> </ul>",
+      description: [
+        'Lancement et développement du projet',
+        'Plannification des étapes pour le développement',
+        "Un rapport hebdomadaire sur l'avancement du projet",
+        'Un échange visio pour avoir les impressions du rendu',
+      ],
     },
     footer: 'Prendre un rendez-vous en visio',
   },
