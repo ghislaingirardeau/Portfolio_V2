@@ -1,5 +1,10 @@
 import { defineRouter } from '#q-app/wrappers'
-import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
+import {
+  createMemoryHistory,
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from 'vue-router'
 import routes from './routes'
 
 /*
@@ -16,7 +21,7 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     ? createMemoryHistory
     : process.env.VUE_ROUTER_MODE === 'history'
       ? createWebHistory
-      : createWebHistory
+      : createWebHashHistory
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
