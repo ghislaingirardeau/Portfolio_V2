@@ -1,13 +1,7 @@
 <template>
-  <q-page class="q-pa-lg"
-    >Hello
-
-    <!-- <q-btn @click="() => $q.dark.toggle()"> dark </q-btn> -->
-  </q-page>
+  <q-page class="q-pa-lg">Hello </q-page>
 </template>
 
-<script setup lang="ts">
-// import { useQuasar } from 'quasar'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

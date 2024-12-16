@@ -16,6 +16,7 @@
 import TheDrawer from 'src/components/TheDrawer.vue'
 import TheFooter from 'src/components/TheFooter.vue'
 import TheHeader from 'src/components/TheHeader.vue'
+
 import { ref } from 'vue'
 
 const leftDrawerOpen = ref(false)
