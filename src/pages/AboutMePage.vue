@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import AboutCard from 'src/components/aboutPage/AboutCard.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const tab = ref('me')
 
@@ -51,41 +51,43 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-const descriptions = ref({
-  perso: [
-    {
-      title: t('about.personal.h3'),
-      imgSrc: 'images/aboutPage/moi2.jpg',
-      text: t('about.personal.text'),
-    },
-    {
-      title: t('about.professionaly.h3'),
-      imgSrc: 'images/aboutPage/moi.jpg',
-      text: t('about.professionaly.id1') + ' ' + t('about.professionaly.id2'),
-    },
-  ],
-  pro: [
-    {
-      title: t('about.h2commit'),
-      imgSrc: 'images/aboutPage/environement_respect.jpg',
-      text: t('about.willingness.id1'),
-    },
-    {
-      title: '',
-      imgSrc: 'images/aboutPage/data_protection.jpg',
-      text: t('about.willingness.id2'),
-    },
-    {
-      title: '',
-      imgSrc: 'images/aboutPage/business_relationship.jpg',
-      text: t('about.willingness.id3'),
-    },
-    {
-      title: '',
-      imgSrc: 'images/aboutPage/freelance_me.jpg',
-      text: t('about.willingness.id4'),
-    },
-  ],
+const descriptions = computed(() => {
+  return {
+    perso: [
+      {
+        title: t('about.personal.h3'),
+        imgSrc: 'images/aboutPage/moi2.jpg',
+        text: t('about.personal.text'),
+      },
+      {
+        title: t('about.professionaly.h3'),
+        imgSrc: 'images/aboutPage/moi.jpg',
+        text: t('about.professionaly.id1') + ' ' + t('about.professionaly.id2'),
+      },
+    ],
+    pro: [
+      {
+        title: t('about.h2commit'),
+        imgSrc: 'images/aboutPage/environement_respect.jpg',
+        text: t('about.willingness.id1'),
+      },
+      {
+        title: '',
+        imgSrc: 'images/aboutPage/data_protection.jpg',
+        text: t('about.willingness.id2'),
+      },
+      {
+        title: '',
+        imgSrc: 'images/aboutPage/business_relationship.jpg',
+        text: t('about.willingness.id3'),
+      },
+      {
+        title: '',
+        imgSrc: 'images/aboutPage/freelance_me.jpg',
+        text: t('about.willingness.id4'),
+      },
+    ],
+  }
 })
 </script>
 

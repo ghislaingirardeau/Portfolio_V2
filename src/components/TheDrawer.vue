@@ -5,6 +5,7 @@
     side="left"
     :behavior="deviceDetail.deviceOrientation"
     bordered
+    :width="250"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
@@ -28,7 +29,7 @@ import {
   mdiHomeCircleOutline,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useDeviceDetail } from 'src/stores/deviceDetails'
@@ -39,7 +40,7 @@ const { t } = useI18n()
 
 const leftDrawerOpen = defineModel('leftDrawerOpen', { type: Boolean, required: true })
 
-const menuList = ref([
+const menuList = computed(() => [
   {
     icon: mdiHomeCircleOutline,
     label: t('navBar.index'),

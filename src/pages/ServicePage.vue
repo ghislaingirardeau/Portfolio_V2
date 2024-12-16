@@ -1,9 +1,9 @@
 <template>
   <q-page class="q-pa-lg">
     <div class="column flex flex-center">
-      <h1 class="text-h4">{{ $t('services.header.h1') }}</h1>
-      <p>{{ $t('services.header.p') }}</p>
-      <h2 class="text-h5">{{ $t('services.header.h2') }}</h2>
+      <h1 class="text-h4 text-center">{{ $t('services.header.h1') }}</h1>
+      <p class="text-center">{{ $t('services.header.p') }}</p>
+      <h2 class="text-h5 text-center">{{ $t('services.header.h2') }}</h2>
     </div>
 
     <q-stepper
