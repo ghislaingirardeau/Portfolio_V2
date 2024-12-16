@@ -1,1 +1,9 @@
-// app global css in SCSS form
+@font-face {
+  font-family: 'Kalam', cursive;
+  src: url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+}
+
+// declare a class which applies it
+.kalam-font {
+  font-family: 'Kalam', cursive;
+}

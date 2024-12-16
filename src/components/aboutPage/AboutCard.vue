@@ -2,7 +2,7 @@
   <article class="row justify-between">
     <h2 v-if="hasTitle" class="text-h4 text-md-h3 col-12">{{ props.title }}</h2>
     <div
-      class="col-12 col-md-6 q-mb-md q-mb-md-none"
+      class="col-12 col-md-5 q-mb-md q-mb-md-none"
       :class="{ 'q-mt-xl': !hasTitle, 'order-last': isReverted }"
     >
       <q-img
@@ -10,9 +10,10 @@
         alt="photo de Ghislain montagne"
         fit="contain"
         class="rounded-borders"
+        width="85%"
       />
     </div>
-    <div class="col-12 col-md-5 flex flex-center">
+    <div class="col-12 col-md-6 flex flex-center">
       <p class="reveal-3 about__personal--text">
         {{ props.text }}
       </p>

@@ -8,11 +8,11 @@
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
-        <q-item exact :to="menuItem.to" active-class="text-primary">
+        <q-item exact :to="menuItem.to" active-class="text-primary" class="q-py-lg">
           <q-item-section avatar>
-            <q-icon :name="menuItem.icon" />
+            <q-icon size="lg" :name="menuItem.icon" />
           </q-item-section>
-          <q-item-section>
+          <q-item-section class="text-h6">
             {{ menuItem.label }}
           </q-item-section>
         </q-item>
