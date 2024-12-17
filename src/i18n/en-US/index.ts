@@ -88,221 +88,168 @@ export default {
     },
     footer: 'Schedule a visio conference',
   },
-  projects: [
-    {
-      id: '13',
-      date: 'march 2024 - Today',
-      name: `Wordle Game`,
-      mobileFirst: true,
-      summary: 'Create a mini game (wordle) in Test-Driven-Development',
-      description: `
-      Creation of the game giving priority to Test first using 3 steps.
+  projects: {
+    mobile: [
+      {
+        id: '13',
+        date: 'march 2024 - Today',
+        name: `Wordle Game`,
+        mobileFirst: true,
+        summary: 'Create a mini game (wordle) in Test-Driven-Development',
+        description: `
+    Creation of the game giving priority to Test first using 3 steps.
+    <ul>
+    <li>Red Lights: Write the test for the expected result </li>
+    <li>Green Lights: Write the code for the test to pass</li>
+    <li>Refactor code and test.</li>
+    </ul>`,
+        tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
+        imageURL: ['wordle1.png', 'wordle2.png'],
+        link: 'https://wordle-game-gg-wev-dev.netlify.app/',
+      },
+      {
+        id: '12',
+        date: 'juin 2023',
+        name: 'Mon Vocabulaire en carte',
+        mobileFirst: true,
+        summary: 'Building a web application with PWA, Typescript & Nuxt 3',
+        description:
+          "An application that allows you to translate words or phrases, but also to organise and archive them in the form of a card. The application allows you to listen to 'my vocabulary' in the chosen language at different speeds and offers pronunciation help for certain languages such as Khmer.",
+        tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
+        imageURL: [
+          'carte_sample.png',
+          'carte_account.png',
+          'carte_options.png',
+          'carte_tuto1.png',
+          'carte_tuto2.png',
+          'carte_tuto3.png',
+        ],
+        link: 'https://my-flashcard-lang.netlify.app/en',
+      },
+      {
+        id: '8',
+        date: 'january 2022',
+        name: 'PWA - Cartographie',
+        summary: 'Mobile free Mapping App',
+        mobileFirst: true,
+        description: `Development of a mapping tool for a sociology researcher. 
       <ul>
-      <li>Red Lights: Write the test for the expected result </li>
-      <li>Green Lights: Write the code for the test to pass</li>
-      <li>Refactor code and test.</li>
-      </ul>`,
-      tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
-      imageURL: ['wordle1.png', 'wordle2.png'],
-      link: 'https://wordle-game-gg-wev-dev.netlify.app/',
-    },
-    {
-      id: '12',
-      date: 'juin 2023',
-      name: 'Mon Vocabulaire en carte',
-      mobileFirst: true,
-      summary: 'Building a web application with PWA, Typescript & Nuxt 3',
-      description:
-        "An application that allows you to translate words or phrases, but also to organise and archive them in the form of a card. The application allows you to listen to 'my vocabulary' in the chosen language at different speeds and offers pronunciation help for certain languages such as Khmer.",
-      tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
-      imageURL: [
-        'carte_sample.png',
-        'carte_account.png',
-        'carte_options.png',
-        'carte_tuto1.png',
-        'carte_tuto2.png',
-        'carte_tuto3.png',
-      ],
-      link: 'https://my-flashcard-lang.netlify.app/en',
-    },
-    {
-      id: '8',
-      date: 'january 2022',
-      name: 'PWA - Cartographie',
-      summary: 'Mobile free Mapping App',
-      mobileFirst: true,
-      description: `Development of a mapping tool for a sociology researcher. 
-        <ul>
-        <li>- Save a position</li>
-        <li>- Track my position</li>
-        <li>- Ability to add geographical areas</li>
-        <li>Large selection of markers from over 2500 icons</li>
-        <li>- Save and export data</li>
-        <li>- Organize markers in folders for dynamic display</li>
-        <li>- Data backed up and secured via Firebase</li>
-      </ul>`,
-      tech: 'Nuxt, vuetify, leaflet, Firebase, import et export from/to Excel file, netlify, GitHub',
-      imageURL: [
-        'mapping1.PNG',
-        'mapping2.PNG',
-        'mapping3.PNG',
-        'mapping4.PNG',
-        'mapping5.PNG',
-        'mapping6.PNG',
-        'mapping7.PNG',
-        'mapping8.PNG',
-        'mapping9.PNG',
-      ],
-      link: 'https://map-tool-village.netlify.app/',
-    },
-    {
-      id: '11',
-      date: 'january 2023',
-      name: 'Weather Mobile App',
-      summary: 'Dicsover & Explore React Native',
-      mobileFirst: true,
-      description:
-        'Explore React Native & Expo components, set up a React navigation, get API data. Play with additional components: camera, save files, picker, env, touch event, animation...',
-      tech: 'React native, Expo Go, Ionicons, AsyncStorage, GitHub',
-      video: 'reactNative.mp4',
-    },
-    {
-      id: '10',
-      date: 'july 2022',
-      name: 'Web App - Data collection app',
-      summary: 'Web application for data collection and processing',
-      mobileFirst: false,
-      description:
-        'Loan simulator and payment table, data forms template to collect the data, the admin page to visualise the collections and view the data tables.',
-      tech: 'Nuxt, vuetify, firebase auth & store, moment JS, chart JS, notification, export to excel, netlify, GitHub',
-      imageURL: [
-        'community_tool1.png',
-        'community_tool2.png',
-        'community_tool3.png',
-        'community_tool4.png',
-      ],
-    },
-    // {
-    //   id: "9",
-    //   date: "mai 2022",
-    //   name: "Multi languages e-commerce website",
-    //   summary: "E-commerce website template",
-    //   description:
-    //     "Understand how to integrate a dynamic database related to the user language, create a dynamic shopping table summary and add an API Stripe payment simulation, currency conversion feature",
-    //   tech: "Node js, Express, Axios, Vue js, Nuxt js, i18n, Vuetify, Stripe, GitHub, Mysql workbench, railway",
-    //   imageURL: ["e-commerce1.png", "e-commerce2.png"],
-    // },
+      <li>- Save a position</li>
+      <li>- Track my position</li>
+      <li>- Ability to add geographical areas</li>
+      <li>Large selection of markers from over 2500 icons</li>
+      <li>- Save and export data</li>
+      <li>- Organize markers in folders for dynamic display</li>
+      <li>- Data backed up and secured via Firebase</li>
+    </ul>`,
+        tech: 'Nuxt, vuetify, leaflet, Firebase, import et export from/to Excel file, netlify, GitHub',
+        imageURL: [
+          'mapping1.PNG',
+          'mapping2.PNG',
+          'mapping3.PNG',
+          'mapping4.PNG',
+          'mapping5.PNG',
+          'mapping6.PNG',
+          'mapping7.PNG',
+          'mapping8.PNG',
+          'mapping9.PNG',
+        ],
+        link: 'https://map-tool-village.netlify.app/',
+      },
+    ],
+    desktop: [
+      {
+        id: '10',
+        date: 'july 2022',
+        name: 'Web App - Data collection app',
+        summary: 'Web application for data collection and processing',
+        mobileFirst: false,
+        description:
+          'Loan simulator and payment table, data forms template to collect the data, the admin page to visualise the collections and view the data tables.',
+        tech: 'Nuxt, vuetify, firebase auth & store, moment JS, chart JS, notification, export to excel, netlify, GitHub',
+        imageURL: [
+          'community_tool1.png',
+          'community_tool2.png',
+          'community_tool3.png',
+          'community_tool4.png',
+        ],
+      },
 
-    {
-      id: '7',
-      date: 'august 2021',
-      name: 'BeToFeel',
-      mobileFirst: false,
-      summary: 'Building a full-stack website: sharing and visualising dynamic emotions',
-      description:
-        'SVG image dynamic, motion and personalised front rendering based on user data, including SQL database and authentication user control. Offer the ability to share your personal image with other users, Full stack deployment API server on Heroku / app on Netlify',
-      tech: 'Node js, Express, Axios, bcrypt, Figma, bootstrap vue, Nuxt js, GitHub, Mysql workbench',
-      imageURL: [
-        'beToFeelsign.PNG',
-        'beToFeelMenu.PNG',
-        'beToFeeling.PNG',
-        'beToFeelShare.PNG',
-        'beToFeelShareAsk.PNG',
-        'beToFeelTree.PNG',
-        'beToFeelUser.PNG',
-      ],
-      link: 'https://betofeel.netlify.app/',
-    },
-    {
-      id: '6',
-      date: 'may 2021',
-      name: 'Groupomania',
-      summary: 'Build a Full-Stack Solution',
-      mobileFirst: false,
-      description:
-        "Analyse a client's requirements to define the scope and features of a new application. Build a full-stack solution using a front-end framework, including a SQL database.",
-      tech: 'Mysql, Node js, Express, bcrypt, multer, bootstrap, Vue js, GitHub',
-      imageURL: [
-        'groupomania_log.PNG',
-        'groupomania_signup.PNG',
-        'groupomania_home.PNG',
-        'groupomania_delete.PNG',
-        'groupomania_forum.PNG',
-        'groupomania_update.PNG',
-        'groupomania_empty.PNG',
-      ],
-    },
-    {
-      id: '4',
-      date: 'april 2021',
-      name: 'Orinoco',
-      summary: 'Build an eCommerce Website',
-      mobileFirst: false,
-      description:
-        'Use the JavaScript programming language to interact with users and external services. Apply a test-driven approach to web development.',
-      tech: 'Javascript, bootstrap, Regex, GitHub',
-      imageURL: [
-        'orinoco_accueil.PNG',
-        'orinoco_produit.PNG',
-        'orinoco_basket.PNG',
-        'orinoco_forms.PNG',
-        'orinoco_confirm.PNG',
-      ],
-    },
-    {
-      id: '1',
-      date: 'december 2020',
-      name: 'Reservia',
-      summary: 'Turn Mock-ups into a Web Page',
-      mobileFirst: false,
-      description:
-        "Get started with HTML & CSS by implementing a travel booking platform's website from scratch.",
-      tech: 'HTML, CSS, GitHub',
-      imageURL: ['reservia.PNG'],
-      link: 'https://ghislaingirardeau.github.io/GhislainGirardeau_2_23122020/',
-    },
-    {
-      id: '2',
-      date: 'january 2021',
-      name: 'Ohmyfood',
-      summary: 'Integrate a mobile website with animations in CSS',
-      mobileFirst: false,
-      description: 'Implement the mobile version of this foodtech website with CSS animations.',
-      tech: 'HTML, CSS, SASS, GitHub, BEM methods for a clear code',
-      imageURL: ['ohmyfood.PNG', 'ohmyfood_menu1.PNG'],
-      loader: 'true',
-      link: 'https://ghislaingirardeau.github.io/GirardeauGhislain_3_13012021/index.html',
-    },
-    /* {
-      id: "3",
-      date: "february 2021",
-      name: "La chouette agence",
-      summary: "Optimize an existing Website",
-      description:
-        "Research and implement current best practices and standards in web development, including SEO, size and speed, and accessibility.",
-      tech: "Aria, SEO, google analytics, google search console, wave evaluation, headingMap  GitHub",
-      imageURL: [
-        "chouette_agence_loading.PNG",
-        "chouette_agence_titre.PNG",
-        "chouette_agence_responsive.PNG",
-      ],
-      link: "https://ghislaingirardeau.github.io/GirardeauGhislain_4_02022021/index.html",
-    }, */
-    /* {
-      id: "5",
-      date: "march 2021",
-      name: "So Peckoko",
-      summary: "Build a Secure API for a review app",
-      description:
-        "Hot Takes is a new app for customer reviews of specialty hot sauces. Use Node.js, Express, and MongoDB to build its NoSQL database. Secure customer data by applying the OWASP web security standards.",
-      tech: "Node js, Express, bcrypt, multer, MongoDb, GitHub",
-      imageURL: [
-        "so_peckoko_log.PNG",
-        "so_peckoko_create.PNG",
-        "so_peckoko_CRUD.PNG",
-      ],
-    }, */
-  ],
+      {
+        id: '7',
+        date: 'august 2021',
+        name: 'BeToFeel',
+        mobileFirst: false,
+        summary: 'Building a full-stack website: sharing and visualising dynamic emotions',
+        description:
+          'SVG image dynamic, motion and personalised front rendering based on user data, including SQL database and authentication user control. Offer the ability to share your personal image with other users, Full stack deployment API server on Heroku / app on Netlify',
+        tech: 'Node js, Express, Axios, bcrypt, Figma, bootstrap vue, Nuxt js, GitHub, Mysql workbench',
+        imageURL: [
+          'beToFeelsign.PNG',
+          'beToFeelMenu.PNG',
+          'beToFeeling.PNG',
+          'beToFeelShare.PNG',
+          'beToFeelShareAsk.PNG',
+          'beToFeelTree.PNG',
+          'beToFeelUser.PNG',
+        ],
+        link: 'https://betofeel.netlify.app/',
+      },
+      {
+        id: '1',
+        date: 'december 2020',
+        name: 'Reservia',
+        summary: 'Turn Mock-ups into a Web Page',
+        mobileFirst: false,
+        description:
+          "Get started with HTML & CSS by implementing a travel booking platform's website from scratch.",
+        tech: 'HTML, CSS, GitHub',
+        imageURL: ['reservia.PNG'],
+        link: 'https://ghislaingirardeau.github.io/GhislainGirardeau_2_23122020/',
+      },
+      {
+        id: '2',
+        date: 'january 2021',
+        name: 'Ohmyfood',
+        summary: 'Integrate a mobile website with animations in CSS',
+        mobileFirst: false,
+        description: 'Implement the mobile version of this foodtech website with CSS animations.',
+        tech: 'HTML, CSS, SASS, GitHub, BEM methods for a clear code',
+        imageURL: ['ohmyfood.PNG', 'ohmyfood_menu1.PNG'],
+        loader: 'true',
+        link: 'https://ghislaingirardeau.github.io/GirardeauGhislain_3_13012021/index.html',
+      },
+      /* {
+    id: "3",
+    date: "february 2021",
+    name: "La chouette agence",
+    summary: "Optimize an existing Website",
+    description:
+      "Research and implement current best practices and standards in web development, including SEO, size and speed, and accessibility.",
+    tech: "Aria, SEO, google analytics, google search console, wave evaluation, headingMap  GitHub",
+    imageURL: [
+      "chouette_agence_loading.PNG",
+      "chouette_agence_titre.PNG",
+      "chouette_agence_responsive.PNG",
+    ],
+    link: "https://ghislaingirardeau.github.io/GirardeauGhislain_4_02022021/index.html",
+  }, */
+      /* {
+    id: "5",
+    date: "march 2021",
+    name: "So Peckoko",
+    summary: "Build a Secure API for a review app",
+    description:
+      "Hot Takes is a new app for customer reviews of specialty hot sauces. Use Node.js, Express, and MongoDB to build its NoSQL database. Secure customer data by applying the OWASP web security standards.",
+    tech: "Node js, Express, bcrypt, multer, MongoDb, GitHub",
+    imageURL: [
+      "so_peckoko_log.PNG",
+      "so_peckoko_create.PNG",
+      "so_peckoko_CRUD.PNG",
+    ],
+  }, */
+    ],
+  },
   projectsPage: {
     title: 'Find all project descriptions',
     description:

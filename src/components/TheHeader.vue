@@ -3,7 +3,7 @@
     <q-toolbar>
       <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-      <q-toolbar-title> Title </q-toolbar-title>
+      <q-toolbar-title> GG WebDev </q-toolbar-title>
       <q-space />
       <SwitchModeBtn />
       <SwitchLangBtn />

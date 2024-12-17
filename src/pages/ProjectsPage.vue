@@ -1,7 +1,74 @@
 <template>
-  <div>projects</div>
+  <q-page class="q-pa-lg">
+    <q-tabs
+      v-model="tab"
+      dense
+      class="text-grey"
+      active-color="primary"
+      indicator-color="primary"
+      align="justify"
+      narrow-indicator
+    >
+      <q-tab name="mobile" :label="'Mobile first'" />
+      <q-tab name="desktop" :label="'desktop'" />
+    </q-tabs>
+
+    <q-separator />
+
+    <q-tab-panels v-model="tab" animated>
+      <q-tab-panel name="mobile">
+        <div class="row justify-around">
+          <q-card
+            v-for="project in tm('projects.mobile')"
+            :key="project.id"
+            class="my-card--portait col-9 col-md-3 q-ma-md"
+          >
+            <q-img
+              :src="`/images/projectsPage/${project.imageURL[0]}`"
+              fit="fill"
+              loading="lazy"
+              spinner-color="white"
+              height="380px"
+            >
+              <div class="text-h5 absolute-top text-center">{{ project.name }}</div>
+            </q-img>
+          </q-card>
+        </div>
+      </q-tab-panel>
+
+      <q-tab-panel name="desktop">
+        <div class="row justify-around">
+          <q-card
+            v-for="project in tm('projects.desktop')"
+            :key="rt(project.id)"
+            class="my-card--landscape col-11 col-md-5 q-my-md"
+          >
+            <q-img
+              :src="`/images/projectsPage/${rt(project.imageURL[0])}`"
+              fit="fill"
+              loading="lazy"
+              spinner-color="white"
+              height="180px"
+            >
+              <div class="text-h5 absolute-top text-center">{{ rt(project.name) }}</div>
+            </q-img>
+          </q-card>
+        </div>
+      </q-tab-panel>
+    </q-tab-panels>
+  </q-page>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { tm, rt } = useI18n()
 
-<style scoped></style>
+const tab = ref('mobile')
+</script>
+
+<style scoped lang="scss">
+.my-card {
+  width: 100%;
+}
+</style>
