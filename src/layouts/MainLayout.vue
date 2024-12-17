@@ -20,4 +20,8 @@ import TheHeader from 'src/components/TheHeader.vue'
 import { ref } from 'vue'
 
 const leftDrawerOpen = ref(false)
+
+setTimeout(() => {
+  leftDrawerOpen.value = true
+}, 3000)
 </script>

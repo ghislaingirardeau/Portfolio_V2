@@ -1,7 +1,7 @@
 <template>
   <q-header elevated ref="header">
     <q-toolbar>
-      <q-btn v-if="deviceDetail.isMobile" dense flat round icon="menu" @click="toggleLeftDrawer" />
+      <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
       <q-toolbar-title> GG WebDev </q-toolbar-title>
       <q-space />

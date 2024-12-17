@@ -19,7 +19,7 @@ const langLocale = computed(() => {
 
 onMounted(() => {
   const elementTarget = toggleLangBtn.value?.$el as HTMLDivElement
-  gsap.from(elementTarget, { duration: 1, x: -500, opacity: 0, delay: 1 })
+  gsap.from(elementTarget, { duration: 1, x: -250, opacity: 0, delay: 1 })
   gsap.to(elementTarget, { duration: 1, x: 0, opacity: 1, delay: 1 })
 })
 
