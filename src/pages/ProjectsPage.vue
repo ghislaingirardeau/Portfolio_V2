@@ -21,17 +21,19 @@
           <q-card
             v-for="project in tm('projects.mobile')"
             :key="project.id"
-            class="my-card--portait col-9 col-md-3 q-ma-md"
+            class="my-card--portrait col-7 col-sm-4 col-md-3 col-lg-2 q-ma-md"
           >
             <q-img
               :src="`/images/projectsPage/${project.imageURL[0]}`"
               fit="fill"
               loading="lazy"
               spinner-color="white"
-              height="380px"
+              height="85%"
             >
-              <div class="text-h5 absolute-top text-center">{{ project.name }}</div>
             </q-img>
+            <q-card-section class="flex flex-center">
+              {{ project.name }}
+            </q-card-section>
           </q-card>
         </div>
       </q-tab-panel>
@@ -41,7 +43,7 @@
           <q-card
             v-for="project in tm('projects.desktop')"
             :key="rt(project.id)"
-            class="my-card--landscape col-11 col-md-5 q-my-md"
+            class="my-card--landscape col-9 col-sm-5 col-md-4 col-lg-3 q-my-md q-mx-md-md"
           >
             <q-img
               :src="`/images/projectsPage/${rt(project.imageURL[0])}`"
@@ -50,8 +52,10 @@
               spinner-color="white"
               height="180px"
             >
-              <div class="text-h5 absolute-top text-center">{{ rt(project.name) }}</div>
             </q-img>
+            <q-card-section class="flex flex-center">
+              {{ rt(project.name) }}
+            </q-card-section>
           </q-card>
         </div>
       </q-tab-panel>
@@ -70,5 +74,8 @@ const tab = ref('mobile')
 <style scoped lang="scss">
 .my-card {
   width: 100%;
+  &--portrait {
+    height: 450px;
+  }
 }
 </style>
