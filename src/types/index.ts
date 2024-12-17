@@ -3,7 +3,7 @@ export interface Project {
   date: string
   name: string
   summary: string
-  mobileFirst: string
+  mobileFirst: boolean
   description: string
   tech: string
   imageURL: string
