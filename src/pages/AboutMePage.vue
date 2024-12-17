@@ -10,7 +10,7 @@
       narrow-indicator
     >
       <q-tab name="me" :label="$t('about.h2who')" />
-      <q-tab name="pro" :label="$t('about.professionaly.h3')" />
+      <q-tab name="pro" :label="$t('about.h2Pro')" />
     </q-tabs>
 
     <q-separator />

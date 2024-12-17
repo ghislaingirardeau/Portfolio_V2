@@ -1,9 +1,15 @@
 <template>
   <article class="row justify-between">
-    <h2 v-if="hasTitle" class="text-h4 text-md-h3 col-12">{{ props.title }}</h2>
+    <h2
+      v-if="hasTitle"
+      class="text-h4 text-md-h3 col-12"
+      :class="{ 'md:text-right': index === 1, 'q-mt-xl': index === 1 }"
+    >
+      {{ props.title }}
+    </h2>
     <div
-      class="col-12 col-md-5 q-mb-md q-mb-md-none"
-      :class="{ 'q-mt-xl': !hasTitle, 'order-last': isReverted }"
+      class="col-12 flex flex-center col-md-5 q-mb-md q-mb-md-none q-mt-xl"
+      :class="{ 'order-last': isReverted }"
     >
       <q-img
         :src="props.imgSrc"

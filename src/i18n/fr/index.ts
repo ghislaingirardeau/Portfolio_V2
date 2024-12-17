@@ -1,4 +1,8 @@
 export default {
+  cta: {
+    next: 'Suivant',
+    back: 'Retour',
+  },
   navBar: {
     index: 'Accueil',
     projects: 'Mes projets',
@@ -39,13 +43,15 @@ export default {
   about: {
     h1: 'En savoir plus sur moi',
     h2who: 'Qui suis-je...',
-    h2commit: "Mes souhaits d'engagements...",
+    h2Pro: 'Engagé...',
+
+    h2commit: 'Mes souhaits...',
     personal: {
-      h3: '...Personnellement',
+      h3: '...Côté Perso',
       text: "Après 10 d'expériences dans la distribution d'articles de sport, j'ai décidé de réaliser un vieux rêve et de me tourner vers une autre passion qu'est le langage informatique. Passionée de sports, investi dans le développement web, j'ai aujourd'hui le souhait de mettre à disposition mes compétences dans des projets enrichissant tant humainement que professionnellement.",
     },
     professionaly: {
-      h3: '...Professionnellement',
+      h3: '...Côté Pro',
       id1: "Auto-entrepreneur et freelance en developpement web : Réalisation de ce e-portfolio via Vue et Nuxt Js, 2 framework js que j'apprécie particulièrement !",
       id2: "OPEN CLASSROOM : Formation 6 mois développeur Web. Partisans des méthodes AGILE, tous mes projets sont issus du monde professionnel et ont éte présenté à distance en visio conférence. J'ai organisé mon travail en tout autonomie dans le respect des délais impartis.",
     },
@@ -249,67 +255,67 @@ export default {
         ],
         link: 'https://betofeel.netlify.app/',
       },
-      /* {
-          id: "6",
-          date: "mai 2021",
-          name: "Groupomania",
-          summary: "Création d'un réseau social interne à une entreprise",
-          mobileFirst: false,
-          description:
-            "Personnaliser le contenu envoyé à un client web, Gérer un stockage de données à l'aide de SQL, Implémenter un stockage de données sécurisé en utilisant SQL, Authentifier un utilisateur et maintenir sa session, Définir des rôles et des privilèges suivant l'utilisateur",
-          tech: "Mysql, Node js, Express, bcrypt, multer, bootstrap, Vue js, GitHub",
-          imageURL: [
-            "groupomania_log.PNG",
-            "groupomania_signup.PNG",
-            "groupomania_home.PNG",
-            "groupomania_delete.PNG",
-            "groupomania_forum.PNG",
-            "groupomania_update.PNG",
-            "groupomania_empty.PNG",
-          ],
-        },
-        {
-          id: "4",
-          date: "avril 2021",
-          name: "Orinoco",
-          summary: "Création d'un 1er projet pour un site e-commerce",
-          mobileFirst: false,
-          description:
-            "Interagir avec une API avec JavaScript. Valider des données issues de sources externes avant leur envoie vers API. Créer un plan de test pour une application et gérer des événements JavaScript",
-          tech: "Javascript, bootstrap, Regex, GitHub",
-          imageURL: [
-            "orinoco_accueil.PNG",
-            "orinoco_produit.PNG",
-            "orinoco_basket.PNG",
-            "orinoco_forms.PNG",
-            "orinoco_confirm.PNG",
-          ],
-        },
-        {
-          id: "1",
-          date: "décembre 2020",
-          name: "Reservia",
-          summary: "Intégration d'une maquette en site web",
-          mobileFirst: false,
-          description:
-            "Implémenter une interface responsive, Utiliser un système de gestion de versions pour le suivi du projet",
-          tech: "HTML, CSS, GitHub",
-          imageURL: ["reservia.PNG"],
-          link: "https://ghislaingirardeau.github.io/GhislainGirardeau_2_23122020/",
-        },
-        {
-          id: "2",
-          date: "janvier 2021",
-          name: "Ohmyfood",
-          mobileFirst: false,
-          summary: "Mise en œuvre une structure de navigation web",
-          description:
-            "Mettre en œuvre des effets CSS graphiques avancés en assurant une cohérence graphique. Mise en place d'animation Keyframes et transitions pour rendre enrichir l'expérience utilisateur",
-          tech: "HTML, CSS, SASS, GitHub, méthode BEM pour un code clair",
-          imageURL: ["ohmyfood.PNG", "ohmyfood_menu1.PNG"],
-          loader: "true",
-          link: "https://ghislaingirardeau.github.io/GirardeauGhislain_3_13012021/index.html",
-        }, */
+      // {
+      //     id: "6",
+      //     date: "mai 2021",
+      //     name: "Groupomania",
+      //     summary: "Création d'un réseau social interne à une entreprise",
+      //     mobileFirst: false,
+      //     description:
+      //       "Personnaliser le contenu envoyé à un client web, Gérer un stockage de données à l'aide de SQL, Implémenter un stockage de données sécurisé en utilisant SQL, Authentifier un utilisateur et maintenir sa session, Définir des rôles et des privilèges suivant l'utilisateur",
+      //     tech: "Mysql, Node js, Express, bcrypt, multer, bootstrap, Vue js, GitHub",
+      //     imageURL: [
+      //       "groupomania_log.PNG",
+      //       "groupomania_signup.PNG",
+      //       "groupomania_home.PNG",
+      //       "groupomania_delete.PNG",
+      //       "groupomania_forum.PNG",
+      //       "groupomania_update.PNG",
+      //       "groupomania_empty.PNG",
+      //     ],
+      //   },
+      // {
+      //   id: "4",
+      //   date: "avril 2021",
+      //   name: "Orinoco",
+      //   summary: "Création d'un 1er projet pour un site e-commerce",
+      //   mobileFirst: false,
+      //   description:
+      //     "Interagir avec une API avec JavaScript. Valider des données issues de sources externes avant leur envoie vers API. Créer un plan de test pour une application et gérer des événements JavaScript",
+      //   tech: "Javascript, bootstrap, Regex, GitHub",
+      //   imageURL: [
+      //     "orinoco_accueil.PNG",
+      //     "orinoco_produit.PNG",
+      //     "orinoco_basket.PNG",
+      //     "orinoco_forms.PNG",
+      //     "orinoco_confirm.PNG",
+      //   ],
+      // },
+      {
+        id: '1',
+        date: 'décembre 2020',
+        name: 'Reservia',
+        summary: "Intégration d'une maquette en site web",
+        mobileFirst: false,
+        description:
+          'Implémenter une interface responsive, Utiliser un système de gestion de versions pour le suivi du projet',
+        tech: 'HTML, CSS, GitHub',
+        imageURL: ['reservia.PNG'],
+        link: 'https://ghislaingirardeau.github.io/GhislainGirardeau_2_23122020/',
+      },
+      {
+        id: '2',
+        date: 'janvier 2021',
+        name: 'Ohmyfood',
+        mobileFirst: false,
+        summary: 'Mise en œuvre une structure de navigation web',
+        description:
+          "Mettre en œuvre des effets CSS graphiques avancés en assurant une cohérence graphique. Mise en place d'animation Keyframes et transitions pour rendre enrichir l'expérience utilisateur",
+        tech: 'HTML, CSS, SASS, GitHub, méthode BEM pour un code clair',
+        imageURL: ['ohmyfood.PNG', 'ohmyfood_menu1.PNG'],
+        loader: 'true',
+        link: 'https://ghislaingirardeau.github.io/GirardeauGhislain_3_13012021/index.html',
+      },
       /* {
           id: "3",
           date: "février 2021",

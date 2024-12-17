@@ -1,4 +1,8 @@
 export default {
+  cta: {
+    next: 'Next',
+    back: 'Back',
+  },
   navBar: {
     index: 'Home',
     projects: 'My works',
@@ -36,6 +40,8 @@ export default {
   about: {
     h1: 'More about me',
     h2who: 'Who I am...',
+    h2Pro: 'Commitment...',
+
     h2commit: 'My work commitment...',
     personal: {
       h3: '...Personally',
