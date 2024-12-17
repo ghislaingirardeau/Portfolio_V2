@@ -85,7 +85,7 @@ onMounted(() => {
       duration: 1,
       text: { value: menuList.value[index]!.label },
       ease: 'none',
-      delay: index,
+      delay: 3 + index,
     })
   })
 
@@ -95,7 +95,7 @@ onMounted(() => {
       duration: 1,
       opacity: 1,
       ease: 'none',
-      delay: index,
+      delay: 3 + index,
     })
   })
 })
