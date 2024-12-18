@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {},
     rotate: {
-      35: '25deg',
+      20: '20deg',
     },
   },
   plugins: [],
