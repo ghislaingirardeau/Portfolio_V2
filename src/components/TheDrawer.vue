@@ -14,16 +14,13 @@
           <q-item-section avatar>
             <q-icon
               :ref="menuIcon.set"
-              class="opacity-0 -rotate-90"
+              class="opacity-0 rotate-90"
               size="lg"
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section class="text-h6 menu_section_label">
-            <div :ref="menuLabel.set" class="flex">
-              <span class="text-red-9">&lt;li&gt;</span><span class="text-green-9">Menu&lt;</span
-              ><span class="text-red-9">/li&gt;</span>
-            </div>
+          <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
+            &lt;li&gt;Menu&lt;/li&gt;
           </q-item-section>
         </q-item>
       </template>
@@ -88,25 +85,23 @@ const menuList = computed(() => [
 ])
 
 function handleMenuAnimation() {
+  const tl = gsap.timeline()
   menuList.value.forEach((el, index) => {
-    const elementTarget = menuLabel.value[index] as HTMLDivElement
-    gsap.to(elementTarget, {
+    const elementTarget = menuIcon.value[index].$el as HTMLDivElement
+    tl.to(elementTarget, {
       duration: 1,
-      text: { value: el.label },
+      opacity: 1,
+      rotateZ: 0,
       ease: 'none',
-      delay: index,
     })
   })
 
   menuList.value.forEach((el, index) => {
-    const elementTarget = menuIcon.value[index].$el as HTMLDivElement
-
-    gsap.to(elementTarget, {
+    const elementTarget = menuLabel.value[index].$el as HTMLDivElement
+    tl.to(elementTarget, {
       duration: 1,
-      opacity: 1,
-      rotateZ: 0,
-      ease: 'elastic',
-      delay: index,
+      text: { value: el.label },
+      ease: 'none',
     })
   })
 }

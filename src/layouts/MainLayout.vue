@@ -20,13 +20,15 @@ import { useDeviceDetail } from 'src/stores/deviceDetails'
 
 const { isMobile } = useDeviceDetail()
 
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const leftDrawerOpen = ref(false)
 
-setTimeout(() => {
-  if (!isMobile) {
-    leftDrawerOpen.value = true
-  }
-}, 1000)
+onMounted(() => {
+  setTimeout(() => {
+    if (!isMobile) {
+      leftDrawerOpen.value = true
+    }
+  }, 1000)
+})
 </script>
