@@ -19,8 +19,11 @@
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
-            <!-- {{ menuItem.label }} -->
+          <q-item-section class="text-h6 menu_section_label">
+            <div :ref="menuLabel.set" class="flex">
+              <span class="text-red-9">&lt;li&gt;</span><span class="text-green-9">Menu&lt;</span
+              ><span class="text-red-9">/li&gt;</span>
+            </div>
           </q-item-section>
         </q-item>
       </template>
@@ -86,7 +89,7 @@ const menuList = computed(() => [
 
 function handleMenuAnimation() {
   menuList.value.forEach((el, index) => {
-    const elementTarget = menuLabel.value[index].$el as HTMLDivElement
+    const elementTarget = menuLabel.value[index] as HTMLDivElement
     gsap.to(elementTarget, {
       duration: 1,
       text: { value: el.label },
