@@ -12,7 +12,12 @@
       <template v-for="(menuItem, index) in menuList" :key="index">
         <q-item exact :to="menuItem.to" active-class="text-primary" class="q-py-lg">
           <q-item-section avatar>
-            <q-icon :ref="menuIcon.set" class="opacity-0" size="lg" :name="menuItem.icon" />
+            <q-icon
+              :ref="menuIcon.set"
+              class="opacity-0 -rotate-90"
+              size="lg"
+              :name="menuItem.icon"
+            />
           </q-item-section>
           <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
             <!-- {{ menuItem.label }} -->
@@ -30,7 +35,7 @@ import {
   mdiHomeCircleOutline,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
-import { computed, onMounted, useTemplateRef } from 'vue'
+import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
@@ -39,14 +44,12 @@ import { useDeviceDetail } from 'src/stores/deviceDetails'
 
 const deviceDetail = useDeviceDetail()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const menuLabel = useTemplateRefsList<any>()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const menuIcon = useTemplateRefsList<any>()
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const drawer = useTemplateRef<any>('drawer')
 
 const leftDrawerOpen = defineModel('leftDrawerOpen', { type: Boolean, required: true })
 
@@ -82,32 +85,36 @@ const menuList = computed(() => [
 ])
 
 function handleMenuAnimation() {
-  menuLabel.value.forEach((el, index) => {
-    const elementTarget = el.$el as HTMLDivElement
+  menuList.value.forEach((el, index) => {
+    const elementTarget = menuLabel.value[index].$el as HTMLDivElement
     gsap.to(elementTarget, {
       duration: 1,
-      text: { value: menuList.value[index]!.label },
+      text: { value: el.label },
       ease: 'none',
       delay: index,
     })
   })
 
-  menuIcon.value.forEach((el, index) => {
-    const elementTarget = el.$el as HTMLDivElement
-    gsap.from(elementTarget, {
-      duration: 1,
-      rotateZ: -180,
-      ease: 'none',
-      delay: index,
-    })
+  menuList.value.forEach((el, index) => {
+    const elementTarget = menuIcon.value[index].$el as HTMLDivElement
+
     gsap.to(elementTarget, {
       duration: 1,
       opacity: 1,
+      rotateZ: 0,
       ease: 'none',
       delay: index,
     })
   })
 }
+
+watch(
+  () => locale.value,
+  () => {
+    console.log('locale changed')
+    handleMenuAnimation()
+  },
+)
 </script>
 
 <style scoped></style>

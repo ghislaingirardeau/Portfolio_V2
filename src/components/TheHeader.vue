@@ -17,17 +17,17 @@ import SwitchLangBtn from './header/SwitchLangBtn.vue'
 import SwitchModeBtn from './header/SwitchModeBtn.vue'
 import { gsap } from 'src/boot/gsap'
 import { onMounted, useTemplateRef } from 'vue'
+import { useGlobalSettings } from 'src/stores/globalSettings'
 
-import { useDeviceDetail } from 'src/stores/deviceDetails'
+const { ANIM_DURATION } = useGlobalSettings()
 
-const deviceDetail = useDeviceDetail()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
 
 onMounted(() => {
   const elementTarget = header.value?.$el as HTMLDivElement
-  gsap.from(elementTarget, { duration: 1, opacity: 0, height: '0px' })
-  gsap.to(elementTarget, { duration: 1, height: '50px', opacity: 1 })
+  gsap.from(elementTarget, { duration: ANIM_DURATION, opacity: 0, height: '0px' })
+  gsap.to(elementTarget, { duration: ANIM_DURATION, height: '50px', opacity: 1 })
 })
 
 function toggleLeftDrawer() {
