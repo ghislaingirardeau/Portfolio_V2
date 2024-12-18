@@ -105,7 +105,7 @@ function handleMenuAnimation() {
       duration: 1,
       opacity: 1,
       rotateZ: 0,
-      ease: 'none',
+      ease: 'elastic',
       delay: index,
     })
   })

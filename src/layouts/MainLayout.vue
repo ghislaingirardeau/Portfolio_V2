@@ -23,5 +23,5 @@ const leftDrawerOpen = ref(false)
 
 setTimeout(() => {
   leftDrawerOpen.value = true
-}, 3000)
+}, 1000)
 </script>

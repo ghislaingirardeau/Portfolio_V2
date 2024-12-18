@@ -1,7 +1,11 @@
-import { gsap } from 'gsap';
+import { gsap } from 'gsap'
 
-import { TextPlugin } from 'gsap/TextPlugin';
+import { TextPlugin } from 'gsap/TextPlugin'
+import { CustomEase } from 'gsap/CustomEase'
 
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(TextPlugin)
+gsap.registerPlugin(CustomEase)
 
-export { gsap };
+CustomEase.create('hop', '.17,.67,.54,1.42')
+
+export { gsap }
