@@ -20,7 +20,7 @@
             />
           </q-item-section>
           <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
-            &lt;li&gt;Menu&lt;/li&gt;
+            <code>&lt;li&gt;Menu&lt;/li&gt;</code>
           </q-item-section>
         </q-item>
       </template>

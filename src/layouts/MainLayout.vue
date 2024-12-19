@@ -29,6 +29,6 @@ onMounted(() => {
     if (!isMobile) {
       leftDrawerOpen.value = true
     }
-  }, 1000)
+  }, 3050)
 })
 </script>

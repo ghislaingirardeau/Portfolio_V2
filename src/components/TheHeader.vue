@@ -1,5 +1,5 @@
 <template>
-  <q-header elevated ref="header">
+  <q-header elevated ref="header" class="opacity-0 h-0">
     <q-toolbar>
       <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
@@ -15,20 +15,28 @@
 const leftDrawerOpen = defineModel('leftDrawerOpen')
 import SwitchLangBtn from './header/SwitchLangBtn.vue'
 import SwitchModeBtn from './header/SwitchModeBtn.vue'
-import { gsap } from 'src/boot/gsap'
-import { onMounted, useTemplateRef } from 'vue'
+import { watch, useTemplateRef } from 'vue'
 import { useGlobalSettings } from 'src/stores/globalSettings'
+import { storeToRefs } from 'pinia'
 
-const { ANIM_DURATION } = useGlobalSettings()
+const settings = useGlobalSettings()
+const { timeline } = storeToRefs(settings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
 
-onMounted(() => {
+watch(
+  () => settings.HEADER_ANIMATED,
+  () => {
+    console.log('start header animation')
+    headerAnimation()
+  },
+)
+
+function headerAnimation() {
   const elementTarget = header.value?.$el as HTMLDivElement
-  gsap.from(elementTarget, { duration: ANIM_DURATION, opacity: 0, height: '0px' })
-  gsap.to(elementTarget, { duration: ANIM_DURATION, height: '50px', opacity: 1 })
-})
+  timeline.value.to(elementTarget, { duration: settings.ANIM_DURATION, height: '50px', opacity: 1 })
+}
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value

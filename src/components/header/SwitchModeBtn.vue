@@ -2,6 +2,7 @@
   <q-toggle
     ref="toggleModeBtn"
     color="blue-grey-8"
+    class="opacity-0 -translate-x-60"
     dark
     @click="() => $q.dark.toggle()"
     v-model="dark"
@@ -12,21 +13,28 @@
 
 <script setup lang="ts">
 import { mdiThemeLightDark } from '@quasar/extras/mdi-v7'
-import { onMounted, ref, useTemplateRef } from 'vue'
-import { gsap } from 'src/boot/gsap'
+import { ref, useTemplateRef, watch } from 'vue'
 import { useGlobalSettings } from 'src/stores/globalSettings'
+import { storeToRefs } from 'pinia'
 
-const { ANIM_DELAY, ANIM_DURATION } = useGlobalSettings()
+const settings = useGlobalSettings()
+const { timeline } = storeToRefs(settings)
 
 const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleModeBtn = useTemplateRef<any>('toggleModeBtn')
 
-onMounted(() => {
-  const elementTarget = toggleModeBtn.value?.$el as HTMLDivElement
-  gsap.from(elementTarget, { duration: ANIM_DURATION, x: -250, opacity: 0, delay: ANIM_DELAY })
-  gsap.to(elementTarget, { duration: ANIM_DURATION, x: 0, opacity: 1, delay: ANIM_DELAY })
-})
+watch(
+  () => settings.HEADER_ANIMATED,
+  () => {
+    const elementTarget = toggleModeBtn.value?.$el as HTMLDivElement
+    timeline.value.to(elementTarget, {
+      duration: settings.ANIM_HEADER_BTN_DURATION,
+      x: 0,
+      opacity: 1,
+    })
+  },
+)
 </script>
 
 <style scoped></style>
