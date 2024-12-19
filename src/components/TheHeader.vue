@@ -51,4 +51,8 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.q-toolbar__title {
+  min-width: 150px;
+}
+</style>
