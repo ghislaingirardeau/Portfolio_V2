@@ -95,7 +95,7 @@ onMounted(() => {
     setTimeout(() => {
       leftDrawerOpen.value = true
       handleMenuAnimation()
-    }, 0.5)
+    }, 500)
   }
 })
 
@@ -120,7 +120,12 @@ function handleMenuAnimation() {
     })
   })
   tl.call(() => {
-    presentationRotating.value = true
+    setTimeout(() => {
+      leftDrawerOpen.value = false
+    }, 500)
+    setTimeout(() => {
+      presentationRotating.value = true
+    }, 1000)
   })
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <q-page :key="locale" class="q-pa-lg column flex-center">
-    <div class="w-full flex flex-center -translate-y-28">
+  <q-page :key="locale" class="q-pa-lg column">
+    <div class="w-full flex flex-center">
       <div ref="blockHello" class="flex w-72 lg:w-3/5">
         <div
           :ref="lettersHello.set"
