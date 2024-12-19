@@ -23,11 +23,18 @@ export default {
     },
     offer: {
       hService: 'How can I help you ?',
-      textService:
-        "You have a web project or a business to digitalize... <br> but you don't know where and how to start... ?<br> Find here, what kind of solution and assistance I can bring to you ! ",
+      textService: [
+        'You have a web project or a business to digitalize... ',
+        "but you don't know where and how to start... ?",
+        'Find here, what kind of solution and assistance I can bring to you ! ',
+      ],
+
       hWork: 'Knowing me through my works',
-      textWork:
-        'You are probably familiar with the web technology... <br> And if you want to know what I can offer <br> Look at my projects and see which tools I work with !',
+      textWork: [
+        'You are probably familiar with the web technology... ',
+        'And if you want to know what I can offer ',
+        'Look at my projects and see which tools I work with !',
+      ],
     },
   },
   footer: {

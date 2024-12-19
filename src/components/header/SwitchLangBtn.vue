@@ -14,7 +14,7 @@ import { storeToRefs } from 'pinia'
 
 const { locale } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT } = storeToRefs(animationSettings)
+const { ANIM_SHORT, layoutAnimating } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleLangBtn = useTemplateRef<any>('toggleLangBtn')
@@ -38,6 +38,7 @@ function animationAppear() {
 }
 
 function switchLang() {
+  layoutAnimating.value = true
   if (locale.value === 'en-US') {
     locale.value = 'fr'
   } else {

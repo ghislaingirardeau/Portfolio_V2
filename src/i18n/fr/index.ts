@@ -18,16 +18,22 @@ export default {
   index: {
     me: {
       p1: 'Bonjour,',
-      p2: 'je suis Ghislain,',
+      p2: 'Je suis Ghislain,',
       p3: 'Développeur web',
     },
     offer: {
       hService: 'Mes services pour un projet digital',
-      textService:
-        "Envie de vous lancez dans un projet digital... <br>Mais vous ne savez pas, par oú commencer ?<br>Retrouver le détail de l'accompagnement je peux vous proposer ! ",
+      textService: [
+        'Envie de vous lancez dans un projet digital...',
+        'Mais vous ne savez pas, par oú commencer ?',
+        "Retrouver le détail de l'accompagnement que je peux vous proposer !",
+      ],
       hWork: 'Me connaitre via mes réalisations',
-      textWork:
-        "Vous êtes déja initié au technologie et au langage de programmation... <br>Et vous souhaitez en savoir plus sur mes compétences et mes réalisations ?<br>Découvrez les technologies que je maitrise et les projets sur lesquels j'ai travaillé !",
+      textWork: [
+        'Vous êtes déja initié au technologie et au langage de programmation... ',
+        'Et vous souhaitez en savoir plus sur mes compétences et mes réalisations ?',
+        "Découvrez les technologies que je maitrise et les projets sur lesquels j'ai travaillé !",
+      ],
     },
   },
   footer: {
