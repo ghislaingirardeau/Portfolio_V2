@@ -39,10 +39,12 @@ import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
+import { useGlobalSettings } from 'src/stores/globalSettings'
 
 import { useDeviceDetail } from 'src/stores/deviceDetails'
 
 const deviceDetail = useDeviceDetail()
+const settings = useGlobalSettings()
 
 const { t, locale } = useI18n()
 
@@ -89,7 +91,7 @@ function handleMenuAnimation() {
   menuList.value.forEach((el, index) => {
     const elementTarget = menuIcon.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
-      duration: 1,
+      duration: settings.ANIM_HEADER_BTN_DURATION,
       opacity: 1,
       rotateZ: 0,
       ease: 'none',
@@ -99,7 +101,7 @@ function handleMenuAnimation() {
   menuList.value.forEach((el, index) => {
     const elementTarget = menuLabel.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
-      duration: 1,
+      duration: settings.ANIM_HEADER_BTN_DURATION,
       text: { value: el.label },
       ease: 'none',
     })
@@ -110,6 +112,7 @@ watch(
   () => locale.value,
   () => {
     console.log('locale changed')
+    leftDrawerOpen.value = true
     handleMenuAnimation()
   },
 )

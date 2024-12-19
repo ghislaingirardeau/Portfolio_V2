@@ -25,14 +25,6 @@ const { timeline } = storeToRefs(settings)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
 
-watch(
-  () => settings.HEADER_ANIMATED,
-  () => {
-    console.log('start header animation')
-    headerAnimation()
-  },
-)
-
 function headerAnimation() {
   const elementTarget = header.value?.$el as HTMLDivElement
   timeline.value.to(elementTarget, { duration: settings.ANIM_DURATION, height: '50px', opacity: 1 })
@@ -41,6 +33,16 @@ function headerAnimation() {
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+watch(
+  () => settings.HEADER_ANIMATED,
+  (newValue) => {
+    if (newValue) {
+      console.log('start header animation')
+      headerAnimation()
+    }
+  },
+)
 </script>
 
 <style scoped></style>

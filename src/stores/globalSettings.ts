@@ -19,6 +19,8 @@ export const useGlobalSettings = defineStore('globalSettings', () => {
     HEADER_ANIMATED.value = false
   }
 
+  const DRAWER_ANIMATED = ref(false)
+
   return {
     ANIM_DURATION,
     ANIM_HEADER_BTN_DURATION,
@@ -27,5 +29,6 @@ export const useGlobalSettings = defineStore('globalSettings', () => {
     startHeaderAnimation,
     stopHeaderAnimation,
     timeline,
+    DRAWER_ANIMATED,
   }
 })

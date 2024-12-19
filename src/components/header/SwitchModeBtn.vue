@@ -24,15 +24,19 @@ const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleModeBtn = useTemplateRef<any>('toggleModeBtn')
 
+function animationAppear() {
+  const elementTarget = toggleModeBtn.value?.$el as HTMLDivElement
+  timeline.value.to(elementTarget, {
+    duration: settings.ANIM_HEADER_BTN_DURATION,
+    x: 0,
+    opacity: 1,
+  })
+}
+
 watch(
   () => settings.HEADER_ANIMATED,
   () => {
-    const elementTarget = toggleModeBtn.value?.$el as HTMLDivElement
-    timeline.value.to(elementTarget, {
-      duration: settings.ANIM_HEADER_BTN_DURATION,
-      x: 0,
-      opacity: 1,
-    })
+    animationAppear()
   },
 )
 </script>

@@ -73,9 +73,7 @@ function AnimeTitle() {
   animationBlock(blockName.value)
   animationBlock(blockHello.value)
 
-  timeline.value.call(() => {
-    settings.startHeaderAnimation()
-  })
+  settings.startHeaderAnimation()
 }
 
 function animationBlock(el: HTMLElement[]) {

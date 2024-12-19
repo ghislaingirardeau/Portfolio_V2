@@ -12,7 +12,7 @@ import { storeToRefs } from 'pinia'
 
 const { locale } = useI18n({ useScope: 'global' })
 const settings = useGlobalSettings()
-const { timeline } = storeToRefs(settings)
+const { timeline, DRAWER_ANIMATED } = storeToRefs(settings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleLangBtn = useTemplateRef<any>('toggleLangBtn')
@@ -21,17 +21,18 @@ const langLocale = computed(() => {
   return locale.value === 'en-US' ? 'fr' : 'en'
 })
 
-watch(
-  () => settings.HEADER_ANIMATED,
-  () => {
-    const elementTarget = toggleLangBtn.value?.$el as HTMLDivElement
-    timeline.value.to(elementTarget, {
-      duration: settings.ANIM_HEADER_BTN_DURATION,
-      x: 0,
-      opacity: 1,
-    })
-  },
-)
+function animationAppear() {
+  const elementTarget = toggleLangBtn.value?.$el as HTMLDivElement
+  timeline.value.to(elementTarget, {
+    duration: settings.ANIM_HEADER_BTN_DURATION,
+    x: 0,
+    opacity: 1,
+  })
+  settings.stopHeaderAnimation()
+  timeline.value.call(() => {
+    DRAWER_ANIMATED.value = true
+  })
+}
 
 function switchLang() {
   if (locale.value === 'en-US') {
@@ -40,6 +41,16 @@ function switchLang() {
     locale.value = 'en-US'
   }
 }
+
+watch(
+  () => settings.HEADER_ANIMATED,
+  (newValue) => {
+    if (newValue) {
+      animationAppear()
+      console.log('last animation')
+    }
+  },
+)
 </script>
 
 <style scoped></style>

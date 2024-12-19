@@ -16,19 +16,20 @@
 import TheDrawer from 'src/components/TheDrawer.vue'
 import TheFooter from 'src/components/TheFooter.vue'
 import TheHeader from 'src/components/TheHeader.vue'
-import { useDeviceDetail } from 'src/stores/deviceDetails'
+import { useGlobalSettings } from 'src/stores/globalSettings'
 
-const { isMobile } = useDeviceDetail()
+const settings = useGlobalSettings()
 
-import { onMounted, ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const leftDrawerOpen = ref(false)
 
-onMounted(() => {
-  setTimeout(() => {
-    if (!isMobile) {
+watch(
+  () => settings.DRAWER_ANIMATED,
+  (newValue) => {
+    if (newValue) {
       leftDrawerOpen.value = true
     }
-  }, 3050)
-})
+  },
+)
 </script>
