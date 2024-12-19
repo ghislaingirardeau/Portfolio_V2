@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf" class="kalam-font">
-    <TheHeader v-model:leftDrawerOpen="leftDrawerOpen" />
+    <TheHeader v-model:leftDrawerOpen="leftDrawerOpen" v-if="headerMounting" />
 
     <TheDrawer v-model:leftDrawerOpen="leftDrawerOpen" />
 
@@ -8,7 +8,7 @@
       <router-view />
     </q-page-container>
 
-    <TheFooter />
+    <TheFooter v-if="footerMounting" />
   </q-layout>
 </template>
 
@@ -16,16 +16,18 @@
 import TheDrawer from 'src/components/TheDrawer.vue'
 import TheFooter from 'src/components/TheFooter.vue'
 import TheHeader from 'src/components/TheHeader.vue'
-import { useGlobalSettings } from 'src/stores/globalSettings'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 
-const settings = useGlobalSettings()
+const animationSettings = useAnimationSettings()
+const { footerMounting, headerMounting, drawerMounting } = storeToRefs(animationSettings)
 
 import { ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 
 const leftDrawerOpen = ref(false)
 
 watch(
-  () => settings.DRAWER_ANIMATED,
+  () => drawerMounting.value,
   (newValue) => {
     if (newValue) {
       leftDrawerOpen.value = true

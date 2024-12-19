@@ -39,12 +39,13 @@ import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
-import { useGlobalSettings } from 'src/stores/globalSettings'
-
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useDeviceDetail } from 'src/stores/deviceDetails'
+import { storeToRefs } from 'pinia'
 
 const deviceDetail = useDeviceDetail()
-const settings = useGlobalSettings()
+const animationSettings = useAnimationSettings()
+const { ANIM_SHORT } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 
@@ -91,7 +92,7 @@ function handleMenuAnimation() {
   menuList.value.forEach((el, index) => {
     const elementTarget = menuIcon.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
-      duration: settings.ANIM_HEADER_BTN_DURATION,
+      duration: ANIM_SHORT.value,
       opacity: 1,
       rotateZ: 0,
       ease: 'none',
@@ -101,7 +102,7 @@ function handleMenuAnimation() {
   menuList.value.forEach((el, index) => {
     const elementTarget = menuLabel.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
-      duration: settings.ANIM_HEADER_BTN_DURATION,
+      duration: ANIM_SHORT.value,
       text: { value: el.label },
       ease: 'none',
     })

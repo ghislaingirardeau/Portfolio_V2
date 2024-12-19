@@ -15,34 +15,40 @@
 const leftDrawerOpen = defineModel('leftDrawerOpen')
 import SwitchLangBtn from './header/SwitchLangBtn.vue'
 import SwitchModeBtn from './header/SwitchModeBtn.vue'
-import { watch, useTemplateRef } from 'vue'
-import { useGlobalSettings } from 'src/stores/globalSettings'
+import { useTemplateRef, onMounted } from 'vue'
+import { useAnimationSettings } from 'src/stores/animationSettings'
+import { gsap } from 'src/boot/gsap'
+
 import { storeToRefs } from 'pinia'
 
-const settings = useGlobalSettings()
-const { timeline } = storeToRefs(settings)
+const animationSettings = useAnimationSettings()
+const { footerMounting, ANIM_LONG } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
 
 function headerAnimation() {
   const elementTarget = header.value?.$el as HTMLDivElement
-  timeline.value.to(elementTarget, { duration: settings.ANIM_DURATION, height: '50px', opacity: 1 })
+  gsap.to(elementTarget, {
+    duration: ANIM_LONG.value,
+    height: '50px',
+    opacity: 1,
+    onStart: startFooter,
+  })
+}
+
+function startFooter() {
+  footerMounting.value = true
 }
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
-watch(
-  () => settings.HEADER_ANIMATED,
-  (newValue) => {
-    if (newValue) {
-      console.log('start header animation')
-      headerAnimation()
-    }
-  },
-)
+onMounted(() => {
+  console.log('start header animation')
+  headerAnimation()
+})
 </script>
 
 <style scoped></style>

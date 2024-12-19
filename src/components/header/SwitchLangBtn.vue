@@ -5,14 +5,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useGlobalSettings } from 'src/stores/globalSettings'
+import { gsap } from 'src/boot/gsap'
+import { useAnimationSettings } from 'src/stores/animationSettings'
+
 import { storeToRefs } from 'pinia'
 
 const { locale } = useI18n({ useScope: 'global' })
-const settings = useGlobalSettings()
-const { timeline, DRAWER_ANIMATED } = storeToRefs(settings)
+const animationSettings = useAnimationSettings()
+const { ANIM_SHORT } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleLangBtn = useTemplateRef<any>('toggleLangBtn')
@@ -21,16 +23,17 @@ const langLocale = computed(() => {
   return locale.value === 'en-US' ? 'fr' : 'en'
 })
 
+onMounted(() => {
+  animationAppear()
+})
+
 function animationAppear() {
   const elementTarget = toggleLangBtn.value?.$el as HTMLDivElement
-  timeline.value.to(elementTarget, {
-    duration: settings.ANIM_HEADER_BTN_DURATION,
+  gsap.to(elementTarget, {
+    duration: ANIM_SHORT.value,
     x: 0,
     opacity: 1,
-  })
-  settings.stopHeaderAnimation()
-  timeline.value.call(() => {
-    DRAWER_ANIMATED.value = true
+    delay: 1,
   })
 }
 
@@ -41,16 +44,6 @@ function switchLang() {
     locale.value = 'en-US'
   }
 }
-
-watch(
-  () => settings.HEADER_ANIMATED,
-  (newValue) => {
-    if (newValue) {
-      animationAppear()
-      console.log('last animation')
-    }
-  },
-)
 </script>
 
 <style scoped></style>

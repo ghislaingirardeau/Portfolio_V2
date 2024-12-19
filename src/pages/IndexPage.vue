@@ -41,13 +41,16 @@
 import { useI18n } from 'vue-i18n'
 import { useTemplateRefsList } from '@vueuse/core'
 import { onMounted, watch, ref } from 'vue'
-import { useGlobalSettings } from 'src/stores/globalSettings'
+import { gsap } from 'src/boot/gsap'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
-const settings = useGlobalSettings()
-const { timeline } = storeToRefs(settings)
+const animationSettings = useAnimationSettings()
+const { headerMounting } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n({ useScope: 'global' })
+
+const tl = gsap.timeline()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const lettersHello = useTemplateRefsList<any>()
@@ -73,11 +76,13 @@ function AnimeTitle() {
   animationBlock(blockName.value)
   animationBlock(blockHello.value)
 
-  settings.startHeaderAnimation()
+  tl.call(() => {
+    headerMounting.value = true
+  })
 }
 
 function animationBlock(el: HTMLElement[]) {
-  timeline.value.to(el, {
+  tl.to(el, {
     duration: 0.3,
     rotateZ: 20,
     ease: 'fall-in',
@@ -91,20 +96,18 @@ function animation(el: HTMLElement[], value: string, duration: number) {
     if (element.textContent === ' ') {
       element.innerHTML = '<span>_</span>'
     }
-    timeline.value
-      .to(element, {
-        duration: duration,
-        keyframes: {
-          '0%': { scale: 0.1, opacity: 0 },
-          '100%': { scale: 1, opacity: 1 },
-          easeEach: 'hop',
-        },
-      })
-      .to(element, {
-        duration: duration,
-        textShadow: '2px 2px black',
-        className: 'text-4xl lg:text-5xl opacity-0 text-primary',
-      })
+    tl.to(element, {
+      duration: duration,
+      keyframes: {
+        '0%': { scale: 0.1, opacity: 0 },
+        '100%': { scale: 1, opacity: 1 },
+        easeEach: 'hop',
+      },
+    }).to(element, {
+      duration: duration,
+      textShadow: '2px 2px black',
+      className: 'text-4xl lg:text-5xl opacity-0 text-primary',
+    })
   }
 }
 

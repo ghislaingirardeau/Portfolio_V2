@@ -13,32 +13,37 @@
 
 <script setup lang="ts">
 import { mdiThemeLightDark } from '@quasar/extras/mdi-v7'
-import { ref, useTemplateRef, watch } from 'vue'
-import { useGlobalSettings } from 'src/stores/globalSettings'
+import { onMounted, ref, useTemplateRef } from 'vue'
+import { gsap } from 'src/boot/gsap'
+import { useAnimationSettings } from 'src/stores/animationSettings'
+
 import { storeToRefs } from 'pinia'
 
-const settings = useGlobalSettings()
-const { timeline } = storeToRefs(settings)
+const animationSettings = useAnimationSettings()
+const { ANIM_SHORT, drawerMounting } = storeToRefs(animationSettings)
 
 const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleModeBtn = useTemplateRef<any>('toggleModeBtn')
 
+onMounted(() => {
+  animationAppear()
+})
+
 function animationAppear() {
   const elementTarget = toggleModeBtn.value?.$el as HTMLDivElement
-  timeline.value.to(elementTarget, {
-    duration: settings.ANIM_HEADER_BTN_DURATION,
+  gsap.to(elementTarget, {
+    duration: ANIM_SHORT.value,
     x: 0,
     opacity: 1,
+    delay: 1.5,
+    onComplete: mountDrawer,
   })
 }
 
-watch(
-  () => settings.HEADER_ANIMATED,
-  () => {
-    animationAppear()
-  },
-)
+function mountDrawer() {
+  drawerMounting.value = true
+}
 </script>
 
 <style scoped></style>

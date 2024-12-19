@@ -1,5 +1,5 @@
 <template>
-  <q-footer elevated class="bg-grey-8 text-white">
+  <q-footer elevated ref="footer" class="opacity-0 h-0 bg-grey-8 text-white">
     <q-toolbar>
       <q-toolbar-title class="flex flex-center">
         <q-icon
@@ -17,6 +17,11 @@
 
 <script setup lang="ts">
 import { mdiGithub, mdiLinkedin } from '@quasar/extras/mdi-v7'
+import { useTemplateRef, onMounted } from 'vue'
+import { gsap } from 'src/boot/gsap'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const footer = useTemplateRef<any>('footer')
 
 const icons = [
   {
@@ -32,6 +37,15 @@ const icons = [
 function goToExternalLink(link: string) {
   window.open(link, '_blank')
 }
+
+function footerAnimation() {
+  const elementTarget = footer.value?.$el as HTMLDivElement
+  gsap.to(elementTarget, { duration: 1, height: '50px', opacity: 1 })
+}
+
+onMounted(() => {
+  footerAnimation()
+})
 </script>
 
 <style scoped></style>
