@@ -6,7 +6,6 @@
     :behavior="deviceDetail.deviceOrientation"
     bordered
     :width="250"
-    @show="handleMenuAnimation"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
@@ -35,7 +34,7 @@ import {
   mdiHomeCircleOutline,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
-import { computed, watch } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
@@ -47,7 +46,7 @@ const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT } = storeToRefs(animationSettings)
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const menuLabel = useTemplateRefsList<any>()
@@ -87,6 +86,13 @@ const menuList = computed(() => [
   },
 ])
 
+onMounted(() => {
+  if (!leftDrawerOpen.value) {
+    leftDrawerOpen.value = true
+  }
+  handleMenuAnimation()
+})
+
 function handleMenuAnimation() {
   const tl = gsap.timeline()
   menuList.value.forEach((el, index) => {
@@ -109,14 +115,16 @@ function handleMenuAnimation() {
   })
 }
 
-watch(
-  () => locale.value,
-  () => {
-    console.log('locale changed')
-    leftDrawerOpen.value = true
-    handleMenuAnimation()
-  },
-)
+// watch(
+//   () => locale.value,
+//   () => {
+//     console.log('locale changed')
+//     if (!leftDrawerOpen.value) {
+//       leftDrawerOpen.value = true
+//     }
+//     handleMenuAnimation()
+//   },
+// )
 </script>
 
 <style scoped></style>
