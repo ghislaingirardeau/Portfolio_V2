@@ -46,7 +46,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { headerMounting } = storeToRefs(animationSettings)
+const { headerMounting, presentationRotating } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n({ useScope: 'global' })
 
@@ -64,33 +64,31 @@ const blockName = ref()
 const blockWork = ref()
 
 onMounted(() => {
-  AnimeTitle()
+  AnimeTitleLetters()
 })
 
-function AnimeTitle() {
-  animation(lettersHello.value, t('index.me.p1'), 0.05)
-  animation(lettersName.value, t('index.me.p2'), 0.05)
-  animation(letterWork.value, t('index.me.p3'), 0.05)
-
-  animationBlock(blockWork.value)
-  animationBlock(blockName.value)
-  animationBlock(blockHello.value)
+function AnimeTitleLetters() {
+  animationLetters(lettersHello.value, t('index.me.p1'), 0.05)
+  animationLetters(lettersName.value, t('index.me.p2'), 0.05)
+  animationLetters(letterWork.value, t('index.me.p3'), 0.05)
 
   tl.call(() => {
     headerMounting.value = true
   })
 }
 
-function animationBlock(el: HTMLElement[]) {
-  tl.to(el, {
+function animationTitleRotate(el: HTMLElement[]) {
+  gsap.to(el, {
     duration: 0.3,
     rotateZ: 20,
     ease: 'fall-in',
     transformOrigin: 'top left',
+    delay: 0.2,
   })
+  presentationRotating.value = false
 }
 
-function animation(el: HTMLElement[], value: string, duration: number) {
+function animationLetters(el: HTMLElement[], value: string, duration: number) {
   for (let index = 0; index < value.length; index++) {
     const element = el[index] as HTMLElement
     if (element.textContent === ' ') {
@@ -116,8 +114,18 @@ watch(
   () => {
     console.log('locale changed')
     setTimeout(() => {
-      AnimeTitle()
+      AnimeTitleLetters()
     }, 500)
+  },
+)
+watch(
+  () => presentationRotating.value,
+  (newValue) => {
+    if (newValue) {
+      animationTitleRotate(blockWork.value)
+      animationTitleRotate(blockName.value)
+      animationTitleRotate(blockHello.value)
+    }
   },
 )
 </script>

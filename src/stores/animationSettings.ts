@@ -5,6 +5,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const headerMounting = ref(false)
   const footerMounting = ref(false)
   const drawerMounting = ref(false)
+  const presentationRotating = ref(false)
 
   const ANIM_SHORT = ref(0.5)
   const ANIM_LONG = ref(1)
@@ -13,6 +14,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     footerMounting,
     headerMounting,
     drawerMounting,
+    presentationRotating,
     ANIM_SHORT,
     ANIM_LONG,
   }

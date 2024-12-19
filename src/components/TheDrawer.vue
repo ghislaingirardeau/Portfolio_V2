@@ -44,7 +44,7 @@ import { storeToRefs } from 'pinia'
 
 const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT } = storeToRefs(animationSettings)
+const { ANIM_SHORT, presentationRotating } = storeToRefs(animationSettings)
 
 const { t } = useI18n()
 
@@ -89,8 +89,14 @@ const menuList = computed(() => [
 onMounted(() => {
   if (!leftDrawerOpen.value) {
     leftDrawerOpen.value = true
+    handleMenuAnimation()
+  } else {
+    leftDrawerOpen.value = false
+    setTimeout(() => {
+      leftDrawerOpen.value = true
+      handleMenuAnimation()
+    }, 0.5)
   }
-  handleMenuAnimation()
 })
 
 function handleMenuAnimation() {
@@ -113,18 +119,10 @@ function handleMenuAnimation() {
       ease: 'none',
     })
   })
+  tl.call(() => {
+    presentationRotating.value = true
+  })
 }
-
-// watch(
-//   () => locale.value,
-//   () => {
-//     console.log('locale changed')
-//     if (!leftDrawerOpen.value) {
-//       leftDrawerOpen.value = true
-//     }
-//     handleMenuAnimation()
-//   },
-// )
 </script>
 
 <style scoped></style>
