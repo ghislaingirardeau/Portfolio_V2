@@ -5,7 +5,7 @@
 
       <LogoImage
         ref="logoMalt"
-        src="/public/logos/malt-svgrepo-com.png"
+        src="/logos/malt-svgrepo-com.png"
         link="https://www.malt.fr/profile/ghislaingirardeau1"
       />
 

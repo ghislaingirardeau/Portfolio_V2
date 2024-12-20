@@ -21,7 +21,7 @@
           </span>
         </div>
         <div ref="top" class="top"></div>
-        <!-- <div ref="bottom" class="bottom"></div> -->
+        <div ref="bottom" class="bottom"></div>
         <div ref="left" class="left">
           <span class="left-color">G</span>
         </div>
@@ -44,7 +44,7 @@ const cubeRender = ref(0)
 const launchSpin = ref(false)
 const front = useTemplateRef('front')
 const top = useTemplateRef('top')
-// const bottom = useTemplateRef('bottom')
+const bottom = useTemplateRef('bottom')
 const back = useTemplateRef('back')
 const right = useTemplateRef('right')
 const left = useTemplateRef('left')
@@ -52,8 +52,8 @@ const cube = useTemplateRef('cube')
 
 onMounted(() => {
   const duration = 0.8
-  gsap.from(back.value, { duration, z: '-84px', rotateY: '180deg', opacity: 0, delay: duration })
-  gsap.from(front.value, { duration, z: '80px', opacity: 0, delay: 1 })
+  gsap.from(back.value, { duration, opacity: 0, delay: duration })
+  gsap.from(front.value, { duration, opacity: 0, delay: duration })
   gsap.from(left.value, {
     duration,
     x: '-20px',
@@ -64,7 +64,8 @@ onMounted(() => {
     x: '20px',
     opacity: 0,
   })
-  gsap.from(top.value, { duration, opacity: 0, y: '-10px', delay: duration * 2 })
+  gsap.from(top.value, { duration, opacity: 0, delay: duration })
+  gsap.from(bottom.value, { duration, opacity: 0, delay: duration })
 })
 
 function startCubeAnimation() {
@@ -112,7 +113,7 @@ $font_logo: 'Kaushan Script', cursive;
   border: $primary 2px solid;
   border-radius: 7px;
   transform: translateZ(-54px) rotateY(180deg);
-  // animation: deployedBack 3s ease both;
+  animation: deployedBack 3s ease both;
   position: relative;
   &-color {
     position: absolute;
@@ -127,7 +128,7 @@ $font_logo: 'Kaushan Script', cursive;
 .right {
   border: $primary 2px solid;
   border-radius: 7px;
-  transform: rotateY(-270deg) translateX(54px);
+  transform: rotateY(-270deg) translateX(52px);
   transform-origin: top right;
   position: relative;
   &-color {
@@ -140,14 +141,14 @@ $font_logo: 'Kaushan Script', cursive;
 .top {
   border: $primary 5px solid;
   border-radius: 12px;
-  // animation: deployedTop 3s ease both;
+  animation: deployedTop 3s ease both;
   transform: rotateX(-90deg) translateY(-54px);
   transform-origin: top center;
 }
 .bottom {
   border: $primary 5px solid;
   border-radius: 7px;
-  // animation: deployedBottom 3s ease both;
+  animation: deployedBottom 3s ease both;
 
   transform: rotateX(90deg) translateY(50px);
   transform-origin: bottom center;
@@ -170,6 +171,8 @@ $font_logo: 'Kaushan Script', cursive;
   border: $primary 2px solid;
   border-radius: 7px;
   transform: translateZ(50px);
+  animation: deployedFront 3s ease both;
+
   position: relative;
   &-color {
     position: absolute;
@@ -265,31 +268,6 @@ $font_logo: 'Kaushan Script', cursive;
   }
   100% {
     transform: rotateY(-410deg) rotateX(10deg);
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .right {
-    &-color {
-      color: white;
-      left: 15%;
-    }
-  }
-  .left {
-    &-color {
-      color: white;
-      left: 55%;
-    }
-  }
-  .back {
-    &-color {
-      color: white;
-    }
-  }
-  .front {
-    &-color {
-      color: white;
-    }
   }
 }
 
