@@ -20,7 +20,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, drawerMounting } = storeToRefs(animationSettings)
+const { ANIM_SHORT } = storeToRefs(animationSettings)
 
 const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,12 +37,7 @@ function animationAppear() {
     x: 0,
     opacity: 1,
     delay: 1.5,
-    onComplete: mountDrawer,
   })
-}
-
-function mountDrawer() {
-  drawerMounting.value = true
 }
 </script>
 

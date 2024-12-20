@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf" class="kalam-font">
     <TheHeader v-model:leftDrawerOpen="leftDrawerOpen" v-if="headerMounting" />
 
-    <TheDrawer v-model:leftDrawerOpen="leftDrawerOpen" v-if="drawerMounting" :key="locale" />
+    <TheDrawer v-model:leftDrawerOpen="leftDrawerOpen" />
 
     <q-page-container>
       <router-view />
@@ -17,11 +17,9 @@ import TheDrawer from 'src/components/TheDrawer.vue'
 import TheFooter from 'src/components/TheFooter.vue'
 import TheHeader from 'src/components/TheHeader.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useI18n } from 'vue-i18n'
-const { locale } = useI18n()
 
 const animationSettings = useAnimationSettings()
-const { footerMounting, headerMounting, drawerMounting } = storeToRefs(animationSettings)
+const { footerMounting, headerMounting } = storeToRefs(animationSettings)
 
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'

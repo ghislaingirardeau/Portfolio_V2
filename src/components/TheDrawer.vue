@@ -6,6 +6,7 @@
     :behavior="deviceDetail.deviceOrientation"
     bordered
     :width="250"
+    @show="handleMenuAnimation()"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
@@ -34,7 +35,7 @@ import {
   mdiHomeCircleOutline,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
-import { computed, onMounted } from 'vue'
+import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
@@ -44,9 +45,9 @@ import { storeToRefs } from 'pinia'
 
 const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, presentationRotating } = storeToRefs(animationSettings)
+const { ANIM_SHORT } = storeToRefs(animationSettings)
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const menuLabel = useTemplateRefsList<any>()
@@ -86,19 +87,6 @@ const menuList = computed(() => [
   },
 ])
 
-onMounted(() => {
-  if (!leftDrawerOpen.value) {
-    leftDrawerOpen.value = true
-    handleMenuAnimation()
-  } else {
-    leftDrawerOpen.value = false
-    setTimeout(() => {
-      leftDrawerOpen.value = true
-      handleMenuAnimation()
-    }, 500)
-  }
-})
-
 function handleMenuAnimation() {
   const tl = gsap.timeline()
   menuList.value.forEach((el, index) => {
@@ -119,15 +107,14 @@ function handleMenuAnimation() {
       ease: 'none',
     })
   })
-  tl.call(() => {
-    setTimeout(() => {
-      leftDrawerOpen.value = false
-    }, 500)
-    setTimeout(() => {
-      presentationRotating.value = true
-    }, 1000)
-  })
 }
+
+watch(
+  () => locale.value,
+  () => {
+    handleMenuAnimation()
+  },
+)
 </script>
 
 <style scoped></style>

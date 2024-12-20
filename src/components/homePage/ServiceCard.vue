@@ -1,30 +1,47 @@
 <template>
-  <q-card dark bordered class="bg-grey-9 my-card mt-24" v-if="!layoutAnimating">
+  <q-card>
     <q-card-section>
-      <div class="text-h6">{{ title }}</div>
+      <transition
+        appear
+        :enter-active-class="`animated fadeIn slow ${delay}`"
+        :leave-active-class="`animated fadeOut slow ${delay}`"
+        mode="out-in"
+      >
+        <q-skeleton type="text" height="32px" v-if="layoutAnimating" />
+        <div v-else class="text-h6">{{ title }}</div>
+      </transition>
     </q-card-section>
 
-    <q-separator dark inset />
+    <q-separator inset />
 
     <q-card-section>
-      <p v-for="(text, index) in contents" :key="index">
-        {{ text }}
-      </p>
+      <transition
+        appear
+        :enter-active-class="`animated fadeIn slow ${delay}`"
+        :leave-active-class="`animated fadeOut slow ${delay}`"
+        mode="out-in"
+      >
+        <q-skeleton height="160px" square v-if="layoutAnimating" />
+        <div v-else>
+          <p v-for="(text, index) in contents" :key="index">
+            {{ text }}
+          </p>
+        </div>
+      </transition>
     </q-card-section>
   </q-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import { useI18n } from 'vue-i18n'
-const { tm } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
 const { layoutAnimating } = storeToRefs(animationSettings)
 
 defineProps({
   title: String,
   contents: Array,
+  delay: String,
 })
 </script>
 

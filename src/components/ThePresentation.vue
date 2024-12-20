@@ -75,16 +75,16 @@ function AnimeTitleLetters() {
   })
 }
 
-function animationTitleRotate(el: HTMLElement[]) {
-  gsap.to(el, {
-    duration: 0.3,
-    rotateZ: 15,
-    ease: 'fall-in',
-    transformOrigin: 'top left',
-    delay: 0.2,
-  })
-  presentationRotating.value = false
-}
+// function animationTitleRotate(el: HTMLElement[]) {
+//   gsap.to(el, {
+//     duration: 0.3,
+//     rotateZ: 15,
+//     ease: 'fall-in',
+//     transformOrigin: 'top left',
+//     delay: 0.2,
+//   })
+//   presentationRotating.value = false
+// }
 
 function animationLetters(el: HTMLElement[], value: string, duration: number) {
   for (let index = 0; index < value.length; index++) {
@@ -120,12 +120,12 @@ watch(
   () => presentationRotating.value,
   (newValue) => {
     if (newValue) {
-      animationTitleRotate(blockWork.value)
-      animationTitleRotate(blockName.value)
-      animationTitleRotate(blockHello.value)
+      // animationTitleRotate(blockWork.value)
+      // animationTitleRotate(blockName.value)
+      // animationTitleRotate(blockHello.value)
       setTimeout(() => {
         layoutAnimating.value = false
-      }, 1000)
+      }, 500)
     }
   },
 )
