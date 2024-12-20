@@ -3,7 +3,7 @@
     fill="#000000"
     height="90px"
     width="90px"
-    class="absolute top-5 right-5 lg:top-10 lg:right-10"
+    class="absolute bottom-5 right-5 lg:top-10 lg:right-10"
     :class="moveEyes"
     version="1.1"
     id="Layer_1"
@@ -53,7 +53,7 @@
 
 <script setup lang="ts">
 import { useMouse } from '@vueuse/core'
-import { computed, useTemplateRef } from 'vue'
+import { computed, onMounted, useTemplateRef } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -96,6 +96,10 @@ const coloredEye = computed(() => {
     return 'blue'
   }
   return 'green'
+})
+
+onMounted(() => {
+  animationSettings.robotMounted = true
 })
 </script>
 

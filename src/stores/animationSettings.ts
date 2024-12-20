@@ -4,7 +4,10 @@ import { ref } from 'vue'
 export const useAnimationSettings = defineStore('animationSettings', () => {
   const headerMounting = ref(false)
   const footerMounting = ref(false)
-  const layoutAnimating = ref(true)
+  const drawerMounted = ref(false)
+  const robotMounted = ref(false)
+
+  const layoutMounted = ref(false)
   const isAnimating = ref(true)
   const isClickable = ref(false)
 
@@ -24,9 +27,11 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     headerMounting,
     ANIM_SHORT,
     ANIM_LONG,
-    layoutAnimating,
+    layoutMounted,
     isAnimating,
     isClickable,
+    drawerMounted,
+    robotMounted,
     handleClickableEnter,
     handleClickableLeave,
   }

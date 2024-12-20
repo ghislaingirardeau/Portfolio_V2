@@ -7,7 +7,7 @@
         :leave-active-class="`animated fadeOut slow ${delay}`"
         mode="out-in"
       >
-        <q-skeleton type="text" height="32px" v-if="layoutAnimating" />
+        <q-skeleton type="text" height="32px" v-if="layoutMounted" />
         <div v-else class="text-h6">{{ title }}</div>
       </transition>
     </q-card-section>
@@ -21,7 +21,7 @@
         :leave-active-class="`animated fadeOut slow ${delay}`"
         mode="out-in"
       >
-        <q-skeleton height="160px" square v-if="layoutAnimating" />
+        <q-skeleton height="160px" square v-if="layoutMounted" />
         <div v-else>
           <p v-for="(text, index) in contents" :key="index">
             {{ text }}
@@ -36,7 +36,7 @@
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 const animationSettings = useAnimationSettings()
-const { layoutAnimating } = storeToRefs(animationSettings)
+const { layoutMounted } = storeToRefs(animationSettings)
 
 defineProps({
   title: String,

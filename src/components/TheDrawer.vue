@@ -6,7 +6,7 @@
     :behavior="deviceDetail.deviceOrientation"
     bordered
     :width="250"
-    @show="layoutAnimating ? handleMenuAnimation() : null"
+    @show="!drawerMounted ? handleMenuAnimation() : null"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
@@ -20,7 +20,7 @@
             />
           </q-item-section>
           <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
-            <code>&lt;li&gt;Menu&lt;/li&gt;</code>
+            <code class="text-grey-7">&lt;li&gt;Menu&lt;/li&gt;</code>
           </q-item-section>
         </q-item>
       </template>
@@ -45,7 +45,7 @@ import { storeToRefs } from 'pinia'
 
 const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, isAnimating, layoutAnimating } = storeToRefs(animationSettings)
+const { ANIM_SHORT, isAnimating, drawerMounted } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 
@@ -110,7 +110,7 @@ function handleMenuAnimation() {
   })
   tl.call(() => {
     isAnimating.value = false
-    layoutAnimating.value = false
+    drawerMounted.value = true
   })
 }
 

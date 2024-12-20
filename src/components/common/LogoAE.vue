@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-center">
-    <div class="header__logo wrap my-10">
+  <div class="flex flex-center lg:justify-start">
+    <div class="header__logo wrap mt-10 lg:mt-20 lg:ml-20 w-1/2 lg:w-1/5">
       <div
         ref="cube"
         @mouseenter="animationSettings.handleClickableEnter"
@@ -79,7 +79,6 @@ function startCubeAnimation() {
 $font_logo: 'Kaushan Script', cursive;
 
 .header__logo {
-  width: 10%;
   height: 100px;
   padding: 20px 0px 30px 12%;
 }
@@ -268,6 +267,19 @@ $font_logo: 'Kaushan Script', cursive;
   }
   100% {
     transform: rotateY(-410deg) rotateX(10deg);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .right {
+    &-color {
+      left: 15%;
+    }
+  }
+  .left {
+    &-color {
+      left: 57%;
+    }
   }
 }
 

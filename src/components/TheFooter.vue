@@ -34,7 +34,7 @@ import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT } = storeToRefs(animationSettings)
+const { ANIM_SHORT, layoutMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const footer = useTemplateRef<any>('footer')
@@ -83,6 +83,9 @@ function animationAppear() {
       x: 0,
       opacity: 1,
     })
+  })
+  tl.call(() => {
+    layoutMounted.value = true
   })
 }
 </script>
