@@ -4,6 +4,8 @@
 
     <TheRobot />
 
+    <LogoAE />
+
     <!-- <div class="w-full flex lg:flex-center mt-32">
       <ThePlane />
     </div> -->
@@ -26,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import ThePlane from 'src/components/ThePlane.vue'
+import LogoAE from 'src/components/common/LogoAE.vue'
 import ThePresentation from 'src/components/ThePresentation.vue'
 import TheRobot from 'src/components/TheRobot.vue'
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

@@ -1,0 +1,306 @@
+<template>
+  <div class="flex flex-center">
+    <div class="header__logo wrap my-10">
+      <div
+        ref="cube"
+        @mouseenter="animationSettings.handleClickableEnter"
+        @mouseleave="animationSettings.handleClickableLeave"
+        class="cube"
+        :class="{ anim_cube: launchSpin }"
+        @click="startCubeAnimation"
+        :key="cubeRender"
+      >
+        <div ref="front" class="front">
+          <span class="front-color">g</span>
+        </div>
+        <div ref="back" class="back">
+          <span class="reverse-letter back-color">
+            <span>w</span>
+            <span>e</span>
+            <span>b</span>
+          </span>
+        </div>
+        <div ref="top" class="top"></div>
+        <!-- <div ref="bottom" class="bottom"></div> -->
+        <div ref="left" class="left">
+          <span class="left-color">G</span>
+        </div>
+        <div ref="right" class="right">
+          <span class="right-color">dev</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, ref, useTemplateRef } from 'vue'
+import { gsap } from 'src/boot/gsap'
+import { useAnimationSettings } from 'src/stores/animationSettings'
+
+const animationSettings = useAnimationSettings()
+
+const cubeRender = ref(0)
+const launchSpin = ref(false)
+const front = useTemplateRef('front')
+const top = useTemplateRef('top')
+// const bottom = useTemplateRef('bottom')
+const back = useTemplateRef('back')
+const right = useTemplateRef('right')
+const left = useTemplateRef('left')
+const cube = useTemplateRef('cube')
+
+onMounted(() => {
+  const duration = 0.8
+  gsap.from(back.value, { duration, z: '-84px', rotateY: '180deg', opacity: 0, delay: duration })
+  gsap.from(front.value, { duration, z: '80px', opacity: 0, delay: 1 })
+  gsap.from(left.value, {
+    duration,
+    x: '-20px',
+    opacity: 0,
+  })
+  gsap.from(right.value, {
+    duration,
+    x: '20px',
+    opacity: 0,
+  })
+  gsap.from(top.value, { duration, opacity: 0, y: '-10px', delay: duration * 2 })
+})
+
+function startCubeAnimation() {
+  launchSpin.value = true
+  cubeRender.value++
+}
+</script>
+
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+$font_logo: 'Kaushan Script', cursive;
+
+.header__logo {
+  width: 10%;
+  height: 100px;
+  padding: 20px 0px 30px 12%;
+}
+
+.wrap {
+  perspective: 400px;
+  perspective-origin: 50% 50px;
+}
+.anim_cube {
+  animation: spin 2.4s 0.3s linear;
+}
+.cube {
+  position: relative;
+  width: 100px;
+  transform-style: preserve-3d;
+  transform: rotateY(-50deg) rotateX(10deg);
+  cursor: pointer;
+}
+.cube div {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-family: $font_logo;
+  font-size: 2.4rem;
+  padding-top: 20px;
+
+  color: $primary;
+}
+.back {
+  border: $primary 2px solid;
+  border-radius: 7px;
+  transform: translateZ(-54px) rotateY(180deg);
+  // animation: deployedBack 3s ease both;
+  position: relative;
+  &-color {
+    position: absolute;
+    top: 0px;
+    left: 20%;
+    color: $primary;
+    & span {
+      letter-spacing: 0.05em;
+    }
+  }
+}
+.right {
+  border: $primary 2px solid;
+  border-radius: 7px;
+  transform: rotateY(-270deg) translateX(54px);
+  transform-origin: top right;
+  position: relative;
+  &-color {
+    position: absolute;
+    top: 45px;
+    left: 10%;
+    color: $primary;
+  }
+}
+.top {
+  border: $primary 5px solid;
+  border-radius: 12px;
+  // animation: deployedTop 3s ease both;
+  transform: rotateX(-90deg) translateY(-54px);
+  transform-origin: top center;
+}
+.bottom {
+  border: $primary 5px solid;
+  border-radius: 7px;
+  // animation: deployedBottom 3s ease both;
+
+  transform: rotateX(90deg) translateY(50px);
+  transform-origin: bottom center;
+}
+.left {
+  border: $primary 2px solid;
+  border-radius: 7px;
+  transform: rotateY(270deg) translateX(-54px);
+  transform-origin: center left;
+  position: relative;
+  &-color {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    color: $primary;
+  }
+}
+
+.front {
+  border: $primary 2px solid;
+  border-radius: 7px;
+  transform: translateZ(50px);
+  position: relative;
+  &-color {
+    position: absolute;
+    top: 30px;
+    right: 28%;
+    color: $primary;
+  }
+}
+
+.reverse-letter {
+  animation: reverseWeb 2.4s 0.3s ease both;
+  transform: rotateY(180deg);
+  display: inline-block;
+}
+@keyframes reverseWeb {
+  0% {
+    transform: rotateY(180deg);
+  }
+  45% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes deployedFront {
+  0% {
+    transform: translateZ(50px);
+  }
+  10% {
+    transform: translateZ(60px);
+  }
+  90% {
+    transform: translateZ(60px);
+  }
+  100% {
+    transform: translateZ(50px);
+  }
+}
+@keyframes deployedTop {
+  0% {
+    transform: rotateX(-90deg) translateY(-50px) translateZ(0px);
+  }
+  10% {
+    transform: rotateX(-90deg) translateY(-50px) translateZ(-5px);
+  }
+  90% {
+    transform: rotateX(-90deg) translateY(-50px) translateZ(-5px);
+  }
+  100% {
+    transform: rotateX(-90deg) translateY(-50px) translateZ(0px);
+  }
+}
+@keyframes deployedBottom {
+  0% {
+    transform: rotateX(90deg) translateY(50px) translateZ(0px);
+  }
+  10% {
+    transform: rotateX(90deg) translateY(50px) translateZ(-5px);
+  }
+  90% {
+    transform: rotateX(90deg) translateY(50px) translateZ(-5px);
+  }
+  100% {
+    transform: rotateX(90deg) translateY(50px) translateZ(0px);
+  }
+}
+@keyframes deployedBack {
+  0% {
+    transform: translateZ(-54px) rotateY(180deg);
+  }
+  10% {
+    transform: translateZ(-64px) rotateY(180deg);
+  }
+  90% {
+    transform: translateZ(-64px) rotateY(180deg);
+  }
+  100% {
+    transform: translateZ(-54px) rotateY(180deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(-50deg) rotateX(10deg);
+  }
+  50% {
+    transform: rotateY(-230deg) rotateX(10deg);
+  }
+  100% {
+    transform: rotateY(-410deg) rotateX(10deg);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .right {
+    &-color {
+      color: white;
+      left: 15%;
+    }
+  }
+  .left {
+    &-color {
+      color: white;
+      left: 55%;
+    }
+  }
+  .back {
+    &-color {
+      color: white;
+    }
+  }
+  .front {
+    &-color {
+      color: white;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes spin {
+    0% {
+      transform: rotateY(-50deg) rotateX(10deg);
+    }
+    100% {
+      transform: rotateY(-50deg) rotateX(10deg);
+    }
+  }
+}
+</style>
