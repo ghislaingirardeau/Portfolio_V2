@@ -6,7 +6,7 @@
     :behavior="deviceDetail.deviceOrientation"
     bordered
     :width="250"
-    @show="handleMenuAnimation()"
+    @show="layoutAnimating ? handleMenuAnimation() : null"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
@@ -45,7 +45,7 @@ import { storeToRefs } from 'pinia'
 
 const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, isAnimating } = storeToRefs(animationSettings)
+const { ANIM_SHORT, isAnimating, layoutAnimating } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 
@@ -110,6 +110,7 @@ function handleMenuAnimation() {
   })
   tl.call(() => {
     isAnimating.value = false
+    layoutAnimating.value = false
   })
 }
 
