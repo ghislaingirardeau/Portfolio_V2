@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-center" :key="locale">
-    <div ref="blockHello" class="flex justify-end w-72 lg:w-3/5">
+    <div ref="blockHello" class="flex justify-end lg:justify-start w-72 lg:w-3/5">
       <div
         :ref="lettersHello.set"
         v-for="(letter, i) in t('index.me.p1')"
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div ref="blockName" class="flex justify-end w-72 lg:w-3/5 mt-4 lg:mt-8">
+    <div ref="blockName" class="flex justify-end lg:justify-start w-72 lg:w-3/5 mt-4 lg:mt-8">
       <div
         :ref="lettersName.set"
         v-for="(letter, i) in t('index.me.p2')"
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div ref="blockWork" class="flex justify-end w-72 lg:w-3/5 mt-4 lg:mt-8">
+    <div ref="blockWork" class="flex justify-end lg:justify-start w-72 lg:w-3/5 mt-4 lg:mt-8">
       <div
         :ref="letterWork.set"
         v-for="(letter, i) in t('index.me.p3')"

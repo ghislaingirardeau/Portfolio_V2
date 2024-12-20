@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-center lg:justify-start">
-    <div class="header__logo wrap mt-10 lg:mt-20 lg:ml-20 w-1/2 lg:w-1/5">
+  <div class="flex flex-center lg:absolute lg:right-48">
+    <div class="header__logo wrap mt-10 lg:ml-20 w-1/2 lg:w-1/5">
       <div
         ref="cube"
         @mouseenter="animationSettings.handleClickableEnter"

@@ -125,7 +125,15 @@ export default defineConfig((ctx) => {
 
     // animations: 'all', // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: ['fadeIn', 'fadeOut', 'slideInLeft', 'slideOutLeft', 'rotateIn', 'rotateOut'],
+    animations: [
+      'fadeIn',
+      'fadeOut',
+      'slideInLeft',
+      'slideOutLeft',
+      'slideOutRight',
+      'rotateIn',
+      'rotateOut',
+    ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#sourcefiles
     // sourceFiles: {

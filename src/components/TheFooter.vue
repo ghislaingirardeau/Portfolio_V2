@@ -20,13 +20,20 @@
         @mouseenter="animationSettings.handleClickableEnter"
         @mouseleave="animationSettings.handleClickableLeave"
       />
+      <transition
+        appear
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated slideOutRight"
+      >
+        <code v-if="!footerMounted" class="text-grey-5"> &lt;svg&gt;Network;/svg&gt;</code>
+      </transition>
     </q-toolbar>
   </q-footer>
 </template>
 
 <script setup lang="ts">
 import { mdiGithub, mdiLinkedin } from '@quasar/extras/mdi-v7'
-import { useTemplateRef, onMounted } from 'vue'
+import { useTemplateRef, onMounted, ref } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -42,6 +49,8 @@ const footer = useTemplateRef<any>('footer')
 const footerIcons = useTemplateRefsList<any>()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const logoMalt = useTemplateRef<any>('logoMalt')
+
+const footerMounted = ref(false)
 
 const icons = [
   {
@@ -65,11 +74,18 @@ function goToExternalLink(link: string) {
 
 function footerAnimation() {
   const elementTarget = footer.value?.$el as HTMLDivElement
-  gsap.to(elementTarget, { duration: 1, height: '50px', opacity: 1 })
+  gsap.to(elementTarget, {
+    duration: 1,
+    height: '50px',
+    opacity: 1,
+    onComplete: () => {
+      footerMounted.value = true
+    },
+  })
 }
 
 function animationAppear() {
-  const tl = gsap.timeline({ delay: 1 })
+  const tl = gsap.timeline({ delay: 1.3 })
   const logoMaltTarget = logoMalt.value.$el as HTMLDivElement
   tl.to(logoMaltTarget, {
     duration: ANIM_SHORT.value,

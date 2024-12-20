@@ -9,7 +9,12 @@
       mode="out-in"
     >
       <LogoAE v-if="layoutMounted" />
-      <code class="text-grey-7 mt-10" v-else> &lt;div&gt;Logo Entreprise&lt;/div&gt;</code>
+      <code
+        class="text-grey-7 flex flex-center mt-10 h-48 border-2 border-solid border-gray-300"
+        v-else
+      >
+        &lt;div&gt;Logo Entreprise&lt;/div&gt;</code
+      >
     </transition>
 
     <transition
@@ -19,7 +24,7 @@
       mode="out-in"
     >
       <TheRobot v-if="layoutMounted" />
-      <code class="text-grey-7 mt-10 absolute bottom-5 right-5 lg:top-10 lg:right-10" v-else>
+      <code class="text-grey-7 mt-10 absolute bottom-5 right-5 lg:bottom-5 lg:right-10" v-else>
         &lt;svg&gt;Un chat bot&lt;/svg&gt;</code
       >
     </transition>
@@ -32,7 +37,7 @@
     >
       <q-chat-message
         v-if="robotMounted"
-        class="absolute bottom-16 right-24 ml-3"
+        class="absolute bottom-16 right-24 lg:bottom-16 lg:right-32 ml-3"
         name="Ghislain Robot"
         sent
         text-color="white"
