@@ -89,7 +89,13 @@ const moveEyes = computed(() => {
 })
 
 const coloredEye = computed(() => {
-  return animationSettings.isAnimating ? 'red' : 'blue'
+  if (animationSettings.isAnimating) {
+    return 'red'
+  }
+  if (animationSettings.isClickable) {
+    return 'blue'
+  }
+  return 'green'
 })
 </script>
 

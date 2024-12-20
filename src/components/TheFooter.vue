@@ -11,6 +11,8 @@
         :name="icon.name"
         class="cursor-pointer mx-2 opacity-0 -translate-x-60"
         @click="goToExternalLink(icon.link)"
+        @mouseenter="animationSettings.handleClickableEnter"
+        @mouseleave="animationSettings.handleClickableLeave"
       />
     </q-toolbar>
   </q-footer>
