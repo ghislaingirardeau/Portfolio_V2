@@ -1,6 +1,9 @@
 <template>
-  <q-page class="q-pa-lg column">
-    <ThePresentation />
+  <q-page class="q-pa-lg column relative z-0">
+    <ThePresentation class="z-20" />
+
+    <TheRobot />
+
     <!-- <ServiceCard
       ref="cardService"
       :title="$t('index.offer.hService')"
@@ -19,7 +22,10 @@
 </template>
 
 <script setup lang="ts">
+import { gsap } from 'src/boot/gsap'
 import ThePresentation from 'src/components/ThePresentation.vue'
+import TheRobot from 'src/components/TheRobot.vue'
+import { useTemplateRef } from 'vue'
 </script>
 
 <style scoped></style>
