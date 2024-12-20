@@ -3,23 +3,26 @@
     <q-toolbar>
       <q-space />
 
-      <LogoImage
-        ref="logoMalt"
-        src="/logos/malt-svgrepo-com.png"
-        link="https://www.malt.fr/profile/ghislaingirardeau1"
-      />
-
-      <q-icon
-        v-for="icon in icons"
-        :ref="footerIcons.set"
-        :key="icon.name"
-        size="lg"
-        :name="icon.name"
-        class="cursor-pointer mx-2 opacity-0 -translate-x-60"
-        @click="goToExternalLink(icon.link)"
+      <div
         @mouseenter="animationSettings.handleClickableEnter"
         @mouseleave="animationSettings.handleClickableLeave"
-      />
+      >
+        <LogoImage
+          ref="logoMalt"
+          src="/logos/malt-svgrepo-com.png"
+          link="https://www.malt.fr/profile/ghislaingirardeau1"
+        />
+
+        <q-icon
+          v-for="icon in icons"
+          :ref="footerIcons.set"
+          :key="icon.name"
+          size="lg"
+          :name="icon.name"
+          class="cursor-pointer mx-2 opacity-0 -translate-x-60"
+          @click="goToExternalLink(icon.link)"
+        />
+      </div>
       <transition
         appear
         enter-active-class="animated fadeIn"

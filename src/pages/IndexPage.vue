@@ -10,7 +10,7 @@
     >
       <LogoAE v-if="layoutMounted" />
       <code
-        class="text-grey-7 flex flex-center mt-10 h-48 border-2 border-solid border-gray-300"
+        class="text-grey-7 flex flex-center mt-10 h-48 border-2 border-solid border-gray-300 lg:absolute lg:right-48"
         v-else
       >
         &lt;div&gt;Logo Entreprise&lt;/div&gt;</code
@@ -28,6 +28,14 @@
         &lt;svg&gt;Un chat bot&lt;/svg&gt;</code
       >
     </transition>
+
+    <!-- TODO 
+     -A mettre dans les components  
+     -Drawer display on desktop => pas possible de le
+    réduire 
+    - si desktop => afficher plus de textes
+    - si desktop => augmenter taille logo
+    -->
 
     <transition
       appear
