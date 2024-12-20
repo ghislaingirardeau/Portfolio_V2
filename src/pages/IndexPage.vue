@@ -4,6 +4,10 @@
 
     <TheRobot />
 
+    <!-- <div class="w-full flex lg:flex-center mt-32">
+      <ThePlane />
+    </div> -->
+
     <!-- <ServiceCard
       ref="cardService"
       :title="$t('index.offer.hService')"
@@ -22,10 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from 'src/boot/gsap'
+import ThePlane from 'src/components/ThePlane.vue'
 import ThePresentation from 'src/components/ThePresentation.vue'
 import TheRobot from 'src/components/TheRobot.vue'
-import { useTemplateRef } from 'vue'
 </script>
 
 <style scoped></style>
