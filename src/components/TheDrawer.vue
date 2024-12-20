@@ -45,7 +45,7 @@ import { storeToRefs } from 'pinia'
 
 const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT } = storeToRefs(animationSettings)
+const { ANIM_SHORT, isAnimating } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 
@@ -88,6 +88,7 @@ const menuList = computed(() => [
 ])
 
 function handleMenuAnimation() {
+  isAnimating.value = true
   const tl = gsap.timeline()
   menuList.value.forEach((el, index) => {
     const elementTarget = menuIcon.value[index].$el as HTMLDivElement
@@ -106,6 +107,9 @@ function handleMenuAnimation() {
       text: { value: el.label },
       ease: 'none',
     })
+  })
+  tl.call(() => {
+    isAnimating.value = false
   })
 }
 

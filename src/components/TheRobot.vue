@@ -16,7 +16,7 @@
       <g>
         <path
           ref="eye"
-          fill="blue"
+          :fill="`${coloredEye}`"
           d="M256,95.156c-38.626,0-70.05,31.423-70.05,70.051c0,38.627,31.425,70.05,70.05,70.05
 			c38.626,0,70.051-31.425,70.051-70.052C326.051,126.579,294.626,95.156,256,95.156z M256,201.866
 			c-20.214,0-36.659-16.445-36.659-36.66c0-20.215,16.445-36.658,36.659-36.658s36.659,16.444,36.659,36.659
@@ -56,9 +56,11 @@ import { useMouse } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const eye = useTemplateRef<any>('eye')
+const animationSettings = useAnimationSettings()
 
 const { width, height } = useWindowSize()
 const { x, y } = useMouse()
@@ -84,6 +86,10 @@ const moveEyes = computed(() => {
   })
 
   return rawX
+})
+
+const coloredEye = computed(() => {
+  return animationSettings.isAnimating ? 'red' : 'blue'
 })
 </script>
 

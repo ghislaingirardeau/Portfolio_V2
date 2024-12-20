@@ -44,7 +44,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { headerMounting, presentationRotating, layoutAnimating } = storeToRefs(animationSettings)
+const { headerMounting } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n({ useScope: 'global' })
 
@@ -75,17 +75,6 @@ function AnimeTitleLetters() {
   })
 }
 
-// function animationTitleRotate(el: HTMLElement[]) {
-//   gsap.to(el, {
-//     duration: 0.3,
-//     rotateZ: 15,
-//     ease: 'fall-in',
-//     transformOrigin: 'top left',
-//     delay: 0.2,
-//   })
-//   presentationRotating.value = false
-// }
-
 function animationLetters(el: HTMLElement[], value: string, duration: number) {
   for (let index = 0; index < value.length; index++) {
     const element = el[index] as HTMLElement
@@ -114,19 +103,6 @@ watch(
     setTimeout(() => {
       AnimeTitleLetters()
     }, 500)
-  },
-)
-watch(
-  () => presentationRotating.value,
-  (newValue) => {
-    if (newValue) {
-      // animationTitleRotate(blockWork.value)
-      // animationTitleRotate(blockName.value)
-      // animationTitleRotate(blockHello.value)
-      setTimeout(() => {
-        layoutAnimating.value = false
-      }, 500)
-    }
   },
 )
 </script>
