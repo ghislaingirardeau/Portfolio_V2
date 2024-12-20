@@ -3,6 +3,12 @@
     <q-toolbar>
       <q-space />
 
+      <LogoImage
+        ref="logoMalt"
+        src="/public/logos/malt-svgrepo-com.png"
+        link="https://www.malt.fr/profile/ghislaingirardeau1"
+      />
+
       <q-icon
         v-for="icon in icons"
         :ref="footerIcons.set"
@@ -25,6 +31,7 @@ import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
+import LogoImage from './common/LogoImage.vue'
 
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT } = storeToRefs(animationSettings)
@@ -33,6 +40,8 @@ const { ANIM_SHORT } = storeToRefs(animationSettings)
 const footer = useTemplateRef<any>('footer')
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const footerIcons = useTemplateRefsList<any>()
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const logoMalt = useTemplateRef<any>('logoMalt')
 
 const icons = [
   {
@@ -61,6 +70,12 @@ function footerAnimation() {
 
 function animationAppear() {
   const tl = gsap.timeline({ delay: 1 })
+  const logoMaltTarget = logoMalt.value.$el as HTMLDivElement
+  tl.to(logoMaltTarget, {
+    duration: ANIM_SHORT.value,
+    x: 0,
+    opacity: 1,
+  })
   icons.forEach((el, index) => {
     const elementTarget = footerIcons.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
