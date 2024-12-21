@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-center lg:absolute lg:right-48">
+  <div class="flex flex-center lg:absolute lg:right-64 z-30" @click="startCubeAnimation">
     <div class="header__logo wrap mt-10 lg:ml-20 w-1/2 lg:w-1/5">
       <div
         ref="cube"
@@ -7,7 +7,6 @@
         @mouseleave="animationSettings.handleClickableLeave"
         class="cube"
         :class="{ anim_cube: launchSpin }"
-        @click="startCubeAnimation"
         :key="cubeRender"
       >
         <div ref="front" class="front">
@@ -92,18 +91,18 @@ $font_logo: 'Kaushan Script', cursive;
 }
 .cube {
   position: relative;
-  width: 100px;
+  width: 150px;
   transform-style: preserve-3d;
   transform: rotateY(-50deg) rotateX(10deg);
   cursor: pointer;
 }
 .cube div {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   text-align: center;
   font-family: $font_logo;
-  font-size: 2.4rem;
+  font-size: 3.4rem;
   padding-top: 20px;
 
   color: $primary;
@@ -111,8 +110,7 @@ $font_logo: 'Kaushan Script', cursive;
 .back {
   border: $primary 2px solid;
   border-radius: 7px;
-  transform: translateZ(-54px) rotateY(180deg);
-  animation: deployedBack 3s ease both;
+  animation: deployedBackLarge 3s ease both;
   position: relative;
   &-color {
     position: absolute;
@@ -132,7 +130,7 @@ $font_logo: 'Kaushan Script', cursive;
   position: relative;
   &-color {
     position: absolute;
-    top: 45px;
+    top: 65px;
     left: 10%;
     color: $primary;
   }
@@ -140,16 +138,14 @@ $font_logo: 'Kaushan Script', cursive;
 .top {
   border: $primary 5px solid;
   border-radius: 12px;
-  animation: deployedTop 3s ease both;
-  transform: rotateX(-90deg) translateY(-54px);
+  animation: deployedTopLarge 3s ease both;
   transform-origin: top center;
 }
 .bottom {
   border: $primary 5px solid;
   border-radius: 7px;
-  animation: deployedBottom 3s ease both;
+  animation: deployedBottomLarge 3s ease both;
 
-  transform: rotateX(90deg) translateY(50px);
   transform-origin: bottom center;
 }
 .left {
@@ -169,14 +165,12 @@ $font_logo: 'Kaushan Script', cursive;
 .front {
   border: $primary 2px solid;
   border-radius: 7px;
-  transform: translateZ(50px);
-  animation: deployedFront 3s ease both;
-
+  animation: deployedFrontLarge 3s ease both;
   position: relative;
   &-color {
     position: absolute;
-    top: 30px;
-    right: 28%;
+    top: 40px;
+    right: 25%;
     color: $primary;
   }
 }
@@ -201,6 +195,21 @@ $font_logo: 'Kaushan Script', cursive;
   }
 }
 
+@keyframes deployedFrontLarge {
+  0% {
+    transform: translateZ(100px);
+  }
+  10% {
+    transform: translateZ(120px);
+  }
+  90% {
+    transform: translateZ(120px);
+  }
+  100% {
+    transform: translateZ(100px);
+  }
+}
+
 @keyframes deployedFront {
   0% {
     transform: translateZ(50px);
@@ -213,6 +222,20 @@ $font_logo: 'Kaushan Script', cursive;
   }
   100% {
     transform: translateZ(50px);
+  }
+}
+@keyframes deployedTopLarge {
+  0% {
+    transform: rotateX(-90deg) translateY(-100px) translateZ(0px);
+  }
+  10% {
+    transform: rotateX(-90deg) translateY(-100px) translateZ(-15px);
+  }
+  90% {
+    transform: rotateX(-90deg) translateY(-100px) translateZ(-15px);
+  }
+  100% {
+    transform: rotateX(-90deg) translateY(-100px) translateZ(0px);
   }
 }
 @keyframes deployedTop {
@@ -229,6 +252,20 @@ $font_logo: 'Kaushan Script', cursive;
     transform: rotateX(-90deg) translateY(-50px) translateZ(0px);
   }
 }
+@keyframes deployedBottomLarge {
+  0% {
+    transform: rotateX(90deg) translateY(100px) translateZ(0px);
+  }
+  10% {
+    transform: rotateX(90deg) translateY(100px) translateZ(-15px);
+  }
+  90% {
+    transform: rotateX(90deg) translateY(100px) translateZ(-15px);
+  }
+  100% {
+    transform: rotateX(90deg) translateY(100px) translateZ(0px);
+  }
+}
 @keyframes deployedBottom {
   0% {
     transform: rotateX(90deg) translateY(50px) translateZ(0px);
@@ -241,6 +278,20 @@ $font_logo: 'Kaushan Script', cursive;
   }
   100% {
     transform: rotateX(90deg) translateY(50px) translateZ(0px);
+  }
+}
+@keyframes deployedBackLarge {
+  0% {
+    transform: translateZ(-54px) rotateY(180deg);
+  }
+  10% {
+    transform: translateZ(-74px) rotateY(180deg);
+  }
+  90% {
+    transform: translateZ(-74px) rotateY(180deg);
+  }
+  100% {
+    transform: translateZ(-54px) rotateY(180deg);
   }
 }
 @keyframes deployedBack {
@@ -271,15 +322,40 @@ $font_logo: 'Kaushan Script', cursive;
 }
 
 @media screen and (max-width: 992px) {
+  .cube {
+    width: 100px;
+  }
+  .cube div {
+    width: 100px;
+    height: 100px;
+    font-size: 2.4rem;
+  }
   .right {
     &-color {
-      left: 15%;
+      top: 45px;
+      left: 35%;
     }
   }
   .left {
     &-color {
       left: 57%;
     }
+  }
+  .front {
+    animation: deployedFront 3s ease both;
+    &-color {
+      top: 30px;
+      right: 28%;
+    }
+  }
+  .top {
+    animation: deployedTop 3s ease both;
+  }
+  .bottom {
+    animation: deployedBottom 3s ease both;
+  }
+  .back {
+    animation: deployedBack 3s ease both;
   }
 }
 
