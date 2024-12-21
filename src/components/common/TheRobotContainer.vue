@@ -6,9 +6,11 @@
     mode="out-in"
   >
     <TheRobot v-if="layoutMounted" />
-    <code class="text-grey-7 mt-10 absolute bottom-5 right-5 lg:bottom-5 lg:right-10" v-else>
-      &lt;svg&gt;Un chat bot&lt;/svg&gt;</code
-    >
+    <WireCode
+      content="&lt;svg&gt;Un chat bot&lt;/svg&gt;"
+      class="mt-10 absolute bottom-5 right-5 lg:bottom-5 lg:right-10"
+      v-else
+    />
   </transition>
 </template>
 
@@ -17,6 +19,7 @@ import TheRobot from 'src/components/TheRobot.vue'
 
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import WireCode from './WireCode.vue'
 const animationSettings = useAnimationSettings()
 
 const { layoutMounted } = storeToRefs(animationSettings)

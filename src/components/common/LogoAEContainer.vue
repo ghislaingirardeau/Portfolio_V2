@@ -6,12 +6,11 @@
     mode="out-in"
   >
     <LogoAE v-if="layoutMounted" />
-    <code
-      class="text-grey-7 flex flex-center mt-10 h-48 border-2 border-solid border-gray-300 lg:absolute lg:right-48"
+    <WireCode
       v-else
-    >
-      &lt;div&gt;Logo Entreprise&lt;/div&gt;</code
-    >
+      content="&lt;div&gt;Logo Entreprise&lt;/div&gt;"
+      class="flex flex-center mt-10 h-48 border-2 border-solid border-gray-300 lg:absolute lg:right-48"
+    />
   </transition>
 </template>
 
@@ -20,6 +19,7 @@ import LogoAE from 'src/components/common/LogoAE.vue'
 
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import WireCode from './WireCode.vue'
 const animationSettings = useAnimationSettings()
 
 const { layoutMounted } = storeToRefs(animationSettings)

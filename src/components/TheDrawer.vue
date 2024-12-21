@@ -20,7 +20,7 @@
             />
           </q-item-section>
           <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
-            <code class="text-grey-7">&lt;li&gt;Menu&lt;/li&gt;</code>
+            <WireCode content="&lt;li&gt;Menu&lt;/li&gt;" />
           </q-item-section>
         </q-item>
       </template>
@@ -42,6 +42,7 @@ import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useDeviceDetail } from 'src/stores/deviceDetails'
 import { storeToRefs } from 'pinia'
+import WireCode from './common/WireCode.vue'
 
 const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()

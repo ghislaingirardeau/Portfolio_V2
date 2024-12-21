@@ -28,7 +28,7 @@
         enter-active-class="animated fadeIn"
         leave-active-class="animated slideOutRight"
       >
-        <code v-if="!footerMounted" class="text-grey-5"> &lt;svg&gt;Network;/svg&gt;</code>
+        <WireCode v-if="!footerMounted" content="&lt;svg&gt;Network;/svg&gt;" />
       </transition>
     </q-toolbar>
   </q-footer>
@@ -42,6 +42,7 @@ import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
+import WireCode from './common/WireCode.vue'
 
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, layoutMounted } = storeToRefs(animationSettings)

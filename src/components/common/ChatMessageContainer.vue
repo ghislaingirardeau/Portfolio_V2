@@ -16,8 +16,8 @@
       <slot name="text" />
     </q-chat-message>
     <div class="absolute bottom-16 right-32 ml-3 column" v-else>
-      <code class="text-grey-7"> &lt;div&gt;chat message&lt;/div&gt;</code>
-      <code class="text-grey-7"> &lt;div&gt;chat message&lt;/div&gt;</code>
+      <WireCode content="&lt;div&gt;chat message&lt;/div&gt;" />
+      <WireCode content="&lt;div&gt;chat message&lt;/div&gt;" />
     </div>
   </transition>
 </template>
@@ -25,6 +25,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import WireCode from './WireCode.vue'
 const animationSettings = useAnimationSettings()
 
 const { robotMounted } = storeToRefs(animationSettings)
