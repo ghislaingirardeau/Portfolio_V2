@@ -1,21 +1,12 @@
 <template>
   <div>
     <div class="absolute bottom-16 right-24 lg:bottom-16 lg:right-32 ml-3">
-      <q-chat-message
-        v-for="(text, index) in props.texts"
-        :key="'text-' + index"
-        class="opacity-0 -translate-x-64"
-        :name="index === 0 ? 'Ghislain Robot' : ''"
-        :text="[text]"
-        sent
-        text-color="white"
-        bg-color="primary"
-        ref="chatMessages"
-      />
-    </div>
-    <div ref="codePlaceholder" class="absolute bottom-16 right-32 ml-3 column">
-      <WireCode content="&lt;div&gt;chat message&lt;/div&gt;" />
-      <WireCode content="&lt;div&gt;chat message&lt;/div&gt;" />
+      <q-chat-message sent :text-color="textColor" :bgColor="bgColor">
+        <div ref="chatMessages" v-for="(text, index) in props.texts" :key="'text-' + index">
+          <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
+          <span v-else>{{ text }}</span>
+        </div>
+      </q-chat-message>
     </div>
   </div>
 </template>
@@ -25,7 +16,7 @@ import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import WireCode from './WireCode.vue'
-import { useTemplateRef, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
@@ -33,26 +24,41 @@ const { robotMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const chatMessages = useTemplateRefsList<any>()
-const codePlaceholder = useTemplateRef('codePlaceholder')
+
+const isPlaceholder = ref(true)
+
+const textColor = ref('grey-9')
+const bgColor = ref('grey-2')
 
 const props = defineProps({
   texts: { type: Array, required: true },
 })
 
 function textMessageAnimation() {
-  const tl = gsap.timeline()
-  tl.to(codePlaceholder.value, {
+  const getParents = [] as HTMLElement[]
+
+  chatMessages.value.forEach((el) => {
+    getParents.push(el.closest('.q-message-text'))
+  })
+  const duration = 0.5
+
+  gsap.to(getParents, {
     opacity: 0,
-    x: 60,
-    duration: 0.5,
+    x: -30,
+    duration,
+    onComplete: () => {
+      isPlaceholder.value = false
+      textColor.value = 'white'
+      bgColor.value = 'blue'
+    },
   })
 
-  props.texts?.forEach((el, index) => {
-    const elementTarget = chatMessages.value[index].$el as HTMLDivElement
-    tl.to(elementTarget, {
-      x: 0,
+  getParents.forEach((el, i) => {
+    gsap.to(el, {
       opacity: 1,
-      duration: 0.2,
+      x: 0,
+      duration,
+      delay: 0.5 + i / 5,
     })
   })
 }
