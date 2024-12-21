@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { mdiGithub, mdiLinkedin } from '@quasar/extras/mdi-v7'
-import { useTemplateRef, onMounted, ref } from 'vue'
+import { useTemplateRef, onMounted, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -45,7 +45,7 @@ import LogoImage from './common/LogoImage.vue'
 import WireCode from './common/WireCode.vue'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, layoutMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, layoutMounted, headerMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const footer = useTemplateRef<any>('footer')
@@ -69,7 +69,6 @@ const icons = [
 
 onMounted(() => {
   footerAnimation()
-  animationAppear()
 })
 
 function goToExternalLink(link: string) {
@@ -89,7 +88,7 @@ function footerAnimation() {
 }
 
 function animationAppear() {
-  const tl = gsap.timeline({ delay: 1.3 })
+  const tl = gsap.timeline()
   const logoMaltTarget = logoMalt.value.$el as HTMLDivElement
   tl.to(logoMaltTarget, {
     duration: ANIM_SHORT.value,
@@ -108,6 +107,10 @@ function animationAppear() {
     layoutMounted.value = true
   })
 }
+
+watch(headerMounted, () => {
+  animationAppear()
+})
 </script>
 
 <style scoped></style>

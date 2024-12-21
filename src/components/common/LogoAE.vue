@@ -13,7 +13,7 @@
           <span class="front-color">g</span>
         </div>
         <div ref="back" class="back">
-          <span class="reverse-letter back-color">
+          <span class="reverse-letter back-color" :class="{ anim_revert_web: launchSpin }">
             <span>w</span>
             <span>e</span>
             <span>b</span>
@@ -51,8 +51,8 @@ const cube = useTemplateRef('cube')
 
 onMounted(() => {
   const duration = 0.8
-  gsap.from(back.value, { duration, opacity: 0, delay: duration })
-  gsap.from(front.value, { duration, opacity: 0, delay: duration })
+  gsap.from(back.value, { duration, opacity: 0, delay: 0.8 })
+  gsap.from(front.value, { duration, opacity: 0, delay: 0.8 })
   gsap.from(left.value, {
     duration,
     x: '-20px',
@@ -63,8 +63,8 @@ onMounted(() => {
     x: '20px',
     opacity: 0,
   })
-  gsap.from(top.value, { duration, opacity: 0, delay: duration })
-  gsap.from(bottom.value, { duration, opacity: 0, delay: duration })
+  gsap.from(top.value, { duration, opacity: 0, delay: 0.8 })
+  gsap.from(bottom.value, { duration, opacity: 0, delay: 0.8 })
 })
 
 function startCubeAnimation() {
@@ -88,6 +88,9 @@ $font_logo: 'Kaushan Script', cursive;
 }
 .anim_cube {
   animation: spin 2.4s 0.3s linear;
+}
+.anim_revert_web {
+  animation: reverseWeb 2.4s 0.3s ease both;
 }
 .cube {
   position: relative;
@@ -176,7 +179,6 @@ $font_logo: 'Kaushan Script', cursive;
 }
 
 .reverse-letter {
-  animation: reverseWeb 2.4s 0.3s ease both;
   transform: rotateY(180deg);
   display: inline-block;
 }

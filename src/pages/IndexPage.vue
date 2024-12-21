@@ -7,19 +7,17 @@
     <TheRobotContainer />
 
     <!-- TODO 
-     -A mettre dans les components  
      -Drawer display on desktop => pas possible de le
     réduire 
     - si desktop => afficher plus de textes
-    - si desktop => augmenter taille logo
     -->
 
-    <ChatMessageContainer>
-      <template #text>
-        <div>J'ai fais le choix de créer ce portfolio différement</div>
-        <div>Tu as déjà beaucoup d'information sur moi sur le lien ci-dessous</div>
-      </template>
-    </ChatMessageContainer>
+    <ChatMessageContainer
+      :texts="[
+        'J\'ai fais le choix de créer ce portfolio différement',
+        'Tu as déjà beaucoup d\'information sur moi sur le lien ci-dessous',
+      ]"
+    />
 
     <!-- <div class="w-full flex lg:flex-center mt-32">
       <ThePlane />

@@ -6,6 +6,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const footerMounting = ref(false)
   const drawerMounted = ref(false)
   const robotMounted = ref(false)
+  const headerMounted = ref(false)
 
   const layoutMounted = ref(false)
   const isAnimating = ref(true)
@@ -32,6 +33,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isClickable,
     drawerMounted,
     robotMounted,
+    headerMounted,
     handleClickableEnter,
     handleClickableLeave,
   }
