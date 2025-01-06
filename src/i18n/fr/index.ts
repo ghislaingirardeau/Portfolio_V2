@@ -14,6 +14,10 @@ export default {
       "J'ai fais le choix de créer ce portfolio différement",
       "Tu as déjà beaucoup d'information sur moi sur le lien ci-dessous",
     ],
+    project: [
+      'Voici un aperçu de mes réalisations',
+      'Tu y restrouveras les technologies utilisées, les objectifs attendus...',
+    ],
   },
   routes: {
     index: '/Accueil',
