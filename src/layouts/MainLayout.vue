@@ -17,12 +17,24 @@ import TheDrawer from 'src/components/TheDrawer.vue'
 import TheFooter from 'src/components/TheFooter.vue'
 import TheHeader from 'src/components/TheHeader.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useDeviceDetail } from 'src/stores/deviceDetails'
+
+const deviceDetail = useDeviceDetail()
 
 const animationSettings = useAnimationSettings()
 const { footerMounting, headerMounting } = storeToRefs(animationSettings)
 
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 
 const leftDrawerOpen = ref(false)
+
+watch(
+  () => headerMounting.value,
+  (newValue) => {
+    if (newValue && !deviceDetail.isMobile) {
+      leftDrawerOpen.value = true
+    }
+  },
+)
 </script>
