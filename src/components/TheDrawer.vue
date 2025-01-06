@@ -90,19 +90,13 @@ const menuList = computed(() => [
 
 function handleShowMenu() {
   if (!drawerMounted.value) {
-    if (deviceDetail.isMobile) {
-      handleMenuAnimation()
-    } else {
-      setTimeout(() => {
-        handleMenuAnimation()
-      }, 3000)
-    }
+    handleMenuAnimation()
   }
 }
 
 function handleMenuAnimation() {
   isAnimating.value = true
-  const tl = gsap.timeline()
+  const tl = gsap.timeline({ delay: deviceDetail.isMobile ? 0 : 3 })
   menuList.value.forEach((el, index) => {
     const elementTarget = menuIcon.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
