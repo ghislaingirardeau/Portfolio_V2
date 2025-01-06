@@ -63,13 +63,20 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import CarouselProjects from 'src/components/projectPage/carouselProjects.vue'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import type { Project } from 'src/types'
+import { onMounted } from 'vue'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+
+const animationSettings = useAnimationSettings()
+const { headerMounting } = storeToRefs(animationSettings)
+
 const { tm } = useI18n({ useScope: 'global' })
 const router = useRouter()
 
@@ -92,6 +99,12 @@ function resetCarousel() {
   console.log('reset')
   currentSlide.value = 0
 }
+
+onMounted(() => {
+  if (!headerMounting.value) {
+    headerMounting.value = true
+  }
+})
 </script>
 
 <style scoped lang="scss">
