@@ -1,16 +1,17 @@
 <template>
   <q-page class="q-pa-lg">
     <q-tabs
+      ref="tabs"
       v-model="tab"
       dense
-      class="text-grey"
+      class="text-grey h-0"
       active-color="primary"
       indicator-color="primary"
       align="justify"
       narrow-indicator
       @update:model-value="resetCarousel"
     >
-      <q-tab name="mobile" :label="'Mobile first'" />
+      <q-tab name="mobile" ref="menuTab" :label="'Mobile first'" />
       <q-tab name="desktop" :label="'desktop'" />
     </q-tabs>
 
@@ -23,16 +24,24 @@
           :slideNumber="projectsMobile.length"
           :typeDesktop="false"
         >
-          <q-img
-            :src="`/images/projectsPage/${projectsMobile[currentSlide]!.imageURL[0]}`"
-            fit="contain"
-            loading="lazy"
-            spinner-color="white"
-            height="288px"
-            class="cursor-pointer"
-            @click="goToProjectDetail(projectsMobile[currentSlide]!.id)"
+          <transition
+            appear
+            enter-active-class="animated fadeIn"
+            leave-active-class="animated fadeOut"
+            mode="out-in"
           >
-          </q-img>
+            <q-img
+              :key="projectsMobile[currentSlide]!.id"
+              :src="`/images/projectsPage/${projectsMobile[currentSlide]!.imageURL[0]}`"
+              fit="contain"
+              loading="lazy"
+              spinner-color="white"
+              height="288px"
+              class="cursor-pointer"
+              @click="goToProjectDetail(projectsMobile[currentSlide]!.id)"
+            >
+            </q-img>
+          </transition>
         </CarouselProjects>
       </q-tab-panel>
 
@@ -64,6 +73,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { gsap } from 'src/boot/gsap'
+
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import CarouselProjects from 'src/components/projectPage/carouselProjects.vue'
@@ -81,6 +92,7 @@ const { tm } = useI18n({ useScope: 'global' })
 const router = useRouter()
 
 const tab = ref('mobile')
+const tabs = ref()
 const currentSlide = ref(0)
 
 const projectsMobile = computed(() => {
@@ -104,6 +116,12 @@ onMounted(() => {
   if (!headerMounting.value) {
     headerMounting.value = true
   }
+  gsap.to(tabs.value.$el, {
+    duration: 0.5,
+    height: '40px',
+    opacity: 1,
+    delay: 0.2,
+  })
 })
 </script>
 

@@ -58,7 +58,7 @@ function textMessageAnimation() {
       opacity: 1,
       x: 0,
       duration,
-      delay: 0.5 + i / 5,
+      delay: 0.5 + i / 4,
     })
   })
 }
