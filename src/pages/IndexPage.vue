@@ -6,12 +6,7 @@
 
     <TheRobotContainer />
 
-    <ChatMessageContainer
-      :texts="[
-        'J\'ai fais le choix de créer ce portfolio différement',
-        'Tu as déjà beaucoup d\'information sur moi sur le lien ci-dessous',
-      ]"
-    />
+    <ChatMessageContainer :texts="tm('chatMessage.home')" />
 
     <!-- <div class="w-full flex lg:flex-center mt-32">
       <ThePlane />
@@ -39,6 +34,9 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import LogoAEContainer from 'src/components/common/LogoAEContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import ThePresentation from 'src/components/ThePresentation.vue'
+import { useI18n } from 'vue-i18n'
+
+const { tm } = useI18n()
 </script>
 
 <style scoped lang="scss"></style>

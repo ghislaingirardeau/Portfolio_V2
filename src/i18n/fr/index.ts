@@ -9,6 +9,12 @@ export default {
     services: 'Mes services',
     aboutMe: 'A propos de moi',
   },
+  chatMessage: {
+    home: [
+      "J'ai fais le choix de créer ce portfolio différement",
+      "Tu as déjà beaucoup d'information sur moi sur le lien ci-dessous",
+    ],
+  },
   routes: {
     index: '/Accueil',
     projects: '/projets',
