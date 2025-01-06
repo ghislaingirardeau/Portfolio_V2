@@ -16,7 +16,7 @@ import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import WireCode from './WireCode.vue'
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
@@ -62,6 +62,12 @@ function textMessageAnimation() {
     })
   })
 }
+
+onMounted(() => {
+  if (robotMounted.value) {
+    textMessageAnimation()
+  }
+})
 
 watch(robotMounted, () => {
   textMessageAnimation()

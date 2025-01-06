@@ -6,12 +6,6 @@
 
     <TheRobotContainer />
 
-    <!-- TODO 
-     -Drawer display on desktop => pas possible de le
-    réduire 
-    - si desktop => afficher plus de textes
-    -->
-
     <ChatMessageContainer
       :texts="[
         'J\'ai fais le choix de créer ce portfolio différement',
