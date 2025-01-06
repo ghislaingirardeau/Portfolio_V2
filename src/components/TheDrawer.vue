@@ -6,7 +6,7 @@
     :behavior="deviceDetail.deviceOrientation"
     bordered
     :width="250"
-    @show="!drawerMounted ? handleMenuAnimation() : null"
+    @show="handleShowMenu"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
@@ -87,6 +87,18 @@ const menuList = computed(() => [
     },
   },
 ])
+
+function handleShowMenu() {
+  if (!drawerMounted.value) {
+    if (deviceDetail.isMobile) {
+      handleMenuAnimation()
+    } else {
+      setTimeout(() => {
+        handleMenuAnimation()
+      }, 3000)
+    }
+  }
+}
 
 function handleMenuAnimation() {
   isAnimating.value = true
