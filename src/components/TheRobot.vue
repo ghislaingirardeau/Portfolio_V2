@@ -3,7 +3,7 @@
     fill="#000000"
     height="90px"
     width="90px"
-    class="absolute bottom-5 right-5 lg:bottom-5 lg:right-10"
+    class="fixed bottom-14 right-5 lg:bottom-5 lg:right-10"
     :class="moveEyes"
     version="1.1"
     id="Layer_1"
