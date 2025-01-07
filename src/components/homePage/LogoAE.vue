@@ -102,15 +102,15 @@ $font_logo: 'Kaushan Script', cursive;
 }
 .cube {
   position: relative;
-  width: 250px;
+  width: 150px;
   transform-style: preserve-3d;
   transform: rotateY(-50deg) rotateX(10deg);
   cursor: pointer;
 }
 .cube div {
   position: absolute;
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   text-align: center;
   font-family: $font_logo;
   font-size: 3.4rem;
