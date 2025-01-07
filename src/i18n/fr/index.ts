@@ -129,7 +129,7 @@ export default {
             <li>Refactoriser le code et le test.</li>
           </ul>`,
         tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
-        imageURL: ['wordle1.png', 'wordle2.png'],
+        imageURL: ['wordle2.png', 'wordle1.png'],
         link: 'https://wordle-game-gg-wev-dev.netlify.app/',
       },
       {
@@ -218,8 +218,9 @@ export default {
           "Mise en place d'un simulateur de financements avec son plan d'amortissement, élaboration du questionnaire pour la collecte de donnée avec authentification, une page administrateur pour le suivi et la synthèse des données",
         tech: 'Nuxt, vuetify, firebase auth & store, moment JS, chart JS, notification par messagerie, export vers fichier excel, netlify, GitHub',
         imageURL: [
-          'community_tool1.png',
           'community_tool2.png',
+
+          'community_tool1.png',
           'community_tool3.png',
           'community_tool4.png',
         ],
@@ -261,13 +262,14 @@ export default {
           "Personnaliser et animer le rendu d'une image SVG, rendre dynamique une image en fonction de la base de donnée de l'utilisateur, Gérer et implémenter un stockage de données à l'aide de SQL, Déployer le site Netlify et le serveur Heroku",
         tech: 'Node js, Express, Axios, bcrypt, Figma, bootstrap vue, Nuxt js, GitHub, Mysql workbench',
         imageURL: [
+          'beToFeelUser.PNG',
+
           'beToFeelsign.PNG',
           'beToFeelMenu.PNG',
           'beToFeeling.PNG',
           'beToFeelShare.PNG',
           'beToFeelShareAsk.PNG',
           'beToFeelTree.PNG',
-          'beToFeelUser.PNG',
         ],
         link: 'https://betofeel.netlify.app/',
       },

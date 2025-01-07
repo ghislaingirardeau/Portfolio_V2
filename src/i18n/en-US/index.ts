@@ -127,7 +127,7 @@ export default {
     <li>Refactor code and test.</li>
     </ul>`,
         tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
-        imageURL: ['wordle1.png', 'wordle2.png'],
+        imageURL: ['wordle2.png', 'wordle1.png'],
         link: 'https://wordle-game-gg-wev-dev.netlify.app/',
       },
       {
@@ -191,8 +191,8 @@ export default {
           'Loan simulator and payment table, data forms template to collect the data, the admin page to visualise the collections and view the data tables.',
         tech: 'Nuxt, vuetify, firebase auth & store, moment JS, chart JS, notification, export to excel, netlify, GitHub',
         imageURL: [
-          'community_tool1.png',
           'community_tool2.png',
+          'community_tool1.png',
           'community_tool3.png',
           'community_tool4.png',
         ],
@@ -208,13 +208,13 @@ export default {
           'SVG image dynamic, motion and personalised front rendering based on user data, including SQL database and authentication user control. Offer the ability to share your personal image with other users, Full stack deployment API server on Heroku / app on Netlify',
         tech: 'Node js, Express, Axios, bcrypt, Figma, bootstrap vue, Nuxt js, GitHub, Mysql workbench',
         imageURL: [
+          'beToFeelUser.PNG',
           'beToFeelsign.PNG',
           'beToFeelMenu.PNG',
           'beToFeeling.PNG',
           'beToFeelShare.PNG',
           'beToFeelShareAsk.PNG',
           'beToFeelTree.PNG',
-          'beToFeelUser.PNG',
         ],
         link: 'https://betofeel.netlify.app/',
       },
