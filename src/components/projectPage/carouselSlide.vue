@@ -5,21 +5,28 @@
     leave-active-class="animated fadeOut"
     mode="out-in"
   >
-    <q-img
-      :key="typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id"
-      :src="`/images/projectsPage/${typeDesktop ? projectsDesktop[currentSlide]!.imageURL[0] : projectsMobile[currentSlide]!.imageURL[0]}`"
-      fit="contain"
-      loading="lazy"
-      spinner-color="white"
-      height="288px"
-      class="cursor-pointer"
-      @click="
-        goToProjectDetail(
-          typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id,
-        )
-      "
-    >
-    </q-img>
+    <q-card>
+      <q-img
+        :key="typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id"
+        :src="`/images/projectsPage/${typeDesktop ? projectsDesktop[currentSlide]!.imageURL[0] : projectsMobile[currentSlide]!.imageURL[0]}`"
+        fit="contain"
+        loading="lazy"
+        spinner-color="white"
+        height="288px"
+        class="cursor-pointer"
+        @click="
+          goToProjectDetail(
+            typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id,
+          )
+        "
+      >
+        <div class="text-subtitle2 text-center" :class="imageTitleClass">
+          {{
+            typeDesktop ? projectsDesktop[currentSlide]!.name : projectsMobile[currentSlide]!.name
+          }}
+        </div>
+      </q-img>
+    </q-card>
   </transition>
 </template>
 
@@ -32,7 +39,7 @@ import { useRouter } from 'vue-router'
 const { tm } = useI18n({ useScope: 'global' })
 const router = useRouter()
 
-defineProps({
+const props = defineProps({
   typeDesktop: {
     type: Boolean,
     required: true,
@@ -49,6 +56,10 @@ const projectsMobile = computed(() => {
 
 const projectsDesktop = computed(() => {
   return [...tm('projects.desktop')] as Project[]
+})
+
+const imageTitleClass = computed(() => {
+  return props.typeDesktop ? 'absolute-top' : 'absolute-bottom'
 })
 
 function goToProjectDetail(id: string) {
