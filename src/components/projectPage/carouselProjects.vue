@@ -16,8 +16,18 @@
         class="z-10"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
-      <div class="w-48 h-72" :class="{ 'w-72': typeDesktop }">
-        <CarouselSlide :current-slide="currentSlide" :type-desktop="typeDesktop" />
+      <div class="w-48 h-72 relative" :class="{ 'w-72': typeDesktop }">
+        <WireCode
+          ref="carouselSlideSkeleton"
+          v-show="isFirstMounted"
+          content="&lt;div&gt;Project Image&lt;/div&gt;"
+          class="flex flex-center mt-10 h-48 border-2 border-solid border-gray-300 absolute"
+          :class="{ 'w-72': typeDesktop }"
+        />
+
+        <div ref="carouselSlide" class="opacity-0">
+          <CarouselSlide :current-slide="currentSlide" :type-desktop="typeDesktop" />
+        </div>
       </div>
       <q-btn
         ref="carouselNext"
@@ -40,6 +50,7 @@ import { computed, onMounted, Ref, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
+import WireCode from '../common/WireCode.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 
@@ -49,6 +60,8 @@ const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: 
 const carousel = ref()
 const carouselPrevious = ref()
 const carouselNext = ref()
+const carouselSlideSkeleton = ref()
+const carouselSlide = ref()
 
 const { direction } = useSwipe(carousel)
 const skeletonButtonLabel: Ref<string | undefined> = ref('<i>')
@@ -73,6 +86,7 @@ const props = defineProps({
 
 onMounted(() => {
   animationSlideButtons()
+  animationSlide()
 })
 
 watch(
@@ -100,6 +114,18 @@ function previousSlide() {
     return
   }
   currentSlide.value--
+}
+
+function animationSlide() {
+  const tl = gsap.timeline({ delay: isFirstMounted.value ? 0.8 : 0 })
+  tl.to(carouselSlideSkeleton.value.$el, {
+    duration: 0.3,
+    opacity: 0,
+  }).to(carouselSlide.value, {
+    duration: 0.5,
+    delay: 0.3,
+    opacity: 1,
+  })
 }
 
 function animationSlideButtons() {
