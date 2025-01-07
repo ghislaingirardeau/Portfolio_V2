@@ -16,7 +16,7 @@ export function useIsMobile() {
 }
 
 export function useIsMobileTall() {
-  return useIsMobile() && height.value > 700
+  return useIsMobile() && height.value > 800
 }
 
 export function useDeviceOrientation() {
