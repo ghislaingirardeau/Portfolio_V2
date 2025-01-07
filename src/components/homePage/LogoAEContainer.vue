@@ -28,7 +28,7 @@ const animationSettings = useAnimationSettings()
 const { layoutMounted } = storeToRefs(animationSettings)
 
 const logoClass = computed(() => {
-  return useIsMobileTall() ? 'mt-24' : 'mt-10'
+  return useIsMobileTall() ? 'mt-28' : 'mt-10'
 })
 </script>
 
