@@ -21,7 +21,7 @@
           ref="carouselSlideSkeleton"
           v-show="isFirstMounted"
           content="&lt;div&gt;Project Image&lt;/div&gt;"
-          class="flex flex-center mt-10 h-48 border-2 border-solid border-gray-300 absolute"
+          class="flex flex-center mt-10 h-64 border-2 border-solid border-gray-300 absolute"
           :class="{ 'w-72': typeDesktop }"
         />
 
