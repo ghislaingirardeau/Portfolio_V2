@@ -72,7 +72,9 @@ const imageClass = computed(() => {
 })
 
 function goToProjectDetail(id: string) {
-  router.push({ name: 'project-detail', params: { id } })
+  if (!props.typeDesktop) {
+    router.push({ name: 'project-detail', params: { id } })
+  }
 }
 </script>
 
