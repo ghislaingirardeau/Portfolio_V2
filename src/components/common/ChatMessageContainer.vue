@@ -79,7 +79,6 @@ function textMessageAnimation() {
 }
 
 onMounted(() => {
-  console.log(emit)
   if (robotMounted.value) {
     textMessageAnimation()
   }
