@@ -16,9 +16,8 @@
         <WireCode
           ref="carouselSlideSkeleton"
           v-show="isFirstMounted"
-          content="&lt;div&gt;Project Image&lt;/div&gt;"
-          class="flex flex-center mt-10 h-64 border-2 border-solid border-gray-300 absolute"
-          :class="{ 'w-72': typeDesktop }"
+          content="&lt;div&gt;Image&lt;/div&gt;"
+          class="flex flex-center mt-10 w-44 h-64 border-2 border-solid border-gray-300 absolute"
         />
 
         <div ref="carouselSlide" class="opacity-0">
