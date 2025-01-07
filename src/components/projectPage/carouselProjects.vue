@@ -1,10 +1,6 @@
 <template>
   <q-tab-panel :name="name">
-    <div
-      ref="carousel"
-      class="row justify-around items-center mt-4"
-      :class="{ relative: typeDesktop }"
-    >
+    <div ref="carousel" class="row justify-around items-center" :class="{ relative: typeDesktop }">
       <q-btn
         ref="carouselPrevious"
         round
@@ -16,7 +12,7 @@
         class="z-10"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
-      <div class="w-48 relative" :class="{ 'w-72': typeDesktop, slideContainerClass }">
+      <div class="relative" :class="slideContainerClass">
         <WireCode
           ref="carouselSlideSkeleton"
           v-show="isFirstMounted"
@@ -75,7 +71,11 @@ const slideNumber = computed(() => {
 })
 
 const slideContainerClass = computed(() => {
-  return useIsMobileTall() ? 'h-96' : 'h-72'
+  if (useIsMobileTall()) {
+    return props.typeDesktop ? 'h-60 w-72' : 'w-48 h-96'
+  } else {
+    return props.typeDesktop ? 'h-48 w-72' : 'w-44 h-72'
+  }
 })
 
 const props = defineProps({

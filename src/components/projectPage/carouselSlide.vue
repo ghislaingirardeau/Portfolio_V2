@@ -9,7 +9,7 @@
       <q-img
         :key="typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id"
         :src="`/images/projectsPage/${typeDesktop ? projectsDesktop[currentSlide]!.imageURL[0] : projectsMobile[currentSlide]!.imageURL[0]}`"
-        fit="contain"
+        fit="fill"
         loading="lazy"
         spinner-color="white"
         class="cursor-pointer"
@@ -64,7 +64,11 @@ const imageTitleClass = computed(() => {
 })
 
 const imageClass = computed(() => {
-  return useIsMobileTall() ? 'h-96' : 'h-72'
+  if (useIsMobileTall()) {
+    return props.typeDesktop ? 'h-60' : 'h-96'
+  } else {
+    return props.typeDesktop ? 'h-48' : 'h-72'
+  }
 })
 
 function goToProjectDetail(id: string) {

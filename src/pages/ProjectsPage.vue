@@ -17,7 +17,7 @@
 
     <q-separator />
 
-    <q-tab-panels v-model="tab" animated>
+    <q-tab-panels v-model="tab" animated class="tab_panel_container flex flex-center">
       <component
         :is="CarouselProjects"
         v-model:currentSlide="currentSlide"
@@ -72,6 +72,9 @@ function resetCarousel() {
 </script>
 
 <style scoped lang="scss">
+.tab_panel_container {
+  min-height: calc(100vh - 350px);
+}
 .my-card {
   width: 100%;
   &--portrait {
