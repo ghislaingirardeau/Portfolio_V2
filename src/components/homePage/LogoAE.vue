@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-center lg:absolute lg:right-64 z-30" @click="startCubeAnimation">
-    <div class="header__logo wrap mt-10 lg:ml-20 w-1/2 lg:w-1/5">
+    <div class="header__logo wrap lg:ml-20 w-1/2 lg:w-1/5">
       <div
         ref="cube"
         @mouseenter="animationSettings.handleClickableEnter"
@@ -94,15 +94,15 @@ $font_logo: 'Kaushan Script', cursive;
 }
 .cube {
   position: relative;
-  width: 150px;
+  width: 250px;
   transform-style: preserve-3d;
   transform: rotateY(-50deg) rotateX(10deg);
   cursor: pointer;
 }
 .cube div {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   text-align: center;
   font-family: $font_logo;
   font-size: 3.4rem;
