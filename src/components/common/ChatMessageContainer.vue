@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="fixed bottom-28 right-24 lg:bottom-16 lg:right-32 ml-3">
+    <div class="fixed bottom-28 right-24 ml-3">
       <q-chat-message sent :text-color="textColor" :bgColor="bgColor">
         <div
           ref="chatMessages"
           v-for="(text, index) in props.texts"
           :key="'text-' + index"
           @click="handleChatMessageAction(index)"
+          class="w-full lg:w-80"
         >
           <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
           <span

@@ -1,6 +1,6 @@
 <template>
   <q-tab-panel :name="props.name">
-    <div class="flex flex-center">
+    <div class="flex flex-center lg:justify-start">
       <WireCode
         ref="imageSkeleton"
         v-show="isFirstMounted"
@@ -12,8 +12,7 @@
         :src="imageToDisplay"
         alt="photo de Ghislain montagne"
         fit="contain"
-        class="rounded-borders opacity-0"
-        width="85%"
+        class="rounded-borders opacity-0 w-10/12 lg:w-2/5"
       />
     </div>
   </q-tab-panel>
