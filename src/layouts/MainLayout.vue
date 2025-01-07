@@ -22,12 +22,12 @@ import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const animationSettings = useAnimationSettings()
-const { footerMounting, headerMounting } = storeToRefs(animationSettings)
+const { footerMounting, headerMounting, headerMounted } = storeToRefs(animationSettings)
 
 const leftDrawerOpen = ref(false)
 
 watch(
-  () => headerMounting.value,
+  () => headerMounted.value,
   (newValue) => {
     if (newValue && !useIsMobile()) {
       leftDrawerOpen.value = true
