@@ -21,8 +21,9 @@
       <q-tab-panel name="mobile">
         <CarouselProjects
           v-model:currentSlide="currentSlide"
-          :slideNumber="projectsMobile.length"
-          :typeDesktop="false"
+          :slide-number="projectsMobile.length"
+          :type-desktop="false"
+          v-model:is-first-mounted="isFirstMounted"
         >
           <transition
             appear
@@ -46,24 +47,23 @@
       </q-tab-panel>
 
       <q-tab-panel name="desktop">
-        <div class="row justify-around">
-          <CarouselProjects
-            v-model:currentSlide="currentSlide"
-            :slideNumber="projectsDesktop.length"
-            :typeDesktop="true"
+        <CarouselProjects
+          v-model:currentSlide="currentSlide"
+          :slide-number="projectsDesktop.length"
+          :type-desktop="true"
+          v-model:is-first-mounted="isFirstMounted"
+        >
+          <q-img
+            :src="`/images/projectsPage/${projectsDesktop[currentSlide]!.imageURL[0]}`"
+            fit="contain"
+            loading="lazy"
+            spinner-color="white"
+            height="288px"
+            class="cursor-pointer"
+            @click="goToProjectDetail(projectsDesktop[currentSlide]!.id)"
           >
-            <q-img
-              :src="`/images/projectsPage/${projectsDesktop[currentSlide]!.imageURL[0]}`"
-              fit="contain"
-              loading="lazy"
-              spinner-color="white"
-              height="288px"
-              class="cursor-pointer"
-              @click="goToProjectDetail(projectsDesktop[currentSlide]!.id)"
-            >
-            </q-img>
-          </CarouselProjects>
-        </div>
+          </q-img>
+        </CarouselProjects>
       </q-tab-panel>
     </q-tab-panels>
     <TheRobotContainer />
@@ -94,6 +94,7 @@ const router = useRouter()
 const tab = ref('mobile')
 const tabs = ref()
 const currentSlide = ref(0)
+const isFirstMounted = ref(true)
 
 const projectsMobile = computed(() => {
   return [...tm('projects.mobile')] as Project[]
@@ -102,15 +103,6 @@ const projectsMobile = computed(() => {
 const projectsDesktop = computed(() => {
   return [...tm('projects.desktop')] as Project[]
 })
-
-function goToProjectDetail(id: string) {
-  router.push({ name: 'project-detail', params: { id } })
-}
-
-function resetCarousel() {
-  console.log('reset')
-  currentSlide.value = 0
-}
 
 onMounted(() => {
   if (!headerMounting.value) {
@@ -123,6 +115,14 @@ onMounted(() => {
     delay: 0.2,
   })
 })
+
+function goToProjectDetail(id: string) {
+  router.push({ name: 'project-detail', params: { id } })
+}
+
+function resetCarousel() {
+  currentSlide.value = 0
+}
 </script>
 
 <style scoped lang="scss">

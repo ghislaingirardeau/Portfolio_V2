@@ -38,6 +38,8 @@ import { onMounted, Ref, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
+const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
+
 const carousel = ref()
 const carouselPrevious = ref()
 const carouselNext = ref()
@@ -59,6 +61,21 @@ const props = defineProps({
   },
 })
 
+onMounted(() => {
+  animationSlideButtons()
+})
+
+watch(
+  () => direction.value,
+  (newValue) => {
+    if (newValue === 'left') {
+      previousSlide()
+    } else if (newValue === 'right') {
+      nextSlide()
+    }
+  },
+)
+
 function nextSlide() {
   if (currentSlide.value === props.slideNumber - 1) {
     currentSlide.value = 0
@@ -75,7 +92,15 @@ function previousSlide() {
   currentSlide.value--
 }
 
-onMounted(() => {
+function animationSlideButtons() {
+  const firstAnimOptions = {
+    duration: 0.3,
+    opacity: 0,
+    scale: 0,
+    onComplete() {
+      designButton('chevron_left')
+    },
+  }
   const secondAnimOptions = {
     duration: 0.5,
     opacity: 0.7,
@@ -83,46 +108,37 @@ onMounted(() => {
     delay: 0.3,
     ease: 'bounce.out',
   }
+  const designButton = (direction: string) => {
+    skeletonButtonLabel.value = undefined
+    skeletonButtonColor.value = 'secondary'
+    if (direction.includes('right')) {
+      skeletonButtonIconRight.value = direction
+    } else {
+      skeletonButtonIconLeft.value = direction
+    }
+    isFirstMounted.value = false
+  }
   /* Header tab anim 0.7s */
-  const tlPrev = gsap.timeline({ delay: 0.8 })
-  const tlNext = gsap.timeline({ delay: 0.8 })
+  const tlPrev = gsap.timeline({ delay: isFirstMounted.value ? 0.8 : 0 })
+  const tlNext = gsap.timeline({ delay: isFirstMounted.value ? 0.8 : 0 })
 
   tlPrev
     .to(carouselPrevious.value.$el, {
-      duration: 0.3,
-      opacity: 0,
-      scale: 0,
-      onComplete: () => {
-        skeletonButtonLabel.value = undefined
-        skeletonButtonColor.value = 'secondary'
-        skeletonButtonIconLeft.value = 'chevron_left'
+      ...firstAnimOptions,
+      onComplete() {
+        designButton('chevron_left')
       },
     })
     .to(carouselPrevious.value.$el, secondAnimOptions)
   tlNext
     .to(carouselNext.value.$el, {
-      duration: 0.3,
-      opacity: 0,
-      scale: 0,
-      onComplete: () => {
-        skeletonButtonLabel.value = undefined
-        skeletonButtonColor.value = 'secondary'
-        skeletonButtonIconRight.value = 'chevron_right'
+      ...firstAnimOptions,
+      onComplete() {
+        designButton('chevron_right')
       },
     })
     .to(carouselNext.value.$el, secondAnimOptions)
-})
-
-watch(
-  () => direction.value,
-  (newValue) => {
-    if (newValue === 'left') {
-      previousSlide()
-    } else if (newValue === 'right') {
-      nextSlide()
-    }
-  },
-)
+}
 </script>
 
 <style scoped></style>
