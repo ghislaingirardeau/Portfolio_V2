@@ -64,10 +64,28 @@ export default {
     h2commit: 'Mes souhaits...',
     personal: {
       h3: '...Côté Perso',
+      description: [
+        "Après plus de 10 ans de travail en tant que manager pour une marque internationale de sport (Intersport), j'ai décidé d'explorer l'un de mes autres hobbies, à savoir l'informatique.",
+        "J'ai participé à une formation de six mois pour devenir développeur web.",
+        'En savoir plus...',
+      ],
+      description1: [
+        'Je suis impatient de travailler sur tous les projets intéressants que je peux apporter à cette intersection de mes compétences et de mes connaissances (sport et développement web).',
+        'Retour...',
+      ],
       text: "Après 10 d'expériences dans la distribution d'articles de sport, j'ai décidé de réaliser un vieux rêve et de me tourner vers une autre passion qu'est le langage informatique. Passionée de sports, investi dans le développement web, j'ai aujourd'hui le souhait de mettre à disposition mes compétences dans des projets enrichissant tant humainement que professionnellement.",
     },
     professionaly: {
       h3: '...Côté Pro',
+      description: [
+        'Depuis plus de 3 ans, j’ai développé une expertise dans la création d’interfaces utilisateur dynamiques et intuitives. ',
+        'Je donne ponctuellement des formations au Javascript fullstack. J’ai également animé un atelier de formation Vue JS ',
+        'En savoir plus...',
+      ],
+      description1: [
+        "J'ai pu appréhender et creer des tests unitaires avec Jest et Vue Test Utils pour garantir une application fiable et performante.",
+        'Retour...',
+      ],
       id1: "Auto-entrepreneur et freelance en developpement web : Réalisation de ce e-portfolio via Vue et Nuxt Js, 2 framework js que j'apprécie particulièrement !",
       id2: "OPEN CLASSROOM : Formation 6 mois développeur Web. Partisans des méthodes AGILE, tous mes projets sont issus du monde professionnel et ont éte présenté à distance en visio conférence. J'ai organisé mon travail en tout autonomie dans le respect des délais impartis.",
     },

@@ -2,9 +2,20 @@
   <div>
     <div class="fixed bottom-28 right-24 lg:bottom-16 lg:right-32 ml-3">
       <q-chat-message sent :text-color="textColor" :bgColor="bgColor">
-        <div ref="chatMessages" v-for="(text, index) in props.texts" :key="'text-' + index">
+        <div
+          ref="chatMessages"
+          v-for="(text, index) in props.texts"
+          :key="'text-' + index"
+          @click="handleChatMessageAction(index)"
+        >
           <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
-          <span v-else>{{ text }}</span>
+          <span
+            :class="{
+              'italic underline cursor-pointer': props.texts.length - 1 === index && hasEmitEvent,
+            }"
+            v-else
+            >{{ text }}</span
+          >
         </div>
       </q-chat-message>
     </div>
@@ -32,7 +43,11 @@ const bgColor = ref('grey-2')
 
 const props = defineProps({
   texts: { type: Array, required: true },
+  delayAnimation: { type: Number, default: 2 },
+  hasEmitEvent: { type: Boolean, default: false },
 })
+
+const emit = defineEmits(['someEvent'])
 
 function textMessageAnimation() {
   const getParents = [] as HTMLElement[]
@@ -58,12 +73,13 @@ function textMessageAnimation() {
       opacity: 1,
       x: 0,
       duration,
-      delay: 2 + i / 4,
+      delay: props.delayAnimation + i / 4,
     })
   })
 }
 
 onMounted(() => {
+  console.log(emit)
   if (robotMounted.value) {
     textMessageAnimation()
   }
@@ -72,6 +88,12 @@ onMounted(() => {
 watch(robotMounted, () => {
   textMessageAnimation()
 })
+
+function handleChatMessageAction(index: number) {
+  if (props.texts.length - 1 === index) {
+    emit('someEvent')
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

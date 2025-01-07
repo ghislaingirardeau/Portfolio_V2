@@ -62,10 +62,28 @@ export default {
     h2commit: 'My work commitment...',
     personal: {
       h3: '...Personally',
+      description: [
+        'After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT.',
+        'I took part in a six-month training course to become a web developer.',
+        'Next...',
+      ],
+      description1: [
+        "I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
+        'Previous...',
+      ],
       text: "After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT. I took part in a six-month training course to become a web developer. As an athlete and a web developer, I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
     },
     professionaly: {
       h3: '...Professionally',
+      description: [
+        "Over the last 3 years, I've developed solid expertise in creating dynamic and intuitive user interfaces, using the Vue Js framework in particular. ",
+        'I give occasional training courses in Javascript fullstack for the Oclock online school. I also ran a Vue JS training workshop ',
+        'Next...',
+      ],
+      description1: [
+        'I was able to learn about and create unit tests using Jest and Vue Test Utils to guarantee a reliable, high-performance application.',
+        'Previous...',
+      ],
       id1: "Freelancer, I'm self-employed since June 2021 as a web developer : I realised this e-portfolio using Vue and Nuxt Js, 2 js frameworks that I particularly like to work with !",
       id2: 'OPEN CLASSROOM: attended six months intensive training as a web developer. As a practitioner of the AGILE method, all my training came from real work projects. These projects were approved and evaluated by a tutor, a professor and a jury of professional web developers. I am used to organising my work autonomously in relation to the project deadline set by the client.',
     },
