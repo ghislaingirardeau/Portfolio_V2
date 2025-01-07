@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-center lg:absolute lg:right-64 z-30" @click="startCubeAnimation">
+  <div class="flex flex-center lg:absolute lg:right-64 z-30" @click="spinCubeAnimation">
     <div class="header__logo wrap lg:ml-20 w-1/2 lg:w-1/5">
       <div
         ref="cube"
@@ -50,6 +50,10 @@ const left = useTemplateRef('left')
 const cube = useTemplateRef('cube')
 
 onMounted(() => {
+  buildCubeAnimation()
+})
+
+function buildCubeAnimation() {
   const duration = 0.8
   gsap.from(back.value, { duration, opacity: 0, delay: 0.8 })
   gsap.from(front.value, { duration, opacity: 0, delay: 0.8 })
@@ -65,11 +69,15 @@ onMounted(() => {
   })
   gsap.from(top.value, { duration, opacity: 0, delay: 0.8 })
   gsap.from(bottom.value, { duration, opacity: 0, delay: 0.8 })
-})
+}
 
-function startCubeAnimation() {
+function spinCubeAnimation() {
+  animationSettings.isAnimating = true
   launchSpin.value = true
   cubeRender.value++
+  setTimeout(() => {
+    animationSettings.isAnimating = false
+  }, 2700)
 }
 </script>
 

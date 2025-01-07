@@ -47,8 +47,12 @@ import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
 import WireCode from '../common/WireCode.vue'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { storeToRefs } from 'pinia'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const { tm } = useI18n({ useScope: 'global' })
+const animationSettings = useAnimationSettings()
+const { isAnimating } = storeToRefs(animationSettings)
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
@@ -89,6 +93,7 @@ const props = defineProps({
 })
 
 onMounted(() => {
+  isAnimating.value = true
   animationSlideButtons()
   animationSlide()
 })
@@ -146,7 +151,10 @@ function animationSlideButtons() {
     opacity: 0.7,
     scale: 1,
     delay: 0.3,
-    ease: 'bounce.out',
+    ease: 'hop',
+    onComplete() {
+      isAnimating.value = false
+    },
   }
   const designButton = (direction: string) => {
     skeletonButtonLabel.value = undefined

@@ -44,7 +44,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { headerMounting } = storeToRefs(animationSettings)
+const { headerMounting, isAnimating } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n({ useScope: 'global' })
 
@@ -66,12 +66,14 @@ onMounted(() => {
 })
 
 function AnimeTitleLetters() {
+  isAnimating.value = true
   animationLetters(lettersHello.value, t('index.me.p1'), 0.05)
   animationLetters(lettersName.value, t('index.me.p2'), 0.05)
   animationLetters(letterWork.value, t('index.me.p3'), 0.05)
 
   tl.call(() => {
     headerMounting.value = true
+    isAnimating.value = false
   })
 }
 
