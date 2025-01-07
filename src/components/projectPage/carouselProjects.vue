@@ -16,7 +16,7 @@
         class="z-10"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
-      <div class="w-48 h-72 relative" :class="{ 'w-72': typeDesktop }">
+      <div class="w-48 relative" :class="{ 'w-72': typeDesktop, slideContainerClass }">
         <WireCode
           ref="carouselSlideSkeleton"
           v-show="isFirstMounted"
@@ -51,6 +51,7 @@ import { gsap } from 'src/boot/gsap'
 import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
 import WireCode from '../common/WireCode.vue'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 
 const { tm } = useI18n({ useScope: 'global' })
 
@@ -71,6 +72,10 @@ const skeletonButtonIconRight: Ref<string | undefined> = ref(undefined)
 
 const slideNumber = computed(() => {
   return props.typeDesktop ? [...tm('projects.desktop')].length : [...tm('projects.mobile')].length
+})
+
+const slideContainerClass = computed(() => {
+  return useIsMobileTall() ? 'h-96' : 'h-72'
 })
 
 const props = defineProps({

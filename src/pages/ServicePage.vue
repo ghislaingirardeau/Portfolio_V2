@@ -11,7 +11,7 @@
         v-model="step"
         ref="stepper"
         color="primary"
-        :vertical="deviceDetail.isMobile"
+        :vertical="useIsMobile()"
         animated
         class="lg:w-4/5"
       >
@@ -68,9 +68,7 @@
 import { mdiClipboardCheckMultiple, mdiDraw } from '@quasar/extras/mdi-v7'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useDeviceDetail } from 'src/stores/deviceDetails'
-
-const deviceDetail = useDeviceDetail()
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const { t } = useI18n()
 

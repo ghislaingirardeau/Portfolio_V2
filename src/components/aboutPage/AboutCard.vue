@@ -29,9 +29,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useDeviceDetail } from 'src/stores/deviceDetails'
-
-const deviceDetail = useDeviceDetail()
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const props = defineProps({
   title: String,
@@ -48,7 +46,7 @@ const hasTitle = computed(() => {
 })
 
 const isReverted = computed(() => {
-  if (deviceDetail.isMobile) {
+  if (useIsMobile()) {
     return false
   }
   return props.index % 2 === 0 ? true : false

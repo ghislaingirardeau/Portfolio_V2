@@ -2,7 +2,7 @@
   <q-header elevated ref="header" class="opacity-0 h-0">
     <q-toolbar>
       <transition
-        v-if="deviceDetail.isMobile"
+        v-if="useIsMobile()"
         appear
         enter-active-class="animated  rotateIn"
         leave-active-class="animated  rotateOut"
@@ -38,9 +38,7 @@ import { gsap } from 'src/boot/gsap'
 
 import { storeToRefs } from 'pinia'
 import { mdiClose, mdiMenu } from '@quasar/extras/mdi-v7'
-import { useDeviceDetail } from 'src/stores/deviceDetails'
-
-const deviceDetail = useDeviceDetail()
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const animationSettings = useAnimationSettings()
 const { footerMounting, ANIM_LONG } = storeToRefs(animationSettings)

@@ -3,7 +3,7 @@
     v-model="leftDrawerOpen"
     ref="'drawer'"
     side="left"
-    :behavior="deviceDetail.deviceOrientation"
+    :behavior="useDeviceOrientation()"
     bordered
     :width="250"
     @show="handleShowMenu"
@@ -40,11 +40,10 @@ import { useI18n } from 'vue-i18n'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useDeviceDetail } from 'src/stores/deviceDetails'
 import { storeToRefs } from 'pinia'
 import WireCode from './common/WireCode.vue'
+import { useDeviceOrientation, useIsMobile } from 'src/utils/useDeviceInfo'
 
-const deviceDetail = useDeviceDetail()
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, isAnimating, drawerMounted } = storeToRefs(animationSettings)
 
@@ -96,7 +95,7 @@ function handleShowMenu() {
 
 function handleMenuAnimation() {
   isAnimating.value = true
-  const tl = gsap.timeline({ delay: deviceDetail.isMobile ? 0 : 3 })
+  const tl = gsap.timeline({ delay: useIsMobile() ? 0 : 3 })
   menuList.value.forEach((el, index) => {
     const elementTarget = menuIcon.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {

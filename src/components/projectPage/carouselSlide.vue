@@ -12,8 +12,8 @@
         fit="contain"
         loading="lazy"
         spinner-color="white"
-        height="288px"
         class="cursor-pointer"
+        :class="imageClass"
         @click="
           goToProjectDetail(
             typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id,
@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import { Project } from 'src/types'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -60,6 +61,10 @@ const projectsDesktop = computed(() => {
 
 const imageTitleClass = computed(() => {
   return props.typeDesktop ? 'absolute-top' : 'absolute-bottom'
+})
+
+const imageClass = computed(() => {
+  return useIsMobileTall() ? 'h-96' : 'h-72'
 })
 
 function goToProjectDetail(id: string) {
