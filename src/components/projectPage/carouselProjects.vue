@@ -4,7 +4,7 @@
       <q-btn
         ref="carouselPrevious"
         round
-        fab-mini
+        size="sm"
         @click="previousSlide"
         :label="skeletonButtonLabel"
         :color="skeletonButtonColor"
@@ -27,7 +27,7 @@
       <q-btn
         ref="carouselNext"
         round
-        fab-mini
+        size="sm"
         @click="nextSlide"
         :label="skeletonButtonLabel"
         :color="skeletonButtonColor"

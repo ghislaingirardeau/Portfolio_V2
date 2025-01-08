@@ -28,7 +28,9 @@
       </component>
     </q-tab-panels>
     <TheRobotContainer />
-    <ChatMessageContainer :texts="tm('chatMessage.project')" />
+    <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <ChatMessageContainer :texts="chatMessageToDisplay" :key="tab" :delay-animation="0.5" />
+    </transition>
   </q-page>
 </template>
 
@@ -38,7 +40,7 @@ import { gsap } from 'src/boot/gsap'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import CarouselProjects from 'src/components/projectPage/carouselProjects.vue'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -48,6 +50,12 @@ const tab = ref('mobile')
 const tabs = ref()
 const currentSlide = ref(0)
 const isFirstMounted = ref(true)
+
+const chatMessageToDisplay = computed(() => {
+  return tab.value === 'mobile'
+    ? [...tm('chatMessage.project')]
+    : [...tm('chatMessage.projectDesktop.desktop')].slice(0, 1)
+})
 
 onMounted(() => {
   gsap.to(tabs.value.$el, {
