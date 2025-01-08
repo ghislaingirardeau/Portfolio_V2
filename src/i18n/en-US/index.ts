@@ -176,7 +176,7 @@ export default {
       {
         id: '12',
         date: 'juin 2023',
-        name: 'Mon Vocabulaire en carte',
+        name: 'Vocabulary Cards',
         mobileFirst: true,
         summary: 'Flashcard - Web App PWA',
         description:
@@ -195,7 +195,7 @@ export default {
       {
         id: '8',
         date: 'january 2022',
-        name: 'PWA - Cartographie',
+        name: 'Cartography',
         summary: 'Mapping Tool - Web App PWA',
         mobileFirst: true,
         description: `Development of a mapping tool for a sociology researcher. 
@@ -208,7 +208,7 @@ export default {
       <li>- Organize markers in folders for dynamic display</li>
       <li>- Data backed up and secured via Firebase</li>
     </ul>`,
-        tech: 'Nuxt, vuetify, leaflet, Firebase, import et export from/to Excel file, netlify, GitHub',
+        tech: 'Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel',
         imageURL: [
           'mapping1.PNG',
           'mapping2.PNG',
@@ -226,7 +226,7 @@ export default {
         id: '10',
         date: 'july 2022',
         name: 'Web App - Data collection app',
-        summary: 'Web application for data collection and processing',
+        summary: 'Data collection and processing',
         mobileFirst: false,
         description:
           'Loan simulator and payment table, data forms template to collect the data, the admin page to visualise the collections and view the data tables.',
@@ -242,9 +242,9 @@ export default {
       {
         id: '7',
         date: 'august 2021',
-        name: 'BeToFeel',
+        name: 'BeToFeel - fullstack app',
         mobileFirst: false,
-        summary: 'Building a full-stack website: sharing and visualising dynamic emotions',
+        summary: 'Sharing and visualising dynamic emotions',
         description:
           'SVG image dynamic, motion and personalised front rendering based on user data, including SQL database and authentication user control. Offer the ability to share your personal image with other users, Full stack deployment API server on Heroku / app on Netlify',
         tech: 'Node js, Express, Axios, bcrypt, Figma, bootstrap vue, Nuxt js, GitHub, Mysql workbench',

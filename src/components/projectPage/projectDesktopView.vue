@@ -55,7 +55,7 @@ import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
-const { tm } = useI18n({ useScope: 'global' })
+const { tm, locale } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
 const { isAnimating } = storeToRefs(animationSettings)
 
@@ -146,6 +146,17 @@ watch(
 
     setTimeout(() => {
       animationCardTitle(false)
+    }, 500)
+  },
+)
+
+watch(
+  () => locale.value,
+  () => {
+    isAnimating.value = true
+
+    setTimeout(() => {
+      animationCardTitle(true)
     }, 500)
   },
 )

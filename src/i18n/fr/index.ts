@@ -216,7 +216,7 @@ export default {
             <li>- Des données sauvegardées et sécurisées via Firebase</li>
           </ul>
           `,
-        tech: 'Nuxt, vuetify, leaflet, Firebase, import GeoJson et export depuis fichier excel, netlify, GitHub',
+        tech: 'Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel',
         imageURL: [
           'mapping1.PNG',
           'mapping2.PNG',
@@ -253,7 +253,7 @@ export default {
         id: '10',
         date: 'juillet 2022',
         name: 'Web App - Collecte de données',
-        summary: "Création d'une application de collecte et de traitement de données",
+        summary: 'Collecte et de traitement de données',
         mobileFirst: false,
         description:
           "Mise en place d'un simulateur de financements avec son plan d'amortissement, élaboration du questionnaire pour la collecte de donnée avec authentification, une page administrateur pour le suivi et la synthèse des données",
@@ -295,8 +295,8 @@ export default {
       {
         id: '7',
         date: 'aout 2021',
-        name: 'BeToFeel',
-        summary: "Développement d'un siteweb fullstack de visualisation et de partage d'émotions",
+        name: 'BeToFeel - fullstack app',
+        summary: "Visualisation et gestion d'émotions",
 
         mobileFirst: false,
         description:
