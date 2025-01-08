@@ -7,7 +7,7 @@
           v-for="(text, index) in props.texts"
           :key="'text-' + index"
           @click="handleChatMessageAction(index)"
-          class="w-full lg:w-80"
+          class="w-full"
           :class="width"
         >
           <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
@@ -49,7 +49,7 @@ const props = defineProps({
   hasEmitEvent: { type: Boolean, default: false },
   width: {
     type: String,
-    default: '',
+    default: 'w-full',
   },
 })
 

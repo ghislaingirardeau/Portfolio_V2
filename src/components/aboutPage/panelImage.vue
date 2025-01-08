@@ -5,7 +5,7 @@
         ref="imageSkeleton"
         v-show="isFirstMounted"
         content="&lt;div&gt;Image About me&lt;/div&gt;"
-        class="flex flex-center w-72 h-40 border-2 border-solid border-gray-300 absolute"
+        class="flex flex-center w-72 h-40 border-2 border-solid border-gray-300 bg-grey-3 absolute"
       />
       <q-img
         ref="image"

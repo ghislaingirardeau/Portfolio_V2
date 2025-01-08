@@ -9,7 +9,7 @@
     <WireCode
       v-else
       content="&lt;div&gt;Logo Entreprise&lt;/div&gt;"
-      class="flex flex-center h-48 border-2 border-solid border-gray-300 lg:absolute lg:right-48"
+      class="flex flex-center h-48 border-2 border-solid border-gray-300 bg-grey-3 lg:absolute lg:right-48"
       :class="logoClass"
     />
   </transition>

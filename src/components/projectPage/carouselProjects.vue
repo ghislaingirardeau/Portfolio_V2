@@ -17,7 +17,7 @@
           ref="carouselSlideSkeleton"
           v-show="isFirstMounted"
           content="&lt;div&gt;Image&lt;/div&gt;"
-          class="flex flex-center mt-10 w-44 h-64 border-2 border-solid border-gray-300 absolute"
+          class="flex flex-center mt-10 w-44 h-64 border-2 border-solid border-gray-300 bg-grey-3 absolute"
         />
 
         <div ref="carouselSlide" class="opacity-0">

@@ -38,7 +38,7 @@
         :has-emit-event="!chatExpanded ? false : true"
         @some-event="!chatExpanded ? null : handleTextToDisplay()"
         :delay-animation="0.5"
-        :width="!chatExpanded ? 'lg:w-10' : ''"
+        :width="!chatExpanded ? 'lg:w-10' : 'lg:w-80'"
       />
     </transition>
   </q-page>
