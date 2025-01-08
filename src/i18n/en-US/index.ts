@@ -18,6 +18,16 @@ export default {
       'Voici un aperçu de mes réalisations',
       'Tu y restrouveras les technologies utilisées, les objectifs attendus...',
     ],
+    projectDesktop: {
+      mobile: [
+        'Ces projets ont été réalisés en Mobile First, mais fonctionnent aussi sur desktop',
+        'Voir aussi mes projets desktop public ?',
+      ],
+      desktop: [
+        "Ceci n'est qu'un échantillon des projets développés, pour des raisons de confidentialités, les projets privés ne sont pas visible ici ! ",
+        'Retour vers les projets mobiles ?',
+      ],
+    },
   },
   routes: {
     index: '/Home',
@@ -136,7 +146,7 @@ export default {
         date: 'march 2024 - Today',
         name: `Wordle Game`,
         mobileFirst: true,
-        summary: 'Create a mini game (wordle) in Test-Driven-Development',
+        summary: 'Mini game - Test-Driven-Development',
         description: `
     Creation of the game giving priority to Test first using 3 steps.
     <ul>
@@ -153,7 +163,7 @@ export default {
         date: 'juin 2023',
         name: 'Mon Vocabulaire en carte',
         mobileFirst: true,
-        summary: 'Building a web application with PWA, Typescript & Nuxt 3',
+        summary: 'Flashcard - Web App PWA',
         description:
           "An application that allows you to translate words or phrases, but also to organise and archive them in the form of a card. The application allows you to listen to 'my vocabulary' in the chosen language at different speeds and offers pronunciation help for certain languages such as Khmer.",
         tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
@@ -171,7 +181,7 @@ export default {
         id: '8',
         date: 'january 2022',
         name: 'PWA - Cartographie',
-        summary: 'Mobile free Mapping App',
+        summary: 'Mapping Tool - Web App PWA',
         mobileFirst: true,
         description: `Development of a mapping tool for a sociology researcher. 
       <ul>
@@ -188,10 +198,8 @@ export default {
           'mapping1.PNG',
           'mapping2.PNG',
           'mapping3.PNG',
-          'mapping4.PNG',
           'mapping5.PNG',
           'mapping6.PNG',
-          'mapping7.PNG',
           'mapping8.PNG',
           'mapping9.PNG',
         ],
@@ -228,10 +236,8 @@ export default {
         imageURL: [
           'beToFeelUser.PNG',
           'beToFeelsign.PNG',
-          'beToFeelMenu.PNG',
           'beToFeeling.PNG',
           'beToFeelShare.PNG',
-          'beToFeelShareAsk.PNG',
           'beToFeelTree.PNG',
         ],
         link: 'https://betofeel.netlify.app/',

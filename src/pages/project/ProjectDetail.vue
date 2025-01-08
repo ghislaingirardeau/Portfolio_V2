@@ -111,4 +111,8 @@ function goToExternalLink(link: string) {
 // }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.q-carousel__slide {
+  border-radius: 10px;
+}
+</style>
