@@ -1,16 +1,16 @@
 <template>
-  <mobileViewPage v-if="useIsMobile()" />
+  <projectMobileView v-if="useIsMobile()" />
 
-  <DesktopViewPage v-else />
+  <projectDesktopView v-else />
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import mobileViewPage from 'src/components/projectPage/mobileViewPage.vue'
+import projectMobileView from 'src/components/projectPage/projectMobileView.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
-import DesktopViewPage from 'src/components/projectPage/desktopViewPage.vue'
+import projectDesktopView from 'src/components/projectPage/projectDesktopView.vue'
 
 const animationSettings = useAnimationSettings()
 const { headerMounting } = storeToRefs(animationSettings)

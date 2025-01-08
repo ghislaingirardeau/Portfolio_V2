@@ -20,6 +20,7 @@
             {{ project.tech }}
           </div>
         </q-card-section>
+
         <desktopCardCarousel
           :project-image-url="project.imageURL"
           :type-desktop="isDesktopProjectDisplayed"
