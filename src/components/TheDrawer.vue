@@ -89,22 +89,24 @@ const menuList = computed(() => [
 
 function handleShowMenu() {
   if (!drawerMounted.value) {
-    handleMenuAnimation()
+    handleMenuAnimation(useIsMobile() ? 0 : 3, true)
   }
 }
 
-function handleMenuAnimation() {
+function handleMenuAnimation(delay: number, isFirstMount: boolean) {
   isAnimating.value = true
-  const tl = gsap.timeline({ delay: useIsMobile() ? 0 : 3 })
-  menuList.value.forEach((el, index) => {
-    const elementTarget = menuIcon.value[index].$el as HTMLDivElement
-    tl.to(elementTarget, {
-      duration: ANIM_SHORT.value,
-      opacity: 1,
-      rotateZ: 0,
-      ease: 'none',
+  const tl = gsap.timeline({ delay: delay })
+  if (isFirstMount) {
+    menuList.value.forEach((el, index) => {
+      const elementTarget = menuIcon.value[index].$el as HTMLDivElement
+      tl.to(elementTarget, {
+        duration: ANIM_SHORT.value,
+        opacity: 1,
+        rotateZ: 0,
+        ease: 'none',
+      })
     })
-  })
+  }
 
   menuList.value.forEach((el, index) => {
     const elementTarget = menuLabel.value[index].$el as HTMLDivElement
@@ -123,7 +125,7 @@ function handleMenuAnimation() {
 watch(
   () => locale.value,
   () => {
-    handleMenuAnimation()
+    handleMenuAnimation(0, false)
   },
 )
 </script>
