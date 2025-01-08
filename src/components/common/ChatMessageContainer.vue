@@ -8,6 +8,7 @@
           :key="'text-' + index"
           @click="handleChatMessageAction(index)"
           class="w-full lg:w-80"
+          :class="width"
         >
           <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
           <span
@@ -46,6 +47,10 @@ const props = defineProps({
   texts: { type: Array, required: true },
   delayAnimation: { type: Number, default: 2 },
   hasEmitEvent: { type: Boolean, default: false },
+  width: {
+    type: String,
+    default: '',
+  },
 })
 
 const emit = defineEmits(['someEvent'])

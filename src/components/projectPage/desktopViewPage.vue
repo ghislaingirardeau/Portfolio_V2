@@ -29,15 +29,16 @@
       </q-card>
     </transition-group>
 
-    <TheRobotContainer />
+    <TheRobotContainer @click="handleRobotAction" class="cursor-pointer" />
 
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :key="'text-' + isMobileProjectDisplayed"
         :texts="chatMessageToDisplay"
-        :has-emit-event="true"
-        @some-event="handleTextToDisplay"
+        :has-emit-event="!chatExpanded ? false : true"
+        @some-event="!chatExpanded ? null : handleTextToDisplay()"
         :delay-animation="0.5"
+        :width="!chatExpanded ? 'lg:w-10' : ''"
       />
     </transition>
   </q-page>
@@ -56,6 +57,7 @@ const { tm } = useI18n({ useScope: 'global' })
 
 const isMobileProjectDisplayed = ref(true)
 const isDesktopProjectDisplayed = ref(false)
+const chatExpanded = ref(true)
 
 const projects = computed(() => {
   return isMobileProjectDisplayed.value
@@ -68,14 +70,22 @@ const cardClass = computed(() => {
 })
 
 const chatMessageToDisplay = computed(() => {
-  return isMobileProjectDisplayed.value
-    ? [...tm('chatMessage.project'), ...tm('chatMessage.projectDesktop.mobile')]
-    : [...tm('chatMessage.projectDesktop.desktop')]
+  if (!chatExpanded.value) {
+    return ['...']
+  } else {
+    return isMobileProjectDisplayed.value
+      ? [...tm('chatMessage.project'), ...tm('chatMessage.projectDesktop.mobile')]
+      : [...tm('chatMessage.projectDesktop.desktop')]
+  }
 })
 
 function handleTextToDisplay() {
   isMobileProjectDisplayed.value = !isMobileProjectDisplayed.value
   isDesktopProjectDisplayed.value = !isDesktopProjectDisplayed.value
+}
+
+function handleRobotAction() {
+  chatExpanded.value = !chatExpanded.value
 }
 </script>
 
