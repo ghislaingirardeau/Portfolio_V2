@@ -67,16 +67,14 @@
           @click="handleExpand"
         />
       </q-card-actions>
-
-      <q-slide-transition>
-        <div v-show="expanded">
-          <q-separator />
-          <q-card-section class="text-subtitle2">
-            <p v-html="findProject.description"></p>
-          </q-card-section>
-        </div>
-      </q-slide-transition>
     </q-card>
+
+    <ChatMessageContainer
+      v-if="expanded"
+      :delay-animation="0.5"
+      :texts="[findProject.description]"
+    />
+    <TheRobotContainer />
   </q-page>
 </template>
 
@@ -90,6 +88,8 @@ import { mdiKeyboardReturn } from '@quasar/extras/mdi-v7'
 import WireCode from 'src/components/common/WireCode.vue'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)

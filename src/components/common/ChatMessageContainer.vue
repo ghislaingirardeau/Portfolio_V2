@@ -15,9 +15,9 @@
             :class="{
               'italic underline cursor-pointer': props.texts.length - 1 === index && hasEmitEvent,
             }"
+            v-html="text"
             v-else
-            >{{ text }}</span
-          >
+          ></span>
         </div>
       </q-chat-message>
     </div>

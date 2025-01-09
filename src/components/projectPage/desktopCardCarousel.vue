@@ -8,7 +8,6 @@
   />
   <q-carousel
     ref="carousel"
-    swipeable
     animated
     v-model="slide"
     thumbnails
