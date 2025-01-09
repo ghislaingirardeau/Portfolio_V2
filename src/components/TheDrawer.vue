@@ -128,7 +128,7 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
 watch(
   () => locale.value,
   () => {
-    handleMenuAnimation(0, false)
+    handleMenuAnimation(0, true)
   },
 )
 </script>

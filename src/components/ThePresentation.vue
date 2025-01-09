@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useTemplateRefsList } from '@vueuse/core'
-import { onMounted, watch, ref, computed } from 'vue'
+import { onMounted, watch, ref } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'

@@ -40,7 +40,7 @@ const { isAnimating } = storeToRefs(animationSettings)
 
 const props = defineProps({
   projectImageUrl: {
-    type: Array,
+    type: String,
   },
   typeDesktop: {
     type: Boolean,

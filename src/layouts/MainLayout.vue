@@ -39,8 +39,6 @@ watch(
 // block click on is animating
 // stack menu + page dedié
 // my commitment menu + page dedié
-// my work - en desktop, pas de carousel mais un affichage spécifique
-// my work - id => fix image size
 // un fond ecran spé desktop + mobile avec anim
 // fix les locales
 // fix les couleurs

@@ -31,7 +31,7 @@ import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import WireCode from './WireCode.vue'
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
@@ -55,7 +55,7 @@ const props = defineProps({
   },
 })
 
-function isLastChatClickable(index) {
+function isLastChatClickable(index: number) {
   return props.texts.length - 1 === index && props.hasEmitEvent
 }
 

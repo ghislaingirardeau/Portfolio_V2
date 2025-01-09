@@ -48,10 +48,6 @@ const expanded = ref(false)
 function goToExternalLink(link: string) {
   window.open(link, '_blank')
 }
-
-function handleExpand() {
-  expanded.value = !expanded.value
-}
 </script>
 
 <style scoped></style>
