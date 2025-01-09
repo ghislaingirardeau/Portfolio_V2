@@ -1,7 +1,7 @@
 <template>
   <WireCode
     ref="imageSkeleton"
-    content="&lt;div&gt;Image About me&lt;/div&gt;"
+    content="&lt;img&gt;Image About me&lt;/img&gt;"
     class="flex flex-center w-full border-2 border-solid border-gray-300 bg-grey-3 absolute"
     :class="imageClass"
     :style="{ height: imageHeight }"

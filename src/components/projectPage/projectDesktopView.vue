@@ -9,7 +9,7 @@
       :key="project.id + isMobileProjectDisplayed"
     >
       <q-card-section>
-        <div ref="cardOverline" class="text-overline text-orange-9 opacity-30">
+        <div ref="cardOverline" class="text-overline text-grey opacity-50">
           &lt;div&gt;Project name&lt;/div&gt;
         </div>
         <div ref="cardTitle" class="text-h5 q-mt-sm q-mb-xs h-20 opacity-20 scale-50">
@@ -110,7 +110,7 @@ function animationCardTitle(isFirstMount: boolean) {
       duration: 1,
       opacity: 1,
 
-      text: { value: element.name },
+      text: { value: element.name, newClass: 'text-orange-9' },
       ease: 'none',
     })
       .to(elementCardTitle, {

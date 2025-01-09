@@ -46,7 +46,7 @@ const tabs = ref()
 const nextText = ref(false)
 const isFirstMounted = ref(true)
 
-const tl = gsap.timeline({ delay: 0.2 })
+const tl = gsap.timeline({ delay: 0.5 })
 
 const animationSettings = useAnimationSettings()
 const { isAnimating } = storeToRefs(animationSettings)
