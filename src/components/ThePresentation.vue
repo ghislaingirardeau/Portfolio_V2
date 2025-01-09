@@ -38,10 +38,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useTemplateRefsList } from '@vueuse/core'
-import { onMounted, watch, ref } from 'vue'
+import { onMounted, watch, ref, computed } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
+import { useQuasar } from 'quasar'
 
 const animationSettings = useAnimationSettings()
 const { headerMounting, isAnimating } = storeToRefs(animationSettings)
@@ -57,9 +58,15 @@ const lettersName = useTemplateRefsList<any>()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const letterWork = useTemplateRefsList<any>()
 
+const $q = useQuasar()
+
 const blockHello = ref()
 const blockName = ref()
 const blockWork = ref()
+
+function shadowColor() {
+  return $q.dark.isActive ? '2px 2px white' : '2px 2px black'
+}
 
 onMounted(() => {
   AnimeTitleLetters()
@@ -92,7 +99,7 @@ function animationLetters(el: HTMLElement[], value: string, duration: number) {
       },
     }).to(element, {
       duration: duration,
-      textShadow: '2px 2px black',
+      textShadow: shadowColor(),
       className: 'text-3xl lg:text-5xl opacity-0 text-primary',
     })
   }
@@ -101,7 +108,15 @@ function animationLetters(el: HTMLElement[], value: string, duration: number) {
 watch(
   () => locale.value,
   () => {
-    console.log('locale changed')
+    setTimeout(() => {
+      AnimeTitleLetters()
+    }, 500)
+  },
+)
+
+watch(
+  () => $q.dark.isActive,
+  () => {
     setTimeout(() => {
       AnimeTitleLetters()
     }, 500)

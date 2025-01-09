@@ -2,11 +2,7 @@
   <q-page class="q-pa-lg">
     <q-card class="w-1/2">
       <q-card-section>
-        <WireCode
-          ref="cardTitle"
-          content="&lt;h1&gt;Title about me/h1&gt;"
-          class="text-h6 text-grey-10 opacity-20 kalam-font"
-        />
+        <div ref="cardTitle" class="text-h6 opacity-20">&lt;h1&gt;Title&lt;/h1&gt;</div>
       </q-card-section>
 
       <q-separator inset />
@@ -85,7 +81,7 @@ onMounted(() => {
 })
 
 function animationCardTitle() {
-  tl.to(cardTitle.value.$el, {
+  tl.to(cardTitle.value, {
     duration: 0.5,
     opacity: 1,
     text: { value: title.value },
