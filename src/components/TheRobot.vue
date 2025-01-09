@@ -1,16 +1,18 @@
 <template>
   <div>
-    <div
-      class="eye fixed grad"
-      :class="{
-        'is-loading': animationSettings.isAnimating && !$q.dark.isActive,
-        'is-clickable': animationSettings.isClickable && !$q.dark.isActive,
-        'grad-dark': $q.dark.isActive,
-        'is-clickable-dark': $q.dark.isActive && animationSettings.isClickable,
-        'is-loading-dark': $q.dark.isActive && animationSettings.isAnimating,
-      }"
-      ref="eyeBis"
-    ></div>
+    <div class="fixed eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
+      <div
+        class="eye fixed grad"
+        :class="{
+          'is-loading': animationSettings.isAnimating && !$q.dark.isActive,
+          'is-clickable': animationSettings.isClickable && !$q.dark.isActive,
+          'grad-dark': $q.dark.isActive,
+          'is-clickable-dark': $q.dark.isActive && animationSettings.isClickable,
+          'is-loading-dark': $q.dark.isActive && animationSettings.isAnimating,
+        }"
+        ref="eyeBis"
+      ></div>
+    </div>
     <svg
       fill="#000000"
       height="90px"
@@ -121,6 +123,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.eye-container {
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  bottom: 98px;
+  right: 46px;
+}
+.bg-light {
+  background-color: white;
+}
+.bg-dark {
+  background-color: black;
+}
 .eye {
   border-radius: 50%;
   width: 30px;
