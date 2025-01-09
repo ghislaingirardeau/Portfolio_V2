@@ -8,7 +8,10 @@
     :width="250"
     @show="handleShowMenu"
   >
-    <q-list>
+    <q-list
+      @mouseenter="animationSettings.handleClickableEnter"
+      @mouseleave="animationSettings.handleClickableLeave"
+    >
       <template v-for="(menuItem, index) in menuList" :key="index">
         <q-item exact :to="menuItem.to" active-class="text-primary" class="q-py-lg">
           <q-item-section avatar>

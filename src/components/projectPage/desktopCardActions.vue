@@ -1,18 +1,22 @@
 <template>
   <q-card-actions>
-    <q-btn v-if="link" flat color="secondary" label="Demo" @click="goToExternalLink(link)" />
-
-    <q-btn flat color="primary" label="More details" @click="expanded = !expanded" />
-
-    <q-space />
+    <q-btn
+      v-if="link"
+      flat
+      color="secondary"
+      label="Demo"
+      @click="goToExternalLink(link)"
+      @mouseenter="animationSettings.handleClickableEnter"
+      @mouseleave="animationSettings.handleClickableLeave"
+    />
 
     <q-btn
-      color="grey"
-      round
       flat
-      dense
-      :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-      @click="handleExpand"
+      color="primary"
+      label="More details"
+      @click="expanded = !expanded"
+      @mouseenter="animationSettings.handleClickableEnter"
+      @mouseleave="animationSettings.handleClickableLeave"
     />
   </q-card-actions>
 
@@ -25,7 +29,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { ref } from 'vue'
+
+const animationSettings = useAnimationSettings()
 
 defineProps({
   description: {

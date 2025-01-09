@@ -1,10 +1,13 @@
 <template>
   <div>
     <div
-      class="fixed grad"
+      class="eye fixed grad"
       :class="{
-        'is-loading': animationSettings.isAnimating,
-        'is-clickable': animationSettings.isClickable,
+        'is-loading': animationSettings.isAnimating && !$q.dark.isActive,
+        'is-clickable': animationSettings.isClickable && !$q.dark.isActive,
+        'grad-dark': $q.dark.isActive,
+        'is-clickable-dark': $q.dark.isActive && animationSettings.isClickable,
+        'is-loading-dark': $q.dark.isActive && animationSettings.isAnimating,
       }"
       ref="eyeBis"
     ></div>
@@ -67,10 +70,13 @@ import { computed, onMounted, ref } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useQuasar } from 'quasar'
 
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
 const animationSettings = useAnimationSettings()
+
+const $q = useQuasar()
 
 const { width, height } = useWindowSize()
 const { x, y } = useMouse()
@@ -115,20 +121,33 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.eye {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  bottom: 101px;
+  right: 50px;
+}
 .grad {
   background: rgb(255, 255, 255);
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 1) 0%,
     rgba(255, 255, 255, 1) 30%,
-    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 50%,
     rgba(255, 255, 255, 0) 70%
   );
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  bottom: 101px;
-  right: 50px;
+}
+.grad-dark {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(106, 106, 106, 1) 35%,
+    rgba(254, 254, 254, 1) 40%,
+    rgba(0, 0, 0, 1) 70%
+  );
 }
 .is-loading {
   background: rgb(255, 255, 255);
@@ -150,6 +169,28 @@ onMounted(() => {
     rgba(14, 42, 117, 1) 43%,
     rgba(14, 55, 212, 1) 50%,
     rgba(255, 255, 255, 0) 64%
+  );
+}
+.is-clickable-dark {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(52, 133, 235, 1) 40%,
+    rgba(254, 254, 254, 1) 50%,
+    rgba(0, 0, 0, 1) 75%
+  );
+}
+.is-loading-dark {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgb(234, 50, 50) 40%,
+    rgba(254, 254, 254, 1) 50%,
+    rgba(0, 0, 0, 1) 75%
   );
 }
 </style>

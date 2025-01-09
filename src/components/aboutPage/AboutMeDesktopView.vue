@@ -78,12 +78,13 @@ const title = computed(() => {
 })
 
 onMounted(() => {
+  isAnimating.value = true
+
   animationCardTitle()
   animationImage()
 })
 
 function animationCardTitle() {
-  isAnimating.value = true
   tl.to(cardTitle.value.$el, {
     duration: 0.5,
     opacity: 1,

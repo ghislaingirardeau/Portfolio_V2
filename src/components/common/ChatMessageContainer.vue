@@ -9,11 +9,13 @@
           @click="handleChatMessageAction(index)"
           class="w-full"
           :class="width"
+          @mouseenter="isLastChatClickable(index) ? animationSettings.handleClickableEnter() : null"
+          @mouseleave="isLastChatClickable(index) ? animationSettings.handleClickableLeave() : null"
         >
           <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
           <span
             :class="{
-              'italic underline cursor-pointer': props.texts.length - 1 === index && hasEmitEvent,
+              'italic underline cursor-pointer': isLastChatClickable(index),
             }"
             v-html="text"
             v-else
@@ -29,7 +31,7 @@ import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import WireCode from './WireCode.vue'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
@@ -52,6 +54,10 @@ const props = defineProps({
     default: 'w-full',
   },
 })
+
+function isLastChatClickable(index) {
+  return props.texts.length - 1 === index && props.hasEmitEvent
+}
 
 const emit = defineEmits(['someEvent'])
 
