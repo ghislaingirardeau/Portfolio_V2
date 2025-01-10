@@ -6,7 +6,10 @@
 
     <TheRobotContainer />
 
-    <ChatMessageContainer :texts="tm('chatMessage.home')" />
+    <ChatMessageContainer
+      :meTexts="tm('chatMessage.home.me')"
+      :visitor-texts="t('chatMessage.home.visitor')"
+    />
   </q-page>
 </template>
 
@@ -20,7 +23,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 
-const { tm } = useI18n()
+const { t, tm } = useI18n()
 
 const animationSettings = useAnimationSettings()
 const { pageMounted } = storeToRefs(animationSettings)

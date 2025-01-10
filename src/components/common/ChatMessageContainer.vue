@@ -1,25 +1,19 @@
 <template>
   <div>
-    <div class="fixed bottom-28 right-24 ml-3">
-      <q-chat-message sent :text-color="textColor" :bgColor="bgColor">
+    <div class="fixed bottom-24 right-24 ml-3">
+      <q-chat-message ref="receivedMessages" :text="[visitorTexts]" name="Visitor" />
+      <q-chat-message sent name="Me" text-color="white" bg-color="blue" ref="sentMessages">
         <div
           ref="chatMessages"
-          v-for="(text, index) in props.texts"
+          v-for="(text, index) in props.meTexts"
           :key="'text-' + index"
           @click="handleChatMessageAction(index)"
-          class="w-full"
-          :class="width"
-          @mouseenter="isLastChatClickable(index) ? animationSettings.handleClickableEnter() : null"
-          @mouseleave="isLastChatClickable(index) ? animationSettings.handleClickableLeave() : null"
+          :class="{
+            'italic underline cursor-pointer': isLastChatClickable(index),
+            width,
+          }"
         >
-          <WireCode v-if="isPlaceholder" content="&lt;div&gt;chat message&lt;/div&gt;" />
-          <span
-            :class="{
-              'italic underline cursor-pointer': isLastChatClickable(index),
-            }"
-            v-html="text"
-            v-else
-          ></span>
+          <span v-html="text"></span>
         </div>
       </q-chat-message>
     </div>
@@ -30,8 +24,7 @@
 import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import WireCode from './WireCode.vue'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, useTemplateRef, watch } from 'vue'
 import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
@@ -39,14 +32,14 @@ const { pageMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const chatMessages = useTemplateRefsList<any>()
-
-const isPlaceholder = ref(true)
-
-const textColor = ref('grey-9')
-const bgColor = ref('grey-2')
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const sentMessages = useTemplateRef<any>('sentMessages')
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const receivedMessages = useTemplateRef<any>('receivedMessages')
 
 const props = defineProps({
-  texts: { type: Array, required: true },
+  visitorTexts: { type: String },
+  meTexts: { type: Array, required: true },
   delayAnimation: { type: Number, default: 0.5 },
   hasEmitEvent: { type: Boolean, default: false },
   width: {
@@ -56,7 +49,7 @@ const props = defineProps({
 })
 
 function isLastChatClickable(index: number) {
-  return props.texts.length - 1 === index && props.hasEmitEvent
+  return props.meTexts.length - 1 === index && props.hasEmitEvent
 }
 
 const emit = defineEmits(['someEvent'])
@@ -64,23 +57,28 @@ const emit = defineEmits(['someEvent'])
 function textMessageAnimation() {
   const getParents = [] as HTMLElement[]
 
+  const allSendTextMessage = sentMessages.value.$el.querySelectorAll(
+    '.q-message-text, .q-message-name ',
+  ) as HTMLElement[]
+
+  const allReceivedTextMessage = receivedMessages.value.$el.querySelectorAll(
+    '.q-message-text, .q-message-name ',
+  ) as HTMLElement[]
+
   chatMessages.value.forEach((el) => {
     getParents.push(el.closest('.q-message-text'))
   })
-  const duration = 0.5
-
-  gsap.to(getParents, {
-    opacity: 0,
-    x: -30,
-    duration,
-    onComplete: () => {
-      isPlaceholder.value = false
-      textColor.value = 'white'
-      bgColor.value = 'blue'
-    },
+  const duration = 1
+  allReceivedTextMessage.forEach((el, i) => {
+    gsap.to(el, {
+      opacity: 1,
+      x: 0,
+      duration,
+      delay: props.delayAnimation + i / 4,
+    })
   })
 
-  getParents.forEach((el, i) => {
+  allSendTextMessage.forEach((el, i) => {
     gsap.to(el, {
       opacity: 1,
       x: 0,
@@ -94,17 +92,38 @@ onMounted(() => {
   if (pageMounted.value) {
     textMessageAnimation()
   }
+  // if (props.hasEmitEvent) {
+  //   animationSettings.handleClickableEnter()
+  // } else {
+  //   animationSettings.handleClickableLeave()
+  // }
 })
 
-watch(pageMounted, () => {
-  textMessageAnimation()
+watch(pageMounted, (newValue) => {
+  if (newValue) {
+    textMessageAnimation()
+  }
 })
 
 function handleChatMessageAction(index: number) {
-  if (props.texts.length - 1 === index) {
+  if (props.meTexts.length - 1 === index) {
     emit('someEvent')
   }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+.q-message-text {
+  opacity: 0;
+  transform: translateX(-30px);
+  font-size: 0.8rem;
+  &:last-child {
+    min-height: unset;
+  }
+}
+
+.q-message-name {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+</style>

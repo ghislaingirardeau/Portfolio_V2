@@ -33,7 +33,7 @@
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :key="'text-' + isMobileProjectDisplayed"
-        :texts="chatMessageToDisplay"
+        :meTexts="chatMessageToDisplay"
         :has-emit-event="!chatExpanded ? false : true"
         @some-event="!chatExpanded ? null : handleTextToDisplay()"
         :delay-animation="0.5"

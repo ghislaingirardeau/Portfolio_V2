@@ -72,7 +72,7 @@
     <ChatMessageContainer
       v-if="expanded"
       :delay-animation="0.5"
-      :texts="[findProject.description]"
+      :meTexts="[findProject.description]"
     />
     <TheRobotContainer />
   </q-page>

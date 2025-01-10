@@ -19,7 +19,7 @@
 
     <q-tab-panels v-model="tab" animated class="tab_panel_container flex flex-center">
       <component
-        :is="CarouselProjects"
+        :is="MobileCarouselProjects"
         v-model:currentSlide="currentSlide"
         :type-desktop="tab === 'mobile' ? false : true"
         :name="tab"
@@ -29,7 +29,12 @@
     </q-tab-panels>
     <TheRobotContainer />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-      <ChatMessageContainer :texts="chatMessageToDisplay" :key="tab" :delay-animation="0.5" />
+      <ChatMessageContainer
+        :visitor-texts="visitorChatMessageToDisplay"
+        :meTexts="chatMessageToDisplay"
+        :key="tab"
+        :delay-animation="0.5"
+      />
     </transition>
   </q-page>
 </template>
@@ -39,7 +44,7 @@ import { gsap } from 'src/boot/gsap'
 
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
-import CarouselProjects from 'src/components/projectPage/carouselProjects.vue'
+import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
 import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -53,8 +58,14 @@ const isFirstMounted = ref(true)
 
 const chatMessageToDisplay = computed(() => {
   return tab.value === 'mobile'
-    ? [...tm('chatMessage.project')]
-    : [...tm('chatMessage.projectDesktop.desktop')].slice(0, 1)
+    ? [...tm('chatMessage.projectMobile.mobileTab.chat1')]
+    : [...tm('chatMessage.projectMobile.desktopTab.chat1')]
+})
+
+const visitorChatMessageToDisplay = computed(() => {
+  return tab.value === 'mobile'
+    ? 'Ce sont des applications mobiles ?'
+    : 'Ce sont toutes tes réalisations ?'
 })
 
 onMounted(() => {

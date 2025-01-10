@@ -28,7 +28,7 @@
     <TheRobotContainer />
     <ChatMessageContainer
       :key="'tab' + nextText"
-      :texts="chatTexts"
+      :meTexts="chatTexts"
       :delay-animation="0.5"
       :has-emit-event="true"
       @some-event="handleTextToDisplay"

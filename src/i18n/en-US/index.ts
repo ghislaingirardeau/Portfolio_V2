@@ -12,12 +12,32 @@ export default {
     aboutMe: 'About me',
   },
   chatMessage: {
-    home: [
-      "J'ai fais le choix de créer ce portfolio différement",
-      "Tu as déjà beaucoup d'information sur moi sur le lien ci-dessous",
-    ],
+    home: {
+      visitor: 'Why this portfolio',
+      me: [
+        'To show what is behind my resume and my work, to know more about me.',
+        'You can find out a lot more about me on the link below',
+      ],
+    },
+    projectMobile: {
+      mobileTab: {
+        chat1: [
+          "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+          "Lorsque l'utilisateur navigue sur la page web, il peut 'télécharger' l'application pour ensuite l'utiliser comme une app mobile.",
+        ],
+        chat2: ['Tu y restrouveras les technologies utilisées, les objectifs attendus...'],
+      },
+      desktopTab: {
+        chat1: [
+          "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+          "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+        ],
+        chat2: ['Tu y restrouveras les technologies utilisées, les objectifs attendus...'],
+      },
+    },
     project: [
-      'Voici un aperçu de mes réalisations',
+      "Oui et non, c'est un aperçu de mes réalisations",
+      "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
       'Tu y restrouveras les technologies utilisées, les objectifs attendus...',
     ],
     projectDesktop: {
@@ -44,6 +64,36 @@ export default {
         "I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge.",
         'And personnaly ? ...',
       ],
+    },
+    aboutMobile: {
+      visitor: {
+        perso: 'Qui es-tu ?',
+        pro: 'Comment travailles-tu ?',
+      },
+      me: {
+        perso: {
+          description: [
+            'After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT.',
+            'I took part in a six-month training course to become a web developer.',
+            'More details...',
+          ],
+          description1: [
+            "I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
+            'Previous...',
+          ],
+        },
+        pro: {
+          description: [
+            "Over the last 3 years, I've developed solid expertise in creating dynamic and intuitive user interfaces, using the Vue Js framework in particular. ",
+            'I give occasional training courses in Javascript fullstack for the Oclock online school. I also ran a Vue JS training workshop ',
+            'More details...',
+          ],
+          description1: [
+            'I was able to learn about and create unit tests using Jest and Vue Test Utils to guarantee a reliable, high-performance application.',
+            'Previous...',
+          ],
+        },
+      },
     },
   },
   routes: {
@@ -87,6 +137,10 @@ export default {
     h2Pro: 'Commitment...',
 
     h2commit: 'My work commitment...',
+    visitor: {
+      perso: 'Qui es-tu ?',
+      pro: 'Comment travailles-tu ?',
+    },
     personal: {
       h3: '...Personally',
       description: [

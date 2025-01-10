@@ -23,7 +23,8 @@
     <TheRobotContainer />
     <ChatMessageContainer
       :key="tab + nextText"
-      :texts="nextText ? chatTextsNext : chatTexts"
+      :meTexts="nextText ? chatTextsNext : chatTexts"
+      :visitor-texts="visitorChatTexts"
       :delay-animation="0.5"
       :has-emit-event="true"
       @some-event="handleTextToDisplay"
@@ -50,14 +51,20 @@ const { tm, t } = useI18n({ useScope: 'global' })
 
 const chatTexts = computed(() => {
   return tab.value === 'me'
-    ? (tm('about.personal.description') as string[])
-    : (tm('about.professionaly.description') as string[])
+    ? (tm('chatMessage.aboutMobile.me.perso.description') as string[])
+    : (tm('chatMessage.aboutMobile.me.pro.description') as string[])
+})
+
+const visitorChatTexts = computed(() => {
+  return tab.value === 'me'
+    ? t('chatMessage.aboutMobile.visitor.perso')
+    : t('chatMessage.aboutMobile.visitor.pro')
 })
 
 const chatTextsNext = computed(() => {
   return tab.value === 'me'
-    ? (tm('about.personal.description1') as string[])
-    : (tm('about.professionaly.description1') as string[])
+    ? (tm('chatMessage.aboutMobile.me.perso.description1') as string[])
+    : (tm('chatMessage.aboutMobile.me.pro.description1') as string[])
 })
 
 onMounted(() => {

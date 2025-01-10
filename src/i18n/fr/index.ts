@@ -12,10 +12,13 @@ export default {
     aboutMe: 'A propos de moi',
   },
   chatMessage: {
-    home: [
-      "J'ai fais le choix de créer ce portfolio différement",
-      "Tu as déjà beaucoup d'information sur moi sur le lien ci-dessous",
-    ],
+    home: {
+      visitor: 'Why this portfolio',
+      me: [
+        'Pour montrer ce qui se cache derrière mon CV et mieux me connaitre',
+        "Tu trouveras d'autres informations sur le lien ci-dessous",
+      ],
+    },
     project: [
       'Voici un aperçu de mes réalisations',
       'Tu y restrouveras les technologies utilisées, les objectifs attendus...',
@@ -44,6 +47,36 @@ export default {
         'Je suis impatient de travailler sur tous les projets intéressants que je peux apporter à cette intersection de mes compétences et de mes connaissances (sport et développement web).',
         'Et personnellement ? ...',
       ],
+    },
+    aboutMobile: {
+      visitor: {
+        perso: 'Qui es-tu ?',
+        pro: 'Comment travailles-tu ?',
+      },
+      me: {
+        perso: {
+          description: [
+            'After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT.',
+            'I took part in a six-month training course to become a web developer.',
+            'More details...',
+          ],
+          description1: [
+            "I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
+            'Previous...',
+          ],
+        },
+        pro: {
+          description: [
+            "Over the last 3 years, I've developed solid expertise in creating dynamic and intuitive user interfaces, using the Vue Js framework in particular. ",
+            'I give occasional training courses in Javascript fullstack for the Oclock online school. I also ran a Vue JS training workshop ',
+            'More details...',
+          ],
+          description1: [
+            'I was able to learn about and create unit tests using Jest and Vue Test Utils to guarantee a reliable, high-performance application.',
+            'Previous...',
+          ],
+        },
+      },
     },
   },
   routes: {

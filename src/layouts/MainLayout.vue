@@ -39,6 +39,7 @@ watch(
 )
 
 //TODO:
+// route guards => if hot relaod, redirect to index
 // block click on is animating
 // stack menu + page dedié
 // my commitment menu + page dedié
