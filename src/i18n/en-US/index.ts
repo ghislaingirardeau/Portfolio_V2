@@ -63,37 +63,37 @@ export default {
       ],
     },
     meMobile: {
-      1: {
+      0: {
         title: 'What is your hobbies ?',
         description: ['sport, voyage, yoga', 'swipe pour en savoir plus'],
       },
-      2: {
+      1: {
         title: 'Tu fais du sport ?',
         description: ['liste des sport', 'bienfait du sport'],
       },
-      3: {
+      2: {
         title: 'Où vis-tu ?',
         description: ['gout du voyage', 'impact du voyage'],
       },
-      4: {
+      3: {
         title: 'Pourquoi le yoga ?',
         description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
       },
     },
     workEnvMobile: {
-      1: {
+      0: {
         title: 'Quels sont tes engagements et valeurs au travail ?',
         description: ['detail a remplir'],
       },
-      2: {
+      1: {
         title: 'Mes engagements dans mon travail ?',
         description: ['liste des sport', 'bienfait du sport'],
       },
-      3: {
+      2: {
         title: 'Tes valeurs ?',
         description: ['gout du voyage', 'impact du voyage'],
       },
-      4: {
+      3: {
         title: 'Ma relation au travail ?',
         description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
       },
@@ -175,6 +175,8 @@ export default {
       pro: 'Comment travailles-tu ?',
     },
     personal: {
+      imageURL: ['moi.jpg', 'moi2.jpg', 'moi3.jpg'],
+      /* remove */
       h3: '...Personally',
       description: [
         'After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT.',
@@ -186,8 +188,11 @@ export default {
         'Previous...',
       ],
       text: "After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT. I took part in a six-month training course to become a web developer. As an athlete and a web developer, I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
+      /*  */
     },
     professionaly: {
+      imageURL: ['work1.jpg', 'work2.jpg', 'work3.jpg'],
+      /* remove */
       h3: '...Professionally',
       description: [
         "Over the last 3 years, I've developed solid expertise in creating dynamic and intuitive user interfaces, using the Vue Js framework in particular. ",
@@ -200,7 +205,9 @@ export default {
       ],
       id1: "Freelancer, I'm self-employed since June 2021 as a web developer : I realised this e-portfolio using Vue and Nuxt Js, 2 js frameworks that I particularly like to work with !",
       id2: 'OPEN CLASSROOM: attended six months intensive training as a web developer. As a practitioner of the AGILE method, all my training came from real work projects. These projects were approved and evaluated by a tutor, a professor and a jury of professional web developers. I am used to organising my work autonomously in relation to the project deadline set by the client.',
+      /*  */
     },
+
     willingness: {
       id1: 'Because digitalisation can have an impact on the environment... I would like to work on projects, that share my vision of being ecological.',
       id2: "Because in a fast and dematerialised world, where the personal data are being exposed, the data protection is at stake... Trust and respect are the main values for a fair relationship to guarantee the security of the customer's data.",
