@@ -69,6 +69,7 @@ function shadowColor() {
 }
 
 onMounted(() => {
+  presentationMounted.value = false
   AnimeTitleLetters()
 })
 
