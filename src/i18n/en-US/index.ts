@@ -218,13 +218,16 @@ export default {
         name: `Wordle Game`,
         mobileFirst: true,
         summary: 'Mini game - Test-Driven-Development',
+        visitorChat: 'What is Test-Driven-Development ?',
         description: `
-    Creation of the game giving priority to Test first using 3 steps.
+    It give priority to Test first for development using 3 steps.
     <ul>
-    <li>Red Lights: Write the test for the expected result </li>
-    <li>Green Lights: Write the code for the test to pass</li>
-    <li>Refactor code and test.</li>
-    </ul>`,
+    <li>- Red Lights: Write the test for the expected result </li>
+    <li>- Green Lights: Write the code for the test to pass</li>
+    <li>- Refactor code and test.</li>
+    </ul>
+    
+    `,
         tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
         imageURL: ['wordle2.png', 'wordle1.png'],
         link: 'https://wordle-game-gg-wev-dev.netlify.app/',
@@ -235,8 +238,8 @@ export default {
         name: 'Vocabulary Cards',
         mobileFirst: true,
         summary: 'Flashcard - Web App PWA',
-        description:
-          "An application that allows you to translate words or phrases, but also to organise and archive them in the form of a card. The application allows you to listen to 'my vocabulary' in the chosen language at different speeds and offers pronunciation help for certain languages such as Khmer.",
+        visitorChat: 'What is PWA ?',
+        description: `Like a website, a PWA can run on multiple platforms and devices from a single codebase. Like a platform-specific app, it can be installed on the device, can operate while offline and in the background, and can integrate with the device and with other installed apps`,
         tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
         imageURL: [
           'carte_sample.png',
@@ -253,17 +256,11 @@ export default {
         date: 'january 2022',
         name: 'Cartography',
         summary: 'Mapping Tool - Web App PWA',
+        visitorChat: 'What is PWA ?',
+
         mobileFirst: true,
-        description: `Development of a mapping tool for a sociology researcher. 
-      <ul>
-      <li>- Save a position</li>
-      <li>- Track my position</li>
-      <li>- Ability to add geographical areas</li>
-      <li>Large selection of markers from over 2500 icons</li>
-      <li>- Save and export data</li>
-      <li>- Organize markers in folders for dynamic display</li>
-      <li>- Data backed up and secured via Firebase</li>
-    </ul>`,
+        description: `Like a website, a PWA can run on multiple platforms and devices from a single codebase. Like a platform-specific app, it can be installed on the device, can operate while offline and in the background, and can integrate with the device and with other installed apps`,
+
         tech: 'Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel',
         imageURL: [
           'mapping1.PNG',

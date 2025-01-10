@@ -8,4 +8,5 @@ export interface Project {
   tech: string
   imageURL: string
   link: string
+  visitorChat: string
 }

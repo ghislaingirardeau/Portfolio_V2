@@ -73,6 +73,7 @@
       v-if="expanded"
       :delay-animation="0.5"
       :meTexts="[findProject.description]"
+      :visitor-texts="findProject.visitorChat"
     />
     <TheRobotContainer />
   </q-page>

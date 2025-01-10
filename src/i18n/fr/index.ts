@@ -19,6 +19,22 @@ export default {
         "Tu trouveras d'autres informations sur le lien ci-dessous",
       ],
     },
+    projectMobile: {
+      mobileTab: {
+        chat1: [
+          "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+          "Lorsque l'utilisateur navigue sur la page web, il peut 'télécharger' l'application pour ensuite l'utiliser comme une app mobile.",
+        ],
+        chat2: ['Tu y restrouveras les technologies utilisées, les objectifs attendus...'],
+      },
+      desktopTab: {
+        chat1: [
+          "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+          "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+        ],
+        chat2: ['Tu y restrouveras les technologies utilisées, les objectifs attendus...'],
+      },
+    },
     project: [
       'Voici un aperçu de mes réalisations',
       'Tu y restrouveras les technologies utilisées, les objectifs attendus...',

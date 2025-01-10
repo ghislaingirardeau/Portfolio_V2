@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="fixed bottom-24 right-24 ml-3">
-      <q-chat-message ref="receivedMessages" :text="[visitorTexts]" name="Visitor" />
+      <q-chat-message
+        v-if="visitorTexts"
+        ref="receivedMessages"
+        :text="[visitorTexts]"
+        name="Visitor"
+      />
       <q-chat-message sent name="Me" text-color="white" bg-color="blue" ref="sentMessages">
         <div
-          ref="chatMessages"
           v-for="(text, index) in props.meTexts"
           :key="'text-' + index"
           @click="handleChatMessageAction(index)"
@@ -25,13 +29,10 @@ import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { onMounted, useTemplateRef, watch } from 'vue'
-import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
 const { pageMounted } = storeToRefs(animationSettings)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const chatMessages = useTemplateRefsList<any>()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sentMessages = useTemplateRef<any>('sentMessages')
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,28 +56,24 @@ function isLastChatClickable(index: number) {
 const emit = defineEmits(['someEvent'])
 
 function textMessageAnimation() {
-  const getParents = [] as HTMLElement[]
+  const duration = 1
 
+  if (props.visitorTexts) {
+    const allReceivedTextMessage = receivedMessages.value.$el.querySelectorAll(
+      '.q-message-text, .q-message-name ',
+    ) as HTMLElement[]
+    allReceivedTextMessage.forEach((el, i) => {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration,
+        delay: props.delayAnimation + i / 4,
+      })
+    })
+  }
   const allSendTextMessage = sentMessages.value.$el.querySelectorAll(
     '.q-message-text, .q-message-name ',
   ) as HTMLElement[]
-
-  const allReceivedTextMessage = receivedMessages.value.$el.querySelectorAll(
-    '.q-message-text, .q-message-name ',
-  ) as HTMLElement[]
-
-  chatMessages.value.forEach((el) => {
-    getParents.push(el.closest('.q-message-text'))
-  })
-  const duration = 1
-  allReceivedTextMessage.forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1,
-      x: 0,
-      duration,
-      delay: props.delayAnimation + i / 4,
-    })
-  })
 
   allSendTextMessage.forEach((el, i) => {
     gsap.to(el, {
