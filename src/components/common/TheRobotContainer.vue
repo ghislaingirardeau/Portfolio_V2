@@ -5,7 +5,7 @@
     leave-active-class="animated fadeOut"
     mode="out-in"
   >
-    <TheRobot v-if="presentationMounted" />
+    <TheRobot v-if="presentationMounted || headerMounted" />
     <WireCode
       content="&lt;svg&gt;Un chat bot&lt;/svg&gt;"
       class="mt-10 absolute h-10 w-48 border-solid border-gray-300 bg-grey-3 bottom-5 right-5 lg:bottom-5 lg:right-10"
@@ -22,7 +22,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import WireCode from './WireCode.vue'
 const animationSettings = useAnimationSettings()
 
-const { footerMounted, presentationMounted } = storeToRefs(animationSettings)
+const { headerMounted, presentationMounted } = storeToRefs(animationSettings)
 </script>
 
 <style scoped></style>

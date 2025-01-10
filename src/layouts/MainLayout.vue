@@ -1,6 +1,9 @@
 <template>
   <q-layout view="hHh lpR fFf" class="kalam-font">
-    <TheHeader v-model:leftDrawerOpen="leftDrawerOpen" v-if="presentationMounted" />
+    <TheHeader
+      v-model:leftDrawerOpen="leftDrawerOpen"
+      v-if="presentationMounted || headerMounted"
+    />
 
     <TheDrawer v-model:leftDrawerOpen="leftDrawerOpen" />
 
@@ -8,7 +11,7 @@
       <router-view />
     </q-page-container>
 
-    <TheFooter v-if="presentationMounted" />
+    <TheFooter v-if="presentationMounted || headerMounted" />
   </q-layout>
 </template>
 
