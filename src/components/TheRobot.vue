@@ -5,6 +5,8 @@
         class="eye fixed grad"
         :class="{
           'is-loading': !isAnimationDone && !$q.dark.isActive,
+          'is-clickable': isClickable && !$q.dark.isActive,
+          'is-clickable-dark': $q.dark.isActive && isClickable,
           'grad-dark': $q.dark.isActive,
           'is-loading-dark': $q.dark.isActive && !isAnimationDone,
         }"
@@ -76,7 +78,7 @@ import { storeToRefs } from 'pinia'
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
 const animationSettings = useAnimationSettings()
-const { isAnimationDone, robotMounted } = storeToRefs(animationSettings)
+const { isAnimationDone, robotMounted, isClickable } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
 

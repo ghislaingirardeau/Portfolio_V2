@@ -6,8 +6,7 @@
     dark
     @click="() => $q.dark.toggle()"
     v-model="dark"
-    @mouseenter="animationSettings.handleClickableEnter"
-    @mouseleave="animationSettings.handleClickableLeave"
+
   >
     <template #default> <q-icon flat :name="mdiThemeLightDark" size="sm" /> </template>
   </q-toggle>

@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import OctogoneWidget from 'src/components/stackPage/OctogoneWidget.vue'
 import { useElementBounding } from '@vueuse/core'
-import { onMounted, ref, useTemplateRef } from 'vue'
+import { onMounted, useTemplateRef } from 'vue'
 import { gsap } from 'src/boot/gsap'
 
 const front = useTemplateRef('front')
@@ -29,7 +29,7 @@ const frontEl = useElementBounding(front)
 const backEl = useElementBounding(back)
 
 onMounted(() => {
-  console.log(front.value.$el)
+  // console.log(front.value.$el)
   gsap.to(front.value!.$el, {
     x: 30,
     duration: 5,

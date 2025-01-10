@@ -1,14 +1,7 @@
 <template>
   <div class="flex flex-center lg:absolute lg:right-64 z-30" @click="spinCubeAnimation">
     <div class="header__logo wrap lg:ml-20 w-1/2 lg:w-1/5">
-      <div
-        ref="cube"
-        @mouseenter="animationSettings.handleClickableEnter"
-        @mouseleave="animationSettings.handleClickableLeave"
-        class="cube"
-        :class="{ anim_cube: launchSpin }"
-        :key="cubeRender"
-      >
+      <div ref="cube" class="cube" :class="{ anim_cube: launchSpin }" :key="cubeRender">
         <div ref="front" class="front">
           <span class="front-color">g</span>
         </div>

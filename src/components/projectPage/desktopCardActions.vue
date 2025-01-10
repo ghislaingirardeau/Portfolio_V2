@@ -1,23 +1,8 @@
 <template>
   <q-card-actions>
-    <q-btn
-      v-if="link"
-      flat
-      color="secondary"
-      label="Demo"
-      @click="goToExternalLink(link)"
-      @mouseenter="animationSettings.handleClickableEnter"
-      @mouseleave="animationSettings.handleClickableLeave"
-    />
+    <q-btn v-if="link" flat color="secondary" label="Demo" @click="goToExternalLink(link)" />
 
-    <q-btn
-      flat
-      color="primary"
-      label="More details"
-      @click="expanded = !expanded"
-      @mouseenter="animationSettings.handleClickableEnter"
-      @mouseleave="animationSettings.handleClickableLeave"
-    />
+    <q-btn flat color="primary" label="More details" @click="expanded = !expanded" />
   </q-card-actions>
 
   <q-slide-transition>
@@ -29,10 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAnimationSettings } from 'src/stores/animationSettings'
 import { ref } from 'vue'
-
-const animationSettings = useAnimationSettings()
 
 defineProps({
   description: {

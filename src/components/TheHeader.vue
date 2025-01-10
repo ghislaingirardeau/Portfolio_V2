@@ -15,8 +15,6 @@
           round
           :icon="leftDrawerOpen ? mdiClose : mdiMenu"
           @click="toggleLeftDrawer"
-          @mouseenter="animationSettings.handleClickableEnter"
-          @mouseleave="animationSettings.handleClickableLeave"
         />
       </transition>
 

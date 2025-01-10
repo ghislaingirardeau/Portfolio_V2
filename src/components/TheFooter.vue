@@ -4,8 +4,6 @@
       <q-space />
 
       <div
-        @mouseenter="animationSettings.handleClickableEnter"
-        @mouseleave="animationSettings.handleClickableLeave"
       >
         <LogoImage
           ref="logoMalt"
