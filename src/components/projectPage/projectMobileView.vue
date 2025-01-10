@@ -27,12 +27,12 @@
       >
       </component>
     </q-tab-panels>
-    <TheRobotContainer />
+    <TheRobotContainer @robot-action="robotAction" />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :visitor-texts="visitorChatMessageToDisplay"
         :meTexts="chatMessageToDisplay"
-        :key="tab"
+        :key="tab + chatPage"
         :delay-animation="0.5"
       />
     </transition>
@@ -40,14 +40,19 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+const animationSettings = useAnimationSettings()
+const { isRobotClickable } = storeToRefs(animationSettings)
 
 const { tm } = useI18n({ useScope: 'global' })
 
@@ -55,20 +60,28 @@ const tab = ref('mobile')
 const tabs = ref()
 const currentSlide = ref(0)
 const isFirstMounted = ref(true)
+const chatPage = ref(1)
 
 const chatMessageToDisplay = computed(() => {
   return tab.value === 'mobile'
-    ? [...tm('chatMessage.projectMobile.mobileTab.chat1')]
-    : [...tm('chatMessage.projectMobile.desktopTab.chat1')]
+    ? [...tm(`chatMessage.projectMobile.mobileTab.chat${chatPage.value}`)]
+    : [...tm(`chatMessage.projectMobile.desktopTab.chat${chatPage.value}`)]
 })
 
 const visitorChatMessageToDisplay = computed(() => {
-  return tab.value === 'mobile'
-    ? 'Ce sont des applications mobiles ?'
-    : 'Ce sont toutes tes réalisations ?'
+  if (tab.value === 'mobile') {
+    return chatPage.value === 1
+      ? 'Ce sont des applications mobiles ?'
+      : 'Je peux y voir le détail ?'
+  } else {
+    return chatPage.value === 1
+      ? 'Ce sont toutes tes réalisations ?'
+      : 'Et tu as fait la partie backend ?'
+  }
 })
 
 onMounted(() => {
+  isRobotClickable.value = true
   gsap.to(tabs.value.$el, {
     duration: 0.5,
     height: '40px',
@@ -79,6 +92,15 @@ onMounted(() => {
 
 function resetCarousel() {
   currentSlide.value = 0
+  chatPage.value = 1
+}
+
+function robotAction() {
+  if (chatPage.value === 2) {
+    chatPage.value--
+  } else {
+    chatPage.value++
+  }
 }
 </script>
 

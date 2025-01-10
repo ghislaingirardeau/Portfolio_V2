@@ -89,11 +89,6 @@ onMounted(() => {
   if (pageMounted.value) {
     textMessageAnimation()
   }
-  // if (props.hasEmitEvent) {
-  //   animationSettings.handleClickableEnter()
-  // } else {
-  //   animationSettings.handleClickableLeave()
-  // }
 })
 
 watch(pageMounted, (newValue) => {

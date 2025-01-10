@@ -10,7 +10,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const pageMounted = ref(false)
 
   const layoutMounted = ref(false)
-  const isClickable = ref(false)
+  const isRobotClickable = ref(false)
 
   const ANIM_SHORT = ref(0.5)
   const ANIM_LONG = ref(1)
@@ -26,19 +26,11 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     )
   })
 
-  function handleClickableEnter() {
-    isClickable.value = true
-  }
-
-  function handleClickableLeave() {
-    isClickable.value = false
-  }
-
   return {
     ANIM_SHORT,
     ANIM_LONG,
     layoutMounted,
-    isClickable,
+    isRobotClickable,
     drawerMounted,
     robotMounted,
     headerMounted,
@@ -46,7 +38,5 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     presentationMounted,
     pageMounted,
     isAnimationDone,
-    handleClickableEnter,
-    handleClickableLeave,
   }
 })

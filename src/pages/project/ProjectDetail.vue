@@ -53,19 +53,6 @@
           label="Link"
           @click="goToExternalLink(findProject.link)"
         />
-
-        <q-btn flat color="primary" label="Description" @click="expanded = !expanded" />
-
-        <q-space />
-
-        <q-btn
-          color="grey"
-          round
-          flat
-          dense
-          :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-          @click="handleExpand"
-        />
       </q-card-actions>
     </q-card>
 
@@ -75,7 +62,7 @@
       :meTexts="[findProject.description]"
       :visitor-texts="findProject.visitorChat"
     />
-    <TheRobotContainer />
+    <TheRobotContainer @robot-action="expanded = !expanded" />
   </q-page>
 </template>
 

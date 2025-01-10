@@ -26,10 +26,11 @@ import { onMounted } from 'vue'
 const { t, tm } = useI18n()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
 
 onMounted(() => {
   pageMounted.value = false
+  isRobotClickable.value = false
 })
 </script>
 
