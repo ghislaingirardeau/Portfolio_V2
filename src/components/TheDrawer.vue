@@ -6,11 +6,9 @@
     :behavior="useDeviceOrientation()"
     bordered
     :width="250"
-    @show="handleShowMenu"
+    @show.once="handleShowMenu"
   >
-    <q-list
-
-    >
+    <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
         <q-item exact :to="menuItem.to" active-class="text-primary" class="q-py-lg">
           <q-item-section avatar>
@@ -90,12 +88,11 @@ const menuList = computed(() => [
 ])
 
 function handleShowMenu() {
-  if (!drawerMounted.value) {
-    handleMenuAnimation(useIsMobile() ? 0 : 3, true)
-  }
+  handleMenuAnimation(useIsMobile() ? 0 : 3, true)
 }
 
 function handleMenuAnimation(delay: number, isFirstMount: boolean) {
+  drawerMounted.value = false
   const tl = gsap.timeline({ delay: delay })
   if (isFirstMount) {
     menuList.value.forEach((el, index) => {

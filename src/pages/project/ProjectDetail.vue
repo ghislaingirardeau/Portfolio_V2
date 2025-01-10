@@ -117,10 +117,6 @@ onMounted(() => {
   animationImage()
 })
 
-function handleExpand() {
-  expanded.value = !expanded.value
-}
-
 function goToExternalLink(link: string) {
   window.open(link, '_blank')
 }

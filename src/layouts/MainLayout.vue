@@ -20,14 +20,20 @@ import TheDrawer from 'src/components/TheDrawer.vue'
 import TheFooter from 'src/components/TheFooter.vue'
 import TheHeader from 'src/components/TheHeader.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const animationSettings = useAnimationSettings()
-const { headerMounted, presentationMounted } = storeToRefs(animationSettings)
+const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
 
 const leftDrawerOpen = ref(false)
+
+onMounted(() => {
+  if (useIsMobile()) {
+    drawerMounted.value = true
+  }
+})
 
 watch(
   () => headerMounted.value,
@@ -36,6 +42,7 @@ watch(
       leftDrawerOpen.value = true
     }
   },
+  { once: true },
 )
 
 //TODO:

@@ -3,8 +3,7 @@
     <q-toolbar>
       <q-space />
 
-      <div
-      >
+      <div>
         <LogoImage
           ref="logoMalt"
           src="/logos/malt-svgrepo-com.png"
@@ -35,7 +34,7 @@ import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, layoutMounted, footerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, footerMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const footer = useTemplateRef<any>('footer')
@@ -91,7 +90,6 @@ function animationAppear() {
     })
   })
   tl.call(() => {
-    layoutMounted.value = true
     footerMounted.value = true
   })
 }
