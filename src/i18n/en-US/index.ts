@@ -21,10 +21,7 @@ export default {
     },
     projectMobile: {
       mobileTab: {
-        chat1: [
-          "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
-          "Lorsque l'utilisateur navigue sur la page web, il peut 'télécharger' l'application pour ensuite l'utiliser comme une app mobile.",
-        ],
+        chat1: ["Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile."],
         chat2: ['Tu y restrouveras les technologies utilisées, les objectifs attendus...'],
       },
       desktopTab: {

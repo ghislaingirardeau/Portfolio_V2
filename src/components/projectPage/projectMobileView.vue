@@ -62,6 +62,12 @@ const currentSlide = ref(0)
 const isFirstMounted = ref(true)
 const chatPage = ref(1)
 
+const chatMessages = computed(() => {
+  return tab.value === 'mobile'
+    ? tm(`chatMessage.projectMobile.mobileTab`)
+    : tm(`chatMessage.projectMobile.desktopTab`)
+})
+
 const chatMessageToDisplay = computed(() => {
   return tab.value === 'mobile'
     ? [...tm(`chatMessage.projectMobile.mobileTab.chat${chatPage.value}`)]
@@ -96,7 +102,7 @@ function resetCarousel() {
 }
 
 function robotAction() {
-  if (chatPage.value === 2) {
+  if (chatPage.value === Object.keys(chatMessages.value).length) {
     chatPage.value--
   } else {
     chatPage.value++
