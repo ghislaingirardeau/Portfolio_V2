@@ -23,9 +23,11 @@ import { gsap } from 'src/boot/gsap'
 import { computed, onMounted, ref } from 'vue'
 import WireCode from '../common/WireCode.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { storeToRefs } from 'pinia'
 
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
 const animationSettings = useAnimationSettings()
+const { pageMounted } = storeToRefs(animationSettings)
 
 const props = defineProps({
   name: {
@@ -58,7 +60,7 @@ function animationImage() {
   })
   tl.call(() => {
     isFirstMounted.value = false
-    animationSettings.isAnimating = false
+    pageMounted.value = true
   })
 }
 </script>

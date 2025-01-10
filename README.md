@@ -48,3 +48,5 @@ See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-
 2- header => 1.05 + 1
 3- header - buttons => 2.05 + 0.5 puis 2.55 + 0.5
 4- Menu => 3.05
+
+Presentation => header + footer (footer le plus long) => logo + robot => chat message

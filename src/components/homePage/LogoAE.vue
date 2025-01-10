@@ -36,8 +36,10 @@
 import { onMounted, ref, useTemplateRef } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
+const { pageMounted } = storeToRefs(animationSettings)
 
 const cubeRender = ref(0)
 const launchSpin = ref(false)
@@ -68,15 +70,22 @@ function buildCubeAnimation() {
     opacity: 0,
   })
   gsap.from(top.value, { duration, opacity: 0, delay: 0.8 })
-  gsap.from(bottom.value, { duration, opacity: 0, delay: 0.8 })
+  gsap.from(bottom.value, {
+    duration,
+    opacity: 0,
+    delay: 0.8,
+    onComplete() {
+      pageMounted.value = true
+    },
+  })
 }
 
 function spinCubeAnimation() {
-  animationSettings.isAnimating = true
+  animationSettings.pageMounted = false
   launchSpin.value = true
   cubeRender.value++
   setTimeout(() => {
-    animationSettings.isAnimating = false
+    animationSettings.pageMounted = true
   }, 2700)
 }
 </script>

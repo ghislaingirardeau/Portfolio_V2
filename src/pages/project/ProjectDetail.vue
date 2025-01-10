@@ -97,7 +97,7 @@ const route = useRoute()
 const router = useRouter()
 
 const animationSettings = useAnimationSettings()
-const { isAnimating } = storeToRefs(animationSettings)
+const { pageMounted } = storeToRefs(animationSettings)
 
 const slide = ref(0)
 const expanded = ref(false)
@@ -124,7 +124,7 @@ const imageHeight = computed(() => {
 })
 
 onMounted(() => {
-  isAnimating.value = true
+  pageMounted.value = false
   animationCardTitle()
   animationImage()
 })
@@ -171,7 +171,7 @@ function animationImage() {
     opacity: 1,
   })
   tl.call(() => {
-    isAnimating.value = false
+    pageMounted.value = true
   })
 }
 </script>

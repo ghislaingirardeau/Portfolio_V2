@@ -32,12 +32,10 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import PanelImage from 'src/components/aboutPage/panelImage.vue'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
-import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -47,9 +45,6 @@ const nextText = ref(false)
 const isFirstMounted = ref(true)
 
 const tl = gsap.timeline({ delay: 0.5 })
-
-const animationSettings = useAnimationSettings()
-const { isAnimating } = storeToRefs(animationSettings)
 
 const { tm, t } = useI18n({ useScope: 'global' })
 
@@ -66,7 +61,6 @@ const chatTextsNext = computed(() => {
 })
 
 onMounted(() => {
-  isAnimating.value = true
   animationTabs()
 })
 

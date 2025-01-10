@@ -35,7 +35,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useTemplateRefsList } from '@vueuse/core'
 const animationSettings = useAnimationSettings()
 
-const { robotMounted } = storeToRefs(animationSettings)
+const { pageMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const chatMessages = useTemplateRefsList<any>()
@@ -47,7 +47,7 @@ const bgColor = ref('grey-2')
 
 const props = defineProps({
   texts: { type: Array, required: true },
-  delayAnimation: { type: Number, default: 2 },
+  delayAnimation: { type: Number, default: 0.5 },
   hasEmitEvent: { type: Boolean, default: false },
   width: {
     type: String,
@@ -91,12 +91,12 @@ function textMessageAnimation() {
 }
 
 onMounted(() => {
-  if (robotMounted.value) {
+  if (pageMounted.value) {
     textMessageAnimation()
   }
 })
 
-watch(robotMounted, () => {
+watch(pageMounted, () => {
   textMessageAnimation()
 })
 

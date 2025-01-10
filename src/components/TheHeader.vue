@@ -41,7 +41,7 @@ import { mdiClose, mdiMenu } from '@quasar/extras/mdi-v7'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const animationSettings = useAnimationSettings()
-const { footerMounting, ANIM_LONG } = storeToRefs(animationSettings)
+const { ANIM_LONG, headerMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
@@ -52,12 +52,10 @@ function headerAnimation() {
     duration: ANIM_LONG.value,
     height: '50px',
     opacity: 1,
-    onStart: startFooter,
+    onComplete() {
+      headerMounted.value = true
+    },
   })
-}
-
-function startFooter() {
-  footerMounting.value = true
 }
 
 function toggleLeftDrawer() {
@@ -65,7 +63,6 @@ function toggleLeftDrawer() {
 }
 
 onMounted(() => {
-  console.log('start header animation')
   headerAnimation()
 })
 </script>

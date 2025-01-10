@@ -51,7 +51,7 @@ const nextText = ref(false)
 const cardTitle = ref()
 
 const animationSettings = useAnimationSettings()
-const { isAnimating } = storeToRefs(animationSettings)
+const { pageMounted } = storeToRefs(animationSettings)
 
 const { tm, t } = useI18n({ useScope: 'global' })
 const tl = gsap.timeline({ delay: 0.5 })
@@ -74,7 +74,7 @@ const title = computed(() => {
 })
 
 onMounted(() => {
-  isAnimating.value = true
+  pageMounted.value = false
 
   animationCardTitle()
   animationImage()
@@ -104,7 +104,7 @@ function animationImage() {
     opacity: 1,
   })
   tl.call(() => {
-    isAnimating.value = false
+    pageMounted.value = true
   })
 }
 </script>

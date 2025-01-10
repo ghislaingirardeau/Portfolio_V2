@@ -57,7 +57,7 @@ import { storeToRefs } from 'pinia'
 
 const { tm, locale } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
-const { isAnimating } = storeToRefs(animationSettings)
+const { pageMounted } = storeToRefs(animationSettings)
 
 const isMobileProjectDisplayed = ref(true)
 const isDesktopProjectDisplayed = ref(false)
@@ -88,7 +88,7 @@ const chatMessageToDisplay = computed(() => {
 })
 
 onMounted(() => {
-  isAnimating.value = true
+  pageMounted.value = false
   animationCardTitle(true)
 })
 
@@ -127,6 +127,9 @@ function animationCardTitle(isFirstMount: boolean) {
         text: { value: element.tech },
         ease: 'none',
       })
+    tl.call(() => {
+      pageMounted.value = true
+    })
   })
 }
 
@@ -142,8 +145,7 @@ function handleRobotAction() {
 watch(
   () => isMobileProjectDisplayed.value,
   () => {
-    isAnimating.value = true
-
+    pageMounted.value = false
     setTimeout(() => {
       animationCardTitle(false)
     }, 500)
@@ -153,8 +155,7 @@ watch(
 watch(
   () => locale.value,
   () => {
-    isAnimating.value = true
-
+    pageMounted.value = false
     setTimeout(() => {
       animationCardTitle(true)
     }, 500)

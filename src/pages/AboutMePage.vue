@@ -12,12 +12,13 @@ import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 
 const animationSettings = useAnimationSettings()
-const { headerMounting } = storeToRefs(animationSettings)
+const { presentationMounted, pageMounted } = storeToRefs(animationSettings)
 
 onMounted(() => {
-  if (!headerMounting.value) {
-    headerMounting.value = true
+  if (!presentationMounted.value) {
+    presentationMounted.value = true
   }
+  pageMounted.value = false
 })
 </script>
 

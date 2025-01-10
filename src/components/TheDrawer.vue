@@ -48,7 +48,7 @@ import WireCode from './common/WireCode.vue'
 import { useDeviceOrientation, useIsMobile } from 'src/utils/useDeviceInfo'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, isAnimating, drawerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, drawerMounted } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 
@@ -97,7 +97,6 @@ function handleShowMenu() {
 }
 
 function handleMenuAnimation(delay: number, isFirstMount: boolean) {
-  isAnimating.value = true
   const tl = gsap.timeline({ delay: delay })
   if (isFirstMount) {
     menuList.value.forEach((el, index) => {
@@ -120,7 +119,6 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
     })
   })
   tl.call(() => {
-    isAnimating.value = false
     drawerMounted.value = true
   })
 }

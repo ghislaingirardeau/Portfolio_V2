@@ -52,7 +52,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const { tm } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
-const { isAnimating } = storeToRefs(animationSettings)
+const {  pageMounted } = storeToRefs(animationSettings)
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
@@ -93,7 +93,6 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  isAnimating.value = true
   animationSlideButtons()
   animationSlide()
 })
@@ -153,7 +152,7 @@ function animationSlideButtons() {
     delay: 0.3,
     ease: 'hop',
     onComplete() {
-      isAnimating.value = false
+      pageMounted.value = true
     },
   }
   const designButton = (direction: string) => {

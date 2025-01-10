@@ -22,7 +22,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, isAnimating, headerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, headerMounted } = storeToRefs(animationSettings)
 
 const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,7 +44,6 @@ function animationAppear() {
 }
 
 function animationDone() {
-  isAnimating.value = false
   headerMounted.value = true
 }
 </script>

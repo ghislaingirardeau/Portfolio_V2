@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf" class="kalam-font">
-    <TheHeader v-model:leftDrawerOpen="leftDrawerOpen" v-if="headerMounting" />
+    <TheHeader v-model:leftDrawerOpen="leftDrawerOpen" v-if="presentationMounted" />
 
     <TheDrawer v-model:leftDrawerOpen="leftDrawerOpen" />
 
@@ -8,7 +8,7 @@
       <router-view />
     </q-page-container>
 
-    <TheFooter v-if="footerMounting" />
+    <TheFooter v-if="presentationMounted" />
   </q-layout>
 </template>
 
@@ -22,7 +22,7 @@ import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const animationSettings = useAnimationSettings()
-const { footerMounting, headerMounting, headerMounted } = storeToRefs(animationSettings)
+const { headerMounted, presentationMounted } = storeToRefs(animationSettings)
 
 const leftDrawerOpen = ref(false)
 

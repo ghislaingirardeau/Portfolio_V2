@@ -36,7 +36,7 @@ import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const animationSettings = useAnimationSettings()
-const { isAnimating } = storeToRefs(animationSettings)
+const { pageMounted } = storeToRefs(animationSettings)
 
 const props = defineProps({
   projectImageUrl: {
@@ -64,6 +64,8 @@ const imageStyle = computed(() => {
 })
 
 onMounted(() => {
+  pageMounted.value = false
+
   animationImage()
 })
 
@@ -77,7 +79,7 @@ function animationImage() {
     opacity: 1,
   })
   tl.call(() => {
-    isAnimating.value = false
+    pageMounted.value = true
   })
 }
 </script>

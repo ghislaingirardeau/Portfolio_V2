@@ -23,29 +23,21 @@
           @click="goToExternalLink(icon.link)"
         />
       </div>
-      <transition
-        appear
-        enter-active-class="animated fadeIn"
-        leave-active-class="animated slideOutRight"
-      >
-        <WireCode v-if="!footerMounted" content="&lt;svg&gt;Network;/svg&gt;" />
-      </transition>
     </q-toolbar>
   </q-footer>
 </template>
 
 <script setup lang="ts">
 import { mdiGithub, mdiLinkedin } from '@quasar/extras/mdi-v7'
-import { useTemplateRef, onMounted, ref, watch } from 'vue'
+import { useTemplateRef, onMounted } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
-import WireCode from './common/WireCode.vue'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, layoutMounted, headerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, layoutMounted, footerMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const footer = useTemplateRef<any>('footer')
@@ -53,8 +45,6 @@ const footer = useTemplateRef<any>('footer')
 const footerIcons = useTemplateRefsList<any>()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const logoMalt = useTemplateRef<any>('logoMalt')
-
-const footerMounted = ref(false)
 
 const icons = [
   {
@@ -67,8 +57,11 @@ const icons = [
   },
 ]
 
+const tl = gsap.timeline()
+
 onMounted(() => {
   footerAnimation()
+  animationAppear()
 })
 
 function goToExternalLink(link: string) {
@@ -77,18 +70,14 @@ function goToExternalLink(link: string) {
 
 function footerAnimation() {
   const elementTarget = footer.value?.$el as HTMLDivElement
-  gsap.to(elementTarget, {
+  tl.to(elementTarget, {
     duration: 1,
     height: '50px',
     opacity: 1,
-    onComplete: () => {
-      footerMounted.value = true
-    },
   })
 }
 
 function animationAppear() {
-  const tl = gsap.timeline()
   const logoMaltTarget = logoMalt.value.$el as HTMLDivElement
   tl.to(logoMaltTarget, {
     duration: ANIM_SHORT.value,
@@ -105,12 +94,9 @@ function animationAppear() {
   })
   tl.call(() => {
     layoutMounted.value = true
+    footerMounted.value = true
   })
 }
-
-watch(headerMounted, () => {
-  animationAppear()
-})
 </script>
 
 <style scoped></style>

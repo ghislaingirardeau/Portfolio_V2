@@ -4,11 +4,9 @@
       <div
         class="eye fixed grad"
         :class="{
-          'is-loading': animationSettings.isAnimating && !$q.dark.isActive,
-          'is-clickable': animationSettings.isClickable && !$q.dark.isActive,
+          'is-loading': !isAnimationDone && !$q.dark.isActive,
           'grad-dark': $q.dark.isActive,
-          'is-clickable-dark': $q.dark.isActive && animationSettings.isClickable,
-          'is-loading-dark': $q.dark.isActive && animationSettings.isAnimating,
+          'is-loading-dark': $q.dark.isActive && !isAnimationDone,
         }"
         ref="eyeBis"
       ></div>
@@ -73,10 +71,12 @@ import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
+import { storeToRefs } from 'pinia'
 
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
 const animationSettings = useAnimationSettings()
+const { isAnimationDone, robotMounted } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
 
@@ -111,18 +111,8 @@ const colored = computed(() => {
   return $q.dark.isActive ? 'white' : 'grey'
 })
 
-// const coloredEye = computed(() => {
-//   if (animationSettings.isAnimating) {
-//     return 'red'
-//   }
-//   if (animationSettings.isClickable) {
-//     return 'blue'
-//   }
-//   return 'green'
-// })
-
 onMounted(() => {
-  animationSettings.robotMounted = true
+  robotMounted.value = true
 })
 </script>
 

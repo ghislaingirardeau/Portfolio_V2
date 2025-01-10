@@ -45,7 +45,7 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 
 const animationSettings = useAnimationSettings()
-const { headerMounting, isAnimating } = storeToRefs(animationSettings)
+const { presentationMounted } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n({ useScope: 'global' })
 
@@ -73,14 +73,12 @@ onMounted(() => {
 })
 
 function AnimeTitleLetters() {
-  isAnimating.value = true
   animationLetters(lettersHello.value, t('index.me.p1'), 0.05)
   animationLetters(lettersName.value, t('index.me.p2'), 0.05)
   animationLetters(letterWork.value, t('index.me.p3'), 0.05)
 
   tl.call(() => {
-    headerMounting.value = true
-    isAnimating.value = false
+    presentationMounted.value = true
   })
 }
 
@@ -108,6 +106,7 @@ function animationLetters(el: HTMLElement[], value: string, duration: number) {
 watch(
   () => locale.value,
   () => {
+    presentationMounted.value = false
     setTimeout(() => {
       AnimeTitleLetters()
     }, 500)
@@ -117,6 +116,7 @@ watch(
 watch(
   () => $q.dark.isActive,
   () => {
+    presentationMounted.value = false
     setTimeout(() => {
       AnimeTitleLetters()
     }, 500)
