@@ -82,7 +82,14 @@ const menuList = computed(() => [
     icon: mdiAccountDetails,
     label: t('navBar.aboutMe'),
     to: {
-      name: 'about',
+      name: 'aboutMe',
+    },
+  },
+  {
+    icon: mdiAccountDetails,
+    label: t('navBar.aboutWork'),
+    to: {
+      name: 'aboutWork',
     },
   },
 ])

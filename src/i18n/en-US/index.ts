@@ -8,7 +8,7 @@ export default {
     projects: 'My works',
     services: 'My services',
     stack: 'My stack',
-
+    aboutWork: 'About work',
     aboutMe: 'About me',
   },
   chatMessage: {
@@ -61,6 +61,42 @@ export default {
         "I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge.",
         'And personnaly ? ...',
       ],
+    },
+    meMobile: {
+      1: {
+        title: 'What is your hobbies ?',
+        description: ['sport, voyage, yoga', 'swipe pour en savoir plus'],
+      },
+      2: {
+        title: 'Tu fais du sport ?',
+        description: ['liste des sport', 'bienfait du sport'],
+      },
+      3: {
+        title: 'Où vis-tu ?',
+        description: ['gout du voyage', 'impact du voyage'],
+      },
+      4: {
+        title: 'Pourquoi le yoga ?',
+        description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
+      },
+    },
+    workEnvMobile: {
+      1: {
+        title: 'Quels sont tes engagements et valeurs au travail ?',
+        description: ['detail a remplir'],
+      },
+      2: {
+        title: 'Mes engagements dans mon travail ?',
+        description: ['liste des sport', 'bienfait du sport'],
+      },
+      3: {
+        title: 'Tes valeurs ?',
+        description: ['gout du voyage', 'impact du voyage'],
+      },
+      4: {
+        title: 'Ma relation au travail ?',
+        description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
+      },
     },
     aboutMobile: {
       visitor: {

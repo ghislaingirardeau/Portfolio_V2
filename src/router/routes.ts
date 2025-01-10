@@ -12,7 +12,9 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/ProjectsPage.vue'),
       },
       { path: '/service', name: 'service', component: () => import('pages/ServicePage.vue') },
-      { path: '/aboutMe', name: 'about', component: () => import('pages/AboutMePage.vue') },
+      { path: '/aboutMe', name: 'aboutMe', component: () => import('pages/AboutMePage.vue') },
+      { path: '/aboutWork', name: 'aboutWork', component: () => import('pages/AboutWorkPage.vue') },
+
       { path: '/stack', name: 'stack', component: () => import('pages/stackPage.vue') },
       {
         path: '/project/:id',
