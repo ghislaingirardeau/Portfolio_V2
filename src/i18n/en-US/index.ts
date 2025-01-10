@@ -7,6 +7,8 @@ export default {
     index: 'Home',
     projects: 'My works',
     services: 'My services',
+    stack: 'My stack',
+
     aboutMe: 'About me',
   },
   chatMessage: {

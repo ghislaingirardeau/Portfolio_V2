@@ -76,9 +76,9 @@ const menuList = computed(() => [
   },
   {
     icon: mdiHandshake,
-    label: t('navBar.services'),
+    label: t('navBar.stack'),
     to: {
-      name: 'service',
+      name: 'stack',
     },
   },
   {
