@@ -21,6 +21,8 @@
 
     <TheRobotContainer @robot-action="robotAction" />
     <ChatMessageContainer
+      ref="chatContainer"
+      :key="'chatContainer' + meSlide"
       :meTexts="chatTexts"
       :visitor-texts="visitorChatTexts"
       :delay-animation="0.5"
@@ -34,7 +36,7 @@ import { gsap } from 'src/boot/gsap'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { mdiGestureSwipe } from '@quasar/extras/mdi-v7'
@@ -50,6 +52,7 @@ const image = ref()
 const imageOverlay = ref()
 const imageOverlayIcon = ref()
 const imageContainer = ref()
+const chatContainer = useTemplateRef('chatContainer')
 
 const fixImage = ref(false)
 
@@ -125,11 +128,25 @@ function animationOnSlide(x: number, increase: boolean) {
       increase ? meSlide.value++ : meSlide.value--
       fixImage.value = false
     },
-  }).to(image.value.$el, {
-    duration,
-    x: 0,
-    opacity: 1,
   })
+    .to(
+      chatContainer.value!.$el,
+      {
+        duration,
+        opacity: 0,
+      },
+      '<',
+    )
+    .to(image.value.$el, {
+      duration,
+      x: 0,
+      opacity: 1,
+    })
+    .to(chatContainer.value!.$el, {
+      duration,
+      x: 0,
+      opacity: 1,
+    })
 }
 
 function robotAction() {
