@@ -20,14 +20,11 @@
     </div>
 
     <TheRobotContainer @robot-action="robotAction" />
-    <transition appear leave-active-class="animated  fadeOut">
-      <ChatMessageContainer
-        :key="'chat' + meSlide"
-        :meTexts="chatTexts"
-        :visitor-texts="visitorChatTexts"
-        :delay-animation="0.5"
-      />
-    </transition>
+    <ChatMessageContainer
+      :meTexts="chatTexts"
+      :visitor-texts="visitorChatTexts"
+      :delay-animation="0.5"
+    />
   </q-page>
 </template>
 

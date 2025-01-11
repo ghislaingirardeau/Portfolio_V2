@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fixed bottom-24 right-24 ml-3">
-      <q-chat-message v-if="visitorTexts" ref="receivedMessages" :text="[visitorTexts]" />
+      <q-chat-message v-if="visitorTexts" ref="receivedMessage" :text="[visitorTexts]" />
       <q-chat-message sent name="Me" text-color="white" bg-color="blue" ref="sentMessages">
         <div
           v-for="(text, index) in props.meTexts"
@@ -33,10 +33,10 @@ const { pageMounted } = storeToRefs(animationSettings)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sentMessages = useTemplateRef<any>('sentMessages')
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const receivedMessages = useTemplateRef<any>('receivedMessages')
+const receivedMessage = useTemplateRef<any>('receivedMessage')
 
 const props = defineProps({
-  visitorTexts: { type: String },
+  visitorTexts: { type: String, required: true },
   meTexts: { type: Array, required: true },
   delayAnimation: { type: Number, default: 0.5 },
   hasEmitEvent: { type: Boolean, default: false },
@@ -56,7 +56,7 @@ function textMessageAnimation() {
   const duration = 1
 
   if (props.visitorTexts) {
-    const allReceivedTextMessage = receivedMessages.value.$el.querySelectorAll(
+    const allReceivedTextMessage = receivedMessage.value.$el.querySelectorAll(
       '.q-message-text, .q-message-name ',
     ) as HTMLElement[]
     allReceivedTextMessage.forEach((el, i) => {
