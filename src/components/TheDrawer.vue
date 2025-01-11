@@ -31,6 +31,7 @@
 <script setup lang="ts">
 import {
   mdiAccountDetails,
+  mdiCodeTagsCheck,
   mdiHandshake,
   mdiHomeCircleOutline,
   mdiSourceRepository,
@@ -58,13 +59,6 @@ const leftDrawerOpen = defineModel('leftDrawerOpen', { type: Boolean, required: 
 
 const menuList = computed(() => [
   {
-    icon: mdiHomeCircleOutline,
-    label: t('navBar.index'),
-    to: {
-      name: 'home',
-    },
-  },
-  {
     icon: mdiSourceRepository,
     label: t('navBar.projects'),
     to: {
@@ -72,7 +66,7 @@ const menuList = computed(() => [
     },
   },
   {
-    icon: mdiHandshake,
+    icon: mdiCodeTagsCheck,
     label: t('navBar.stack'),
     to: {
       name: 'stack',
@@ -86,7 +80,7 @@ const menuList = computed(() => [
     },
   },
   {
-    icon: mdiAccountDetails,
+    icon: mdiHandshake,
     label: t('navBar.aboutWork'),
     to: {
       name: 'aboutWork',

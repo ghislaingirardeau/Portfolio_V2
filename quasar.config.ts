@@ -131,6 +131,8 @@ export default defineConfig((ctx) => {
       'slideInLeft',
       'slideOutLeft',
       'slideOutRight',
+      'fadeOutLeft',
+
       'rotateIn',
       'rotateOut',
     ],

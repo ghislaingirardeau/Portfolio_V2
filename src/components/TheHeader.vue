@@ -18,7 +18,7 @@
         />
       </transition>
 
-      <q-toolbar-title> GG WebDev </q-toolbar-title>
+      <q-toolbar-title @click="router.push({ name: 'home' })"> GG WebDev </q-toolbar-title>
       <q-space />
       <SwitchModeBtn />
       <SwitchLangBtn />
@@ -37,12 +37,15 @@ import { gsap } from 'src/boot/gsap'
 import { storeToRefs } from 'pinia'
 import { mdiClose, mdiMenu } from '@quasar/extras/mdi-v7'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
+import { useRouter } from 'vue-router'
+import { name } from '@vue/eslint-config-prettier/skip-formatting'
 
 const animationSettings = useAnimationSettings()
 const { ANIM_LONG, headerMounted } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
+const router = useRouter()
 
 function headerAnimation() {
   const elementTarget = header.value?.$el as HTMLDivElement

@@ -16,6 +16,7 @@
             'italic underline cursor-pointer': isLastChatClickable(index),
             width,
           }"
+          :style="{ 'font-size': useIsMobileTall() ? '1rem' : '0.8rem' }"
         >
           <span v-html="text"></span>
         </div>
@@ -28,6 +29,7 @@
 import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { onMounted, useTemplateRef, watch } from 'vue'
 const animationSettings = useAnimationSettings()
 
@@ -108,7 +110,6 @@ function handleChatMessageAction(index: number) {
 .q-message-text {
   opacity: 0;
   transform: translateX(-30px);
-  font-size: 0.8rem;
   &:last-child {
     min-height: unset;
   }

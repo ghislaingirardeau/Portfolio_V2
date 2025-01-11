@@ -2,16 +2,20 @@
   <q-page class="q-pa-lg">
     <!-- <component :is="PanelImage" :name="tab" v-model:is-first-mounted="isFirstMounted" /> -->
 
-    <div ref="imageContainer" class="flex flex-center lg:justify-start relative">
+    <div
+      ref="imageContainer"
+      class="flex flex-center lg:justify-start relative"
+      :class="{ 'mt-20': useIsMobileTall() }"
+    >
       <q-img
         :src="imageToDisplay"
         ref="image"
         alt="photo de Ghislain montagne"
-        fit="contain"
+        fit="cover"
         class="rounded-borders opacity-0 w-10/12 lg:w-2/5"
-        width="100%"
       />
-      <div ref="imageOverlay" class="w-full h-full bg-black absolute opacity-0 flex flex-center">
+
+      <div ref="imageOverlay" class="w-10/12 h-full bg-black absolute opacity-0 flex flex-center">
         <q-icon ref="imageOverlayIcon" :name="mdiGestureSwipe" color="primary" size="xl"></q-icon>
       </div>
     </div>
@@ -36,9 +40,9 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import WireCode from '../common/WireCode.vue'
 import { mdiGestureSwipe } from '@quasar/extras/mdi-v7'
 import { useSwipe } from '@vueuse/core'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 
 const route = useRoute()
 const animationSettings = useAnimationSettings()
@@ -74,6 +78,10 @@ const imageToDisplay = computed(() => {
     : 'images/aboutPage/' + tm(`about.professionaly.imageURL`)[meSlide.value]
 })
 
+const slideNumber = computed(() => {
+  return Object.keys(tm(`chatMessage.meMobile`) as string[]).length - 1
+})
+
 onMounted(() => {
   isRobotClickable.value = true
   animationImage()
@@ -90,25 +98,61 @@ watch(
   },
 )
 
+watch(
+  () => meSlide.value,
+  (newValue) => {
+    if (newValue === slideNumber.value) {
+      isRobotClickable.value = false
+    } else {
+      isRobotClickable.value = true
+    }
+  },
+)
+
 function nextSlide() {
-  if (meSlide.value === Object.keys(tm(`chatMessage.meMobile`) as string[]).length - 1) {
+  if (meSlide.value === slideNumber.value) {
     return
   }
-  meSlide.value++
+  animationOnSlide(10, true)
 }
 
 function previousSlide() {
   if (meSlide.value === 0) {
     return
   }
-  meSlide.value--
+  animationOnSlide(-10, false)
+}
+
+function animationOnSlide(x: number, increase: boolean) {
+  if (!pageMounted.value) {
+    return
+  }
+  tl.to(image.value.$el, {
+    duration: 0.5,
+    x: -x,
+    opacity: 0,
+  })
+    .to(image.value.$el, {
+      duration: 0.1,
+      x,
+      opacity: 0,
+      onComplete() {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        increase ? meSlide.value++ : meSlide.value--
+      },
+    })
+    .to(image.value.$el, {
+      duration: 0.5,
+      x: 0,
+      opacity: 1,
+    })
 }
 
 function robotAction() {
-  if (meSlide.value === Object.keys(tm(`chatMessage.meMobile`) as string[]).length) {
-    meSlide.value = 0
+  if (meSlide.value === slideNumber.value) {
+    return
   } else {
-    meSlide.value++
+    animationOnSlide(10, true)
   }
 }
 
@@ -147,4 +191,19 @@ function animationImage() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.img-square {
+  --_g: 10% /45% 45% no-repeat linear-gradient(#000 0 0);
+  --m: left var(--_i, 0%) top var(--_g), bottom var(--_i, 0%) left var(--_g),
+    top var(--_i, 0%) right var(--_g), right var(--_i, 0%) bottom var(--_g);
+  -webkit-mask: var(--m);
+  mask: var(--m);
+  filter: grayscale();
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+.img-square:hover {
+  --_i: 10%;
+  filter: grayscale(0);
+}
+</style>

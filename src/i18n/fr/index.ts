@@ -8,6 +8,7 @@ export default {
     projects: 'Mes projets',
     services: 'Mes services',
     stack: 'Mon stack',
+    aboutWork: 'Travailler avec moi',
 
     aboutMe: 'A propos de moi',
   },
@@ -62,6 +63,57 @@ export default {
         'Je suis impatient de travailler sur tous les projets intéressants que je peux apporter à cette intersection de mes compétences et de mes connaissances (sport et développement web).',
         'Et personnellement ? ...',
       ],
+    },
+    meMobile: {
+      1: {
+        title: 'Tu pratiques également du sport ? Et pourquoi ceux-là en particulier ?',
+        description: [
+          `En effet, je suis passionné de sport. Du foot, au sport de glisse tel que 
+          le surf et le ski`,
+          `Le sport collectif comme le foot contribue à l'esprit et au travail d'équipe pour atteindre un objectif. On ne peut réussir que collectivement.
+        `,
+          `Le ski et le surf, permet de se remettre en question et d'etre autodidacte pour s'améliorer constamment`,
+        ],
+      },
+      0: {
+        title: 'Où vis-tu ?',
+        description: [
+          `Pour le moment je vis entre l'Asie du Sud Est et la France (5/6 mois dans chaque pays) pour 
+          suivre ma compagne qui est chercheuse en anthropologie auprès des communautés autochtones. 
+          `,
+          `Le voyage permet une ouverture d'esprit, force l'autonomie et la responsabilité`,
+          `Je travaille donc principalement à distance sauf quand je suis en France où je peux être mobile `,
+        ],
+      },
+      2: {
+        title: 'Pourquoi le yoga ?',
+        description: [
+          `J'apprècie particulièrement la pratique du yoga
+          et de la méditation. Dans un monde de vitesse et d'exigence, cela me permet de ralentir, 
+          de prendre soin de son esprit et de son corps.
+          `,
+          `La pratique du yoga stimule la concentration et la créativité. 
+          Cela m'apporte un regain d'énergie et une motivation accrue en m'aidant à me focaliser sur l'essentiel`,
+        ],
+      },
+    },
+    workEnvMobile: {
+      0: {
+        title: 'Quels sont tes engagements et valeurs au travail ?',
+        description: ['detail a remplir'],
+      },
+      1: {
+        title: 'Mes engagements dans mon travail ?',
+        description: ['liste des sport', 'bienfait du sport'],
+      },
+      2: {
+        title: 'Tes valeurs ?',
+        description: ['gout du voyage', 'impact du voyage'],
+      },
+      3: {
+        title: 'Ma relation au travail ?',
+        description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
+      },
     },
     aboutMobile: {
       visitor: {

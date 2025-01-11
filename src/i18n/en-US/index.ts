@@ -8,15 +8,15 @@ export default {
     projects: 'My works',
     services: 'My services',
     stack: 'My stack',
-    aboutWork: 'About work',
+    aboutWork: 'Work with me',
     aboutMe: 'About me',
   },
   chatMessage: {
     home: {
-      visitor: 'Why this portfolio',
+      visitor: 'Why this portfolio ?',
       me: [
-        'To show what is behind my resume and my work, to know more about me.',
-        'You can find out a lot more about me on the link below',
+        "To show what is behind my resume and my work, to know more about me. It's has been made as a first interview ;)",
+        '...You can find out a lot more about me on the link below',
       ],
     },
     projectMobile: {
@@ -63,21 +63,37 @@ export default {
       ],
     },
     meMobile: {
-      0: {
-        title: 'What is your hobbies ?',
-        description: ['sport, voyage, yoga', 'swipe pour en savoir plus'],
-      },
       1: {
-        title: 'Tu fais du sport ?',
-        description: ['liste des sport', 'bienfait du sport'],
+        title: 'Do you also do sport? And why those in particular?',
+        description: [
+          `
+          I'm passionate about sport. From football to board sports such as 
+          surfing and skiing`,
+          `Collective sport like football contributes to team spirit and teamwork to achieve a goal. We can only succeed collectively.
+        `,
+          `Skiing and surfing allow you to challenge yourself and teach yourself to constantly improve.`,
+        ],
+      },
+      0: {
+        title: 'Where do you live?',
+        description: [
+          `At the moment I'm living between South-East Asia and France (5/6 months in each country) to 
+          to follow my partner, who is an anthropology researcher working with indigenous communities. 
+          `,
+          `Travelling opens up your mind and fosters autonomy and responsibility`,
+          `So I mainly work remotely, except when I'm in France where I can be mobile. `,
+        ],
       },
       2: {
-        title: 'Où vis-tu ?',
-        description: ['gout du voyage', 'impact du voyage'],
-      },
-      3: {
-        title: 'Pourquoi le yoga ?',
-        description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
+        title: 'Why yoga?',
+        description: [
+          `I particularly enjoy practising yoga
+          and meditation. In a fast-paced, demanding world, it helps me to slow down, 
+          to take care of your mind and body.
+          `,
+          `Practising yoga stimulates concentration and creativity. 
+          It gives me renewed energy and increased motivation by helping me to focus on what's essential.`,
+        ],
       },
     },
     workEnvMobile: {
@@ -175,7 +191,7 @@ export default {
       pro: 'Comment travailles-tu ?',
     },
     personal: {
-      imageURL: ['moi.jpg', 'moi2.jpg', 'moi3.jpg'],
+      imageURL: ['moi2.jpg', 'moi.jpg', 'moi3.jpg'],
       /* remove */
       h3: '...Personally',
       description: [
