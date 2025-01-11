@@ -100,6 +100,17 @@ watch(
   },
 )
 
+watch(
+  () => fixImage.value,
+  (newValue) => {
+    if (newValue) {
+      isRobotClickable.value = false
+    } else {
+      isRobotClickable.value = true
+    }
+  },
+)
+
 function nextSlide() {
   if (meSlide.value === slideNumber.value) {
     return

@@ -9,6 +9,7 @@
           'grad-dark': $q.dark.isActive,
           'is-loading-dark': $q.dark.isActive && !isAnimationDone,
           'is-clickable-dark': $q.dark.isActive && isRobotClickable && isAnimationDone,
+          'slow-motion-mobile': useIsMobile(),
         }"
         ref="eyeBis"
       ></div>
@@ -68,12 +69,13 @@
 
 <script setup lang="ts">
 import { useMouse, useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
@@ -176,11 +178,15 @@ onMounted(() => {
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 1) 35%,
-    rgba(14, 42, 117, 1) 43%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(14, 42, 117, 1) 45%,
     rgba(14, 55, 212, 1) 50%,
-    rgba(255, 255, 255, 0) 64%
+    rgba(255, 255, 255, 0) 70%
   );
+}
+
+.slow-motion-mobile {
+  transition: all 0.3s ease;
 }
 .is-clickable-dark {
   background: rgb(255, 255, 255);
