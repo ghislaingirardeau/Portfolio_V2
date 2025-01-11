@@ -38,7 +38,6 @@ import { storeToRefs } from 'pinia'
 import { mdiClose, mdiMenu } from '@quasar/extras/mdi-v7'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { useRouter } from 'vue-router'
-import { name } from '@vue/eslint-config-prettier/skip-formatting'
 
 const animationSettings = useAnimationSettings()
 const { ANIM_LONG, headerMounted } = storeToRefs(animationSettings)

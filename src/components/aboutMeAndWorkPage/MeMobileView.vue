@@ -19,8 +19,6 @@
       </div>
     </div>
 
-    <!-- <img src="https://picsum.photos/id/1011/250/250" class="img-square" /> -->
-
     <TheRobotContainer @robot-action="robotAction" />
     <transition appear leave-active-class="animated  fadeOut">
       <ChatMessageContainer
@@ -36,7 +34,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
-import PanelImage from 'src/components/aboutPage/panelImage.vue'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -195,5 +192,6 @@ function animationImage() {
 .img-square-done {
   --_i: 10%;
   filter: grayscale(0);
+  border-radius: 20%;
 }
 </style>
