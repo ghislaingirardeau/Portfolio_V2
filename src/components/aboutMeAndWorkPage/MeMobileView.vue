@@ -2,12 +2,7 @@
   <q-page class="q-pa-lg">
     <!-- <component :is="PanelImage" :name="tab" v-model:is-first-mounted="isFirstMounted" /> -->
 
-    <div class="flex flex-center lg:justify-start relative">
-      <WireCode
-        ref="imageSkeleton"
-        content="&lt;div&gt;Image About me&lt;/div&gt;"
-        class="flex flex-center w-72 h-40 border-2 border-solid border-gray-300 bg-grey-3 absolute"
-      />
+    <div ref="imageContainer" class="flex flex-center lg:justify-start relative">
       <q-img
         :src="imageToDisplay"
         ref="image"
@@ -16,8 +11,8 @@
         class="rounded-borders opacity-0 w-10/12 lg:w-2/5"
         width="100%"
       />
-      <div class="w-full h-full bg-black absolute opacity-55 flex flex-center">
-        <q-icon :name="mdiHand" color="primary" size="xl"></q-icon>
+      <div ref="imageOverlay" class="w-full h-full bg-black absolute opacity-0 flex flex-center">
+        <q-icon ref="imageOverlayIcon" :name="mdiGestureSwipe" color="primary" size="xl"></q-icon>
       </div>
     </div>
 
@@ -38,21 +33,26 @@ import PanelImage from 'src/components/aboutPage/panelImage.vue'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import WireCode from '../common/WireCode.vue'
-import { mdiHand } from '@quasar/extras/mdi-v5'
+import { mdiGestureSwipe } from '@quasar/extras/mdi-v7'
+import { useSwipe } from '@vueuse/core'
 
 const route = useRoute()
 const animationSettings = useAnimationSettings()
-const { pageMounted } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
 
 const meSlide = ref(0)
 const image = ref()
-const imageSkeleton = ref()
+const imageOverlay = ref()
+const imageOverlayIcon = ref()
+const imageContainer = ref()
 
-const tl = gsap.timeline({ delay: 0.5 })
+const { direction } = useSwipe(imageContainer)
+
+const tl = gsap.timeline()
 
 const { tm } = useI18n({ useScope: 'global' })
 
@@ -75,8 +75,34 @@ const imageToDisplay = computed(() => {
 })
 
 onMounted(() => {
+  isRobotClickable.value = true
   animationImage()
 })
+
+watch(
+  () => direction.value,
+  (newValue) => {
+    if (newValue === 'left') {
+      nextSlide()
+    } else if (newValue === 'right') {
+      previousSlide()
+    }
+  },
+)
+
+function nextSlide() {
+  if (meSlide.value === Object.keys(tm(`chatMessage.meMobile`) as string[]).length - 1) {
+    return
+  }
+  meSlide.value++
+}
+
+function previousSlide() {
+  if (meSlide.value === 0) {
+    return
+  }
+  meSlide.value--
+}
 
 function robotAction() {
   if (meSlide.value === Object.keys(tm(`chatMessage.meMobile`) as string[]).length) {
@@ -87,13 +113,34 @@ function robotAction() {
 }
 
 function animationImage() {
-  tl.to(imageSkeleton.value.$el, {
-    duration: 0.3,
-    opacity: 0,
-  }).to(image.value.$el, {
-    duration: 0.5,
+  const duration = 0.5
+  tl.to(image.value.$el, {
+    duration,
     opacity: 1,
   })
+    .to(imageOverlay.value, {
+      duration,
+      opacity: 0.55,
+    })
+    .to(imageOverlayIcon.value.$el, {
+      duration: 0.3,
+      rotate: 25,
+      x: 15,
+    })
+    .to(imageOverlayIcon.value.$el, {
+      duration: 0.3,
+      rotate: -25,
+      x: -15,
+    })
+    .to(imageOverlayIcon.value.$el, {
+      duration: 0.3,
+      rotate: 0,
+      x: 0,
+    })
+    .to(imageOverlay.value, {
+      duration,
+      opacity: 0,
+    })
   tl.call(() => {
     pageMounted.value = true
   })

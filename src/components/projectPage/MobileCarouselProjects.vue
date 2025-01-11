@@ -52,7 +52,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const { tm } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
-const {  pageMounted } = storeToRefs(animationSettings)
+const { pageMounted } = storeToRefs(animationSettings)
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
@@ -71,6 +71,10 @@ const skeletonButtonIconRight: Ref<string | undefined> = ref(undefined)
 
 const slideNumber = computed(() => {
   return props.typeDesktop ? [...tm('projects.desktop')].length : [...tm('projects.mobile')].length
+})
+
+const endSlider = computed(() => {
+  return currentSlide.value === slideNumber.value - 1
 })
 
 const slideContainerClass = computed(() => {
@@ -101,16 +105,15 @@ watch(
   () => direction.value,
   (newValue) => {
     if (newValue === 'left') {
-      previousSlide()
-    } else if (newValue === 'right') {
       nextSlide()
+    } else if (newValue === 'right') {
+      previousSlide()
     }
   },
 )
 
 function nextSlide() {
-  if (currentSlide.value === slideNumber.value - 1) {
-    currentSlide.value = 0
+  if (endSlider.value) {
     return
   }
   currentSlide.value++
@@ -118,7 +121,6 @@ function nextSlide() {
 
 function previousSlide() {
   if (currentSlide.value === 0) {
-    currentSlide.value = slideNumber.value - 1
     return
   }
   currentSlide.value--
