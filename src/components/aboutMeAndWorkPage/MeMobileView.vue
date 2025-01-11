@@ -168,7 +168,7 @@ function animationImage() {
   const duration = 0.5
   tl.to(image.value.$el, {
     duration,
-    opacity: 1,
+    opacity: 0.9,
     onComplete() {
       fixImage.value = true
     },
