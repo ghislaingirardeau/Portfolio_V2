@@ -1,12 +1,7 @@
 <template>
   <div>
     <div class="fixed bottom-24 right-24 ml-3">
-      <q-chat-message
-        v-if="visitorTexts"
-        ref="receivedMessages"
-        :text="[visitorTexts]"
-        name="Visitor"
-      />
+      <q-chat-message v-if="visitorTexts" ref="receivedMessages" :text="[visitorTexts]" />
       <q-chat-message sent name="Me" text-color="white" bg-color="blue" ref="sentMessages">
         <div
           v-for="(text, index) in props.meTexts"

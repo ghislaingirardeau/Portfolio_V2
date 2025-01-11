@@ -1,32 +1,35 @@
 <template>
   <q-page class="q-pa-lg">
-    <!-- <component :is="PanelImage" :name="tab" v-model:is-first-mounted="isFirstMounted" /> -->
-
-    <div
-      ref="imageContainer"
-      class="flex flex-center lg:justify-start relative"
-      :class="{ 'mt-20': useIsMobileTall() }"
-    >
+    <div ref="imageContainer" class="w-full relative" :class="{ 'mt-10': useIsMobileTall() }">
       <q-img
         :src="imageToDisplay"
         ref="image"
         alt="photo de Ghislain montagne"
-        fit="cover"
-        class="rounded-borders opacity-0 w-10/12 lg:w-2/5"
+        fit="contain"
+        class="rounded-borders opacity-0 w-10/12 lg:w-2/5 img-square"
+        width="100%"
+        :class="{ 'img-square-done': fixImage }"
       />
 
-      <div ref="imageOverlay" class="w-10/12 h-full bg-black absolute opacity-0 flex flex-center">
+      <div
+        ref="imageOverlay"
+        class="w-full h-full bg-black absolute top-0 opacity-0 flex flex-center px-10"
+      >
         <q-icon ref="imageOverlayIcon" :name="mdiGestureSwipe" color="primary" size="xl"></q-icon>
       </div>
     </div>
 
+    <!-- <img src="https://picsum.photos/id/1011/250/250" class="img-square" /> -->
+
     <TheRobotContainer @robot-action="robotAction" />
-    <ChatMessageContainer
-      :key="'chat' + meSlide"
-      :meTexts="chatTexts"
-      :visitor-texts="visitorChatTexts"
-      :delay-animation="0.5"
-    />
+    <transition appear leave-active-class="animated  fadeOut">
+      <ChatMessageContainer
+        :key="'chat' + meSlide"
+        :meTexts="chatTexts"
+        :visitor-texts="visitorChatTexts"
+        :delay-animation="0.5"
+      />
+    </transition>
   </q-page>
 </template>
 
@@ -53,6 +56,8 @@ const image = ref()
 const imageOverlay = ref()
 const imageOverlayIcon = ref()
 const imageContainer = ref()
+
+const fixImage = ref(false)
 
 const { direction } = useSwipe(imageContainer)
 
@@ -98,17 +103,6 @@ watch(
   },
 )
 
-watch(
-  () => meSlide.value,
-  (newValue) => {
-    if (newValue === slideNumber.value) {
-      isRobotClickable.value = false
-    } else {
-      isRobotClickable.value = true
-    }
-  },
-)
-
 function nextSlide() {
   if (meSlide.value === slideNumber.value) {
     return
@@ -124,36 +118,28 @@ function previousSlide() {
 }
 
 function animationOnSlide(x: number, increase: boolean) {
+  const duration = 0.5
   if (!pageMounted.value) {
     return
   }
   tl.to(image.value.$el, {
-    duration: 0.5,
+    duration,
     x: -x,
     opacity: 0,
+    onComplete() {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      increase ? meSlide.value++ : meSlide.value--
+      fixImage.value = false
+    },
+  }).to(image.value.$el, {
+    duration,
+    x: 0,
+    opacity: 1,
   })
-    .to(image.value.$el, {
-      duration: 0.1,
-      x,
-      opacity: 0,
-      onComplete() {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        increase ? meSlide.value++ : meSlide.value--
-      },
-    })
-    .to(image.value.$el, {
-      duration: 0.5,
-      x: 0,
-      opacity: 1,
-    })
 }
 
 function robotAction() {
-  if (meSlide.value === slideNumber.value) {
-    return
-  } else {
-    animationOnSlide(10, true)
-  }
+  fixImage.value = !fixImage.value
 }
 
 function animationImage() {
@@ -161,10 +147,14 @@ function animationImage() {
   tl.to(image.value.$el, {
     duration,
     opacity: 1,
+    onComplete() {
+      fixImage.value = true
+    },
   })
     .to(imageOverlay.value, {
       duration,
       opacity: 0.55,
+      delay: 0.7,
     })
     .to(imageOverlayIcon.value.$el, {
       duration: 0.3,
@@ -199,10 +189,10 @@ function animationImage() {
   -webkit-mask: var(--m);
   mask: var(--m);
   filter: grayscale();
-  transition: 0.3s linear;
   cursor: pointer;
+  transition: 0.3s linear;
 }
-.img-square:hover {
+.img-square-done {
   --_i: 10%;
   filter: grayscale(0);
 }
