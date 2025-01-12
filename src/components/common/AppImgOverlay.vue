@@ -14,6 +14,11 @@
 import { mdiGestureSwipe } from '@quasar/extras/mdi-v7'
 import { onMounted, ref } from 'vue'
 import { gsap } from 'src/boot/gsap'
+import { useAnimationSettings } from 'src/stores/animationSettings'
+import { storeToRefs } from 'pinia'
+
+const animationSettings = useAnimationSettings()
+const { pageMounted } = storeToRefs(animationSettings)
 
 const imageOverlay = ref()
 const imageOverlayIcon = ref()
@@ -40,6 +45,9 @@ onMounted(() => {
       duration: 1,
       opacity: 0,
     })
+  tl.call(() => {
+    pageMounted.value = true
+  })
 })
 </script>
 

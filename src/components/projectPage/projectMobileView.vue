@@ -42,7 +42,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
-
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
@@ -51,10 +50,10 @@ import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+const { tm, t } = useI18n({ useScope: 'global' })
+
 const animationSettings = useAnimationSettings()
 const { isRobotClickable } = storeToRefs(animationSettings)
-
-const { tm, t } = useI18n({ useScope: 'global' })
 
 const tab = ref('mobile')
 const tabs = ref()
@@ -83,7 +82,6 @@ const visitorChatMessageToDisplay = computed(() => {
 })
 
 onMounted(() => {
-  isRobotClickable.value = true
   gsap.to(tabs.value.$el, {
     duration: 0.5,
     height: '40px',
@@ -100,8 +98,10 @@ function resetCarousel() {
 function robotAction() {
   if (chatPage.value === Object.keys(chatMessages.value).length - 1) {
     chatPage.value--
+    isRobotClickable.value = true
   } else {
     chatPage.value++
+    isRobotClickable.value = false
   }
 }
 </script>

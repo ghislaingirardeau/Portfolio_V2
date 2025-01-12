@@ -84,7 +84,6 @@ const slideNumber = computed(() => {
 })
 
 onMounted(() => {
-  isRobotClickable.value = true
   animationImage()
 })
 
@@ -174,7 +173,7 @@ function animationImage() {
     },
   })
   tl.call(() => {
-    pageMounted.value = true
+    isRobotClickable.value = true
   })
 }
 </script>
