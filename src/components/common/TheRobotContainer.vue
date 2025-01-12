@@ -19,7 +19,6 @@ import TheRobot from 'src/components/TheRobot.vue'
 
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import WireCode from './WireCode.vue'
 const animationSettings = useAnimationSettings()
 
 const { headerMounted, presentationMounted } = storeToRefs(animationSettings)

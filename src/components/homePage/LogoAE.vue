@@ -68,7 +68,9 @@ function buildCubeAnimation() {
     opacity: 0,
     delay: 0.8,
     onComplete() {
-      pageMounted.value = true
+      setTimeout(() => {
+        pageMounted.value = true
+      }, 1000)
     },
   })
 }

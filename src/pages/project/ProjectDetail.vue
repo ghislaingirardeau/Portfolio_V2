@@ -50,7 +50,7 @@
           v-if="findProject.link"
           flat
           color="secondary"
-          label="Link"
+          :label="$t('cta.link')"
           @click="goToExternalLink(findProject.link)"
         />
       </q-card-actions>

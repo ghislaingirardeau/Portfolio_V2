@@ -20,7 +20,6 @@ import LogoAE from 'src/components/homePage/LogoAE.vue'
 
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import WireCode from 'src/components/common/WireCode.vue'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed } from 'vue'
 const animationSettings = useAnimationSettings()

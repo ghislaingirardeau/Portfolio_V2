@@ -2,6 +2,7 @@ export default {
   cta: {
     next: 'Suivant',
     back: 'Retour',
+    link: 'Lien du projet',
   },
   navBar: {
     index: 'Accueil',
@@ -22,23 +23,33 @@ export default {
     },
     projectMobile: {
       mobileTab: {
-        chat1: ["Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile."],
-        chat2: ['Oui, tu y restrouveras les technologies utilisées, les objectifs attendus...'],
+        0: {
+          title: `Ce sont des applications mobiles ?`,
+          description: [
+            "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+          ],
+        },
+        1: {
+          title: `Je peux y voir le détail ?`,
+          description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+        },
       },
       desktopTab: {
-        chat1: [
-          "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
-          "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
-        ],
-        chat2: [
-          "Oui pour certains projets, j'ai fait tout le backend soit un serveur et une base de données :)",
-        ],
+        0: {
+          title: `Ce sont toutes tes réalisations ?`,
+          description: [
+            "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+            "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+          ],
+        },
+        1: {
+          title: `Et tu as fait la partie backend ?`,
+          description: [
+            `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+          ],
+        },
       },
     },
-    project: [
-      'Voici un aperçu de mes réalisations',
-      'Tu y restrouveras les technologies utilisées, les objectifs attendus...',
-    ],
     projectDesktop: {
       mobile: [
         'Ces projets ont été réalisés en Mobile First, mais fonctionnent aussi sur desktop',

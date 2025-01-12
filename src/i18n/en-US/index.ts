@@ -2,6 +2,7 @@ export default {
   cta: {
     next: 'Next',
     back: 'Back',
+    link: 'Project Link',
   },
   navBar: {
     index: 'Home',
@@ -22,37 +23,33 @@ export default {
     projectMobile: {
       mobileTab: {
         0: {
-          title: `Ce sont des applications mobiles ?`,
+          title: `Are these mobile applications?`,
           description: [
-            "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+            'These are PWAs (Progressive Web Apps), in other words a web and mobile web application.',
           ],
         },
         1: {
-          title: `Je peux y voir le détail ?`,
-          description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+          title: `Can I see the details?`,
+          description: [`You'll find out about the technologies used, the expected objectives...`],
         },
       },
       desktopTab: {
         0: {
-          title: `Ce sont toutes tes réalisations ?`,
+          title: `Are these all your achievements?`,
           description: [
-            "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
-            "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+            'This is an overview of my work, some projects are confidential',
+            "Others are tutorial projects that I haven't included. Yes, you always have to be trained ;)",
           ],
         },
         1: {
-          title: `Et tu as fait la partie backend ?`,
+          title: `And you did the backend?`,
           description: [
-            `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+            `Yes, on many projects, I built the server (NodeJs and Express) as well as the database (SQL).`,
           ],
         },
       },
     },
-    project: [
-      "Oui et non, c'est un aperçu de mes réalisations",
-      "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
-      'Tu y restrouveras les technologies utilisées, les objectifs attendus...',
-    ],
+
     projectDesktop: {
       mobile: [
         'Ces projets ont été réalisés en Mobile First, mais fonctionnent aussi sur desktop',
