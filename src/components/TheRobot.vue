@@ -1,5 +1,12 @@
 <template>
   <div>
+    <q-icon
+      :name="mdiLightbulbOnOutline"
+      color="primary"
+      size="lg"
+      class="fixed lightbulb z-50"
+      ref="lightbulb"
+    ></q-icon>
     <div class="fixed eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
       <div
         class="eye fixed grad"
@@ -69,16 +76,18 @@
 
 <script setup lang="ts">
 import { useMouse, useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
+import { mdiLightbulbOnOutline } from '@quasar/extras/mdi-v7'
 
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
+const lightbulb = useTemplateRef('lightbulb')
 const animationSettings = useAnimationSettings()
 const { isAnimationDone, robotMounted, isRobotClickable } = storeToRefs(animationSettings)
 
@@ -118,6 +127,26 @@ const colored = computed(() => {
 onMounted(() => {
   robotMounted.value = true
 })
+
+watch(
+  () => isRobotClickable.value,
+  (newValue) => {
+    const duration = 0.5
+    if (newValue) {
+      gsap.to(lightbulb.value!.$el, {
+        duration,
+        y: -10,
+        opacity: 1,
+      })
+    } else {
+      gsap.to(lightbulb.value!.$el, {
+        duration,
+        y: 0,
+        opacity: 0,
+      })
+    }
+  },
+)
 </script>
 
 <style scoped>
@@ -140,6 +169,11 @@ onMounted(() => {
   height: 30px;
   bottom: 101px;
   right: 50px;
+}
+.lightbulb {
+  bottom: 135px;
+  right: 45px;
+  opacity: 0;
 }
 .grad {
   background: rgb(255, 255, 255);
