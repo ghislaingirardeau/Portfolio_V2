@@ -60,7 +60,7 @@ const tab = ref('mobile')
 const tabs = ref()
 const currentSlide = ref(0)
 const isFirstMounted = ref(true)
-const chatPage = ref(1)
+const chatPage = ref(0)
 
 const chatMessages = computed(() => {
   return tab.value === 'mobile'
@@ -70,8 +70,8 @@ const chatMessages = computed(() => {
 
 const chatMessageToDisplay = computed(() => {
   return tab.value === 'mobile'
-    ? [...tm(`chatMessage.projectMobile.mobileTab.chat${chatPage.value}`)]
-    : [...tm(`chatMessage.projectMobile.desktopTab.chat${chatPage.value}`)]
+    ? [...tm(`chatMessage.projectMobile.mobileTab.${chatPage.value}.description`)]
+    : [...tm(`chatMessage.projectMobile.desktopTab.${chatPage.value}.description`)]
 })
 
 const visitorChatMessageToDisplay = computed(() => {
@@ -94,11 +94,11 @@ onMounted(() => {
 
 function resetCarousel() {
   currentSlide.value = 0
-  chatPage.value = 1
+  chatPage.value = 0
 }
 
 function robotAction() {
-  if (chatPage.value === Object.keys(chatMessages.value).length) {
+  if (chatPage.value === Object.keys(chatMessages.value).length - 1) {
     chatPage.value--
   } else {
     chatPage.value++
