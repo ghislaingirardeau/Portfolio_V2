@@ -98,20 +98,30 @@ export default {
     },
     workEnvMobile: {
       0: {
-        title: 'Quels sont tes engagements et valeurs au travail ?',
-        description: ['detail a remplir'],
-      },
-      1: {
-        title: 'Mes engagements dans mon travail ?',
-        description: ['liste des sport', 'bienfait du sport'],
+        title: 'What are your working habits?',
+        description: [
+          `I'm proactive in a project. I like to get involved, share my ideas and points of view 
+          to choose the most appropriate option. 
+          `,
+          `I limit myself to working on a maximum of 2 projects at the same time, with dedicated time for each.`,
+          `I explain the technical choices simply and in particular the advantages that this can offer.`,
+        ],
       },
       2: {
-        title: 'Tes valeurs ?',
-        description: ['gout du voyage', 'impact du voyage'],
+        title: 'What are your core values?',
+        description: [
+          `Honesty, Respect, Fairness, Humility, Sharing and Open-mindedness`,
+          `My wish is to work with and for people who share these same values`,
+        ],
       },
-      3: {
-        title: 'Ma relation au travail ?',
-        description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
+      1: {
+        title: 'How do you perceive your relationship with your clients or collaborators?',
+        description: [
+          `As a freelancer, I have a direct relationship with my client. Listening, communicating and providing clear information are 
+          are essential, especially when working remotely.`,
+          `One of my key objectives is to create a win-win relationship between myself, my colleagues and the customer, so that everyone is satisfied with each other's work and enjoys working together.
+        with each other's work and that we enjoy working together.`,
+        ],
       },
     },
     aboutMobile: {
@@ -207,7 +217,7 @@ export default {
       /*  */
     },
     professionaly: {
-      imageURL: ['work1.jpg', 'work2.jpg', 'work3.jpg'],
+      imageURL: ['coworker.png', 'team.png', 'wellness.png'],
       /* remove */
       h3: '...Professionally',
       description: [

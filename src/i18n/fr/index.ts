@@ -99,20 +99,30 @@ export default {
     },
     workEnvMobile: {
       0: {
-        title: 'Quels sont tes engagements et valeurs au travail ?',
-        description: ['detail a remplir'],
-      },
-      1: {
-        title: 'Mes engagements dans mon travail ?',
-        description: ['liste des sport', 'bienfait du sport'],
+        title: 'Quels sont tes habitudes de travail ?',
+        description: [
+          `Je suis pro-actif dans un projet. J'aime m'impliquer dans celui-ci, partager mes idées et 
+          mes points de vue pour choisir l'option la plus adaptée. 
+          `,
+          `Je me limite à travailler sur maximum 2 projets en même temps avec pour chacun, un temps dédié`,
+          `J'explique les choix techniques simplement et notamment les avantages que cela peut offrir.`,
+        ],
       },
       2: {
-        title: 'Tes valeurs ?',
-        description: ['gout du voyage', 'impact du voyage'],
+        title: 'Quels sont tes valeurs fortes ?',
+        description: [
+          `Honnêteté, Respect, Juste, Humilité, Partage et Ouverture d'esprit`,
+          `Mon souhait est de travailler avec et pour des personnes qui partagent ces mêmes valeurs`,
+        ],
       },
-      3: {
-        title: 'Ma relation au travail ?',
-        description: ['gout yoga et méditation', 'impact du yoga sur le travail'],
+      1: {
+        title: 'Comment percois-tu ta relation avec tes clients ou collabrateurs ?',
+        description: [
+          `Etant freelance, je suis en relation directe avec mon client. L'écoute, la communication et la clareté des informations 
+          sont essentielles, surtout en travaillant à distance.`,
+          `Un de mes objectifs forts, c'est de créer une relation gagnant-gagnant entre moi, mes collaborateurs et le client pour que chacun soit satisfait
+        du travail de l'autre et que l'on prenne plaisir à collaborer ensemble.`,
+        ],
       },
     },
     aboutMobile: {
