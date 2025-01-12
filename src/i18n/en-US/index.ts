@@ -21,10 +21,33 @@ export default {
     },
     projectMobile: {
       mobileTab: {
+        1: {
+          title: `Ce sont des applications mobiles ?`,
+          description: [
+            "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+          ],
+        },
+        2: {
+          title: `Je peux y voir le détail ?`,
+          description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+        },
         chat1: ["Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile."],
         chat2: ['Tu y restrouveras les technologies utilisées, les objectifs attendus...'],
       },
       desktopTab: {
+        1: {
+          title: `Ce sont toutes tes réalisations ?`,
+          description: [
+            "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+            "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+          ],
+        },
+        2: {
+          title: `Et tu as fait la partie backend ?`,
+          description: [
+            `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+          ],
+        },
         chat1: [
           "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
           "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
@@ -167,21 +190,6 @@ export default {
       p2: "I'm Ghislain,",
       p3: 'Web Developer',
     },
-    offer: {
-      hService: 'How can I help you ?',
-      textService: [
-        'You have a web project or a business to digitalize... ',
-        "but you don't know where and how to start... ?",
-        'Find here, what kind of solution and assistance I can bring to you ! ',
-      ],
-
-      hWork: 'Knowing me through my works',
-      textWork: [
-        'You are probably familiar with the web technology... ',
-        'And if you want to know what I can offer ',
-        'Look at my projects and see which tools I work with !',
-      ],
-    },
   },
   footer: {
     title: 'Find me on :',
@@ -202,43 +210,9 @@ export default {
     },
     personal: {
       imageURL: ['moi2.jpg', 'moi.jpg', 'moi3.jpg'],
-      /* remove */
-      h3: '...Personally',
-      description: [
-        'After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT.',
-        'I took part in a six-month training course to become a web developer.',
-        'More details...',
-      ],
-      description1: [
-        "I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
-        'Previous...',
-      ],
-      text: "After more than 10 years working as a manager for an international sports brand (Intersport), I decided to explore one of my other hobbie which is IT. I took part in a six-month training course to become a web developer. As an athlete and a web developer, I'm eager to work on any interesting projects that I can bring to this intersection of my skills and knowledge (sports and web development).",
-      /*  */
     },
     professionaly: {
       imageURL: ['coworker.png', 'team.png', 'wellness.png'],
-      /* remove */
-      h3: '...Professionally',
-      description: [
-        "Over the last 3 years, I've developed solid expertise in creating dynamic and intuitive user interfaces, using the Vue Js framework in particular. ",
-        'I give occasional training courses in Javascript fullstack for the Oclock online school. I also ran a Vue JS training workshop ',
-        'More details...',
-      ],
-      description1: [
-        'I was able to learn about and create unit tests using Jest and Vue Test Utils to guarantee a reliable, high-performance application.',
-        'Previous...',
-      ],
-      id1: "Freelancer, I'm self-employed since June 2021 as a web developer : I realised this e-portfolio using Vue and Nuxt Js, 2 js frameworks that I particularly like to work with !",
-      id2: 'OPEN CLASSROOM: attended six months intensive training as a web developer. As a practitioner of the AGILE method, all my training came from real work projects. These projects were approved and evaluated by a tutor, a professor and a jury of professional web developers. I am used to organising my work autonomously in relation to the project deadline set by the client.',
-      /*  */
-    },
-
-    willingness: {
-      id1: 'Because digitalisation can have an impact on the environment... I would like to work on projects, that share my vision of being ecological.',
-      id2: "Because in a fast and dematerialised world, where the personal data are being exposed, the data protection is at stake... Trust and respect are the main values for a fair relationship to guarantee the security of the customer's data.",
-      id3: "Because technology also makes our daily lives easier, without any physical connection... I like to remember that there's always a human being behind it. Clear, fair and constructive dealings are the core values of my work.",
-      id4: 'Because being a freelancer means being autonomous, responsible and organised... Planning my work, having clear schedules, setting deadlines, reporting and regularly presenting the progress of the project are the commitments of my work.',
     },
   },
   services: {

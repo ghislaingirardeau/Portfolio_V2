@@ -54,7 +54,7 @@ import { useI18n } from 'vue-i18n'
 const animationSettings = useAnimationSettings()
 const { isRobotClickable } = storeToRefs(animationSettings)
 
-const { tm } = useI18n({ useScope: 'global' })
+const { tm, t } = useI18n({ useScope: 'global' })
 
 const tab = ref('mobile')
 const tabs = ref()
@@ -76,13 +76,9 @@ const chatMessageToDisplay = computed(() => {
 
 const visitorChatMessageToDisplay = computed(() => {
   if (tab.value === 'mobile') {
-    return chatPage.value === 1
-      ? 'Ce sont des applications mobiles ?'
-      : 'Je peux y voir le détail ?'
+    return t(`chatMessage.projectMobile.mobileTab.${chatPage.value}.title`)
   } else {
-    return chatPage.value === 1
-      ? 'Ce sont toutes tes réalisations ?'
-      : 'Et tu as fait la partie backend ?'
+    return t(`chatMessage.projectMobile.desktopTab.${chatPage.value}.title`)
   }
 })
 

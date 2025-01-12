@@ -13,14 +13,9 @@
         class="rounded-borders opacity-0 w-10/12 lg:w-2/5 img-square"
         width="100%"
         :class="{ 'img-square-done': fixImage }"
-      />
-
-      <div
-        ref="imageOverlay"
-        class="w-11/12 h-full bg-gray-600 absolute top-0 opacity-0 flex flex-center"
       >
-        <q-icon ref="imageOverlayIcon" :name="mdiGestureSwipe" color="primary" size="xl"></q-icon>
-      </div>
+        <AppImgOverlay v-if="isFirstMount" />
+      </q-img>
     </div>
 
     <TheRobotContainer @robot-action="robotAction" />
@@ -43,9 +38,9 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { mdiGestureSwipe } from '@quasar/extras/mdi-v7'
 import { useSwipe } from '@vueuse/core'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import AppImgOverlay from '../common/appImgOverlay.vue'
 
 const route = useRoute()
 const animationSettings = useAnimationSettings()
@@ -53,9 +48,9 @@ const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
 
 const meSlide = ref(0)
 const image = ref()
-const imageOverlay = ref()
-const imageOverlayIcon = ref()
 const imageContainer = ref()
+const isFirstMount = ref(true)
+
 const chatContainer = useTemplateRef('chatContainer')
 
 const fixImage = ref(false)
@@ -142,6 +137,7 @@ function animationOnSlide(x: number, increase: boolean) {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       increase ? meSlide.value++ : meSlide.value--
       fixImage.value = false
+      isFirstMount.value = false
     },
   })
     .to(
@@ -169,7 +165,7 @@ function robotAction() {
 }
 
 function animationImage() {
-  const duration = 0.6
+  const duration = 0.5
   tl.to(image.value.$el, {
     duration,
     opacity: 0.9,
@@ -177,30 +173,6 @@ function animationImage() {
       fixImage.value = true
     },
   })
-    .to(imageOverlay.value, {
-      duration,
-      opacity: 0.55,
-      delay: 0.7,
-    })
-    .to(imageOverlayIcon.value.$el, {
-      duration: 0.3,
-      rotate: 25,
-      x: 15,
-    })
-    .to(imageOverlayIcon.value.$el, {
-      duration: 0.3,
-      rotate: -25,
-      x: -15,
-    })
-    .to(imageOverlayIcon.value.$el, {
-      duration: 0.3,
-      rotate: 0,
-      x: 0,
-    })
-    .to(imageOverlay.value, {
-      duration,
-      opacity: 0,
-    })
   tl.call(() => {
     pageMounted.value = true
   })
