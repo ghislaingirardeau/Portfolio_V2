@@ -1,6 +1,10 @@
 <template>
   <q-page class="q-pa-lg">
-    <div ref="imageContainer" class="w-full relative" :class="{ 'mt-10': useIsMobileTall() }">
+    <div
+      ref="imageContainer"
+      class="w-full flex flex-center relative"
+      :class="{ 'mt-10': useIsMobileTall() }"
+    >
       <q-img
         :src="imageToDisplay"
         ref="image"
@@ -13,7 +17,7 @@
 
       <div
         ref="imageOverlay"
-        class="w-full h-full bg-black absolute top-0 opacity-0 flex flex-center px-10"
+        class="w-11/12 h-full bg-gray-600 absolute top-0 opacity-0 flex flex-center"
       >
         <q-icon ref="imageOverlayIcon" :name="mdiGestureSwipe" color="primary" size="xl"></q-icon>
       </div>
@@ -165,7 +169,7 @@ function robotAction() {
 }
 
 function animationImage() {
-  const duration = 0.5
+  const duration = 0.6
   tl.to(image.value.$el, {
     duration,
     opacity: 0.9,
