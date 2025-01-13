@@ -36,7 +36,7 @@ const sentMessages = useTemplateRef<any>('sentMessages')
 const receivedMessage = useTemplateRef<any>('receivedMessage')
 
 const props = defineProps({
-  visitorTexts: { type: String, required: true },
+  visitorTexts: { type: String, required: true, default: '' },
   meTexts: { type: Array, required: true },
   delayAnimation: { type: Number, default: 0.5 },
   hasEmitEvent: { type: Boolean, default: false },

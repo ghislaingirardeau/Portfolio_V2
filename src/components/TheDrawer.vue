@@ -33,7 +33,6 @@ import {
   mdiAccountDetails,
   mdiCodeTagsCheck,
   mdiHandshake,
-  mdiHomeCircleOutline,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
 import { computed, watch } from 'vue'
