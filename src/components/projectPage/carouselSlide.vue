@@ -20,7 +20,7 @@
           )
         "
       >
-        <AppImgOverlay v-if="!typeDesktop && isRobotTap" :tap="true" :delay="0.5" />
+        <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" :delay="0.5" />
         <div class="text-subtitle2 text-center" :class="imageTitleClass">
           {{
             typeDesktop ? projectsDesktop[currentSlide]!.name : projectsMobile[currentSlide]!.name
@@ -45,7 +45,7 @@ const { tm } = useI18n({ useScope: 'global' })
 const router = useRouter()
 
 const animationSettings = useAnimationSettings()
-const { isRobotTap } = storeToRefs(animationSettings)
+const { isRobotProcessing } = storeToRefs(animationSettings)
 
 const props = defineProps({
   typeDesktop: {

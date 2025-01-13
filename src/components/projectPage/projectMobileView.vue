@@ -53,7 +53,8 @@ import { useI18n } from 'vue-i18n'
 const { tm, t } = useI18n({ useScope: 'global' })
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable, isRobotTap } = storeToRefs(animationSettings)
+const { isRobotClickable, isRobotTap, isRobotTalk, isRobotProcessing } =
+  storeToRefs(animationSettings)
 
 const tab = ref('mobile')
 const tabs = ref()
@@ -88,26 +89,31 @@ onMounted(() => {
     opacity: 1,
     delay: 0.2,
   })
+  isRobotTalk.value = true
 })
 
 function resetCarousel() {
   currentSlide.value = 0
   chatPage.value = 0
+  isRobotTalk.value = true
 }
 
 function robotAction() {
-  if (tab.value === 'mobile' && chatPage.value === 1) {
-    isRobotTap.value = true
-  }
-  if (chatPage.value === Object.keys(chatMessages.value).length - 1) {
-    chatPage.value--
-    isRobotClickable.value = true
-  } else {
+  if (tab.value === 'mobile' && chatPage.value === 0) {
     chatPage.value++
-    isRobotClickable.value = false
+    isRobotTap.value = true
+    isRobotTalk.value = false
+    return
   }
-}
-{
+  if (tab.value === 'mobile' && chatPage.value === 1 && isRobotClickable.value) {
+    isRobotProcessing.value = true
+    return
+  }
+  if (tab.value === 'desktop' && chatPage.value === 0) {
+    chatPage.value++
+    animationSettings.resetRobotAction()
+    return
+  }
 }
 </script>
 

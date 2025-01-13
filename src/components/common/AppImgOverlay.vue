@@ -1,5 +1,5 @@
 <template>
-  <div ref="imageOverlay" class="w-full h-full bg-gray-5 opacity-90 flex flex-center">
+  <div ref="imageOverlay" class="w-full h-full bg-gray-5 opacity-0 flex flex-center">
     <q-icon
       v-if="tap"
       ref="imageOverlayIcon"
@@ -27,7 +27,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { pageMounted } = storeToRefs(animationSettings)
+const { pageMounted, isRobotProcessing } = storeToRefs(animationSettings)
 
 const props = defineProps({
   tap: {
@@ -50,25 +50,31 @@ onMounted(() => {
 })
 
 function tapAnimation() {
-  tl.to(imageOverlayIcon.value.$el, {
-    duration: 0.4,
-    y: -10,
-    rotateX: 30,
-    scale: 0.9,
+  tl.to(imageOverlay.value, {
+    duration: 0.3,
+    opacity: 0.9,
   })
     .to(imageOverlayIcon.value.$el, {
-      duration: 0.4,
+      duration: 0.3,
+      y: -10,
+      rotateX: 30,
+      scale: 0.9,
+    })
+    .to(imageOverlayIcon.value.$el, {
+      duration: 0.3,
       y: 0,
       rotateX: 0,
       scale: 1,
+      onComplete() {
+        animationSettings.resetRobotAction()
+      },
     })
     .to(imageOverlay.value, {
-      duration: 1,
+      duration: 0.5,
       opacity: 0,
     })
   tl.call(() => {
     pageMounted.value = true
-    animationSettings.resetRobotAction()
   })
 }
 

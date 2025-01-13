@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-icon
-      :name="mdiLightbulbOnOutline"
+      :name="iconType"
       color="primary"
       size="lg"
       class="fixed lightbulb z-50"
@@ -83,13 +83,14 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
-import { mdiLightbulbOnOutline } from '@quasar/extras/mdi-v7'
+import { mdiLightbulbOnOutline, mdiChat, mdiImageBroken } from '@quasar/extras/mdi-v7'
 
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
 const lightbulb = useTemplateRef('lightbulb')
 const animationSettings = useAnimationSettings()
-const { isAnimationDone, robotMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { isAnimationDone, robotMounted, isRobotClickable, isRobotTalk, isRobotFix } =
+  storeToRefs(animationSettings)
 
 const $q = useQuasar()
 
@@ -99,6 +100,17 @@ const windowScroll = useWindowScroll()
 
 const viewSizeX = computed(() => {
   return width.value / 12
+})
+
+const iconType = computed(() => {
+  if (isRobotTalk.value) {
+    return mdiChat
+  }
+  if (isRobotFix.value) {
+    return mdiImageBroken
+  } else {
+    return mdiLightbulbOnOutline
+  }
 })
 
 const viewSizeY = computed(() => {
