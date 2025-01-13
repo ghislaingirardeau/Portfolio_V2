@@ -24,10 +24,8 @@ import { mdiGestureSwipe, mdiGestureTap } from '@quasar/extras/mdi-v7'
 import { onMounted, ref } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotProcessing } = storeToRefs(animationSettings)
 
 const props = defineProps({
   tap: {
@@ -46,7 +44,11 @@ const imageOverlayIcon = ref()
 const tl = gsap.timeline({ delay: props.delay })
 
 onMounted(() => {
-  props.tap ? tapAnimation() : swipeAnimation()
+  if (props.tap) {
+    tapAnimation()
+  } else {
+    swipeAnimation()
+  }
 })
 
 function tapAnimation() {
@@ -73,9 +75,6 @@ function tapAnimation() {
       duration: 0.5,
       opacity: 0,
     })
-  tl.call(() => {
-    pageMounted.value = true
-  })
 }
 
 function swipeAnimation() {
@@ -98,10 +97,6 @@ function swipeAnimation() {
       duration: 1,
       opacity: 0,
     })
-  tl.call(() => {
-    pageMounted.value = true
-    animationSettings.resetRobotAction()
-  })
 }
 </script>
 
