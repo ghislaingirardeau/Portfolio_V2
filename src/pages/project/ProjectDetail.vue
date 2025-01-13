@@ -86,7 +86,7 @@ const route = useRoute()
 const router = useRouter()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
 
 const slide = ref(0)
 const expanded = ref(false)
@@ -159,12 +159,14 @@ function animationImage() {
   })
   tl.call(() => {
     pageMounted.value = true
+    isRobotClickable.value = true
   })
 }
 
 function robotAction() {
   if (!expanded.value) {
     expanded.value = !expanded.value
+    isRobotClickable.value = false
   } else {
     gsap.to(chatContainer.value!.$el, {
       duration: 0.5,
