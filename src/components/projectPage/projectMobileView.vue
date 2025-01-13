@@ -53,7 +53,7 @@ import { useI18n } from 'vue-i18n'
 const { tm, t } = useI18n({ useScope: 'global' })
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable } = storeToRefs(animationSettings)
+const { isRobotClickable, isRobotTap } = storeToRefs(animationSettings)
 
 const tab = ref('mobile')
 const tabs = ref()
@@ -96,6 +96,9 @@ function resetCarousel() {
 }
 
 function robotAction() {
+  if (tab.value === 'mobile' && chatPage.value === 1) {
+    isRobotTap.value = true
+  }
   if (chatPage.value === Object.keys(chatMessages.value).length - 1) {
     chatPage.value--
     isRobotClickable.value = true
@@ -103,6 +106,8 @@ function robotAction() {
     chatPage.value++
     isRobotClickable.value = false
   }
+}
+{
 }
 </script>
 

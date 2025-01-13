@@ -68,6 +68,7 @@ function tapAnimation() {
     })
   tl.call(() => {
     pageMounted.value = true
+    animationSettings.resetRobotAction()
   })
 }
 
@@ -93,6 +94,7 @@ function swipeAnimation() {
     })
   tl.call(() => {
     pageMounted.value = true
+    animationSettings.resetRobotAction()
   })
 }
 </script>

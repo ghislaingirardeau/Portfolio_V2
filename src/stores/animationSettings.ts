@@ -1,3 +1,4 @@
+import { fabGalacticSenate } from '@quasar/extras/fontawesome-v5'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
@@ -11,6 +12,9 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
 
   const layoutMounted = ref(false)
   const isRobotClickable = ref(false)
+  const isRobotTap = ref(false)
+  const isRobotTalk = ref(false)
+  const isRobotFix = ref(false)
 
   const ANIM_SHORT = ref(0.5)
   const ANIM_LONG = ref(1)
@@ -26,11 +30,22 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     )
   })
 
+  function resetRobotAction() {
+    isRobotTap.value = false
+    isRobotClickable.value = false
+    isRobotTalk.value = false
+    isRobotFix.value = false
+  }
+
   return {
     ANIM_SHORT,
     ANIM_LONG,
     layoutMounted,
     isRobotClickable,
+    isRobotTap,
+    isRobotFix,
+    isRobotTalk,
+    resetRobotAction,
     drawerMounted,
     robotMounted,
     headerMounted,
