@@ -5,7 +5,7 @@
     leave-active-class="animated fadeOut slow"
     mode="out-in"
   >
-    <LogoAE v-if="footerMounted" :class="logoClass" />
+    <LogoAE v-if="headerMounted" :class="logoClass" />
     <!-- <WireCode
       v-else
       content="&lt;div&gt;Logo Entreprise&lt;/div&gt;"
@@ -24,7 +24,7 @@ import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed } from 'vue'
 const animationSettings = useAnimationSettings()
 
-const { footerMounted } = storeToRefs(animationSettings)
+const { headerMounted } = storeToRefs(animationSettings)
 
 const logoClass = computed(() => {
   return useIsMobileTall() ? 'mt-28' : 'mt-5'

@@ -16,7 +16,7 @@
         <WireCode
           ref="carouselSlideSkeleton"
           v-show="isFirstMounted"
-          content="&lt;div&gt;Image&lt;/div&gt;"
+          content=""
           class="flex flex-center mt-10 w-44 h-64 border-2 border-solid border-gray-300 bg-grey-3 absolute"
         />
 
@@ -64,7 +64,7 @@ const carouselSlideSkeleton = ref()
 const carouselSlide = ref()
 
 const { direction } = useSwipe(carousel)
-const skeletonButtonLabel: Ref<string | undefined> = ref('<i>')
+const skeletonButtonLabel: Ref<string | undefined> = ref('')
 const skeletonButtonColor = ref('grey-4')
 const skeletonButtonIconLeft: Ref<string | undefined> = ref(undefined)
 const skeletonButtonIconRight: Ref<string | undefined> = ref(undefined)

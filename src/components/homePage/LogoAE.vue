@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-center lg:absolute lg:right-64 z-30" @click="spinCubeAnimation">
+  <div class="flex flex-center lg:absolute lg:right-64 z-30">
     <div class="header__logo wrap lg:ml-20 w-1/2 lg:w-1/5">
       <div ref="cube" class="cube" :class="{ anim_cube: launchSpin }" :key="cubeRender">
         <div ref="front" class="front">
@@ -26,13 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, useTemplateRef } from 'vue'
+import { onMounted, ref, useTemplateRef, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { pageMounted } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isCubeSpining } = storeToRefs(animationSettings)
 
 const cubeRender = ref(0)
 const launchSpin = ref(false)
@@ -49,9 +49,10 @@ onMounted(() => {
 })
 
 function buildCubeAnimation() {
-  const duration = 0.8
-  gsap.from(back.value, { duration, opacity: 0, delay: 0.8 })
-  gsap.from(front.value, { duration, opacity: 0, delay: 0.8 })
+  const duration = 0.4
+  const delay = 0.4
+  gsap.from(back.value, { duration, opacity: 0, delay })
+  gsap.from(front.value, { duration, opacity: 0, delay })
   gsap.from(left.value, {
     duration,
     x: '-20px',
@@ -62,27 +63,40 @@ function buildCubeAnimation() {
     x: '20px',
     opacity: 0,
   })
-  gsap.from(top.value, { duration, opacity: 0, delay: 0.8 })
+  gsap.from(top.value, { duration, opacity: 0, delay })
   gsap.from(bottom.value, {
     duration,
     opacity: 0,
-    delay: 0.8,
+    delay,
     onComplete() {
       setTimeout(() => {
         pageMounted.value = true
+        isRobotClickable.value = true
       }, 1000)
     },
   })
 }
 
 function spinCubeAnimation() {
-  animationSettings.pageMounted = false
+  isRobotClickable.value = false
+  pageMounted.value = false
   launchSpin.value = true
   cubeRender.value++
   setTimeout(() => {
-    animationSettings.pageMounted = true
+    pageMounted.value = true
+    isRobotClickable.value = true
+    isCubeSpining.value = false
   }, 2700)
 }
+
+watch(
+  () => isCubeSpining.value,
+  (newValue) => {
+    if (newValue) {
+      spinCubeAnimation()
+    }
+  },
+)
 </script>
 
 <style scoped lang="scss">
@@ -125,7 +139,7 @@ $font_logo: 'Kaushan Script', cursive;
 .back {
   border: $primary 2px solid;
   border-radius: 7px;
-  animation: deployedBackLarge 3s ease both;
+  animation: deployedBackLarge 2s ease both;
   position: relative;
   &-color {
     position: absolute;
@@ -153,13 +167,13 @@ $font_logo: 'Kaushan Script', cursive;
 .top {
   border: $primary 5px solid;
   border-radius: 12px;
-  animation: deployedTopLarge 3s ease both;
+  animation: deployedTopLarge 2s ease both;
   transform-origin: top center;
 }
 .bottom {
   border: $primary 5px solid;
   border-radius: 7px;
-  animation: deployedBottomLarge 3s ease both;
+  animation: deployedBottomLarge 2s ease both;
 
   transform-origin: bottom center;
 }
@@ -180,7 +194,7 @@ $font_logo: 'Kaushan Script', cursive;
 .front {
   border: $primary 2px solid;
   border-radius: 7px;
-  animation: deployedFrontLarge 3s ease both;
+  animation: deployedFrontLarge 2s ease both;
   position: relative;
   &-color {
     position: absolute;

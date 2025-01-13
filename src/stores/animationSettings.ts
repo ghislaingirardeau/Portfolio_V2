@@ -8,12 +8,14 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const headerMounted = ref(false)
   const footerMounted = ref(false)
   const pageMounted = ref(false)
-
   const layoutMounted = ref(false)
+
   const isRobotClickable = ref(false)
   const isRobotTap = ref(false)
   const isRobotTalk = ref(false)
   const isRobotFix = ref(false)
+
+  const isCubeSpining = ref(false)
 
   const ANIM_SHORT = ref(0.5)
   const ANIM_LONG = ref(1)
@@ -59,6 +61,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotFix,
     isRobotTalk,
     isRobotProcessing,
+    isCubeSpining,
     resetRobotAction,
     navigationRestartRobot,
     drawerMounted,

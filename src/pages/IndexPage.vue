@@ -4,7 +4,7 @@
 
     <LogoAEContainer />
 
-    <TheRobotContainer />
+    <TheRobotContainer @robot-action="robotAction" />
 
     <ChatMessageContainer
       :meTexts="tm('chatMessage.home.me')"
@@ -26,12 +26,15 @@ import { onMounted } from 'vue'
 const { t, tm } = useI18n()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { pageMounted, isCubeSpining } = storeToRefs(animationSettings)
 
 onMounted(() => {
   pageMounted.value = false
-  isRobotClickable.value = false
 })
+
+function robotAction() {
+  isCubeSpining.value = true
+}
 </script>
 
 <style scoped lang="scss"></style>
