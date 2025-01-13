@@ -34,7 +34,7 @@ const props = defineProps({
   },
   delay: {
     type: Number,
-    default: 1.3,
+    default: 0,
   },
 })
 
@@ -78,11 +78,15 @@ function tapAnimation() {
 }
 
 function swipeAnimation() {
-  tl.to(imageOverlayIcon.value.$el, {
+  tl.to(imageOverlay.value, {
     duration: 0.3,
-    rotate: 25,
-    x: 15,
+    opacity: 0.9,
   })
+    .to(imageOverlayIcon.value.$el, {
+      duration: 0.3,
+      rotate: 25,
+      x: 15,
+    })
     .to(imageOverlayIcon.value.$el, {
       duration: 0.3,
       rotate: -25,
@@ -92,9 +96,12 @@ function swipeAnimation() {
       duration: 0.3,
       rotate: 0,
       x: 0,
+      onComplete() {
+        animationSettings.resetRobotAction()
+      },
     })
     .to(imageOverlay.value, {
-      duration: 1,
+      duration: 0.5,
       opacity: 0,
     })
 }

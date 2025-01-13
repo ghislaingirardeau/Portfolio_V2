@@ -40,16 +40,16 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSwipe } from '@vueuse/core'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
-import AppImgOverlay from '../common/appImgOverlay.vue'
+import AppImgOverlay from '../common/AppImgOverlay.vue'
 
 const route = useRoute()
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotFix, isRobotTap } = storeToRefs(animationSettings)
 
 const meSlide = ref(0)
 const image = ref()
 const imageContainer = ref()
-const isFirstMount = ref(true)
+const isFirstMount = ref(false)
 
 const chatContainer = useTemplateRef('chatContainer')
 
@@ -98,16 +98,16 @@ watch(
   },
 )
 
-watch(
-  () => fixImage.value,
-  (newValue) => {
-    if (newValue) {
-      isRobotClickable.value = false
-    } else {
-      isRobotClickable.value = true
-    }
-  },
-)
+// watch(
+//   () => fixImage.value,
+//   (newValue) => {
+//     if (newValue) {
+//       isRobotClickable.value = false
+//     } else {
+//       isRobotClickable.value = true
+//     }
+//   },
+// )
 
 function nextSlide() {
   if (meSlide.value === slideNumber.value) {
@@ -136,6 +136,8 @@ function animationOnSlide(x: number, increase: boolean) {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       increase ? meSlide.value++ : meSlide.value--
       fixImage.value = false
+      isRobotClickable.value = true
+      isRobotFix.value = true
       isFirstMount.value = false
     },
   })
@@ -160,7 +162,18 @@ function animationOnSlide(x: number, increase: boolean) {
 }
 
 function robotAction() {
-  fixImage.value = !fixImage.value
+  if (isRobotFix.value) {
+    fixImage.value = true
+    isRobotTap.value = true
+    isRobotFix.value = false
+    return
+  }
+  if (isRobotTap.value) {
+    isFirstMount.value = true
+    isRobotTap.value = false
+    isRobotFix.value = false
+    return
+  }
 }
 
 function animationImage() {
@@ -168,12 +181,11 @@ function animationImage() {
   tl.to(image.value.$el, {
     duration,
     opacity: 0.9,
-    onComplete() {
-      fixImage.value = true
-    },
   })
   tl.call(() => {
     isRobotClickable.value = true
+    pageMounted.value = true
+    isRobotFix.value = true
   })
 }
 </script>

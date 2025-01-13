@@ -42,6 +42,14 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     }, 500)
   }
 
+  function navigationRestartRobot() {
+    isRobotClickable.value = false
+    isRobotProcessing.value = false
+    isRobotTap.value = false
+    isRobotTalk.value = false
+    isRobotFix.value = false
+  }
+
   return {
     ANIM_SHORT,
     ANIM_LONG,
@@ -52,6 +60,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotTalk,
     isRobotProcessing,
     resetRobotAction,
+    navigationRestartRobot,
     drawerMounted,
     robotMounted,
     headerMounted,
