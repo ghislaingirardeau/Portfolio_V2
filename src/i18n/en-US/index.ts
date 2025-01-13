@@ -249,7 +249,8 @@ export default {
         mobileFirst: true,
         summary: 'Mini game - Test-Driven-Development',
         visitorChat: 'What is Test-Driven-Development ?',
-        description: `
+        description: [
+          `
     It give priority to Test first for development using 3 steps.
     <ul>
     <li>- Red Lights: Write the test for the expected result </li>
@@ -258,6 +259,7 @@ export default {
     </ul>
     
     `,
+        ],
         tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
         imageURL: ['wordle2.png', 'wordle1.png'],
         link: 'https://wordle-game-gg-wev-dev.netlify.app/',
@@ -269,7 +271,12 @@ export default {
         mobileFirst: true,
         summary: 'Flashcard - Web App PWA',
         visitorChat: 'What is PWA ?',
-        description: `Like a website, a PWA can run on multiple platforms and devices from a single codebase. Like a platform-specific app, it can be installed on the device, can operate while offline and in the background, and can integrate with the device and with other installed apps`,
+        description: [
+          `Like a website, a PWA can run on multiple platforms and devices from a single codebase.`,
+          ` 
+          Like a platform-specific app, it can be installed on the device, can operate while offline and in the background, 
+          and can integrate with the device and with other installed apps`,
+        ],
         tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
         imageURL: [
           'carte_sample.png',
@@ -289,7 +296,12 @@ export default {
         visitorChat: 'What is PWA ?',
 
         mobileFirst: true,
-        description: `Like a website, a PWA can run on multiple platforms and devices from a single codebase. Like a platform-specific app, it can be installed on the device, can operate while offline and in the background, and can integrate with the device and with other installed apps`,
+        description: [
+          `Like a website, a PWA can run on multiple platforms and devices from a single codebase.`,
+          ` 
+          Like a platform-specific app, it can be installed on the device, can operate while offline and in the background, 
+          and can integrate with the device and with other installed apps`,
+        ],
 
         tech: 'Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel',
         imageURL: [

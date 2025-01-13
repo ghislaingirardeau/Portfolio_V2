@@ -287,13 +287,16 @@ export default {
         name: `Wordle Game`,
         summary: 'Mini jeu - Test-Driven-Development',
         mobileFirst: true,
-        description: `
-          Création du jeu en donnant la priorité au Test first grâce à 3 étapes. 
+        visitorChat: "Qu'est-ce que le développement piloté par les tests ?",
+        description: [
+          `
+           Il donne la priorité au test pour le développement en utilisant 3 étapes. 
           <ul>
             <li>Feux Rouge: Écrire le test du résultat attendu </li>
             <li>Feux Vert: Écrire le code pour que le test passe</li>
             <li>Refactoriser le code et le test.</li>
           </ul>`,
+        ],
         tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
         imageURL: ['wordle2.png', 'wordle1.png'],
         link: 'https://wordle-game-gg-wev-dev.netlify.app/',
@@ -304,13 +307,13 @@ export default {
         name: 'Mon Vocabulaire en carte',
         summary: 'Flashcard - Application web PWA',
         mobileFirst: true,
-        description: `
-          App permettant de traduire des mots ou expressions mais aussi de les organiser et archiver sous forme de carte. L'application permet de:
-          <ul>
-            <li>Réécouter 'mon vocabulaire' dans la langue choisie à différentes vitesses</li>
-            <li>Offre une aide à la prononciation pour certaine langue comme le Khmer.</li>
-            <li>Enregistrer le mot avec la voix ou le clavier</li>
-          </ul>`,
+        visitorChat: "Qu'est-ce qu'une PWA ?",
+        description: [
+          `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
+          ` 
+          Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
+          et peut s'intégrer à l'appareil et aux autres applications installées.`,
+        ],
         tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
         imageURL: [
           'carte_sample.png',
@@ -328,17 +331,13 @@ export default {
         name: 'Cartographie',
         summary: 'Outil de mapping - Application web PWA',
         mobileFirst: true,
-        description: `Développement d'un outil d'aide à la cartographie pour une chercheuse en sociologie. 
-            <ul>
-            <li>- Enregistrer une position</li>
-            <li>- Suivre ma position</li>
-            <li>- Possibilité d'ajouter des zones géographiques</li>
-            <li>- Large sélections de marqueurs parmis plus de 2500 icones</li>
-            <li>- Enregistrer et exporter les données</li>
-            <li>- Organiser les marqueurs dans des dossiers pour affichage dynamique</li>
-            <li>- Des données sauvegardées et sécurisées via Firebase</li>
-          </ul>
-          `,
+        visitorChat: "Qu'est-ce qu'une PWA ?",
+        description: [
+          `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
+          ` 
+          Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
+          et peut s'intégrer à l'appareil et aux autres applications installées.`,
+        ],
         tech: 'Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel',
         imageURL: [
           'mapping1.PNG',

@@ -57,12 +57,13 @@
     </q-card>
 
     <ChatMessageContainer
+      ref="chatContainer"
       v-if="expanded"
-      :delay-animation="0.5"
-      :meTexts="[findProject.description]"
+      :delay-animation="0.2"
+      :meTexts="[...findProject.description]"
       :visitor-texts="findProject.visitorChat"
     />
-    <TheRobotContainer @robot-action="expanded = !expanded" />
+    <TheRobotContainer @robot-action="robotAction" />
   </q-page>
 </template>
 
@@ -91,6 +92,8 @@ const slide = ref(0)
 const expanded = ref(false)
 
 const imageSkeleton = useTemplateRef('imageSkeleton')
+const chatContainer = useTemplateRef('chatContainer')
+
 const carousel = useTemplateRef('carousel')
 
 const cardOverline = ref<HTMLElement[]>([])
@@ -157,6 +160,20 @@ function animationImage() {
   tl.call(() => {
     pageMounted.value = true
   })
+}
+
+function robotAction() {
+  if (!expanded.value) {
+    expanded.value = !expanded.value
+  } else {
+    gsap.to(chatContainer.value!.$el, {
+      duration: 0.5,
+      opacity: 0,
+      onComplete() {
+        expanded.value = false
+      },
+    })
+  }
 }
 </script>
 

@@ -20,6 +20,7 @@
           )
         "
       >
+        <AppImgOverlay v-if="!typeDesktop && currentSlide === 0" :tap="true" />
         <div class="text-subtitle2 text-center" :class="imageTitleClass">
           {{
             typeDesktop ? projectsDesktop[currentSlide]!.name : projectsMobile[currentSlide]!.name
@@ -36,6 +37,7 @@ import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import AppImgOverlay from '../common/appImgOverlay.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 const router = useRouter()
