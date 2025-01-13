@@ -32,7 +32,8 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable, isCubeSpining } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isCubeSpining, presentationMounted, logoMounted } =
+  storeToRefs(animationSettings)
 
 const cubeRender = ref(0)
 const launchSpin = ref(false)
@@ -49,6 +50,7 @@ onMounted(() => {
 })
 
 function buildCubeAnimation() {
+  logoMounted.value = false
   const duration = 0.4
   const delay = 0.4
   gsap.from(back.value, { duration, opacity: 0, delay })
@@ -71,7 +73,10 @@ function buildCubeAnimation() {
     onComplete() {
       setTimeout(() => {
         pageMounted.value = true
-        isRobotClickable.value = true
+        logoMounted.value = true
+        if (presentationMounted.value) {
+          isRobotClickable.value = true
+        }
       }, 1000)
     },
   })

@@ -8,7 +8,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const headerMounted = ref(false)
   const footerMounted = ref(false)
   const pageMounted = ref(false)
-  const layoutMounted = ref(false)
+  const logoMounted = ref(false)
 
   const isRobotClickable = ref(false)
   const isRobotTap = ref(false)
@@ -55,7 +55,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   return {
     ANIM_SHORT,
     ANIM_LONG,
-    layoutMounted,
+    logoMounted,
     isRobotClickable,
     isRobotTap,
     isRobotFix,

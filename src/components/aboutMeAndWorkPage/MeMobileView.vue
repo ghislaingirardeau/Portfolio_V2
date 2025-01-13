@@ -19,6 +19,7 @@
     </div>
 
     <TheRobotContainer @robot-action="robotAction" />
+
     <ChatMessageContainer
       ref="chatContainer"
       :key="'chatContainer' + meSlide"
