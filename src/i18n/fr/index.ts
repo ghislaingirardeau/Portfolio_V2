@@ -18,7 +18,7 @@ export default {
       visitor: 'Why this portfolio',
       me: [
         'Pour montrer ce qui se cache derrière mon CV et mieux me connaitre',
-        "Tu trouveras d'autres informations sur le lien ci-dessous",
+        "Tu trouveras d'autres informations sur les liens ci-dessous",
       ],
     },
     projectMobile: {
@@ -87,7 +87,7 @@ export default {
         ],
       },
       0: {
-        title: 'Où vis-tu ?',
+        title: "Peux tu m'en dire plus sur toi ?",
         description: [
           `Pour le moment je vis entre l'Asie du Sud Est et la France (5/6 mois dans chaque pays) pour 
           suivre ma compagne qui est chercheuse en anthropologie auprès des communautés autochtones. 

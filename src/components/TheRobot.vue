@@ -1,12 +1,6 @@
 <template>
   <div>
-    <q-icon
-      :name="iconType"
-      color="primary"
-      size="lg"
-      class="fixed lightbulb z-50"
-      ref="lightbulb"
-    ></q-icon>
+    <TheRobotIdea />
     <div class="fixed eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
       <div
         class="eye fixed grad"
@@ -76,21 +70,19 @@
 
 <script setup lang="ts">
 import { useMouse, useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
-import { mdiLightbulbOnOutline, mdiChat, mdiImageBroken } from '@quasar/extras/mdi-v7'
+import TheRobotIdea from './TheRobotIdea.vue'
 
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
-const lightbulb = useTemplateRef('lightbulb')
 const animationSettings = useAnimationSettings()
-const { isAnimationDone, robotMounted, isRobotClickable, isRobotTalk, isRobotFix } =
-  storeToRefs(animationSettings)
+const { isAnimationDone, robotMounted, isRobotClickable } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
 
@@ -100,17 +92,6 @@ const windowScroll = useWindowScroll()
 
 const viewSizeX = computed(() => {
   return width.value / 12
-})
-
-const iconType = computed(() => {
-  if (isRobotTalk.value) {
-    return mdiChat
-  }
-  if (isRobotFix.value) {
-    return mdiImageBroken
-  } else {
-    return mdiLightbulbOnOutline
-  }
 })
 
 const viewSizeY = computed(() => {
@@ -139,26 +120,6 @@ const colored = computed(() => {
 onMounted(() => {
   robotMounted.value = true
 })
-
-watch(
-  () => isRobotClickable.value,
-  (newValue) => {
-    const duration = 0.5
-    if (newValue) {
-      gsap.to(lightbulb.value!.$el, {
-        duration,
-        y: -10,
-        opacity: 1,
-      })
-    } else {
-      gsap.to(lightbulb.value!.$el, {
-        duration,
-        y: 0,
-        opacity: 0,
-      })
-    }
-  },
-)
 </script>
 
 <style scoped>
@@ -182,11 +143,7 @@ watch(
   bottom: 101px;
   right: 50px;
 }
-.lightbulb {
-  bottom: 135px;
-  right: 45px;
-  opacity: 0;
-}
+
 .grad {
   background: rgb(255, 255, 255);
   background: radial-gradient(
