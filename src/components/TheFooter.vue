@@ -1,5 +1,5 @@
 <template>
-  <q-footer elevated ref="footer" class="opacity-0 h-0 bg-grey-8 text-white">
+  <q-footer elevated ref="footer" class="opacity-0 h-0 bg-dark text-white">
     <q-toolbar>
       <q-space />
 

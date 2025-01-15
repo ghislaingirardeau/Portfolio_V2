@@ -17,8 +17,10 @@ import { onMounted, ref, useTemplateRef } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { Dark } from 'quasar'
-
 import { storeToRefs } from 'pinia'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, headerMounted, isAnimationDone, isCubeSpining } = storeToRefs(animationSettings)
@@ -35,7 +37,9 @@ function handleMode() {
   if (isAnimationDone.value) {
     Dark.toggle()
     isCubeSpining.value = true
-    animationSettings.resetRobotAction()
+    if (route.name === 'home') {
+      animationSettings.resetRobotAction()
+    }
   } else {
     dark.value = Dark.mode as boolean
   }

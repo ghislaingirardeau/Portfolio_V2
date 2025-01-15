@@ -114,7 +114,7 @@ const moveEyes = computed(() => {
 })
 
 const colored = computed(() => {
-  return $q.dark.isActive ? 'white' : 'grey'
+  return $q.dark.isActive ? 'white' : '#4e4e4e'
 })
 
 onMounted(() => {

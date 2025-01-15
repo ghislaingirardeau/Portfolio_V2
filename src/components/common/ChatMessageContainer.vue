@@ -50,18 +50,16 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['someEvent'])
-
 const chatColor = computed(() => {
   return $q.dark.mode ? 'dark' : 'white'
 })
 
 const chatBg = computed(() => {
-  return $q.dark.mode ? 'white' : 'primary'
+  return $q.dark.mode ? 'white' : 'dark'
 })
 
 const chatReceivedBg = computed(() => {
-  return $q.dark.mode ? 'dark' : 'secondary'
+  return $q.dark.mode ? 'dark' : 'shadow'
 })
 
 const chatReceivedColor = computed(() => {
