@@ -11,7 +11,6 @@ const routes: RouteRecordRaw[] = [
         name: 'project',
         component: () => import('pages/ProjectsPage.vue'),
       },
-      { path: '/service', name: 'service', component: () => import('pages/ServicePage.vue') },
       { path: '/aboutMe', name: 'aboutMe', component: () => import('pages/AboutMePage.vue') },
       { path: '/aboutWork', name: 'aboutWork', component: () => import('pages/AboutWorkPage.vue') },
 
