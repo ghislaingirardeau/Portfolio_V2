@@ -11,7 +11,7 @@
         alt="photo de Ghislain montagne"
         fit="contain"
         class="rounded-borders opacity-0 w-10/12 lg:w-2/5 img-square"
-        width="100%"
+        :width="imageWidth"
         :class="{ 'img-square-done': fixImage }"
       >
         <AppImgOverlay v-if="isFirstMount" />
@@ -78,6 +78,10 @@ const imageToDisplay = computed(() => {
   return route.name === 'aboutMe'
     ? 'images/aboutPage/' + tm(`about.personal.imageURL`)[meSlide.value]
     : 'images/aboutPage/' + tm(`about.professionaly.imageURL`)[meSlide.value]
+})
+
+const imageWidth = computed(() => {
+  return useIsMobileTall() ? '100%' : '80%'
 })
 
 const slideNumber = computed(() => {

@@ -117,7 +117,7 @@ export default {
           to choose the most appropriate option. 
           `,
           `I limit myself to working on a maximum of 2 projects at the same time, with dedicated time for each.`,
-          `I explain the technical choices simply and in particular the advantages that this can offer.`,
+          `I explain the technical choices simply and in particular their advantages`,
         ],
       },
       2: {
@@ -202,7 +202,7 @@ export default {
       imageURL: ['moi2.jpg', 'moi.jpg', 'moi3.jpg'],
     },
     professionaly: {
-      imageURL: ['coworker.png', 'team.png', 'wellness.png'],
+      imageURL: ['work1.png', 'work2.png', 'work3.jpg'],
     },
   },
   services: {

@@ -116,7 +116,7 @@ export default {
           mes points de vue pour choisir l'option la plus adaptée. 
           `,
           `Je me limite à travailler sur maximum 2 projets en même temps avec pour chacun, un temps dédié`,
-          `J'explique les choix techniques simplement et notamment les avantages que cela peut offrir.`,
+          `J'explique les choix techniques et leurs avantages`,
         ],
       },
       2: {
@@ -218,7 +218,7 @@ export default {
       imageURL: ['moi2.jpg', 'moi.jpg', 'moi3.jpg'],
     },
     professionaly: {
-      imageURL: ['coworker.png', 'team.png', 'wellness.png'],
+      imageURL: ['work1.png', 'work2.png', 'work3.jpg'],
     },
   },
   services: {
