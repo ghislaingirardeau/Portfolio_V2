@@ -42,7 +42,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const { tm } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSettings)
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
@@ -83,6 +83,8 @@ const props = defineProps({
 })
 
 onMounted(() => {
+  animationSettings.navigationRestartRobot()
+  isRobotTalk.value = true
   pageMounted.value = false
   animationSlide()
   animationSlideButtons()
