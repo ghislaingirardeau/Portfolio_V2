@@ -1,5 +1,9 @@
 <template>
-  <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+  <transition
+    appear
+    enter-active-class="animated fadeIn slow"
+    leave-active-class="animated fadeOut slow"
+  >
     <TheRobot v-if="presentationMounted || headerMounted" @click="emit('robotAction')" />
     <!-- <WireCode
       content="&lt;svg&gt;Un chat bot&lt;/svg&gt;"
