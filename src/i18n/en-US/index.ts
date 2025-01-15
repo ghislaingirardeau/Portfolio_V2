@@ -247,7 +247,7 @@ export default {
         date: 'march 2024 - Today',
         name: `Wordle Game`,
         mobileFirst: true,
-        summary: 'Mini game - Test-Driven-Development',
+        summary: 'Test-Driven-Development',
         visitorChat: 'What is Test-Driven-Development ?',
         description: [
           `
@@ -269,7 +269,7 @@ export default {
         date: 'juin 2023',
         name: 'Vocabulary Cards',
         mobileFirst: true,
-        summary: 'Flashcard - Web App PWA',
+        summary: 'Web App PWA',
         visitorChat: 'What is PWA ?',
         description: [
           `Like a website, a PWA can run on multiple platforms and devices from a single codebase.`,
@@ -291,8 +291,8 @@ export default {
       {
         id: '8',
         date: 'january 2022',
-        name: 'Cartography',
-        summary: 'Mapping Tool - Web App PWA',
+        name: 'Mapping Tool ',
+        summary: 'Web App PWA',
         visitorChat: 'What is PWA ?',
 
         mobileFirst: true,
