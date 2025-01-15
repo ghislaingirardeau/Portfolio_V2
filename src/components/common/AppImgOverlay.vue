@@ -1,5 +1,9 @@
 <template>
-  <div ref="imageOverlay" class="w-full h-full bg-gray-5 opacity-0 flex flex-center">
+  <div
+    ref="imageOverlay"
+    class="w-full h-full opacity-0 flex flex-center"
+    style="background-color: #121212"
+  >
     <q-icon
       v-if="tap"
       ref="imageOverlayIcon"
@@ -56,7 +60,7 @@ onMounted(() => {
 function tapAnimation() {
   tl.to(imageOverlay.value, {
     duration: 0.3,
-    opacity: 0.9,
+    opacity: 0.6,
   })
     .to(imageOverlayIcon.value.$el, {
       duration: 0.3,
@@ -82,7 +86,7 @@ function tapAnimation() {
 function swipeAnimation() {
   tl.to(imageOverlay.value, {
     duration: 0.3,
-    opacity: 0.9,
+    opacity: 0.6,
   })
     .to(imageOverlayIcon.value.$el, {
       duration: 0.3,

@@ -17,7 +17,12 @@
 
     <q-separator />
 
-    <q-tab-panels v-model="tab" animated class="tab_panel_container flex flex-center">
+    <q-tab-panels
+      v-model="tab"
+      animated
+      class="tab_panel_container flex flex-center"
+      :class="{ tab_panel_dark: $q.dark.mode }"
+    >
       <component
         :is="MobileCarouselProjects"
         v-model:currentSlide="currentSlide"
@@ -117,7 +122,10 @@ function robotAction() {
 <style scoped lang="scss">
 .tab_panel_container {
   min-height: calc(100vh - 350px);
-  background: rgb(255, 255, 255, 0);
+}
+
+.tab_panel_dark {
+  background: #121212;
 }
 .my-card {
   width: 100%;

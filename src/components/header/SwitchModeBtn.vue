@@ -23,7 +23,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, headerMounted, isAnimationDone, isCubeSpining } = storeToRefs(animationSettings)
+const { ANIM_SHORT, headerMounted, isAnimationDone } = storeToRefs(animationSettings)
 
 const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,7 +36,6 @@ onMounted(() => {
 function handleMode() {
   if (isAnimationDone.value) {
     Dark.toggle()
-    isCubeSpining.value = true
     if (route.name === 'home') {
       animationSettings.resetRobotAction()
     }

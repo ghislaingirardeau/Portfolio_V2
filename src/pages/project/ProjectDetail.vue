@@ -1,14 +1,12 @@
 <template>
   <q-page class="q-pa-lg" ref="el">
-    <q-btn
-      ref="backButton"
-      :icon="mdiKeyboardReturn"
-      round
-      color="secondary"
-      class="absolute z-10 top-2 left-2 opacity-0 scale-0"
-      @click="router.go(-1)"
-    ></q-btn>
-    <q-card class="my-card text-center flex flex-center" flat bordered>
+    <AppBackBtn ref="backButton" />
+    <q-card
+      class="my-card text-center flex flex-center"
+      flat
+      bordered
+      :class="{ 'my-card-dark': $q.dark.mode }"
+    >
       <q-card-section class="my-card-title">
         <div ref="cardOverline" class="text-overline text-grey opacity-50"></div>
         <div ref="cardTitle" class="text-h5 q-mt-sm q-mb-xs opacity-20 scale-50"></div>
@@ -31,6 +29,7 @@
         infinite
         :height="imageHeight"
         class="px-2 opacity-0 scale-75 carousel"
+        :class="{ 'my-card-dark': $q.dark.mode }"
       >
         <q-carousel-slide
           v-for="(image, index) in findProject.imageURL"
@@ -44,7 +43,7 @@
         <q-btn
           v-if="findProject.link"
           flat
-          color="secondary"
+          :color="$q.dark.mode ? 'dark-primary' : 'primary'"
           :label="$t('cta.link')"
           @click="goToExternalLink(findProject.link)"
         />
@@ -64,20 +63,22 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type { Project } from 'src/types/index'
 import { gsap } from 'src/boot/gsap'
-import { mdiKeyboardReturn } from '@quasar/extras/mdi-v7'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
+import { useQuasar } from 'quasar'
+import AppBackBtn from 'src/components/common/AppBackBtn.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)
 const route = useRoute()
-const router = useRouter()
+
+const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
 const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
@@ -204,11 +205,15 @@ function robotAction() {
 .my-card-title {
   height: 150px;
 }
+
+.my-card-dark {
+  background: #121212;
+}
 .carousel {
   width: 270px;
 }
 .q-carousel__slide {
-  border-radius: 10px;
+  border-radius: 5px;
   background-size: 270px 450px;
 }
 </style>

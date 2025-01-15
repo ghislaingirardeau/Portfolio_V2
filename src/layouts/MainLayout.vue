@@ -49,7 +49,5 @@ watch(
 // block click on is animating
 // stack menu + page dedié
 // un fond ecran spé desktop + mobile avec anim (les techs en fond écran ?)
-// fix les locales
-// fix les couleurs
 // quasar tag html
 </script>
