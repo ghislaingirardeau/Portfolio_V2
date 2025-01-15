@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg">
+  <q-page class="q-pa-lg" :key="locale">
     <div
       ref="imageContainer"
       class="w-full flex flex-center relative"
@@ -60,7 +60,7 @@ const { direction } = useSwipe(imageContainer)
 
 const tl = gsap.timeline()
 
-const { tm } = useI18n({ useScope: 'global' })
+const { tm, locale } = useI18n({ useScope: 'global' })
 
 const chatTexts = computed(() => {
   return route.name === 'aboutMe'
@@ -102,6 +102,13 @@ watch(
     }
   },
 )
+
+watch(locale, (newValue) => {
+  console.log(newValue, 'load img')
+  setTimeout(() => {
+    animationImage()
+  }, 200)
+})
 
 // watch(
 //   () => fixImage.value,

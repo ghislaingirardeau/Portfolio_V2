@@ -7,6 +7,7 @@
     <TheRobotContainer @robot-action="robotAction" />
 
     <ChatMessageContainer
+      :key="locale"
       :meTexts="tm('chatMessage.home.me')"
       :visitor-texts="t('chatMessage.home.visitor')"
     />
@@ -23,7 +24,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 
-const { t, tm } = useI18n()
+const { t, tm, locale } = useI18n()
 
 const animationSettings = useAnimationSettings()
 const { pageMounted, isCubeSpining } = storeToRefs(animationSettings)

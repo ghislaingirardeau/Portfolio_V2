@@ -43,6 +43,7 @@ function switchLang() {
   } else {
     locale.value = 'en-US'
   }
+  animationSettings.resetRobotAction()
 }
 </script>
 

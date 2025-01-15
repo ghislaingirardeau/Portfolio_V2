@@ -15,7 +15,7 @@ export default {
   },
   chatMessage: {
     home: {
-      visitor: 'Why this portfolio',
+      visitor: 'Pourquoi ce portfolio ?',
       me: [
         'Pour montrer ce qui se cache derrière mon CV et mieux me connaitre',
         "Tu trouveras d'autres informations sur les liens ci-dessous",
