@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg column relative z-0">
+  <q-page class="q-pa-lg column relative z-0" :key="locale + $q.dark.mode">
     <ThePresentation class="z-20" />
 
     <LogoAEContainer />
@@ -7,7 +7,6 @@
     <TheRobotContainer @robot-action="robotAction" />
 
     <ChatMessageContainer
-      :key="locale"
       :meTexts="tm('chatMessage.home.me')"
       :visitor-texts="t('chatMessage.home.visitor')"
     />
@@ -23,11 +22,14 @@ import { useI18n } from 'vue-i18n'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
+import { useQuasar } from 'quasar'
 
 const { t, tm, locale } = useI18n()
 
 const animationSettings = useAnimationSettings()
 const { pageMounted, isCubeSpining } = storeToRefs(animationSettings)
+
+const $q = useQuasar()
 
 onMounted(() => {
   pageMounted.value = false
