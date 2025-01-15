@@ -12,11 +12,6 @@
         <div
           v-for="(text, index) in props.meTexts"
           :key="'text-' + index"
-          @click="handleChatMessageAction(index)"
-          :class="{
-            'italic underline cursor-pointer': isLastChatClickable(index),
-            width,
-          }"
           :style="{ 'font-size': useIsMobileTall() ? '1rem' : '0.8rem' }"
         >
           <span v-html="text"></span>
@@ -73,10 +68,6 @@ const chatReceivedColor = computed(() => {
   return $q.dark.mode ? 'white' : 'dark'
 })
 
-function isLastChatClickable(index: number) {
-  return props.meTexts.length - 1 === index && props.hasEmitEvent
-}
-
 function textMessageAnimation() {
   const duration = 1
 
@@ -118,12 +109,6 @@ watch(pageMounted, (newValue) => {
     textMessageAnimation()
   }
 })
-
-function handleChatMessageAction(index: number) {
-  if (props.meTexts.length - 1 === index) {
-    emit('someEvent')
-  }
-}
 </script>
 
 <style lang="scss">
