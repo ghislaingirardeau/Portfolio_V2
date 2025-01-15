@@ -1,5 +1,5 @@
 <template>
-  <projectMobileView v-if="useIsMobile()" />
+  <projectMobileView v-if="useIsMobile()" :key="locale" />
 
   <projectDesktopView v-else />
 </template>
@@ -11,9 +11,12 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 import projectDesktopView from 'src/components/projectPage/projectDesktopView.vue'
+import { useI18n } from 'vue-i18n'
 
 const animationSettings = useAnimationSettings()
 const { presentationMounted, pageMounted } = storeToRefs(animationSettings)
+
+const { locale } = useI18n()
 
 onMounted(() => {
   if (!presentationMounted.value) {

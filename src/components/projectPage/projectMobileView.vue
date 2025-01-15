@@ -11,8 +11,8 @@
       narrow-indicator
       @update:model-value="resetCarousel"
     >
-      <q-tab name="mobile" ref="menuTab" :label="'Mobile first'" />
-      <q-tab name="desktop" :label="'desktop'" />
+      <q-tab name="mobile" ref="menuTab" :label="'Mobile First'" />
+      <q-tab name="desktop" :label="'Desktop Web'" />
     </q-tabs>
 
     <q-separator />
