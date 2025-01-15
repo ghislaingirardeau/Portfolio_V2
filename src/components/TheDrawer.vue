@@ -5,21 +5,28 @@
     side="left"
     :behavior="useDeviceOrientation()"
     bordered
+    :class="$q.dark.mode ? 'bg-dark' : 'bg-white'"
     :width="250"
     @show.once="handleShowMenu"
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
-        <q-item exact :to="menuItem.to" active-class="text-primary" class="q-py-lg">
+        <q-item
+          exact
+          :to="menuItem.to"
+          :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-primary'"
+          class="q-py-lg"
+        >
           <q-item-section avatar>
             <q-icon
               :ref="menuIcon.set"
               class="opacity-0 rotate-90"
               size="lg"
+              :color="iconColor(menuItem.to.name)"
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section :ref="menuLabel.set" class="text-h6 menu_section_label">
+          <q-item-section :ref="menuLabel.set" class="text-h6">
             <WireCode content="&lt;li&gt;Menu&lt;/li&gt;" />
           </q-item-section>
         </q-item>
@@ -43,11 +50,15 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import WireCode from './common/WireCode.vue'
 import { useDeviceOrientation, useIsMobile } from 'src/utils/useDeviceInfo'
+import { useQuasar } from 'quasar'
+import { useRoute } from 'vue-router'
 
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, drawerMounted } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
+const route = useRoute()
+const $q = useQuasar()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const menuLabel = useTemplateRefsList<any>()
@@ -87,6 +98,15 @@ const menuList = computed(() => [
   },
 ])
 
+function iconColor(currentRoute: string) {
+  console.log(route.name, currentRoute)
+  if (currentRoute === route.name) {
+    return $q.dark.mode ? 'dark-primary' : 'primary'
+  } else {
+    return $q.dark.mode ? 'white' : 'dark'
+  }
+}
+
 function handleShowMenu() {
   handleMenuAnimation(useIsMobile() ? 0 : 3, true)
 }
@@ -110,7 +130,7 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
     const elementTarget = menuLabel.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
       duration: ANIM_SHORT.value,
-      text: { value: el.label },
+      text: { value: el.label, newClass: `text-h6 ${$q.dark.mode ? 'white' : 'dark'}` },
       ease: 'none',
     })
   })
