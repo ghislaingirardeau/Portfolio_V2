@@ -1,30 +1,25 @@
 <template>
   <q-page class="q-pa-lg" ref="el">
     <q-btn
+      ref="backButton"
       :icon="mdiKeyboardReturn"
       round
       color="secondary"
-      class="absolute z-10 top-2 left-2"
+      class="absolute z-10 top-2 left-2 opacity-0 scale-0"
       @click="router.go(-1)"
     ></q-btn>
-    <q-card class="my-card text-center" flat bordered>
-      <q-card-section>
-        <div ref="cardOverline" class="text-overline text-grey opacity-50">
-          &lt;div&gt;Project name&lt;/div&gt;
-        </div>
-        <div ref="cardTitle" class="text-h5 q-mt-sm q-mb-xs opacity-20 scale-50">
-          &lt;h1&gt;summary&lt;/h1&gt;
-        </div>
-        <div ref="cardCaption" class="text-caption text-grey my-1 opacity-50">
-          &lt;div&gt;Project tech&lt;/div&gt;
-        </div>
+    <q-card class="my-card text-center flex flex-center" flat bordered>
+      <q-card-section class="my-card-title">
+        <div ref="cardOverline" class="text-overline text-grey opacity-50"></div>
+        <div ref="cardTitle" class="text-h5 q-mt-sm q-mb-xs opacity-20 scale-50"></div>
+        <div ref="cardCaption" class="text-caption text-grey my-1 opacity-50"></div>
       </q-card-section>
-      <WireCode
+      <!-- <WireCode
         ref="imageSkeleton"
         content="&lt;img&gt;Image Project selected&lt;/img&gt;"
-        class="flex flex-center w-full border-2 border-solid border-gray-300 bg-grey-3 absolute"
+        class="flex flex-center w-5/6 border-2 border-solid border-gray-300 bg-grey-3"
         :style="{ height: imageHeight }"
-      />
+      /> -->
       <q-carousel
         ref="carousel"
         swipeable
@@ -35,7 +30,7 @@
         transition-next="jump-left"
         infinite
         :height="imageHeight"
-        class="px-2 opacity-0"
+        class="px-2 opacity-0 scale-75 carousel"
       >
         <q-carousel-slide
           v-for="(image, index) in findProject.imageURL"
@@ -45,7 +40,7 @@
         />
       </q-carousel>
 
-      <q-card-actions>
+      <q-card-actions class="w-full opacity-0 scale-0" ref="action">
         <q-btn
           v-if="findProject.link"
           flat
@@ -91,10 +86,11 @@ const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
 const slide = ref(0)
 const expanded = ref(false)
 
-const imageSkeleton = useTemplateRef('imageSkeleton')
+const action = useTemplateRef('action')
 const chatContainer = useTemplateRef('chatContainer')
 
 const carousel = useTemplateRef('carousel')
+const backButton = useTemplateRef('backButton')
 
 const cardOverline = ref<HTMLElement[]>([])
 const cardTitle = ref<HTMLElement[]>([])
@@ -111,7 +107,7 @@ const findProject = computed(() => {
 })
 
 const imageHeight = computed(() => {
-  return findProject.value.mobileFirst ? '550px' : '300px'
+  return findProject.value.mobileFirst ? '450px' : '300px'
 })
 
 onMounted(() => {
@@ -125,38 +121,64 @@ function goToExternalLink(link: string) {
 }
 
 function animationCardTitle() {
+  const duration = 0.8
   tl.to(cardOverline.value, {
-    duration: 1,
+    duration,
     opacity: 1,
 
     text: { value: findProject.value.name, newClass: 'text-orange-9' },
-    ease: 'none',
+    ease: 'ease',
   })
-    .to(cardTitle.value, {
-      duration: 1,
-      opacity: 1,
-      scale: 1,
-      text: { value: findProject.value.summary },
-      ease: 'none',
-    })
-    .to(cardCaption.value, {
-      duration: 1,
-      opacity: 1,
+    .to(
+      cardTitle.value,
+      {
+        duration,
+        opacity: 1,
+        scale: 1,
+        text: { value: findProject.value.summary },
+        ease: 'ease',
+      },
+      '<',
+    )
+    .to(
+      cardCaption.value,
+      {
+        duration,
+        opacity: 1,
 
-      text: { value: findProject.value.tech },
-      ease: 'none',
-    })
+        text: { value: findProject.value.tech },
+        ease: 'ease',
+      },
+      '<',
+    )
 }
 
 function animationImage() {
-  tl.to(imageSkeleton.value!.$el, {
-    duration: 0.3,
-    opacity: 0,
-  }).to(carousel.value!.$el, {
+  tl.to(carousel.value!.$el, {
     duration: 0.5,
-    delay: 0.3,
     opacity: 1,
+    scale: 1,
+    ease: 'hop',
   })
+    .to(
+      action.value!.$el,
+      {
+        duration: 0.5,
+        opacity: 1,
+        scale: 1,
+      },
+      '<',
+    )
+    .to(
+      backButton.value!.$el,
+      {
+        duration: 0.5,
+        opacity: 1,
+        scale: 1,
+        ease: 'hop',
+      },
+      '<',
+    )
   tl.call(() => {
     pageMounted.value = true
     isRobotClickable.value = true
@@ -180,7 +202,14 @@ function robotAction() {
 </script>
 
 <style scoped lang="scss">
+.my-card-title {
+  height: 150px;
+}
+.carousel {
+  width: 270px;
+}
 .q-carousel__slide {
   border-radius: 10px;
+  background-size: 270px 450px;
 }
 </style>

@@ -46,8 +46,6 @@ watch(
 )
 
 //TODO:
-// menu: moi + engagement => mes bases de pages avec une image pour chaque topic de discussion
-// menu moi + eng : possibilité de swipe pour passer les topics et images
 // block click on is animating
 // stack menu + page dedié
 // un fond ecran spé desktop + mobile avec anim (les techs en fond écran ?)

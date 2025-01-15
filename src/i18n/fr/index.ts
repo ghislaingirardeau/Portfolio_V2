@@ -262,7 +262,7 @@ export default {
         id: '13',
         date: "mars 2024 - Aujourd'hui",
         name: `Wordle Game`,
-        summary: 'Mini jeu - Test-Driven-Development',
+        summary: 'Test-Driven-Development',
         mobileFirst: true,
         visitorChat: "Qu'est-ce que le développement piloté par les tests ?",
         description: [
@@ -282,7 +282,7 @@ export default {
         id: '12',
         date: 'juin 2023',
         name: 'Mon Vocabulaire en carte',
-        summary: 'Flashcard - Application web PWA',
+        summary: 'Application web PWA',
         mobileFirst: true,
         visitorChat: "Qu'est-ce qu'une PWA ?",
         description: [
@@ -305,8 +305,8 @@ export default {
       {
         id: '8',
         date: 'janvier 2022',
-        name: 'Cartographie',
-        summary: 'Outil de mapping - Application web PWA',
+        name: 'Outil de cartographie',
+        summary: 'Application web PWA',
         mobileFirst: true,
         visitorChat: "Qu'est-ce qu'une PWA ?",
         description: [

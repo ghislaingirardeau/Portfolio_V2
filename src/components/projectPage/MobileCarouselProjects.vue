@@ -6,21 +6,13 @@
         round
         size="sm"
         @click="previousSlide"
-        :label="skeletonButtonLabel"
-        :color="skeletonButtonColor"
-        :icon="skeletonButtonIconLeft"
-        class="z-10"
+        color="secondary"
+        icon="chevron_left"
+        class="z-10 opacity-0 scale-0"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
       <div class="relative" :class="slideContainerClass">
-        <WireCode
-          ref="carouselSlideSkeleton"
-          v-show="isFirstMounted"
-          content=""
-          class="flex flex-center mt-10 w-44 h-64 border-2 border-solid border-gray-300 bg-grey-3 absolute"
-        />
-
-        <div ref="carouselSlide" class="opacity-0">
+        <div ref="carouselSlide" class="opacity-0 scale-75">
           <CarouselSlide :current-slide="currentSlide" :type-desktop="typeDesktop" />
         </div>
       </div>
@@ -29,11 +21,10 @@
         round
         size="sm"
         @click="nextSlide"
-        :label="skeletonButtonLabel"
-        :color="skeletonButtonColor"
-        :icon="skeletonButtonIconRight"
+        color="secondary"
+        icon="chevron_right"
         :class="{ 'absolute right-1 ': typeDesktop }"
-        class="z-10"
+        class="z-10 opacity-0 scale-0"
       />
     </div>
   </q-tab-panel>
@@ -41,11 +32,10 @@
 
 <script setup lang="ts">
 import { useSwipe } from '@vueuse/core'
-import { computed, onMounted, Ref, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
-import WireCode from '../common/WireCode.vue'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -60,14 +50,10 @@ const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: 
 const carousel = ref()
 const carouselPrevious = ref()
 const carouselNext = ref()
-const carouselSlideSkeleton = ref()
 const carouselSlide = ref()
+const tl = gsap.timeline({ delay: isFirstMounted.value ? 1 : 0 })
 
 const { direction } = useSwipe(carousel)
-const skeletonButtonLabel: Ref<string | undefined> = ref('')
-const skeletonButtonColor = ref('grey-4')
-const skeletonButtonIconLeft: Ref<string | undefined> = ref(undefined)
-const skeletonButtonIconRight: Ref<string | undefined> = ref(undefined)
 
 const slideNumber = computed(() => {
   return props.typeDesktop ? [...tm('projects.desktop')].length : [...tm('projects.mobile')].length
@@ -97,8 +83,9 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  animationSlideButtons()
+  pageMounted.value = false
   animationSlide()
+  animationSlideButtons()
 })
 
 watch(
@@ -127,67 +114,29 @@ function previousSlide() {
 }
 
 function animationSlide() {
-  const tl = gsap.timeline({ delay: isFirstMounted.value ? 0.8 : 0 })
-  tl.to(carouselSlideSkeleton.value.$el, {
-    duration: 0.3,
-    opacity: 0,
-  }).to(carouselSlide.value, {
+  tl.to(carouselSlide.value, {
     duration: 0.5,
-    delay: 0.3,
     opacity: 1,
+    scale: 1,
+    ease: 'hop',
   })
 }
 
 function animationSlideButtons() {
-  const firstAnimOptions = {
-    duration: 0.3,
-    opacity: 0,
-    scale: 0,
-    onComplete() {
-      designButton('chevron_left')
-    },
-  }
   const secondAnimOptions = {
     duration: 0.5,
     opacity: 0.7,
     scale: 1,
-    delay: 0.3,
     ease: 'hop',
     onComplete() {
       pageMounted.value = true
       isRobotClickable.value = true
+      isFirstMounted.value = false
     },
   }
-  const designButton = (direction: string) => {
-    skeletonButtonLabel.value = undefined
-    skeletonButtonColor.value = 'secondary'
-    if (direction.includes('right')) {
-      skeletonButtonIconRight.value = direction
-    } else {
-      skeletonButtonIconLeft.value = direction
-    }
-    isFirstMounted.value = false
-  }
-  /* Header tab anim 0.7s */
-  const tlPrev = gsap.timeline({ delay: isFirstMounted.value ? 0.8 : 0 })
-  const tlNext = gsap.timeline({ delay: isFirstMounted.value ? 0.8 : 0 })
 
-  tlPrev
-    .to(carouselPrevious.value.$el, {
-      ...firstAnimOptions,
-      onComplete() {
-        designButton('chevron_left')
-      },
-    })
-    .to(carouselPrevious.value.$el, secondAnimOptions)
-  tlNext
-    .to(carouselNext.value.$el, {
-      ...firstAnimOptions,
-      onComplete() {
-        designButton('chevron_right')
-      },
-    })
-    .to(carouselNext.value.$el, secondAnimOptions)
+  tl.to(carouselPrevious.value.$el, secondAnimOptions)
+  tl.to(carouselNext.value.$el, secondAnimOptions, '<')
 }
 </script>
 
