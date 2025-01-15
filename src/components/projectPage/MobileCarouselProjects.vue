@@ -6,7 +6,7 @@
         round
         size="sm"
         @click="previousSlide"
-        color="secondary"
+        :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_left"
         class="z-10 opacity-0 scale-0"
         :class="{ 'absolute left-1 ': typeDesktop }"
@@ -21,7 +21,7 @@
         round
         size="sm"
         @click="nextSlide"
-        color="secondary"
+        :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_right"
         :class="{ 'absolute right-1 ': typeDesktop }"
         class="z-10 opacity-0 scale-0"
@@ -39,10 +39,13 @@ import CarouselSlide from './carouselSlide.vue'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useQuasar } from 'quasar'
 
 const { tm } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
 const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSettings)
+
+const $q = useQuasar()
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })

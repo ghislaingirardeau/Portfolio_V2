@@ -34,10 +34,11 @@ onMounted(() => {
 function handleMode() {
   if (isAnimationDone.value) {
     Dark.toggle()
+    isCubeSpining.value = true
+    animationSettings.resetRobotAction()
   } else {
     dark.value = Dark.mode as boolean
   }
-  isCubeSpining.value = true
 }
 
 function animationAppear() {

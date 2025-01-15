@@ -5,8 +5,8 @@
       v-model="tab"
       dense
       class="text-grey h-0"
-      active-color="primary"
-      indicator-color="primary"
+      :active-color="$q.dark.mode ? 'dark-primary' : 'primary'"
+      :indicator-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       align="justify"
       narrow-indicator
       @update:model-value="resetCarousel"
@@ -41,6 +41,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
@@ -51,6 +52,8 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { tm, t } = useI18n({ useScope: 'global' })
+
+const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
 const { isRobotClickable, isRobotTap, isRobotTalk, isRobotProcessing } =
@@ -114,6 +117,7 @@ function robotAction() {
 <style scoped lang="scss">
 .tab_panel_container {
   min-height: calc(100vh - 350px);
+  background: rgb(255, 255, 255, 0);
 }
 .my-card {
   width: 100%;

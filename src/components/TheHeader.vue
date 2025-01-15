@@ -1,5 +1,5 @@
 <template>
-  <q-header elevated ref="header" class="opacity-0 h-0">
+  <q-header elevated ref="header" class="opacity-0 h-0" :class="headerColor">
     <q-toolbar>
       <transition
         v-if="useIsMobile()"
@@ -30,7 +30,7 @@
 const leftDrawerOpen = defineModel('leftDrawerOpen')
 import SwitchLangBtn from './header/SwitchLangBtn.vue'
 import SwitchModeBtn from './header/SwitchModeBtn.vue'
-import { useTemplateRef, onMounted } from 'vue'
+import { useTemplateRef, onMounted, computed } from 'vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { gsap } from 'src/boot/gsap'
 
@@ -38,13 +38,20 @@ import { storeToRefs } from 'pinia'
 import { mdiClose, mdiMenu } from '@quasar/extras/mdi-v7'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 
 const animationSettings = useAnimationSettings()
 const { ANIM_LONG, headerMounted } = storeToRefs(animationSettings)
 
+const $q = useQuasar()
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
 const router = useRouter()
+
+const headerColor = computed(() => {
+  return $q.dark.mode ? 'bg-dark-primary text-dark' : 'bg-primary'
+})
 
 function headerAnimation() {
   const elementTarget = header.value?.$el as HTMLDivElement

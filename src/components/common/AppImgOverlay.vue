@@ -42,7 +42,7 @@ const imageOverlayIcon = ref()
 const tl = gsap.timeline()
 
 const chatBg = computed(() => {
-  return $q.dark.mode ? 'white' : 'primary'
+  return $q.dark.mode ? 'dark-primary' : 'primary'
 })
 
 onMounted(() => {
