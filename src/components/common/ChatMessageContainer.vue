@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="fixed bottom-24 right-24 ml-3">
-      <q-chat-message v-if="visitorTexts" ref="receivedMessage" :text="[visitorTexts]" />
-      <q-chat-message sent name="Me" text-color="white" bg-color="blue" ref="sentMessages">
+      <q-chat-message
+        v-if="visitorTexts"
+        ref="receivedMessage"
+        :bg-color="chatReceivedBg"
+        :text-color="chatReceivedColor"
+        :text="[visitorTexts]"
+      />
+      <q-chat-message sent name="Me" :text-color="chatColor" :bg-color="chatBg" ref="sentMessages">
         <div
           v-for="(text, index) in props.meTexts"
           :key="'text-' + index"
@@ -22,11 +28,14 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
-import { onMounted, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, useTemplateRef, watch } from 'vue'
+
 const animationSettings = useAnimationSettings()
+const $q = useQuasar()
 
 const { pageMounted } = storeToRefs(animationSettings)
 
@@ -46,11 +55,27 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['someEvent'])
+
+const chatColor = computed(() => {
+  return $q.dark.mode ? 'dark' : 'white'
+})
+
+const chatBg = computed(() => {
+  return $q.dark.mode ? 'white' : 'primary'
+})
+
+const chatReceivedBg = computed(() => {
+  return $q.dark.mode ? 'dark' : 'secondary'
+})
+
+const chatReceivedColor = computed(() => {
+  return $q.dark.mode ? 'white' : 'dark'
+})
+
 function isLastChatClickable(index: number) {
   return props.meTexts.length - 1 === index && props.hasEmitEvent
 }
-
-const emit = defineEmits(['someEvent'])
 
 function textMessageAnimation() {
   const duration = 1

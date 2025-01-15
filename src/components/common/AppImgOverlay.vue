@@ -4,7 +4,7 @@
       v-if="tap"
       ref="imageOverlayIcon"
       :name="mdiGestureTap"
-      color="primary"
+      :color="chatBg"
       size="xl"
       class=""
     ></q-icon>
@@ -12,7 +12,7 @@
       v-else
       ref="imageOverlayIcon"
       :name="mdiGestureSwipe"
-      color="primary"
+      :color="chatBg"
       size="xl"
       class=""
     ></q-icon>
@@ -21,27 +21,29 @@
 
 <script setup lang="ts">
 import { mdiGestureSwipe, mdiGestureTap } from '@quasar/extras/mdi-v7'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useQuasar } from 'quasar'
 
 const animationSettings = useAnimationSettings()
+const $q = useQuasar()
 
 const props = defineProps({
   tap: {
     type: Boolean,
     default: false,
   },
-  delay: {
-    type: Number,
-    default: 0,
-  },
 })
 
 const imageOverlay = ref()
 const imageOverlayIcon = ref()
 
-const tl = gsap.timeline({ delay: props.delay })
+const tl = gsap.timeline()
+
+const chatBg = computed(() => {
+  return $q.dark.mode ? 'white' : 'primary'
+})
 
 onMounted(() => {
   if (props.tap) {

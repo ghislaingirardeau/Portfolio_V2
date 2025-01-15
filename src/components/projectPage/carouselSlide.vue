@@ -20,7 +20,7 @@
           )
         "
       >
-        <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" :delay="0.5" />
+        <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" />
         <div class="text-subtitle2 text-center" :class="imageTitleClass">
           {{
             typeDesktop ? projectsDesktop[currentSlide]!.name : projectsMobile[currentSlide]!.name
