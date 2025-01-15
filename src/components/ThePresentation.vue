@@ -6,6 +6,7 @@
         v-for="(letter, i) in t('index.me.p1')"
         :key="i"
         class="text-3xl lg:text-5xl opacity-0"
+        :class="modeColor"
       >
         {{ letter }}
       </div>
@@ -17,6 +18,7 @@
         v-for="(letter, i) in t('index.me.p2')"
         :key="i"
         class="text-3xl lg:text-5xl opacity-0"
+        :class="modeColor"
       >
         {{ letter }}
       </div>
@@ -28,6 +30,7 @@
         v-for="(letter, i) in t('index.me.p3')"
         :key="i"
         class="text-3xl lg:text-5xl opacity-0"
+        :class="modeColor"
       >
         {{ letter }}
       </div>
@@ -38,7 +41,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useTemplateRefsList } from '@vueuse/core'
-import { onMounted, watch, ref } from 'vue'
+import { onMounted, watch, ref, computed } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
@@ -65,8 +68,12 @@ const blockName = ref()
 const blockWork = ref()
 
 function shadowColor() {
-  return $q.dark.isActive ? '2px 2px white' : '2px 2px black'
+  return $q.dark.isActive ? '2px 2px grey' : '2px 2px #d3d3d3'
 }
+
+const modeColor = computed(() => {
+  return $q.dark.mode ? 'text-dark-primary' : 'text-primary'
+})
 
 onMounted(() => {
   presentationMounted.value = false
@@ -102,7 +109,6 @@ function animationLetters(el: HTMLElement[], value: string, duration: number) {
     }).to(element, {
       duration: duration,
       textShadow: shadowColor(),
-      className: 'text-3xl lg:text-5xl opacity-0 text-primary',
     })
   }
 }
@@ -128,4 +134,4 @@ watch(
 )
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

@@ -7,3 +7,26 @@
 .kalam-font {
   font-family: 'Kalam', cursive;
 }
+
+.text-shadow {
+  color: $shadow !important;
+}
+.bg-shadow {
+  background: $shadow !important;
+}
+
+.text-dark-primary {
+  color: $dark-primary !important;
+}
+.bg-dark-primary {
+  background: $dark-primary !important;
+}
+
+.cube-light {
+  color: $primary;
+  border-color: $primary;
+}
+.cube-dark {
+  @extend .text-dark-primary;
+  border-color: $dark-primary;
+}

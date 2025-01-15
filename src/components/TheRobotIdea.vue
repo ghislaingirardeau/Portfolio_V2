@@ -1,7 +1,7 @@
 <template>
   <q-icon
     :name="iconType"
-    :color="$q.dark.mode ? 'white' : 'primary'"
+    :color="$q.dark.mode ? 'dark-primary' : 'primary'"
     size="lg"
     class="fixed robotIdea z-50"
     ref="robotIdea"

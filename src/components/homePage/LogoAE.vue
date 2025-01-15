@@ -51,6 +51,15 @@ onMounted(() => {
   buildCubeAnimation()
 })
 
+watch(
+  () => isCubeSpining.value,
+  (newValue) => {
+    if (newValue) {
+      spinCubeAnimation()
+    }
+  },
+)
+
 const cubeColor = computed(() => {
   return $q.dark.mode ? 'cube-dark' : 'cube-light'
 })
@@ -99,15 +108,6 @@ function spinCubeAnimation() {
     isCubeSpining.value = false
   }, 2700)
 }
-
-watch(
-  () => isCubeSpining.value,
-  (newValue) => {
-    if (newValue) {
-      spinCubeAnimation()
-    }
-  },
-)
 </script>
 
 <style scoped lang="scss">
@@ -144,14 +144,6 @@ $font_logo: 'Kaushan Script', cursive;
   font-family: $font_logo;
   font-size: 3.4rem;
   padding-top: 20px;
-}
-.cube-light {
-  color: $primary;
-  border-color: $primary;
-}
-.cube-dark {
-  color: $white;
-  border-color: $white;
 }
 
 .back {
