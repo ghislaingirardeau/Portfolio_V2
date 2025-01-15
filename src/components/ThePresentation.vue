@@ -74,9 +74,9 @@ onMounted(() => {
 })
 
 function AnimeTitleLetters() {
-  animationLetters(lettersHello.value, t('index.me.p1'), 0.05)
-  animationLetters(lettersName.value, t('index.me.p2'), 0.05)
-  animationLetters(letterWork.value, t('index.me.p3'), 0.05)
+  animationLetters(lettersHello.value, t('index.me.p1'), 0.03)
+  animationLetters(lettersName.value, t('index.me.p2'), 0.03)
+  animationLetters(letterWork.value, t('index.me.p3'), 0.03)
 
   tl.call(() => {
     presentationMounted.value = true

@@ -1,7 +1,7 @@
 <template>
   <q-icon
     :name="iconType"
-    color="primary"
+    :color="$q.dark.mode ? 'white' : 'primary'"
     size="lg"
     class="fixed robotIdea z-50"
     ref="robotIdea"
@@ -14,6 +14,8 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, useTemplateRef, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { mdiLightbulbOnOutline, mdiChat, mdiImageBroken } from '@quasar/extras/mdi-v7'
+import { useQuasar } from 'quasar'
+const $q = useQuasar()
 
 const robotIdea = useTemplateRef('robotIdea')
 const animationSettings = useAnimationSettings()

@@ -2,22 +2,22 @@
   <div class="flex flex-center lg:absolute lg:right-64 z-30">
     <div class="header__logo wrap lg:ml-20 w-1/2 lg:w-1/5">
       <div ref="cube" class="cube" :class="{ anim_cube: launchSpin }" :key="cubeRender">
-        <div ref="front" class="front">
+        <div ref="front" class="front" :class="cubeColor">
           <span class="front-color">g</span>
         </div>
-        <div ref="back" class="back">
+        <div ref="back" class="back" :class="cubeColor">
           <span class="reverse-letter back-color" :class="{ anim_revert_web: launchSpin }">
             <span>w</span>
             <span>e</span>
             <span>b</span>
           </span>
         </div>
-        <div ref="top" class="top"></div>
-        <div ref="bottom" class="bottom"></div>
-        <div ref="left" class="left">
+        <div ref="top" class="top" :class="cubeColor"></div>
+        <div ref="bottom" class="bottom" :class="cubeColor"></div>
+        <div ref="left" class="left" :class="cubeColor">
           <span class="left-color">G</span>
         </div>
-        <div ref="right" class="right">
+        <div ref="right" class="right" :class="cubeColor">
           <span class="right-color">dev</span>
         </div>
       </div>
@@ -26,14 +26,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
+import { useQuasar } from 'quasar'
 
 const animationSettings = useAnimationSettings()
 const { pageMounted, isRobotClickable, isCubeSpining, presentationMounted, logoMounted } =
   storeToRefs(animationSettings)
+
+const $q = useQuasar()
 
 const cubeRender = ref(0)
 const launchSpin = ref(false)
@@ -43,10 +46,13 @@ const bottom = useTemplateRef('bottom')
 const back = useTemplateRef('back')
 const right = useTemplateRef('right')
 const left = useTemplateRef('left')
-const cube = useTemplateRef('cube')
 
 onMounted(() => {
   buildCubeAnimation()
+})
+
+const cubeColor = computed(() => {
+  return $q.dark.mode ? 'cube-dark' : 'cube-light'
 })
 
 function buildCubeAnimation() {
@@ -138,74 +144,87 @@ $font_logo: 'Kaushan Script', cursive;
   font-family: $font_logo;
   font-size: 3.4rem;
   padding-top: 20px;
-
-  color: $primary;
 }
+.cube-light {
+  color: $primary;
+  border-color: $primary;
+}
+.cube-dark {
+  color: $white;
+  border-color: $white;
+}
+
 .back {
-  border: $primary 2px solid;
+  border-width: 2px;
+  border-style: solid;
   border-radius: 7px;
   animation: deployedBackLarge 2s ease both;
   position: relative;
+
   &-color {
     position: absolute;
     top: 0px;
     left: 20%;
-    color: $primary;
     & span {
       letter-spacing: 0.05em;
     }
   }
 }
 .right {
-  border: $primary 2px solid;
+  border-width: 2px;
+  border-style: solid;
   border-radius: 7px;
   transform: rotateY(-270deg) translateX(52px);
   transform-origin: top right;
   position: relative;
+
   &-color {
     position: absolute;
     top: 65px;
     left: 10%;
-    color: $primary;
   }
 }
 .top {
-  border: $primary 5px solid;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 12px;
   animation: deployedTopLarge 2s ease both;
   transform-origin: top center;
 }
 .bottom {
-  border: $primary 5px solid;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 7px;
   animation: deployedBottomLarge 2s ease both;
 
   transform-origin: bottom center;
 }
 .left {
-  border: $primary 2px solid;
+  border-width: 2px;
+  border-style: solid;
   border-radius: 7px;
   transform: rotateY(270deg) translateX(-54px);
   transform-origin: center left;
   position: relative;
+
   &-color {
     position: absolute;
     top: 15px;
     left: 50%;
-    color: $primary;
   }
 }
 
 .front {
-  border: $primary 2px solid;
+  border-width: 2px;
+  border-style: solid;
   border-radius: 7px;
   animation: deployedFrontLarge 2s ease both;
   position: relative;
+
   &-color {
     position: absolute;
     top: 40px;
     right: 25%;
-    color: $primary;
   }
 }
 

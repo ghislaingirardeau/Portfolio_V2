@@ -21,7 +21,7 @@ import { Dark } from 'quasar'
 import { storeToRefs } from 'pinia'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, headerMounted, isAnimationDone } = storeToRefs(animationSettings)
+const { ANIM_SHORT, headerMounted, isAnimationDone, isCubeSpining } = storeToRefs(animationSettings)
 
 const dark = ref(false)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,6 +37,7 @@ function handleMode() {
   } else {
     dark.value = Dark.mode as boolean
   }
+  isCubeSpining.value = true
 }
 
 function animationAppear() {
