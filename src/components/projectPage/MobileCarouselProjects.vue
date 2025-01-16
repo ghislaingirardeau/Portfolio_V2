@@ -130,7 +130,7 @@ function animationSlide() {
 function animationSlideButtons() {
   const secondAnimOptions = {
     duration: 0.5,
-    opacity: 0.7,
+    opacity: 0.8,
     scale: 1,
     ease: 'hop',
     onComplete() {

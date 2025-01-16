@@ -122,10 +122,11 @@ function robotAction() {
 <style scoped lang="scss">
 .tab_panel_container {
   min-height: calc(100vh - 350px);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .tab_panel_dark {
-  background: #121212;
+  background-color: rgba(255, 255, 255, 0);
 }
 .my-card {
   width: 100%;
