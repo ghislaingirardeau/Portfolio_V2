@@ -147,4 +147,8 @@ watch(
 )
 </script>
 
-<style scoped></style>
+<style>
+.q-drawer {
+  opacity: 0.9 !important;
+}
+</style>
