@@ -51,6 +51,7 @@ function startAnim() {
     const randomX = -width.value + 97
     const randomYBis = -height.value + 125
     const randomXBis = -width.value + 65 + getRandomArbitrary(5, width.value - 10)
+    const lineXElement = lineX.value[index] as HTMLElement
     tl.to(
       el,
 
@@ -68,7 +69,7 @@ function startAnim() {
       },
       getRandomArbitrary(0.4, 10),
     ).to(
-      lineX.value[index],
+      lineXElement,
       {
         keyframes: {
           scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
@@ -86,16 +87,16 @@ function startAnim() {
   })
 }
 
-function stopAnim() {
-  tl.pause()
-}
-function reverseAnim() {
-  tl.reverse()
-}
+// function stopAnim() {
+//   tl.pause()
+// }
+// function reverseAnim() {
+//   tl.reverse()
+// }
 
-function resumeAnim() {
-  tl.play()
-}
+// function resumeAnim() {
+//   tl.play()
+// }
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min
