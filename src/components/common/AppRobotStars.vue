@@ -58,13 +58,13 @@ function startAnim() {
           opacity: [0, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
-          '15%': { x: -30 },
+          '15%': { x: 90 },
           '100%': { x: randomX, y: randomY },
         },
         duration: getRandomArbitrary(10, 15),
         repeat: 10,
       },
-      getRandomArbitrary(0.4, 6),
+      getRandomArbitrary(0.4, 10),
     ).to(
       lineX.value[index],
       {
@@ -73,13 +73,13 @@ function startAnim() {
           opacity: [0, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
-          '15%': { x: -60 },
+          '15%': { x: 60 },
           '100%': { x: randomXBis, y: randomYBis },
         },
         duration: getRandomArbitrary(10, 15),
         repeat: 10,
       },
-      getRandomArbitrary(0.4, 5),
+      getRandomArbitrary(0.4, 10),
     )
   })
 }
