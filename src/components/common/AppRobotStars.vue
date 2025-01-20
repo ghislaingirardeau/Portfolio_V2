@@ -47,10 +47,10 @@ onMounted(() => {
 
 function startAnim() {
   lineY.value.forEach((el, index) => {
-    const randomY = -height.value + 150 + getRandomArbitrary(0, height.value - 150)
+    const randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
     const randomX = -width.value + 97
     const randomYBis = -height.value + 125
-    const randomXBis = -width.value + 92 + getRandomArbitrary(0, width.value + 10)
+    const randomXBis = -width.value + 65 + getRandomArbitrary(5, width.value - 10)
     tl.to(
       el,
 
@@ -64,7 +64,7 @@ function startAnim() {
           '100%': { x: randomX, y: randomY },
         },
         duration: getRandomArbitrary(10, 15),
-        repeat: 10,
+        repeat: -1,
       },
       getRandomArbitrary(0.4, 10),
     ).to(
@@ -79,7 +79,7 @@ function startAnim() {
           '100%': { x: randomXBis, y: randomYBis },
         },
         duration: getRandomArbitrary(10, 15),
-        repeat: 10,
+        repeat: -1,
       },
       getRandomArbitrary(0.4, 10),
     )
@@ -131,9 +131,5 @@ function getRandomArbitrary(min: number, max: number) {
 
 .leg-middle {
   right: 61px;
-}
-
-.leg-right {
-  right: 30px;
 }
 </style>
