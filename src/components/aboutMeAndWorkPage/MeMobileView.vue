@@ -3,7 +3,7 @@
     <div
       ref="imageContainer"
       class="w-full flex flex-center relative z-10"
-      :class="{ 'mt-10': useIsMobileTall() }"
+      :class="{ 'mt-5': useIsMobileTall(), '-mt-5': !useIsMobileTall() }"
     >
       <q-img
         :src="imageToDisplay"
