@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg column relative z-0" :key="locale + $q.dark.mode">
+  <q-page class="q-pa-lg column relative z-20" :key="locale + $q.dark.mode">
     <ThePresentation class="z-20" />
 
     <LogoAEContainer />
@@ -23,6 +23,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { useQuasar } from 'quasar'
+import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 
 const { t, tm, locale } = useI18n()
 

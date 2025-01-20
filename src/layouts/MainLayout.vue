@@ -9,9 +9,8 @@
 
     <q-page-container>
       <router-view />
+      <AppRobotStars />
     </q-page-container>
-
-    <AppRobotStars />
 
     <TheFooter v-if="presentationMounted || headerMounted" />
   </q-layout>
