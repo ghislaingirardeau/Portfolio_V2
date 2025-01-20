@@ -40,7 +40,9 @@ const starNumber = 20
 const tl = gsap.timeline()
 
 onMounted(() => {
-  startAnim()
+  setTimeout(() => {
+    startAnim()
+  }, 4000)
 })
 
 function startAnim() {
@@ -55,7 +57,7 @@ function startAnim() {
       {
         keyframes: {
           scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
-          opacity: [0, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
+          opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: 90 },
@@ -70,7 +72,7 @@ function startAnim() {
       {
         keyframes: {
           scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
-          opacity: [0, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
+          opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: 60 },
@@ -107,7 +109,7 @@ function getRandomArbitrary(min: number, max: number) {
   width: 8px;
   height: 8px;
   bottom: 65px;
-  opacity: 1;
+  opacity: 0;
   background: radial-gradient(
     hsl(189.8, 78.5%, 38.2%),
     hsl(189.8, 78.5%, 38.2%) 10%,
