@@ -2,7 +2,7 @@
   <q-page class="q-pa-lg" :key="locale">
     <div
       ref="imageContainer"
-      class="w-full flex flex-center relative"
+      class="w-full flex flex-center relative z-10"
       :class="{ 'mt-10': useIsMobileTall() }"
     >
       <q-img

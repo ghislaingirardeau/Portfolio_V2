@@ -4,7 +4,8 @@
       ref="tabs"
       v-model="tab"
       dense
-      class="text-grey h-0"
+      class="text-grey h-0 z-10"
+      :class="$q.dark.mode ? 'bg-dark-page' : 'bg-white'"
       :active-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       :indicator-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       align="justify"
@@ -20,7 +21,7 @@
     <q-tab-panels
       v-model="tab"
       animated
-      class="tab_panel_container flex flex-center"
+      class="tab_panel_container flex flex-center z-10"
       :class="{ tab_panel_dark: $q.dark.mode }"
     >
       <component

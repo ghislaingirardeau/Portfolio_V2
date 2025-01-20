@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fixed bottom-24 right-24 ml-3">
+    <div class="fixed bottom-24 right-24 ml-3 z-50">
       <q-chat-message
         v-if="visitorTexts"
         ref="receivedMessage"
