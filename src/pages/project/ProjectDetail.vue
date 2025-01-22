@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg" ref="el">
+  <q-page class="q-pa-lg z-20" ref="el">
     <AppBackBtn ref="backButton" />
     <q-card
       class="my-card text-center flex flex-center"

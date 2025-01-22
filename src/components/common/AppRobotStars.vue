@@ -35,7 +35,7 @@ const { height, width } = useWindowSize()
 
 const $q = useQuasar()
 
-const starNumber = 20
+const starNumber = 40
 
 const tl = gsap.timeline()
 
@@ -50,7 +50,7 @@ function startAnim() {
     const randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
     const randomX = -width.value + 97
     const randomYBis = -height.value + 125
-    const randomXBis = -width.value + 65 + getRandomArbitrary(5, width.value - 10)
+    const randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
     const lineXElement = lineX.value[index] as HTMLElement
     tl.to(
       el,
@@ -61,7 +61,7 @@ function startAnim() {
           opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
-          '15%': { x: 90 },
+          '15%': { x: -20 },
           '100%': { x: randomX, y: randomY },
         },
         duration: getRandomArbitrary(10, 15),
@@ -76,7 +76,7 @@ function startAnim() {
           opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
-          '15%': { x: 60 },
+          '15%': { x: 20 },
           '100%': { x: randomXBis, y: randomYBis },
         },
         duration: getRandomArbitrary(10, 15),
@@ -131,6 +131,6 @@ function getRandomArbitrary(min: number, max: number) {
 }
 
 .leg-middle {
-  right: 61px;
+  right: 28px;
 }
 </style>
