@@ -23,7 +23,6 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { useQuasar } from 'quasar'
-import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 
 const { t, tm, locale } = useI18n()
 

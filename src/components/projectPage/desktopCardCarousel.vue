@@ -51,7 +51,7 @@ const tl = gsap.timeline({ delay: 2.5 })
 
 const slide = ref(0)
 const imageSkeleton = useTemplateRef('imageSkeleton')
-const carousel = useTemplateRef('carousel')
+const carousel = ref()
 
 const imageHeight = computed(() => {
   return props.typeDesktop ? '300px' : '450px'

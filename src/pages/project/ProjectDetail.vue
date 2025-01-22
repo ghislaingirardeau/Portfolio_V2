@@ -86,10 +86,10 @@ const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
 const slide = ref(0)
 const expanded = ref(false)
 
-const action = useTemplateRef('action')
+const action = ref()
 const chatContainer = useTemplateRef('chatContainer')
 
-const carousel = useTemplateRef('carousel')
+const carousel = ref()
 const backButton = useTemplateRef('backButton')
 
 const cardOverline = ref<HTMLElement[]>([])

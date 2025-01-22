@@ -27,8 +27,7 @@ import { useIsMobile } from 'src/utils/useDeviceInfo'
 import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 
 const animationSettings = useAnimationSettings()
-const { headerMounted, presentationMounted, drawerMounted, logoMounted } =
-  storeToRefs(animationSettings)
+const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
 
 const leftDrawerOpen = ref(false)
 

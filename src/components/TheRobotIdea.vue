@@ -11,13 +11,13 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { computed, useTemplateRef, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { mdiLightbulbOnOutline, mdiChat, mdiImageBroken } from '@quasar/extras/mdi-v7'
 import { useQuasar } from 'quasar'
 const $q = useQuasar()
 
-const robotIdea = useTemplateRef('robotIdea')
+const robotIdea = ref()
 const animationSettings = useAnimationSettings()
 const { isRobotClickable, isRobotTalk, isRobotFix } = storeToRefs(animationSettings)
 
