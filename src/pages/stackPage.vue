@@ -1,112 +1,111 @@
 <template>
   <div class="q-pa-lg flex flex-center">
-    <div class="atom">
+    <div class="atom mt-40 ml-20">
       <div ref="atom" class="atome-nucleus flex flex-center">
         <span>Front</span>
-        <div ref="vue" class="electron flex flex-center">
-          <q-img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
-            width="75%"
-          ></q-img>
-        </div>
-        <div ref="nuxt" class="electron flex flex-center">
-          <q-img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg"
-            width="75%"
-          ></q-img>
-        </div>
-        <div ref="html" class="electron flex flex-center">
-          <q-img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
-            width="75%"
-          ></q-img>
-        </div>
+      </div>
+      <div
+        ref="items"
+        v-for="(iconUrl, index) in Object.values(devIconSrc.langage)"
+        :key="index"
+        class="electron flex flex-center"
+      >
+        <q-img :src="iconUrl" width="75%"></q-img>
       </div>
     </div>
+    <TheRobotContainer @robot-action="robotAction" />
+
     <!-- <AtomSample /> -->
   </div>
 </template>
 
 <script setup lang="ts">
+import { biYelp } from '@quasar/extras/bootstrap-icons'
 import { gsap } from 'src/boot/gsap'
+import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import AtomSample from 'src/components/stackPage/AtomSample.vue'
-import { onMounted, ref } from 'vue'
+import { devIconSrc } from 'src/utils/useIconSources'
+import { onMounted, ref, useTemplateRef } from 'vue'
 
-const vue = ref()
-const nuxt = ref()
-const html = ref()
 const atom = ref()
+const itemRefs = useTemplateRef('items')
 
-onMounted(() => {
-  gsap.fromTo(
-    vue.value,
-    { y: -107, rotateZ: 45, rotateX: -90, x: 10 },
-    {
-      keyframes: {
-        '0%': { opacity: 0 },
-        '12%': { opacity: 0 },
-        '17%': { opacity: 1 },
-        '50%': {},
-        '85%': { opacity: 1 },
-        '90%': { opacity: 0 },
-      },
+function robotAction() {
+  itemRefs.value?.forEach((el, i) => {
+    if (i === 0) animationElectronX(el as HTMLElement)
+    if (i === 1) animationElectronY(el as HTMLElement)
+    if (i === 2) animationElectronRight(el as HTMLElement)
+    if (i === 3) animationElectronLeft(el as HTMLElement)
+  })
+}
 
-      transformOrigin: '0px 112.5px', // $Nucleus-size + $Electron-size / 2
-      rotateX: 270,
-      duration: 8,
-      delay: 1,
-      repeat: -1,
+function animationElectronRight(el: HTMLElement) {
+  gsap.to(el, {
+    keyframes: {
+      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: 30 },
+      '25%': { y: 80, x: -45, zIndex: 1, rotateX: -90 },
+      '26%': { zIndex: 3, scale: 0.8 },
+      '50%': { scale: 1, rotateX: 0 },
+      '75%': { y: -80, x: 45, zIndex: 3, scale: 0.8, rotateX: 90 },
+      '76%': { zIndex: 1 },
+      '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
     },
-  )
-  gsap.fromTo(
-    nuxt.value,
-    { y: -58, rotateZ: -40, rotateX: -90 },
-    {
-      keyframes: {
-        '0%': { opacity: 0 },
-        '7%': { opacity: 0 },
-        '12%': { opacity: 1 },
-        '50%': {},
-        '80%': { opacity: 1 },
-        '85%': { opacity: 0 },
-      },
-
-      transformOrigin: '0px 92.5px',
-      rotateX: 270,
-      duration: 4,
-      delay: 1,
-      repeat: -1,
+    duration: 2.6,
+    ease: 'none',
+  })
+}
+function animationElectronLeft(el: HTMLElement) {
+  gsap.to(el, {
+    keyframes: {
+      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: -30 },
+      '25%': { y: 40, x: 30, zIndex: 1, rotateX: -90 },
+      '26%': { zIndex: 3, scale: 0.8 },
+      '50%': { scale: 1, rotateX: 0 },
+      '75%': { y: -40, x: -30, zIndex: 3, scale: 0.8, rotateX: 90 },
+      '76%': { zIndex: 1 },
+      '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
     },
-  )
-  gsap.fromTo(
-    html.value,
-    { y: -80, rotateX: -90 }, // pour lui donner une circonférence plus large +20px sur y
-    {
-      keyframes: {
-        '0%': { opacity: 0 },
-        '10%': { opacity: 0 },
-        '15%': { opacity: 1 },
-        '50%': {},
-        '87%': { opacity: 1 },
-        '89%': { opacity: 0 },
-      },
-      transformOrigin: '0px 102.5px', // pour lui donner une circonférence plus large +20px
-      rotateX: 270,
-      duration: 6,
-      delay: 1.2,
-      repeat: -1,
+    duration: 1.8,
+    delay: 0.8,
+    ease: 'none',
+  })
+}
+function animationElectronY(el: HTMLElement) {
+  gsap.to(el, {
+    keyframes: {
+      '0%': { y: 0, scale: 0.6, rotateX: -180 },
+      '25%': { y: -60, zIndex: 1, rotateX: -90 },
+      '26%': { zIndex: 3, scale: 0.8 },
+      '50%': { scale: 1, rotateX: 0 },
+      '75%': { y: 60, zIndex: 3, scale: 0.8, rotateX: 90 },
+      '76%': { zIndex: 1 },
+      '100%': { y: 0, scale: 0.6, rotateX: 180 },
     },
-  )
-  // gsap.to(atom.value, {
-  //   x: 80,
-  //   duration: 30,
-  // })
-})
+    duration: 2,
+    ease: 'none',
+  })
+}
+function animationElectronX(el: HTMLElement) {
+  gsap.to(el, {
+    keyframes: {
+      '0%': { x: 0, scale: 0.6, rotateY: -180 },
+      '25%': { x: -70, zIndex: 1, rotateY: -90 },
+      '26%': { zIndex: 3, scale: 0.8 },
+      '50%': { scale: 1, rotateY: 0 },
+      '75%': { x: 70, zIndex: 3, scale: 0.8, rotateY: 90 },
+      '76%': { zIndex: 1 },
+      '100%': { x: 0, scale: 0.6, rotateY: 180 },
+    },
+    duration: 2.2,
+    delay: 0.8,
+    ease: 'none',
+  })
+}
 </script>
 
 <style scoped lang="scss">
 $Atom-size: 300px;
-$Nucleus-size: 80px;
+$Nucleus-size: 60px;
 $Electron-size: 45px;
 
 @mixin circle($circle-radius) {
@@ -127,6 +126,7 @@ $Electron-size: 45px;
 .atome-nucleus {
   width: $Nucleus-size;
   height: $Nucleus-size;
+  position: absolute;
   border-radius: 50%;
   background: radial-gradient(
     hsl(187, 9%, 79%),
@@ -134,10 +134,8 @@ $Electron-size: 45px;
     hsl(190, 82%, 42%) 60%,
     hsla(190, 78%, 38%, 0) 80%
   );
-  position: absolute;
-  left: $Atom-size * 0.5 - $Nucleus-size * 0.5;
-  top: $Atom-size * 0.5 - $Nucleus-size * 0.5;
-  position: relative;
+
+  z-index: 2;
 }
 .electron {
   width: $Electron-size;
@@ -145,5 +143,6 @@ $Electron-size: 45px;
   position: absolute;
   left: $Nucleus-size * 0.5 - $Electron-size * 0.5;
   top: $Nucleus-size * 0.5 - $Electron-size * 0.5;
+  z-index: 1;
 }
 </style>
