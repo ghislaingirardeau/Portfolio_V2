@@ -1,7 +1,8 @@
 <template>
   <div class="q-pa-lg flex flex-center">
     <div class="atom">
-      <div ref="atom" class="atome-nucleus">
+      <div ref="atom" class="atome-nucleus flex flex-center">
+        <span>Front</span>
         <div ref="vue" class="electron flex flex-center">
           <q-img
             src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
@@ -86,8 +87,8 @@ onMounted(() => {
         '10%': { opacity: 0 },
         '15%': { opacity: 1 },
         '50%': {},
-        '85%': { opacity: 1 },
-        '90%': { opacity: 0 },
+        '87%': { opacity: 1 },
+        '89%': { opacity: 0 },
       },
       transformOrigin: '0px 102.5px', // pour lui donner une circonférence plus large +20px
       rotateX: 270,
@@ -97,7 +98,7 @@ onMounted(() => {
     },
   )
   // gsap.to(atom.value, {
-  //   rotateZ: 180,
+  //   x: 80,
   //   duration: 30,
   // })
 })
@@ -121,25 +122,22 @@ $Electron-size: 45px;
 .atom {
   width: $Atom-size;
   height: $Atom-size;
-  // background-color: rgb(180, 180, 233);
   position: relative;
 }
 .atome-nucleus {
   width: $Nucleus-size;
   height: $Nucleus-size;
   border-radius: 50%;
-  background-color: rgb(206, 48, 48);
+  background: radial-gradient(
+    hsl(187, 9%, 79%),
+    hsl(190, 64%, 84%) 50%,
+    hsl(190, 82%, 42%) 60%,
+    hsla(190, 78%, 38%, 0) 80%
+  );
   position: absolute;
   left: $Atom-size * 0.5 - $Nucleus-size * 0.5;
   top: $Atom-size * 0.5 - $Nucleus-size * 0.5;
   position: relative;
-  z-index: 2;
-  &:after {
-    @include circle($Nucleus-size);
-    position: absolute;
-    background-color: rgb(172, 90, 90);
-    opacity: 0.5;
-  }
 }
 .electron {
   width: $Electron-size;
