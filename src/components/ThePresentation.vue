@@ -97,7 +97,7 @@ function animationLetters(el: HTMLElement[], value: string, duration: number) {
   for (let index = 0; index < value.length; index++) {
     const element = el[index] as HTMLElement
     if (element.textContent === ' ') {
-      element.innerHTML = '<span>_</span>'
+      element.innerHTML = '<span>&nbsp</span>'
     }
     tl.to(element, {
       duration: duration,
