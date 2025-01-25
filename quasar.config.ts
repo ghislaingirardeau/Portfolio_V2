@@ -64,6 +64,7 @@ export default defineConfig((ctx) => {
       // viteVuePluginOptions: {},
 
       vitePlugins: [
+        ['vite-plugin-vue-devtools'],
         [
           '@intlify/unplugin-vue-i18n/vite',
           {
