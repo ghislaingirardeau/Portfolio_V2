@@ -1,16 +1,16 @@
 <template>
-  <div class="q-pa-lg flex flex-center">
-    <div class="atom mt-40 ml-20">
+  <div class="q-pa-lg relative" style="height: 200px">
+    <div class="atom">
       <div ref="atom" class="atome-nucleus flex flex-center">
-        <span>Front</span>
+        <span ref="atomTitle">langage</span>
       </div>
       <div
         ref="items"
-        v-for="(iconUrl, index) in Object.values(devIconSrc.langage)"
+        v-for="(iconUrl, index) in Object.values(devIconSrc.css)"
         :key="index"
         class="electron flex flex-center"
       >
-        <q-img :src="iconUrl" width="75%"></q-img>
+        <q-img :src="iconUrl" width="100%"></q-img>
       </div>
     </div>
     <TheRobotContainer @robot-action="robotAction" />
@@ -20,92 +20,102 @@
 </template>
 
 <script setup lang="ts">
-import { biYelp } from '@quasar/extras/bootstrap-icons'
 import { gsap } from 'src/boot/gsap'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
-import AtomSample from 'src/components/stackPage/AtomSample.vue'
 import { devIconSrc } from 'src/utils/useIconSources'
-import { onMounted, ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 
 const atom = ref()
+const atomTitle = ref()
 const itemRefs = useTemplateRef('items')
 
 function robotAction() {
+  const tl = gsap.timeline()
+
   itemRefs.value?.forEach((el, i) => {
     if (i === 0) animationElectronX(el as HTMLElement)
     if (i === 1) animationElectronY(el as HTMLElement)
     if (i === 2) animationElectronRight(el as HTMLElement)
     if (i === 3) animationElectronLeft(el as HTMLElement)
+    tl.to(atomTitle.value, {
+      duration: 0.5,
+      text: { value: Object.keys(devIconSrc.css)![i], padSpace: true },
+      delay: 1,
+    })
   })
 }
 
-function animationElectronRight(el: HTMLElement) {
+function animationElectronLeft(el: HTMLElement) {
   gsap.to(el, {
     keyframes: {
-      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: 30 },
-      '25%': { y: 80, x: -45, zIndex: 1, rotateX: -90 },
+      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: -60 },
+      '25%': { y: 40, x: 65, zIndex: 1, rotateX: -90 },
       '26%': { zIndex: 3, scale: 0.8 },
       '50%': { scale: 1, rotateX: 0 },
-      '75%': { y: -80, x: 45, zIndex: 3, scale: 0.8, rotateX: 90 },
+      '75%': { y: -40, x: -65, zIndex: 3, scale: 0.8, rotateX: 90 },
       '76%': { zIndex: 1 },
       '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
     },
     duration: 2.6,
+    delay: 2,
     ease: 'none',
-  })
-}
-function animationElectronLeft(el: HTMLElement) {
-  gsap.to(el, {
-    keyframes: {
-      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: -30 },
-      '25%': { y: 40, x: 30, zIndex: 1, rotateX: -90 },
-      '26%': { zIndex: 3, scale: 0.8 },
-      '50%': { scale: 1, rotateX: 0 },
-      '75%': { y: -40, x: -30, zIndex: 3, scale: 0.8, rotateX: 90 },
-      '76%': { zIndex: 1 },
-      '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
-    },
-    duration: 1.8,
-    delay: 0.8,
-    ease: 'none',
+    repeat: 1,
   })
 }
 function animationElectronY(el: HTMLElement) {
   gsap.to(el, {
     keyframes: {
       '0%': { y: 0, scale: 0.6, rotateX: -180 },
-      '25%': { y: -60, zIndex: 1, rotateX: -90 },
+      '25%': { y: -90, zIndex: 1, rotateX: -90 },
       '26%': { zIndex: 3, scale: 0.8 },
       '50%': { scale: 1, rotateX: 0 },
-      '75%': { y: 60, zIndex: 3, scale: 0.8, rotateX: 90 },
+      '75%': { y: 90, zIndex: 3, scale: 0.8, rotateX: 90 },
       '76%': { zIndex: 1 },
       '100%': { y: 0, scale: 0.6, rotateX: 180 },
     },
-    duration: 2,
+    duration: 3,
     ease: 'none',
+    delay: 1,
+    repeat: 1,
   })
 }
 function animationElectronX(el: HTMLElement) {
   gsap.to(el, {
     keyframes: {
       '0%': { x: 0, scale: 0.6, rotateY: -180 },
-      '25%': { x: -70, zIndex: 1, rotateY: -90 },
+      '25%': { x: -100, zIndex: 1, rotateY: -90 },
       '26%': { zIndex: 3, scale: 0.8 },
       '50%': { scale: 1, rotateY: 0 },
-      '75%': { x: 70, zIndex: 3, scale: 0.8, rotateY: 90 },
+      '75%': { x: 100, zIndex: 3, scale: 0.8, rotateY: 90 },
       '76%': { zIndex: 1 },
-      '100%': { x: 0, scale: 0.6, rotateY: 180 },
+      '100%': { x: 0, scale: 0.6, rotateY: 180, ease: 'none' },
     },
-    duration: 2.2,
-    delay: 0.8,
+    duration: 3.2,
     ease: 'none',
+    repeat: 1,
+  })
+}
+function animationElectronRight(el: HTMLElement) {
+  gsap.to(el, {
+    keyframes: {
+      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: 30 },
+      '25%': { y: 110, x: -65, zIndex: 1, rotateX: -90 },
+      '26%': { zIndex: 3, scale: 0.8 },
+      '50%': { scale: 1, rotateX: 0 },
+      '75%': { y: -110, x: 65, zIndex: 3, scale: 0.8, rotateX: 90 },
+      '76%': { zIndex: 1 },
+      '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
+    },
+    duration: 4,
+    ease: 'none',
+    repeat: 1,
   })
 }
 </script>
 
 <style scoped lang="scss">
-$Atom-size: 300px;
-$Nucleus-size: 60px;
+$Atom-size: 100px;
+$Nucleus-size: 120px;
 $Electron-size: 45px;
 
 @mixin circle($circle-radius) {
@@ -119,14 +129,16 @@ $Electron-size: 45px;
 }
 
 .atom {
-  width: $Atom-size;
-  height: $Atom-size;
+  position: absolute;
+  left: calc(50% - ($Nucleus-size / 2));
+  top: calc($Nucleus-size / 2);
   position: relative;
 }
 .atome-nucleus {
   width: $Nucleus-size;
   height: $Nucleus-size;
   position: absolute;
+
   border-radius: 50%;
   background: radial-gradient(
     hsl(187, 9%, 79%),
