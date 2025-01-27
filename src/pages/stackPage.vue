@@ -84,16 +84,20 @@ function launchAnimation() {
     [-90, -110, true],
     [90, 110, true],
   ]
+  animationNucleus()
+  electrons.value?.forEach((el, i) => {
+    if (positionList[i]) {
+      animationElectron(el as HTMLElement, positionList[i], i)
+    }
+  })
+}
+
+function animationNucleus() {
   tl.to(nucleus.value, {
     opacity: 1,
     duration: 0.5,
     scale: 1,
     ease: 'hop',
-  })
-  electrons.value?.forEach((el, i) => {
-    if (positionList[i]) {
-      animationElectron(el as HTMLElement, positionList[i], i)
-    }
   })
 }
 
