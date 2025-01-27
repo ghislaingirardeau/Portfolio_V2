@@ -2,7 +2,7 @@
   <div class="q-pa-lg relative" style="height: 200px">
     <div class="atom">
       <div ref="atom" class="atome-nucleus flex flex-center">
-        <span ref="atomTitle">langage</span>
+        <span ref="atomTitle">{{ slideChat === 0 ? 'Frontend' : 'Backend' }}</span>
       </div>
       <div
         ref="items"
@@ -30,6 +30,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { devIconSrc } from 'src/utils/useIconSources'
+import { transform } from 'typescript'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -42,10 +43,9 @@ const atom = ref()
 const atomTitle = ref()
 const itemRefs = useTemplateRef('items')
 const slideChat = ref(0)
-const iterationCount = ref(0)
 
 const iconsCategory = computed(() => {
-  return Object.values(devIconSrc[iterationCount.value]) as string[]
+  return Object.values(devIconSrc[slideChat.value]) as string[]
 })
 
 const chatTexts = computed(() => {
@@ -68,78 +68,40 @@ function robotAction() {
   } else {
     slideChat.value++
   }
-  iterationCount.value++
-  launchAnimation()
 }
 
 function launchAnimation() {
+  const rotate = 360
+  const rotateReverse = -360
   itemRefs.value?.forEach((el, i) => {
-    if (i === 0) animationElectronX(el as HTMLElement)
-    if (i === 1) animationElectronY(el as HTMLElement)
-    if (i === 2) animationElectronRight(el as HTMLElement)
-    if (i === 3) animationElectronLeft(el as HTMLElement)
+    if (i === 0) animationElectron(el as HTMLElement, 0, 80, rotate)
+    if (i === 1) animationElectron(el as HTMLElement, 0, -80, rotate)
+    if (i === 2) animationElectron(el as HTMLElement, 80, 0, rotate)
+    if (i === 3) animationElectron(el as HTMLElement, -80, 0, rotate)
+    if (i === 4) animationElectron(el as HTMLElement, 60, -60, rotate)
+    if (i === 5) animationElectron(el as HTMLElement, -60, 60, rotate)
+    if (i === 6) animationElectron(el as HTMLElement, -60, -60, rotate)
+    if (i === 7) animationElectron(el as HTMLElement, 60, 60, rotate)
+    if (i === 8) animationElectron(el as HTMLElement, -90, -110, rotateReverse)
+    if (i === 9) animationElectron(el as HTMLElement, 90, 110, rotateReverse)
   })
 }
 
-function animationElectronLeft(el: HTMLElement) {
+function animationElectron(el: HTMLElement, x: number, y: number, deg: number) {
   gsap.to(el, {
     keyframes: {
-      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: -60 },
-      '25%': { y: 40, x: 65, zIndex: 1, rotateX: -90 },
-      '26%': { zIndex: 3, scale: 0.8 },
-      '50%': { scale: 1, rotateX: 0 },
-      '75%': { y: -40, x: -65, zIndex: 3, scale: 0.8, rotateX: 90 },
-      '76%': { zIndex: 1 },
-      '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
+      '0%': { x: 0, y: 0 },
+      '10%': {
+        x: -x,
+        y: -y,
+        rotateZ: 0,
+        transformOrigin: `${(x ? x : 0) + 17}px ${(y ? y : 0) + 17}px`,
+      },
+      '100%': { x: -x, y: -y, rotateZ: deg },
     },
-    duration: 2.6,
-    delay: 2,
-    ease: 'none',
-  })
-}
-function animationElectronY(el: HTMLElement) {
-  gsap.to(el, {
-    keyframes: {
-      '0%': { y: 0, scale: 0.6, rotateX: -180 },
-      '25%': { y: -90, zIndex: 1, rotateX: -90 },
-      '26%': { zIndex: 3, scale: 0.8 },
-      '50%': { scale: 1, rotateX: 0 },
-      '75%': { y: 90, zIndex: 3, scale: 0.8, rotateX: 90 },
-      '76%': { zIndex: 1 },
-      '100%': { y: 0, scale: 0.6, rotateX: 180 },
-    },
-    duration: 3,
-    ease: 'none',
-    delay: 1,
-  })
-}
-function animationElectronX(el: HTMLElement) {
-  gsap.to(el, {
-    keyframes: {
-      '0%': { x: 0, scale: 0.6, rotateY: -180 },
-      '25%': { x: -100, zIndex: 1, rotateY: -90 },
-      '26%': { zIndex: 3, scale: 0.8 },
-      '50%': { scale: 1, rotateY: 0 },
-      '75%': { x: 100, zIndex: 3, scale: 0.8, rotateY: 90 },
-      '76%': { zIndex: 1 },
-      '100%': { x: 0, scale: 0.6, rotateY: 180, ease: 'none' },
-    },
-    duration: 3.2,
-    ease: 'none',
-  })
-}
-function animationElectronRight(el: HTMLElement) {
-  gsap.to(el, {
-    keyframes: {
-      '0%': { y: 0, scale: 0.6, rotateX: -180, rotateZ: 30 },
-      '25%': { y: 110, x: -65, zIndex: 1, rotateX: -90 },
-      '26%': { zIndex: 3, scale: 0.8 },
-      '50%': { scale: 1, rotateX: 0 },
-      '75%': { y: -110, x: 65, zIndex: 3, scale: 0.8, rotateX: 90 },
-      '76%': { zIndex: 1 },
-      '100%': { y: 0, x: 0, scale: 0.6, rotateX: 180 },
-    },
-    duration: 4,
+    duration: 6,
+    yoyo: true,
+    repeat: -1,
     ease: 'none',
   })
 }
@@ -148,7 +110,7 @@ function animationElectronRight(el: HTMLElement) {
 <style scoped lang="scss">
 $Atom-size: 100px;
 $Nucleus-size: 120px;
-$Electron-size: 45px;
+$Electron-size: 35px;
 
 @mixin circle($circle-radius) {
   display: block;
@@ -163,7 +125,7 @@ $Electron-size: 45px;
 .atom {
   position: absolute;
   left: calc(50% - ($Nucleus-size / 2));
-  top: calc($Nucleus-size / 2);
+  top: calc($Nucleus-size / 1.5);
   position: relative;
 }
 .atome-nucleus {
