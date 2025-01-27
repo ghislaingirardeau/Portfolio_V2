@@ -8,7 +8,7 @@
         @click="previousSlide"
         :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_left"
-        class="opacity-0 scale-0"
+        class="opacity-0 scale-0 z-30"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
       <div class="relative" :class="slideContainerClass">
@@ -24,7 +24,7 @@
         :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_right"
         :class="{ 'absolute right-1 ': typeDesktop }"
-        class="opacity-0 scale-0"
+        class="opacity-0 scale-0 z-30"
       />
     </div>
   </q-tab-panel>
