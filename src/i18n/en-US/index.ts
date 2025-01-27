@@ -202,7 +202,7 @@ export default {
       imageURL: ['moi2.jpg', 'moi.jpg', 'moi3.jpg'],
     },
     professionaly: {
-      imageURL: ['work1.png', 'work2.png', 'work3.jpg'],
+      imageURL: ['work1.webp', 'work2.webp', 'work3.webp'],
     },
   },
   services: {

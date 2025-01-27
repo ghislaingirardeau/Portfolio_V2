@@ -13,6 +13,9 @@
         class="rounded-borders opacity-0 w-10/12 lg:w-2/5 img-square"
         :width="imageWidth"
         :class="{ 'img-square-done': fixImage }"
+        loading="eager"
+        fetchpriority="high"
+        @load="hasLoadImage = true"
       >
         <AppImgOverlay v-if="isFirstMount" />
       </q-img>
@@ -50,6 +53,7 @@ const { pageMounted, isRobotClickable, isRobotFix, isRobotTap } = storeToRefs(an
 const meSlide = ref(0)
 const image = ref()
 const imageContainer = ref()
+const hasLoadImage = ref(false)
 const isFirstMount = ref(false)
 
 const chatContainer = useTemplateRef('chatContainer')
@@ -136,6 +140,7 @@ function previousSlide() {
 }
 
 function animationOnSlide(x: number, increase: boolean) {
+  hasLoadImage.value = false
   const duration = 0.5
   if (!pageMounted.value) {
     return
