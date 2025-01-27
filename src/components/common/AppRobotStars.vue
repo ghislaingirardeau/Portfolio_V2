@@ -35,7 +35,7 @@ const { height, width } = useWindowSize()
 
 const $q = useQuasar()
 
-const starNumber = 40
+const starNumber = 20
 
 const tl = gsap.timeline()
 

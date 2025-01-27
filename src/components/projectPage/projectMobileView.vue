@@ -21,8 +21,8 @@
     <q-tab-panels
       v-model="tab"
       animated
-      class="tab_panel_container flex flex-center z-10"
-      :class="{ tab_panel_dark: $q.dark.mode }"
+      class="tab_panel_container flex z-10"
+      :class="{ tab_panel_dark: $q.dark.mode, 'items-center': useIsMobileTall() }"
     >
       <component
         :is="MobileCarouselProjects"
@@ -53,6 +53,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
