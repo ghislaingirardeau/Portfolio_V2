@@ -1,18 +1,19 @@
 <template>
   <div class="q-pa-lg relative" style="height: 200px">
     <div class="atom">
-      <div ref="atom" class="atome-nucleus flex flex-center">
-        <span ref="atomTitle">{{ slideChat === 0 ? 'Frontend' : 'Backend' }}</span>
+      <div ref="nucleus" class="atome-nucleus flex flex-center scale-75 opacity-0">
+        <span>{{ slideChat === 0 ? 'Frontend' : 'Backend' }}</span>
       </div>
       <div
-        ref="items"
+        ref="electrons"
         v-for="(iconUrl, index) in iconsCategory"
         :key="index"
-        class="electron flex flex-center"
+        class="electron flex flex-center opacity-0"
       >
         <q-img :src="iconUrl" width="100%"></q-img>
       </div>
     </div>
+
     <TheRobotContainer @robot-action="robotAction" />
     <ChatMessageContainer
       ref="chatContainer"
@@ -38,9 +39,8 @@ const { isRobotTalk, isRobotClickable } = storeToRefs(animationSettings)
 
 const { tm } = useI18n({ useScope: 'global' })
 
-const atom = ref()
-const atomTitle = ref()
-const itemRefs = useTemplateRef('items')
+const nucleus = ref()
+const electrons = useTemplateRef('electrons')
 const slideChat = ref(0)
 
 const iconsCategory = computed(() => {
@@ -69,6 +69,8 @@ function robotAction() {
   }
 }
 
+const tl = gsap.timeline()
+
 function launchAnimation() {
   const positionList: [number, number, boolean][] = [
     [0, 80, false],
@@ -82,36 +84,45 @@ function launchAnimation() {
     [-90, -110, true],
     [90, 110, true],
   ]
-  itemRefs.value?.forEach((el, i) => {
+  tl.to(nucleus.value, {
+    opacity: 1,
+    duration: 0.5,
+    scale: 1,
+    ease: 'hop',
+  })
+  electrons.value?.forEach((el, i) => {
     if (positionList[i]) {
-      animationElectron(el as HTMLElement, positionList[i])
+      animationElectron(el as HTMLElement, positionList[i], i)
     }
   })
 }
 
-function animationElectron(el: HTMLElement, pos: [number, number, boolean]) {
-  gsap.to(el, {
-    keyframes: {
-      '0%': { x: 0, y: 0 },
-      '10%': {
-        x: -pos[0],
-        y: -pos[1],
-        rotateZ: 0,
-        transformOrigin: `${(pos[0] ? pos[0] : 0) + 17}px ${(pos[1] ? pos[1] : 0) + 17}px`,
+function animationElectron(el: HTMLElement, pos: [number, number, boolean], index: number) {
+  tl.to(
+    el,
+    {
+      keyframes: {
+        '0%': { x: 0, y: 0 },
+        '30%': {
+          x: -pos[0],
+          y: -pos[1],
+          opacity: 1,
+          rotateZ: pos[2] ? 90 : -90,
+          transformOrigin: `${(pos[0] ? pos[0] : 0) + 17}px ${(pos[1] ? pos[1] : 0) + 17}px`,
+        },
+        '100%': { rotateZ: pos[2] ? 360 : -360 },
       },
-      '100%': { x: -pos[0], y: -pos[1], rotateZ: pos[2] ? 360 : -360 },
+      duration: 3,
+      ease: 'none',
     },
-    duration: 6,
-    yoyo: true,
-    repeat: -1,
-    ease: 'none',
-  })
+    index === 0 ? '0.5' : '<',
+  )
 }
 </script>
 
 <style scoped lang="scss">
 $Atom-size: 100px;
-$Nucleus-size: 120px;
+$Nucleus-size: 90px;
 $Electron-size: 35px;
 
 @mixin circle($circle-radius) {
@@ -127,7 +138,7 @@ $Electron-size: 35px;
 .atom {
   position: absolute;
   left: calc(50% - ($Nucleus-size / 2));
-  top: calc($Nucleus-size / 1.5);
+  top: calc($Nucleus-size * 1.1);
   position: relative;
 }
 .atome-nucleus {
