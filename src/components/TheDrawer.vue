@@ -99,7 +99,6 @@ const menuList = computed(() => [
 ])
 
 function iconColor(currentRoute: string) {
-  console.log(route.name, currentRoute)
   if (currentRoute === route.name) {
     return $q.dark.mode ? 'dark-primary' : 'primary'
   } else {

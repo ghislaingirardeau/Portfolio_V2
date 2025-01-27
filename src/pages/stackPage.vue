@@ -6,7 +6,7 @@
       </div>
       <div
         ref="items"
-        v-for="(iconUrl, index) in Object.values(devIconSrc.css)"
+        v-for="(iconUrl, index) in iconsCategory"
         :key="index"
         class="electron flex flex-center"
       >
@@ -14,34 +14,70 @@
       </div>
     </div>
     <TheRobotContainer @robot-action="robotAction" />
-
-    <!-- <AtomSample /> -->
+    <ChatMessageContainer
+      ref="chatContainer"
+      :meTexts="chatTexts"
+      :visitor-texts="visitorChatTexts"
+      :delay-animation="0.5"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
+import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { devIconSrc } from 'src/utils/useIconSources'
-import { ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const animationSettings = useAnimationSettings()
+const { isRobotTalk, isRobotClickable } = storeToRefs(animationSettings)
+
+const { tm } = useI18n({ useScope: 'global' })
 
 const atom = ref()
 const atomTitle = ref()
 const itemRefs = useTemplateRef('items')
+const slideChat = ref(0)
+const iterationCount = ref(0)
+
+const iconsCategory = computed(() => {
+  return Object.values(devIconSrc[iterationCount.value]) as string[]
+})
+
+const chatTexts = computed(() => {
+  return tm(`chatMessage.stack.${slideChat.value}.description`) as string[]
+})
+
+const visitorChatTexts = computed(() => {
+  return tm(`chatMessage.stack.${slideChat.value}.title`) as string
+})
+
+onMounted(() => {
+  isRobotTalk.value = true
+  isRobotClickable.value = true
+  launchAnimation()
+})
 
 function robotAction() {
-  const tl = gsap.timeline()
+  if (slideChat.value === 1) {
+    slideChat.value = 0
+  } else {
+    slideChat.value++
+  }
+  iterationCount.value++
+  launchAnimation()
+}
 
+function launchAnimation() {
   itemRefs.value?.forEach((el, i) => {
     if (i === 0) animationElectronX(el as HTMLElement)
     if (i === 1) animationElectronY(el as HTMLElement)
     if (i === 2) animationElectronRight(el as HTMLElement)
     if (i === 3) animationElectronLeft(el as HTMLElement)
-    tl.to(atomTitle.value, {
-      duration: 0.5,
-      text: { value: Object.keys(devIconSrc.css)![i], padSpace: true },
-      delay: 1,
-    })
   })
 }
 
@@ -59,7 +95,6 @@ function animationElectronLeft(el: HTMLElement) {
     duration: 2.6,
     delay: 2,
     ease: 'none',
-    repeat: 1,
   })
 }
 function animationElectronY(el: HTMLElement) {
@@ -76,7 +111,6 @@ function animationElectronY(el: HTMLElement) {
     duration: 3,
     ease: 'none',
     delay: 1,
-    repeat: 1,
   })
 }
 function animationElectronX(el: HTMLElement) {
@@ -92,7 +126,6 @@ function animationElectronX(el: HTMLElement) {
     },
     duration: 3.2,
     ease: 'none',
-    repeat: 1,
   })
 }
 function animationElectronRight(el: HTMLElement) {
@@ -108,7 +141,6 @@ function animationElectronRight(el: HTMLElement) {
     },
     duration: 4,
     ease: 'none',
-    repeat: 1,
   })
 }
 </script>
