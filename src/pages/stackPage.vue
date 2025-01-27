@@ -30,7 +30,6 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { devIconSrc } from 'src/utils/useIconSources'
-import { transform } from 'typescript'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -71,33 +70,36 @@ function robotAction() {
 }
 
 function launchAnimation() {
-  const rotate = 360
-  const rotateReverse = -360
+  const positionList: [number, number, boolean][] = [
+    [0, 80, false],
+    [0, -80, false],
+    [80, 0, false],
+    [-80, 0, false],
+    [60, -60, false],
+    [-60, 60, false],
+    [-60, -60, false],
+    [60, 60, false],
+    [-90, -110, true],
+    [90, 110, true],
+  ]
   itemRefs.value?.forEach((el, i) => {
-    if (i === 0) animationElectron(el as HTMLElement, 0, 80, rotate)
-    if (i === 1) animationElectron(el as HTMLElement, 0, -80, rotate)
-    if (i === 2) animationElectron(el as HTMLElement, 80, 0, rotate)
-    if (i === 3) animationElectron(el as HTMLElement, -80, 0, rotate)
-    if (i === 4) animationElectron(el as HTMLElement, 60, -60, rotate)
-    if (i === 5) animationElectron(el as HTMLElement, -60, 60, rotate)
-    if (i === 6) animationElectron(el as HTMLElement, -60, -60, rotate)
-    if (i === 7) animationElectron(el as HTMLElement, 60, 60, rotate)
-    if (i === 8) animationElectron(el as HTMLElement, -90, -110, rotateReverse)
-    if (i === 9) animationElectron(el as HTMLElement, 90, 110, rotateReverse)
+    if (positionList[i]) {
+      animationElectron(el as HTMLElement, positionList[i])
+    }
   })
 }
 
-function animationElectron(el: HTMLElement, x: number, y: number, deg: number) {
+function animationElectron(el: HTMLElement, pos: [number, number, boolean]) {
   gsap.to(el, {
     keyframes: {
       '0%': { x: 0, y: 0 },
       '10%': {
-        x: -x,
-        y: -y,
+        x: -pos[0],
+        y: -pos[1],
         rotateZ: 0,
-        transformOrigin: `${(x ? x : 0) + 17}px ${(y ? y : 0) + 17}px`,
+        transformOrigin: `${(pos[0] ? pos[0] : 0) + 17}px ${(pos[1] ? pos[1] : 0) + 17}px`,
       },
-      '100%': { x: -x, y: -y, rotateZ: deg },
+      '100%': { x: -pos[0], y: -pos[1], rotateZ: pos[2] ? 360 : -360 },
     },
     duration: 6,
     yoyo: true,
