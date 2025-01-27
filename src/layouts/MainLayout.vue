@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf" class="kalam-font">
+  <q-layout view="hHh lpR fFf" class="indie-flower-regular">
     <TheHeader
       v-model:leftDrawerOpen="leftDrawerOpen"
       v-if="presentationMounted || headerMounted"

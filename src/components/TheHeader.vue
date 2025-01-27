@@ -18,7 +18,9 @@
         />
       </transition>
 
-      <q-toolbar-title @click="router.push({ name: 'home' })"> GG WebDev </q-toolbar-title>
+      <q-toolbar-title class="kaushan-regular" @click="router.push({ name: 'home' })">
+        GG WebDev
+      </q-toolbar-title>
       <q-space />
       <SwitchModeBtn />
       <SwitchLangBtn />

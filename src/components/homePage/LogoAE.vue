@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-center lg:absolute lg:right-64 z-30">
     <div class="header__logo wrap lg:ml-20 w-1/2 lg:w-1/5">
-      <div ref="cube" class="cube" :class="{ anim_cube: launchSpin }" :key="cubeRender">
+      <div
+        ref="cube"
+        class="cube kaushan-regular"
+        :class="{ anim_cube: launchSpin }"
+        :key="cubeRender"
+      >
         <div ref="front" class="front" :class="cubeColor">
           <span class="front-color">g</span>
         </div>
@@ -111,9 +116,6 @@ function spinCubeAnimation() {
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
-$font_logo: 'Kaushan Script', cursive;
-
 .header__logo {
   height: 100px;
   padding: 20px 0px 30px 12%;
@@ -141,7 +143,6 @@ $font_logo: 'Kaushan Script', cursive;
   width: 150px;
   height: 150px;
   text-align: center;
-  font-family: $font_logo;
   font-size: 3.4rem;
   padding-top: 20px;
 }

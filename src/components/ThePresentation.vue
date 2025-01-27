@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-center" :key="locale">
+  <div class="w-full flex flex-center kaushan-regular" :key="locale">
     <div ref="blockHello" class="flex justify-end lg:justify-start w-72 lg:w-3/5">
       <div
         :ref="lettersHello.set"

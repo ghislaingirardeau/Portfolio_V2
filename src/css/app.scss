@@ -1,11 +1,22 @@
-@font-face {
-  font-family: 'Kalam', cursive;
-  src: url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+.kaushan-regular {
+  font-family: 'Kaushan Script', cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
-// declare a class which applies it
-.kalam-font {
-  font-family: 'Kalam', cursive;
+.delicious-handrawn-regular {
+  font-family: 'Delicious Handrawn', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.indie-flower-regular {
+  font-family: 'Indie Flower', serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .text-shadow {

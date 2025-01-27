@@ -1,7 +1,11 @@
 <template>
-  <q-btn ref="toggleLangBtn" class="opacity-0 -translate-x-60" flat @click="switchLang">{{
-    langLocale
-  }}</q-btn>
+  <q-btn
+    ref="toggleLangBtn"
+    class="kaushan-regular opacity-0 -translate-x-60"
+    flat
+    @click="switchLang"
+    >{{ langLocale }}</q-btn
+  >
 </template>
 
 <script setup lang="ts">
