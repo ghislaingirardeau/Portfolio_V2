@@ -20,7 +20,7 @@ import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 
 import { devIconSrc } from 'src/utils/useIconSources'
-import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { onMounted, ref, useTemplateRef, watch } from 'vue'
 
 const animationSettings = useAnimationSettings()
 const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
@@ -41,7 +41,7 @@ const props = defineProps({
 
 const iconsCategory = ref(Object.values(devIconSrc[0]) as string[])
 
-function customIconFilterInvert(i) {
+function customIconFilterInvert(i: number) {
   if (props.slideChat === 1 && i === 2) {
     return 'filter invert'
   }
@@ -61,8 +61,7 @@ watch(
     tl.duration(1.5)
     tl.reverse()
     tl.then(() => {
-      console.log('reverse completed')
-      iconsCategory.value = Object.values(devIconSrc[props.slideChat])
+      iconsCategory.value = Object.values(devIconSrc[props.slideChat as keyof typeof devIconSrc])
       changeTitle()
       tl.duration(3)
 
