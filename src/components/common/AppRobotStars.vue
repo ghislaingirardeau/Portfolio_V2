@@ -10,14 +10,14 @@
       :key="index"
       class="star leg-left"
       :class="{ 'star-dark': $q.dark.mode }"
-      ref="lineY"
+      ref="starToLeft"
     ></div>
     <div
       v-for="index in starNumber"
       :key="index"
       class="star leg-right"
       :class="{ 'star-dark': $q.dark.mode }"
-      ref="lineX"
+      ref="starToTop"
     ></div>
   </div>
 </template>
@@ -29,8 +29,8 @@ import { gsap } from 'src/boot/gsap'
 import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 
-const lineY = useTemplateRefsList()
-const lineX = useTemplateRefsList()
+const starToLeft = useTemplateRefsList()
+const starToTop = useTemplateRefsList()
 
 const { height, width } = useWindowSize()
 
@@ -43,16 +43,16 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 4000)
+  }, 500)
 })
 
 function startAnim() {
-  lineY.value.forEach((el, index) => {
+  starToLeft.value.forEach((el, index) => {
     const randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
     const randomX = -width.value + 97
     const randomYBis = -height.value + 125
     const randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
-    const lineXElement = lineX.value[index] as HTMLElement
+    const starToTopElement = starToTop.value[index] as HTMLElement
     tl.to(
       el,
 
@@ -70,7 +70,7 @@ function startAnim() {
       },
       getRandomArbitrary(0.4, 10),
     ).to(
-      lineXElement,
+      starToTopElement,
       {
         keyframes: {
           scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
