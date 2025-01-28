@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg" ref="el">
+  <q-page class="q-pa-lg z-10" ref="el">
     <AppBackBtn ref="backButton" />
     <q-card
       class="my-card text-center flex flex-center"
@@ -8,9 +8,9 @@
       :class="{ 'my-card-dark': $q.dark.mode }"
     >
       <q-card-section class="my-card-title">
-        <div ref="cardOverline" class="text-overline text-grey opacity-50"></div>
+        <div ref="cardOverline" class="text-h6 opacity-50" :class="overlineColor"></div>
         <div ref="cardTitle" class="text-h5 q-mt-sm q-mb-xs opacity-20 scale-50"></div>
-        <div ref="cardCaption" class="text-caption text-grey my-1 opacity-50"></div>
+        <div ref="cardCaption" class="text-h7 my-1 opacity-50" :class="captionColor"></div>
       </q-card-section>
       <!-- <WireCode
         ref="imageSkeleton"
@@ -42,8 +42,8 @@
       <q-card-actions class="w-full opacity-0 scale-0" ref="action">
         <q-btn
           v-if="findProject.link"
-          flat
           :color="$q.dark.mode ? 'dark-primary' : 'primary'"
+          outline
           :label="$t('cta.link')"
           @click="goToExternalLink(findProject.link)"
         />
@@ -111,6 +111,14 @@ const imageHeight = computed(() => {
   return findProject.value.mobileFirst ? '450px' : '300px'
 })
 
+const captionColor = computed(() => {
+  return $q.dark.mode ? 'text-gray-300' : 'text-gray-400'
+})
+
+const overlineColor = computed(() => {
+  return $q.dark.mode ? 'text-dark-secondary' : 'text-secondary'
+})
+
 onMounted(() => {
   pageMounted.value = false
   animationCardTitle()
@@ -127,7 +135,7 @@ function animationCardTitle() {
     duration,
     opacity: 1,
 
-    text: { value: findProject.value.name, newClass: 'text-orange-9' },
+    text: { value: findProject.value.name },
     ease: 'ease',
   })
     .to(

@@ -15,7 +15,7 @@
     <div
       v-for="index in starNumber"
       :key="index"
-      class="star leg-middle"
+      class="star leg-right"
       :class="{ 'star-dark': $q.dark.mode }"
       ref="lineX"
     ></div>
@@ -63,7 +63,7 @@ function startAnim() {
           '10%': { x: 0, y: 10 },
           '15%': { x: -20 },
           '60%': { x: randomX, y: randomY },
-          '100%': { x: -70, y: -380 },
+          '100%': { x: -width.value / 2 + 92, y: -height.value + 300 },
         },
         duration: getRandomArbitrary(15, 20),
       },
@@ -78,7 +78,7 @@ function startAnim() {
           '10%': { x: 0, y: 10 },
           '15%': { x: 20 },
           '60%': { x: randomXBis, y: randomYBis },
-          '100%': { x: -150, y: -380 },
+          '100%': { x: -width.value / 2 + 28, y: -height.value + 300 },
         },
         duration: getRandomArbitrary(15, 20),
       },
@@ -133,7 +133,7 @@ function getRandomArbitrary(min: number, max: number) {
   right: 92px;
 }
 
-.leg-middle {
+.leg-right {
   right: 28px;
 }
 </style>
