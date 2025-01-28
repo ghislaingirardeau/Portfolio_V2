@@ -26,9 +26,7 @@
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section :ref="menuLabel.set" class="text-h6">
-            <WireCode content="&lt;li&gt;Menu&lt;/li&gt;" />
-          </q-item-section>
+          <q-item-section :ref="menuLabel.set" class="text-h6"> </q-item-section>
         </q-item>
       </template>
     </q-list>
@@ -48,7 +46,6 @@ import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import WireCode from './common/WireCode.vue'
 import { useDeviceOrientation, useIsMobile } from 'src/utils/useDeviceInfo'
 import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
