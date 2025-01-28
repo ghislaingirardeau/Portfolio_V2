@@ -137,6 +137,25 @@ export default {
         ],
       },
     },
+    stack: {
+      0: {
+        title: 'Why this choice of stack?',
+        description: [
+          `I chose to specialise.`,
+          `Of course, I'm reducing opportunities, but I'm opening up new areas of expertise. 
+          Despite everything, I remain open and follow the trends in the most widely used languages.
+          `,
+        ],
+      },
+      1: {
+        title: 'Front-end or back-end?',
+        description: [
+          `Front is my preference if I had to choose a fullstack development option.`,
+          `Even if the backend is just as interesting.
+          `,
+        ],
+      },
+    },
     aboutMobile: {
       visitor: {
         perso: 'Qui es-tu ?',

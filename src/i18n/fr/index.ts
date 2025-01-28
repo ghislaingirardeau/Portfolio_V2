@@ -17,8 +17,8 @@ export default {
     home: {
       visitor: 'Pourquoi ce portfolio ?',
       me: [
-        'Pour montrer ce qui se cache derrière mon CV et mieux me connaitre',
-        "Tu trouveras d'autres informations sur les liens ci-dessous",
+        "Pour en savoir plus sur moi, comment je travaille, des exemples de projets. Ce portfolio est fait dans l'esprit d'un petit entretien ;)",
+        "Tu as déjà peut etre beaucoup d'informations sur les liens ci-dessous",
       ],
     },
     projectMobile: {
@@ -149,8 +149,8 @@ export default {
       1: {
         title: 'Coté front ou coté backend ?',
         description: [
-          `Le Front, c'est ma préférence si je devais choisir dans un développpement fullstack`,
-          `Même si la partie backend est aussi intéressante.
+          `Le Front, c'est ma préférence si je devais choisir dans un développpement fullstack. Notamment du fait que je maitrise plus VueJs`,
+          `Mais j'apprécie également faire du backend notamment concevoir des API Rest.
           `,
         ],
       },
