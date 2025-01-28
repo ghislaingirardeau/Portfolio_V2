@@ -1,7 +1,7 @@
 <template>
   <div class="atom">
     <div ref="nucleus" class="atome-nucleus flex flex-center scale-75 opacity-0">
-      <span>{{ props.slideChat === 0 ? 'Frontend' : 'Backend' }}</span>
+      <span>{{ title }}</span>
     </div>
     <div
       ref="electrons"
@@ -9,7 +9,7 @@
       :key="index"
       class="electron flex flex-center opacity-0"
     >
-      <q-img :src="iconUrl" width="100%" />
+      <q-img :src="iconUrl" width="100%" :class="customIconFilterInvert(index)" />
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 
 import { devIconSrc } from 'src/utils/useIconSources'
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 
 const animationSettings = useAnimationSettings()
 const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
@@ -28,6 +28,7 @@ const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
 
 const nucleus = ref()
 const electrons = useTemplateRef('electrons')
+const title = ref('Frontend')
 
 const tl = gsap.timeline()
 
@@ -38,15 +39,45 @@ const props = defineProps({
   },
 })
 
-const iconsCategory = computed(() => {
-  return Object.values(devIconSrc[props.slideChat]) as string[]
-})
+const iconsCategory = ref(Object.values(devIconSrc[0]) as string[])
+
+function customIconFilterInvert(i) {
+  if (props.slideChat === 1 && i === 2) {
+    return 'filter invert'
+  }
+}
 
 onMounted(() => {
   isRobotProcessing.value = true
   isRobotClickable.value = false
   launchAnimation()
 })
+
+watch(
+  () => props.slideChat,
+  () => {
+    isRobotProcessing.value = true
+    isRobotClickable.value = false
+    tl.duration(1.5)
+    tl.reverse()
+    tl.then(() => {
+      console.log('reverse completed')
+      iconsCategory.value = Object.values(devIconSrc[props.slideChat])
+      changeTitle()
+      tl.duration(3)
+
+      tl.restart()
+    })
+  },
+)
+
+function changeTitle() {
+  if (props.slideChat === 0) {
+    title.value = 'Frontend'
+  } else {
+    title.value = 'Backend'
+  }
+}
 
 function launchAnimation() {
   const positionList: [number, number, boolean][] = [

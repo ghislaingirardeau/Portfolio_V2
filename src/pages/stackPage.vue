@@ -1,13 +1,13 @@
 <template>
   <div class="q-pa-lg relative" style="height: 200px">
-    <AppAtom :slide-chat="slideChat" :key="'atom' + slideChat" />
+    <AppAtom :slide-chat="slideChat" />
     <TheRobotContainer @robot-action="robotAction" />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         ref="chatContainer"
         :meTexts="chatTexts"
         :visitor-texts="visitorChatTexts"
-        :delay-animation="0.5"
+        :delay-animation="1.5"
         :key="'chat' + slideChat"
       />
     </transition>

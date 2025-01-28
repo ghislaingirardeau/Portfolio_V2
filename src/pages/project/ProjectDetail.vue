@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg z-20" ref="el">
+  <q-page class="q-pa-lg" ref="el">
     <AppBackBtn ref="backButton" />
     <q-card
       class="my-card text-center flex flex-center"
@@ -81,7 +81,8 @@ const route = useRoute()
 const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotTalk, isRobotStepBack } =
+  storeToRefs(animationSettings)
 
 const slide = ref(0)
 const expanded = ref(false)
@@ -182,19 +183,23 @@ function animationImage() {
   tl.call(() => {
     pageMounted.value = true
     isRobotClickable.value = true
+    isRobotTalk.value = true
   })
 }
 
 function robotAction() {
   if (!expanded.value) {
     expanded.value = !expanded.value
-    isRobotClickable.value = false
+    isRobotTalk.value = false
+    isRobotStepBack.value = true
   } else {
     gsap.to(chatContainer.value!.$el, {
       duration: 0.5,
       opacity: 0,
       onComplete() {
         expanded.value = false
+        isRobotTalk.value = true
+        isRobotStepBack.value = false
       },
     })
   }
