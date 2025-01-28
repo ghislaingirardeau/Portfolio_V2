@@ -26,6 +26,7 @@
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 
 const lineY = useTemplateRefsList()
@@ -63,7 +64,7 @@ function startAnim() {
           '10%': { x: 0, y: 10 },
           '15%': { x: -20 },
           '60%': { x: randomX, y: randomY },
-          '100%': { x: -width.value / 2 + 92, y: -height.value + 300 },
+          '100%': { x: -width.value / 2 + 92, y: -height.value + (useIsMobileTall() ? 350 : 300) },
         },
         duration: getRandomArbitrary(15, 20),
       },
@@ -78,7 +79,7 @@ function startAnim() {
           '10%': { x: 0, y: 10 },
           '15%': { x: 20 },
           '60%': { x: randomXBis, y: randomYBis },
-          '100%': { x: -width.value / 2 + 28, y: -height.value + 300 },
+          '100%': { x: -width.value / 2 + 28, y: -height.value + (useIsMobileTall() ? 350 : 300) },
         },
         duration: getRandomArbitrary(15, 20),
       },
