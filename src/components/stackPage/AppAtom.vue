@@ -1,5 +1,5 @@
 <template>
-  <div class="atom">
+  <div class="atom" :class="{ 'mt-10': useIsMobileTall() }">
     <div
       ref="nucleus"
       class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200"
@@ -23,6 +23,7 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 
 import { devIconSrc } from 'src/utils/useIconSources'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'

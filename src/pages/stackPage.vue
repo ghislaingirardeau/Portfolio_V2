@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-lg relative" style="height: 200px">
+  <div class="q-pa-lg relative">
     <AppAtom :slide-chat="slideChat" />
     <TheRobotContainer @robot-action="robotAction" />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
