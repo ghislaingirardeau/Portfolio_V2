@@ -5,11 +5,13 @@
       <div
         class="eye fixed grad"
         :class="{
-          'is-clickable': isRobotClickable && !$q.dark.isActive && isAnimationDone,
-          'is-loading': !isAnimationDone && !$q.dark.isActive,
+          'is-clickable':
+            isRobotClickable && !$q.dark.isActive && isAnimationDone && !isRobotProcessing,
+          'is-loading': (!isAnimationDone || isRobotProcessing) && !$q.dark.isActive,
           'grad-dark': $q.dark.isActive,
           'is-loading-dark': $q.dark.isActive && !isAnimationDone,
-          'is-clickable-dark': $q.dark.isActive && isRobotClickable && isAnimationDone,
+          'is-clickable-dark':
+            $q.dark.isActive && isRobotClickable && isAnimationDone && !isRobotProcessing,
           'slow-motion-mobile': useIsMobile(),
         }"
         ref="eyeBis"
@@ -82,7 +84,8 @@ import TheRobotIdea from './TheRobotIdea.vue'
 // const eye = useTemplateRef<any>('eye')
 const eyeBis = ref()
 const animationSettings = useAnimationSettings()
-const { isAnimationDone, robotMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { isAnimationDone, robotMounted, isRobotClickable, isRobotProcessing } =
+  storeToRefs(animationSettings)
 
 const $q = useQuasar()
 

@@ -13,13 +13,19 @@ import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
-import { mdiLightbulbOnOutline, mdiChat, mdiImageBroken } from '@quasar/extras/mdi-v7'
+import {
+  mdiLightbulbOnOutline,
+  mdiChat,
+  mdiImageBroken,
+  mdiStepBackward,
+} from '@quasar/extras/mdi-v7'
 import { useQuasar } from 'quasar'
 const $q = useQuasar()
 
 const robotIdea = ref()
 const animationSettings = useAnimationSettings()
-const { isRobotClickable, isRobotTalk, isRobotFix } = storeToRefs(animationSettings)
+const { isRobotClickable, isRobotTalk, isRobotFix, isRobotStepBack } =
+  storeToRefs(animationSettings)
 
 const iconType = computed(() => {
   if (isRobotTalk.value) {
@@ -27,6 +33,9 @@ const iconType = computed(() => {
   }
   if (isRobotFix.value) {
     return mdiImageBroken
+  }
+  if (isRobotStepBack.value) {
+    return mdiStepBackward
   } else {
     return mdiLightbulbOnOutline
   }

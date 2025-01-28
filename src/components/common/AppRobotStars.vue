@@ -62,10 +62,10 @@ function startAnim() {
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: -20 },
-          '100%': { x: randomX, y: randomY },
+          '60%': { x: randomX, y: randomY },
+          '100%': { x: -70, y: -380 },
         },
-        duration: getRandomArbitrary(20, 30),
-        repeat: -1,
+        duration: getRandomArbitrary(15, 20),
       },
       getRandomArbitrary(0.4, 10),
     ).to(
@@ -77,13 +77,16 @@ function startAnim() {
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: 20 },
-          '100%': { x: randomXBis, y: randomYBis },
+          '60%': { x: randomXBis, y: randomYBis },
+          '100%': { x: -150, y: -380 },
         },
-        duration: getRandomArbitrary(20, 30),
-        repeat: -1,
+        duration: getRandomArbitrary(15, 20),
       },
       getRandomArbitrary(0.4, 10),
     )
+  })
+  tl.call(() => {
+    tl.repeat(-1)
   })
 }
 
