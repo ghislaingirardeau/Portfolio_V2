@@ -43,7 +43,7 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 500)
+  }, 4000)
 })
 
 function startAnim() {
