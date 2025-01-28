@@ -40,15 +40,18 @@
 .text-dark-primary {
   color: $dark-primary !important;
 }
+.text-dark-secondary {
+  color: $dark-secondary !important;
+}
 .bg-dark-primary {
   background: $dark-primary !important;
 }
 
 .cube-light {
-  color: $primary;
-  border-color: $primary;
+  color: $secondary;
+  border-color: $secondary;
 }
 .cube-dark {
-  @extend .text-dark-primary;
-  border-color: $dark-primary;
+  color: $dark-secondary;
+  border-color: $dark-secondary;
 }

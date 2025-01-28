@@ -1,6 +1,10 @@
 <template>
   <div class="atom">
-    <div ref="nucleus" class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200">
+    <div
+      ref="nucleus"
+      class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200"
+      :class="modeColor"
+    >
       <span>{{ title }}</span>
     </div>
     <div
@@ -21,7 +25,7 @@ import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 
 import { devIconSrc } from 'src/utils/useIconSources'
-import { onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 
 const animationSettings = useAnimationSettings()
 const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
@@ -44,11 +48,9 @@ const props = defineProps({
 
 const iconsCategory = ref(Object.values(devIconSrc[0]) as string[])
 
-function customIconFilterInvert(i: number) {
-  if (props.slideChat === 1 && i === 2 && $q.dark.mode) {
-    return 'filter invert'
-  }
-}
+const modeColor = computed(() => {
+  return $q.dark.mode ? 'atome-nucleus-dark' : 'atome-nucleus-light'
+})
 
 onMounted(() => {
   isRobotProcessing.value = true
@@ -72,6 +74,12 @@ watch(
     })
   },
 )
+
+function customIconFilterInvert(i: number) {
+  if (props.slideChat === 1 && i === 2 && $q.dark.mode) {
+    return 'filter invert'
+  }
+}
 
 function changeTitle() {
   if (props.slideChat === 0) {
@@ -151,11 +159,20 @@ $Atom-size: 100px;
 $Nucleus-size: 90px;
 $Electron-size: 35px;
 
+.atome-nucleus-dark {
+  background: radial-gradient(
+    hsl(180, 3%, 23%),
+    hsl(186, 89%, 86%) 50%,
+    hsl(186, 89%, 86%, 0.4) 60%,
+    hsla(0, 0%, 100%, 0) 70%
+  );
+}
+
 .atome-nucleus-light {
   background: radial-gradient(
     hsl(187, 9%, 79%),
-    hsl(191, 56%, 47%) 50%,
-    hsl(190, 82%, 42%, 0.4) 60%,
+    hsl(191, 100%, 20%) 50%,
+    hsl(191, 100%, 20%, 0.4) 60%,
     hsla(0, 0%, 100%, 0) 70%
   );
 }
@@ -182,7 +199,7 @@ $Electron-size: 35px;
   position: absolute;
 
   border-radius: 50%;
-  @extend .atome-nucleus-light;
+  color: $white;
 
   z-index: 2;
 }

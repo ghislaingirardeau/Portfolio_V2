@@ -72,7 +72,7 @@ function shadowColor() {
 }
 
 const modeColor = computed(() => {
-  return $q.dark.mode ? 'text-dark-primary' : 'text-primary'
+  return $q.dark.mode ? 'text-dark-secondary' : 'text-secondary'
 })
 
 onMounted(() => {

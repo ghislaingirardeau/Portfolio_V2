@@ -115,16 +115,16 @@ function getRandomArbitrary(min: number, max: number) {
   bottom: 65px;
   opacity: 0;
   background: radial-gradient(
-    hsl(189.8, 78.5%, 38.2%),
-    hsl(189.8, 78.5%, 38.2%) 10%,
-    hsla(0, 0%, 98%, 0) 56%
+    hsl(191, 100%, 20%),
+    hsl(191, 100%, 20%) 10%,
+    hsla(180, 100%, 80%, 0) 40%
   );
 }
 
 .star-dark {
   background: radial-gradient(
-    hsl(180, 100%, 80%),
-    hsl(180, 100%, 80%) 10%,
+    hsl(186, 89%, 86%),
+    hsl(186, 89%, 86%) 10%,
     hsla(180, 100%, 80%, 0) 56%
   );
 }
