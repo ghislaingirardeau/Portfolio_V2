@@ -1,6 +1,6 @@
 <template>
   <div class="atom">
-    <div ref="nucleus" class="atome-nucleus flex flex-center scale-75 opacity-0">
+    <div ref="nucleus" class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200">
       <span>{{ title }}</span>
     </div>
     <div
@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 
@@ -25,6 +26,8 @@ import { onMounted, ref, useTemplateRef, watch } from 'vue'
 const animationSettings = useAnimationSettings()
 const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
   storeToRefs(animationSettings)
+
+const $q = useQuasar()
 
 const nucleus = ref()
 const electrons = useTemplateRef('electrons')
@@ -42,7 +45,7 @@ const props = defineProps({
 const iconsCategory = ref(Object.values(devIconSrc[0]) as string[])
 
 function customIconFilterInvert(i: number) {
-  if (props.slideChat === 1 && i === 2) {
+  if (props.slideChat === 1 && i === 2 && $q.dark.mode) {
     return 'filter invert'
   }
 }
@@ -148,6 +151,15 @@ $Atom-size: 100px;
 $Nucleus-size: 90px;
 $Electron-size: 35px;
 
+.atome-nucleus-light {
+  background: radial-gradient(
+    hsl(187, 9%, 79%),
+    hsl(191, 56%, 47%) 50%,
+    hsl(190, 82%, 42%, 0.4) 60%,
+    hsla(0, 0%, 100%, 0) 70%
+  );
+}
+
 @mixin circle($circle-radius) {
   display: block;
   content: '';
@@ -170,15 +182,11 @@ $Electron-size: 35px;
   position: absolute;
 
   border-radius: 50%;
-  background: radial-gradient(
-    hsl(187, 9%, 79%),
-    hsl(190, 64%, 84%) 50%,
-    hsl(190, 82%, 42%) 60%,
-    hsla(190, 78%, 38%, 0) 80%
-  );
+  @extend .atome-nucleus-light;
 
   z-index: 2;
 }
+
 .electron {
   width: $Electron-size;
   height: $Electron-size;
