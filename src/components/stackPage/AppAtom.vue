@@ -4,6 +4,7 @@
       ref="nucleus"
       class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200"
       :class="modeColor"
+      @click="emit('robotAction')"
     >
       <span>{{ title }}</span>
     </div>
@@ -27,6 +28,8 @@ import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 
 import { devIconSrc } from 'src/utils/useIconSources'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+
+const emit = defineEmits(['robotAction'])
 
 const animationSettings = useAnimationSettings()
 const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
