@@ -18,7 +18,10 @@
         />
       </transition>
 
-      <q-toolbar-title class="kaushan-regular" @click="router.push({ name: 'home' })">
+      <q-toolbar-title
+        class="kaushan-regular cursor-pointer"
+        @click="router.push({ name: 'home' })"
+      >
         GG WebDev
       </q-toolbar-title>
       <q-space />

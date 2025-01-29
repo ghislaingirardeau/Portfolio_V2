@@ -1,18 +1,19 @@
 <template>
   <div>
-    <div class="fixed bottom-24 right-24 ml-3 z-50">
+    <div class="fixed bottom-24 right-24 ml-3 z-50 lg:w-96">
       <q-chat-message
         v-if="visitorTexts"
         ref="receivedMessage"
         :bg-color="chatReceivedBg"
         :text-color="chatReceivedColor"
         :text="[visitorTexts]"
+        :style="{ 'font-size': fontSize }"
       />
       <q-chat-message sent name="Me" :text-color="chatColor" :bg-color="chatBg" ref="sentMessages">
         <div
           v-for="(text, index) in props.meTexts"
           :key="'text-' + index"
-          :style="{ 'font-size': useIsMobileTall() ? '1rem' : '0.8rem' }"
+          :style="{ 'font-size': fontSize }"
         >
           <span v-html="text"></span>
         </div>
@@ -26,7 +27,7 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed, onMounted, useTemplateRef, watch } from 'vue'
 
 const animationSettings = useAnimationSettings()
@@ -64,6 +65,14 @@ const chatReceivedBg = computed(() => {
 
 const chatReceivedColor = computed(() => {
   return $q.dark.mode ? 'white' : 'dark'
+})
+
+const fontSize = computed(() => {
+  if (useIsMobile()) {
+    return useIsMobileTall() ? '1rem' : '0.8rem'
+  } else {
+    return '1.2rem'
+  }
 })
 
 function textMessageAnimation() {
