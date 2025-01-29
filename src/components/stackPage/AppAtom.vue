@@ -47,7 +47,9 @@ const props = defineProps({
   },
 })
 
-const iconsCategory = ref(Object.values(devIconSrc[0]) as string[])
+const iconsCategory = ref(
+  Object.values(devIconSrc[props.slideChat as keyof typeof devIconSrc]) as string[],
+)
 
 const modeColor = computed(() => {
   return $q.dark.mode ? 'atome-nucleus-dark' : 'atome-nucleus-light'
@@ -56,6 +58,7 @@ const modeColor = computed(() => {
 onMounted(() => {
   isRobotProcessing.value = true
   isRobotClickable.value = false
+  changeTitle()
   launchAnimation()
 })
 

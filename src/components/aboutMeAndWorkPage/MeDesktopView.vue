@@ -1,0 +1,84 @@
+<template>
+  <q-page class="q-pa-lg">
+    <div class="w-3/5 flex justify-center items-stretch" style="min-height: 80vh">
+      <AppMeImage
+        v-for="(image, index) in imagesToDisplay"
+        :key="image"
+        :imageSrc="image"
+        :isImageFixed="isImageFixed[index]"
+        @click="handleSwitchImage(index)"
+      />
+    </div>
+
+    <TheRobotContainer @robot-action="robotAction" />
+    <ChatMessageContainer
+      ref="chatContainer"
+      :key="'chatContainer' + meSlide"
+      :meTexts="chatTexts"
+      :visitor-texts="visitorChatTexts"
+      :delay-animation="0.5"
+    />
+  </q-page>
+</template>
+
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
+import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import { useAnimationSettings } from 'src/stores/animationSettings'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { gsap } from 'src/boot/gsap'
+import { useRoute } from 'vue-router'
+import AppMeImage from '../common/AppMeImage.vue'
+
+const animationSettings = useAnimationSettings()
+const { pageMounted } = storeToRefs(animationSettings)
+const route = useRoute()
+
+const { tm, t } = useI18n({ useScope: 'global' })
+
+const meSlide = ref(0)
+const isImageFixed = ref([true, false, false])
+
+const chatTexts = computed(() => {
+  return route.name === 'aboutMe'
+    ? (tm(`chatMessage.meMobile.${meSlide.value}.description`) as string[])
+    : (tm(`chatMessage.workEnvMobile.${meSlide.value}.description`) as string[])
+})
+
+const visitorChatTexts = computed(() => {
+  return route.name === 'aboutMe'
+    ? tm(`chatMessage.meMobile.${meSlide.value}.title`)
+    : tm(`chatMessage.workEnvMobile.${meSlide.value}.title`)
+})
+
+const imagesToDisplay = computed(() => {
+  return route.name === 'aboutMe'
+    ? (tm(`about.personal.imageURL`) as string[])
+    : (tm(`about.professionaly.imageURL`) as string[])
+})
+
+onMounted(() => {
+  pageMounted.value = true
+})
+
+function handleSwitchImage(index: number) {
+  const imgPrevIndex = isImageFixed.value.findIndex((el) => el === true)
+  isImageFixed.value[imgPrevIndex] = false
+  isImageFixed.value[index] = true
+  meSlide.value = index
+}
+
+function robotAction() {
+  if (meSlide.value === 2) {
+    handleSwitchImage(0)
+    meSlide.value = 0
+  } else {
+    meSlide.value++
+    handleSwitchImage(meSlide.value)
+  }
+}
+</script>
+
+<style scoped></style>

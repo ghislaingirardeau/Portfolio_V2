@@ -9,7 +9,8 @@
 
     <q-page-container>
       <router-view />
-      <AppRobotStars />
+      <AppRobotStars v-if="useIsMobile()" />
+      <AppRobotStarsDesktop v-else />
     </q-page-container>
 
     <TheFooter v-if="presentationMounted || headerMounted" />
@@ -25,6 +26,7 @@ import { onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import AppRobotStars from 'src/components/common/AppRobotStars.vue'
+import AppRobotStarsDesktop from 'src/components/common/AppRobotStarsDesktop.vue'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
@@ -49,7 +51,6 @@ watch(
 
 //TODO:
 // block click on is animating
-// stack menu + page dedié
 // un fond ecran spé desktop + mobile avec anim (les techs en fond écran ?)
 // quasar tag html
 </script>

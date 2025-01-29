@@ -14,15 +14,15 @@ const { presentationMounted, pageMounted } = storeToRefs(animationSettings)
 const MeMobileView = defineAsyncComponent(
   () => import('src/components/aboutMeAndWorkPage/MeMobileView.vue'),
 )
-const AboutMeDesktopView = defineAsyncComponent(
-  () => import('src/components/aboutPage/AboutMeDesktopView.vue'),
+const MeDesktopView = defineAsyncComponent(
+  () => import('src/components/aboutMeAndWorkPage/MeDesktopView.vue'),
 )
 
 const loadComponent = computed(() => {
   if (useIsMobile()) {
     return MeMobileView
   } else {
-    return AboutMeDesktopView
+    return MeDesktopView
   }
 })
 
