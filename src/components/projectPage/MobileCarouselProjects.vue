@@ -56,6 +56,8 @@ const $q = useQuasar()
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
 const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
 
+const emits = defineEmits(['slide-change'])
+
 const carousel = ref()
 const carouselPrevious = ref()
 const carouselNext = ref()
@@ -119,6 +121,7 @@ function nextSlide() {
     return
   }
   currentSlide.value++
+  emits('slide-change')
 }
 
 function previousSlide() {
@@ -126,6 +129,7 @@ function previousSlide() {
     return
   }
   currentSlide.value--
+  emits('slide-change')
 }
 
 function animationSlide() {

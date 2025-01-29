@@ -12,7 +12,6 @@
         fit="fill"
         loading="lazy"
         spinner-color="white"
-        class="cursor-pointer"
         :class="imageClass"
         @click="
           goToProjectDetail(
@@ -73,18 +72,23 @@ const imageTitleClass = computed(() => {
 const imageClass = computed(() => {
   if (useIsMobile()) {
     if (useIsMobileTall()) {
-      return props.typeDesktop ? 'h-60' : 'h-96'
+      return props.typeDesktop ? 'h-60' : 'h-96 cursor-pointer'
     } else {
-      return props.typeDesktop ? 'h-48' : 'h-72'
+      return props.typeDesktop ? 'h-48' : 'h-72 cursor-pointer'
     }
   } else {
-    return 'h-4/5'
+    return props.typeDesktop ? 'h-4/5' : 'h-4/5 cursor-pointer'
   }
 })
 
 function goToProjectDetail(id: string) {
   if (!props.typeDesktop) {
-    router.push({ name: 'project-detail', params: { id } })
+    if (useIsMobile()) {
+      router.push({ name: 'project-detail', params: { id } })
+    } else {
+      const currentLinkProject = projectsMobile.value.find((el) => el.id === id)
+      window.open(currentLinkProject?.link, '_blank')
+    }
   }
 }
 </script>

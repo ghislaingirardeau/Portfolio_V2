@@ -24,21 +24,20 @@
       class="tab_panel_container flex z-10 lg:w-3/5 lg:flex-center lg:item-center"
       :class="{ tab_panel_dark: $q.dark.mode, 'pt-10': useIsMobileTall() }"
     >
-      <component
-        :is="MobileCarouselProjects"
+      <MobileCarouselProjects
         v-model:currentSlide="currentSlide"
         :type-desktop="tab === 'mobile' ? false : true"
         :name="tab"
         v-model:is-first-mounted="isFirstMounted"
-      >
-      </component>
+        @slide-change="resetChat"
+      />
     </q-tab-panels>
     <TheRobotContainer @robot-action="robotAction" />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :visitor-texts="visitorChatMessageToDisplay"
         :meTexts="chatMessageToDisplay"
-        :key="tab + chatPage"
+        :key="tab + chatPage + currentSlide"
         :delay-animation="0.5"
       />
     </transition>
@@ -53,7 +52,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -73,16 +72,34 @@ const isFirstMounted = ref(true)
 const chatPage = ref(0)
 
 const chatMessageToDisplay = computed(() => {
-  return tab.value === 'mobile'
-    ? [...tm(`chatMessage.projectMobile.mobileTab.${chatPage.value}.description`)]
-    : [...tm(`chatMessage.projectMobile.desktopTab.${chatPage.value}.description`)]
+  if (useIsMobile()) {
+    return tab.value === 'mobile'
+      ? [...tm(`chatMessage.projectMobile.mobileTab.${chatPage.value}.description`)]
+      : [...tm(`chatMessage.projectMobile.desktopTab.${chatPage.value}.description`)]
+  } else {
+    return tab.value === 'mobile'
+      ? [
+          ...tm(
+            `chatMessage.projectDesktop.mobileTab.${currentSlide.value}.${chatPage.value}.description`,
+          ),
+        ]
+      : [...tm(`chatMessage.projectDesktop.desktopTab.${chatPage.value}.description`)]
+  }
 })
 
 const visitorChatMessageToDisplay = computed(() => {
-  if (tab.value === 'mobile') {
-    return t(`chatMessage.projectMobile.mobileTab.${chatPage.value}.title`)
+  if (useIsMobile()) {
+    if (tab.value === 'mobile') {
+      return t(`chatMessage.projectMobile.mobileTab.${chatPage.value}.title`)
+    } else {
+      return t(`chatMessage.projectMobile.desktopTab.${chatPage.value}.title`)
+    }
   } else {
-    return t(`chatMessage.projectMobile.desktopTab.${chatPage.value}.title`)
+    if (tab.value === 'mobile') {
+      return t(`chatMessage.projectDesktop.mobileTab.${currentSlide.value}.${chatPage.value}.title`)
+    } else {
+      return t(`chatMessage.projectDesktop.desktopTab.${chatPage.value}.title`)
+    }
   }
 })
 
@@ -98,8 +115,13 @@ onMounted(() => {
 
 function resetCarousel() {
   currentSlide.value = 0
+  resetChat()
+}
+
+function resetChat() {
   chatPage.value = 0
   isRobotTalk.value = true
+  isRobotClickable.value = true
 }
 
 function robotAction() {

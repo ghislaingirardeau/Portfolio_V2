@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <div class="fixed bottom-24 right-24 ml-3 z-50 lg:w-96">
-      <q-chat-message
-        v-if="visitorTexts"
-        ref="receivedMessage"
-        :bg-color="chatReceivedBg"
-        :text-color="chatReceivedColor"
-        :text="[visitorTexts]"
+  <div class="fixed bottom-24 right-24 ml-3 z-50 lg:w-96">
+    <q-chat-message
+      v-if="visitorTexts"
+      ref="receivedMessage"
+      :bg-color="chatReceivedBg"
+      :text-color="chatReceivedColor"
+      :text="[visitorTexts]"
+      :style="{ 'font-size': fontSize }"
+    />
+    <q-chat-message sent name="Me" :text-color="chatColor" :bg-color="chatBg" ref="sentMessages">
+      <div
+        v-for="(text, index) in props.meTexts"
+        :key="'text-' + index"
         :style="{ 'font-size': fontSize }"
-      />
-      <q-chat-message sent name="Me" :text-color="chatColor" :bg-color="chatBg" ref="sentMessages">
-        <div
-          v-for="(text, index) in props.meTexts"
-          :key="'text-' + index"
-          :style="{ 'font-size': fontSize }"
-        >
-          <span v-html="text"></span>
-        </div>
-      </q-chat-message>
-    </div>
+      >
+        <span v-html="text"></span>
+      </div>
+    </q-chat-message>
   </div>
 </template>
 

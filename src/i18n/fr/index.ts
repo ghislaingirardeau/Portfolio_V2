@@ -51,14 +51,81 @@ export default {
       },
     },
     projectDesktop: {
-      mobile: [
-        'Ces projets ont été réalisés en Mobile First, mais fonctionnent aussi sur desktop',
-        'Voir aussi mes projets desktop public ?',
-      ],
-      desktop: [
-        "Ceci n'est qu'un échantillon des projets développés, pour des raisons de confidentialités, les projets privés ne sont pas visibles ici ! ",
-        'Retour vers les projets mobiles ?',
-      ],
+      mobileTab: {
+        0: {
+          0: {
+            title: `C'est un mini jeu pour mobiles ?`,
+            description: [
+              "Oui, c'est un wordle. Je l'ai développé en Test Driven Development avec les librairies suivantes",
+              `Typescript, VueJs 3, Vitest, JsDom, Tailwinds.`,
+              `L'objectif était d'en savoir plus sur les outils de test.`,
+            ],
+          },
+          1: {
+            title: `Qu'est-ce que le développement piloté par les tests ?`,
+            description: [
+              `Il donne la priorité au test pour le développement en utilisant 3 étapes.`,
+              `Feux Rouge: Écrire le test du résultat attendu.`,
+              `Feux Vert: Écrire le code pour que le test passe.`,
+              `Refactoriser le code et le test.`,
+            ],
+          },
+        },
+        1: {
+          0: {
+            title: `C'est une application mobile ? Dans quel but ?`,
+            description: [
+              "Oui, c'est PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+              `Je l'ai fait à partir de Typescript, Nuxt 3, PWA, i18n, Firebase et GitHub`,
+              `C'est un outil qui m'a servi pour apprendre la langue du Khmer. Ainsi lors de la traduction d'un mot, je peux aussi de suite le 
+              catégoriser pour m'en souvenir. Sorte de flashcard perso ;)`,
+            ],
+          },
+          1: {
+            title: `Qu'est-ce qu'une PWA ?`,
+            description: [
+              `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
+              ` 
+                Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
+                et peut s'intégrer à l'appareil et aux autres applications installées.`,
+            ],
+          },
+        },
+        2: {
+          0: {
+            title: `C'est une application mobile ? Dans quel but ?`,
+            description: [
+              "Oui, c'est PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+              `Je l'ai fait à partir de Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel`,
+              `C'est un outil de cartographie, réalisé pour une chercheuse en sociologie.`,
+            ],
+          },
+          1: {
+            title: `Qu'est-ce qu'une PWA ?`,
+            description: [
+              `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
+              ` 
+                Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
+                et peut s'intégrer à l'appareil et aux autres applications installées.`,
+            ],
+          },
+        },
+      },
+      desktopTab: {
+        0: {
+          title: `Ce sont toutes tes réalisations ?`,
+          description: [
+            "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+            "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+          ],
+        },
+        1: {
+          title: `Et tu as fait la partie backend ?`,
+          description: [
+            `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+          ],
+        },
+      },
     },
     aboutDesktop: {
       perso: [
