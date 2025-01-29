@@ -1,5 +1,5 @@
 <template>
-  <div class="atom" :class="{ 'mt-10': useIsMobileTall() }">
+  <div class="atom h-0 w-0" :class="atomDisplayClass">
     <div
       ref="nucleus"
       class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200"
@@ -23,7 +23,7 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 
 import { devIconSrc } from 'src/utils/useIconSources'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
@@ -53,6 +53,13 @@ const iconsCategory = ref(
 
 const modeColor = computed(() => {
   return $q.dark.mode ? 'atome-nucleus-dark' : 'atome-nucleus-light'
+})
+
+const atomDisplayClass = computed(() => {
+  if (useIsMobile()) {
+    return useIsMobileTall() ? 'mt-10 atom-center' : 'atom-center'
+  }
+  return 'atom-start scale-150'
 })
 
 onMounted(() => {
@@ -159,7 +166,6 @@ function animationElectron(el: HTMLElement, pos: [number, number, boolean], inde
 </script>
 
 <style scoped lang="scss">
-$Atom-size: 100px;
 $Nucleus-size: 90px;
 $Electron-size: 35px;
 
@@ -181,22 +187,21 @@ $Electron-size: 35px;
   );
 }
 
-@mixin circle($circle-radius) {
-  display: block;
-  content: '';
-  width: $circle-radius * 1.2;
-  height: $circle-radius * 1.2;
-  margin-left: ($circle-radius - ($circle-radius * 1.2)) * 0.5;
-  margin-top: ($circle-radius - ($circle-radius * 1.2)) * 0.5;
-  border-radius: 50%;
-}
-
 .atom {
   position: absolute;
-  left: calc(50% - ($Nucleus-size / 2));
-  top: calc($Nucleus-size * 1.1);
   position: relative;
 }
+
+.atom-center {
+  left: calc(50% - ($Nucleus-size / 2));
+  top: calc($Nucleus-size * 1.1);
+}
+
+.atom-start {
+  left: 25%;
+  top: calc($Nucleus-size * 2);
+}
+
 .atome-nucleus {
   width: $Nucleus-size;
   height: $Nucleus-size;
