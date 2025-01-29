@@ -4,7 +4,7 @@
       ref="tabs"
       v-model="tab"
       dense
-      class="text-grey h-0 z-10"
+      class="text-grey h-0 lg:w-3/5"
       :class="$q.dark.mode ? 'bg-dark-page' : 'bg-white'"
       :active-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       :indicator-color="$q.dark.mode ? 'dark-primary' : 'primary'"
@@ -16,13 +16,13 @@
       <q-tab name="desktop" :label="'Desktop Web'" />
     </q-tabs>
 
-    <q-separator />
+    <q-separator class="lg:w-3/5" />
 
     <q-tab-panels
       v-model="tab"
       animated
-      class="tab_panel_container flex z-10"
-      :class="{ tab_panel_dark: $q.dark.mode, 'items-center': useIsMobileTall() }"
+      class="tab_panel_container flex z-10 lg:w-3/5 lg:flex-center lg:item-center"
+      :class="{ tab_panel_dark: $q.dark.mode, 'pt-10': useIsMobileTall() }"
     >
       <component
         :is="MobileCarouselProjects"
@@ -123,7 +123,7 @@ function robotAction() {
 
 <style scoped lang="scss">
 .tab_panel_container {
-  min-height: calc(100vh - 350px);
+  min-height: calc(100vh - 200px);
   background-color: rgba(0, 0, 0, 0);
 }
 

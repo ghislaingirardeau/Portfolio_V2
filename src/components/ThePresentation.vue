@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full flex flex-center kaushan-regular" :key="locale">
+  <div class="w-full flex flex-center lg:-ml-20 kaushan-regular" :key="locale">
     <div ref="blockHello" class="flex justify-end lg:justify-start w-72 lg:w-3/5">
       <div
         :ref="lettersHello.set"
         v-for="(letter, i) in t('index.me.p1')"
         :key="i"
-        class="text-3xl lg:text-5xl opacity-0 z-50"
+        class="text-3xl lg:text-7xl opacity-0 z-50"
         :class="modeColor"
       >
         {{ letter }}
@@ -17,7 +17,7 @@
         :ref="lettersName.set"
         v-for="(letter, i) in t('index.me.p2')"
         :key="i"
-        class="text-3xl lg:text-5xl opacity-0 z-50"
+        class="text-3xl lg:text-7xl opacity-0 z-50"
         :class="modeColor"
       >
         {{ letter }}
@@ -29,7 +29,7 @@
         :ref="letterWork.set"
         v-for="(letter, i) in t('index.me.p3')"
         :key="i"
-        class="text-3xl lg:text-5xl opacity-0 z-50"
+        class="text-3xl lg:text-7xl opacity-0 z-50"
         :class="modeColor"
       >
         {{ letter }}

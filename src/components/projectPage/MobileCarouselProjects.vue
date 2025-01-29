@@ -1,6 +1,10 @@
 <template>
   <q-tab-panel :name="name">
-    <div ref="carousel" class="row justify-around items-center" :class="{ relative: typeDesktop }">
+    <div
+      ref="carousel"
+      class="row justify-around lg:justify-center items-center"
+      :class="{ relative: typeDesktop, carousel_container: !useIsMobile() }"
+    >
       <q-btn
         ref="carouselPrevious"
         round
@@ -8,7 +12,8 @@
         @click="previousSlide"
         :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_left"
-        class="opacity-0 scale-0 z-30"
+        class="opacity-0 scale-0 z-30 lg:mr-5"
+        :disable="currentSlide === 0"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
       <div class="relative" :class="slideContainerClass">
@@ -24,7 +29,8 @@
         :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_right"
         :class="{ 'absolute right-1 ': typeDesktop }"
-        class="opacity-0 scale-0 z-30"
+        :disable="endSlider"
+        class="opacity-0 scale-0 z-30 lg:ml-5"
       />
     </div>
   </q-tab-panel>
@@ -36,7 +42,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
@@ -67,10 +73,14 @@ const endSlider = computed(() => {
 })
 
 const slideContainerClass = computed(() => {
-  if (useIsMobileTall()) {
-    return props.typeDesktop ? 'h-60 w-72' : 'w-48 h-96'
+  if (useIsMobile()) {
+    if (useIsMobileTall()) {
+      return props.typeDesktop ? 'h-60 w-72' : 'w-48 h-96'
+    } else {
+      return props.typeDesktop ? 'h-48 w-72' : 'w-44 h-72'
+    }
   } else {
-    return props.typeDesktop ? 'h-48 w-72' : 'w-44 h-72'
+    return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-64 h-4/5'
   }
 })
 
@@ -145,4 +155,8 @@ function animationSlideButtons() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.carousel_container {
+  min-height: calc(100vh - 250px);
+}
+</style>
