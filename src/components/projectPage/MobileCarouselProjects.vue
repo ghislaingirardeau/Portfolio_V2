@@ -18,7 +18,11 @@
       />
       <div class="relative" :class="slideContainerClass">
         <div ref="carouselSlide" class="opacity-0 scale-75">
-          <CarouselSlide :current-slide="currentSlide" :type-desktop="typeDesktop" />
+          <CarouselSlide
+            :key="currentSlide"
+            :current-slide="currentSlide"
+            :type-desktop="typeDesktop"
+          />
         </div>
       </div>
       <q-btn

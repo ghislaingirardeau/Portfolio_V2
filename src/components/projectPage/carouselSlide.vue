@@ -7,25 +7,40 @@
   >
     <q-card>
       <q-img
-        :key="typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id"
-        :src="`/images/projectsPage/${typeDesktop ? projectsDesktop[currentSlide]!.imageURL[0] : projectsMobile[currentSlide]!.imageURL[0]}`"
+        :src="`/images/projectsPage/${projectsToDisplay[currentSlide]!.imageURL[currentImg]}`"
         fit="fill"
         loading="lazy"
         spinner-color="white"
         :class="imageClass"
-        @click="
-          goToProjectDetail(
-            typeDesktop ? projectsDesktop[currentSlide]!.id : projectsMobile[currentSlide]!.id,
-          )
-        "
+        @click="goToProjectDetail(projectsToDisplay[currentSlide]!.id)"
       >
         <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" />
-        <div class="text-subtitle2 text-center" :class="imageTitleClass">
-          {{
-            typeDesktop ? projectsDesktop[currentSlide]!.name : projectsMobile[currentSlide]!.name
-          }}
+        <div class="text-subtitle2 text-center" @click.stop="" :class="imageTitleClass">
+          <p>{{ projectsToDisplay[currentSlide]!.name }}</p>
+          <div v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
+            <q-img
+              v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
+              :key="image"
+              :src="`/images/projectsPage/${image}`"
+              @click.stop="handleImgToShow(index)"
+              :class="{ 'active-thumbnail': index === currentImg, thumbnail: index !== currentImg }"
+              class="rounded cursor-pointer"
+              width="10%"
+            ></q-img>
+          </div>
         </div>
       </q-img>
+      <!-- <q-card-section v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
+        <q-img
+          v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
+          :key="image"
+          :src="`/images/projectsPage/${image}`"
+          @click="handleImgToShow(index)"
+          :class="{ 'active-thumbnail': index === currentImg }"
+          class="rounded cursor-pointer"
+          width="10%"
+        ></q-img>
+      </q-card-section> -->
     </q-card>
   </transition>
 </template>
@@ -33,7 +48,7 @@
 <script setup lang="ts">
 import { Project } from 'src/types'
 import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import AppImgOverlay from '../common/AppImgOverlay.vue'
@@ -42,6 +57,8 @@ import { storeToRefs } from 'pinia'
 
 const { tm } = useI18n({ useScope: 'global' })
 const router = useRouter()
+
+const currentImg = ref(0)
 
 const animationSettings = useAnimationSettings()
 const { isRobotProcessing } = storeToRefs(animationSettings)
@@ -61,8 +78,10 @@ const projectsMobile = computed(() => {
   return [...tm('projects.mobile')] as Project[]
 })
 
-const projectsDesktop = computed(() => {
-  return [...tm('projects.desktop')] as Project[]
+const projectsToDisplay = computed(() => {
+  return props.typeDesktop
+    ? ([...tm('projects.desktop')] as Project[])
+    : ([...tm('projects.mobile')] as Project[])
 })
 
 const imageTitleClass = computed(() => {
@@ -81,6 +100,10 @@ const imageClass = computed(() => {
   }
 })
 
+function handleImgToShow(index: number) {
+  currentImg.value = index
+}
+
 function goToProjectDetail(id: string) {
   if (!props.typeDesktop) {
     if (useIsMobile()) {
@@ -93,4 +116,11 @@ function goToProjectDetail(id: string) {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.active-thumbnail {
+  border: 2px $primary solid;
+}
+.thumbnail {
+  border: 2px white solid;
+}
+</style>
