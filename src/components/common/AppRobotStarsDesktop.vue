@@ -26,16 +26,19 @@
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const starToLeft = useTemplateRefsList()
 const starToTop = useTemplateRefsList()
 
 const { height, width } = useWindowSize()
 
+const route = useRoute()
+
 const $q = useQuasar()
 
-const starNumber = 60
+const starNumber = 80
 
 const tl = gsap.timeline()
 
@@ -44,6 +47,19 @@ onMounted(() => {
     startAnim()
   }, 4000)
 })
+
+// watch(
+//   () => route,
+//   (newValue) => {
+//     console.log(tl.reversed())
+//     if (tl.reversed()) {
+//       tl.play()
+//     } else {
+//       tl.reverse()
+//     }
+//   },
+//   { deep: true },
+// )
 
 function startAnim() {
   starToLeft.value.forEach((el, index) => {
@@ -64,10 +80,10 @@ function startAnim() {
           '15%': { x: -20 },
           '100%': { x: randomX, y: randomY },
         },
-        duration: getRandomArbitrary(15, 20),
+        duration: getRandomArbitrary(10, 20),
         repeat: -1,
       },
-      getRandomArbitrary(0.4, 10),
+      getRandomArbitrary(0.4, 15),
     ).to(
       starToTopElement,
       {
@@ -79,10 +95,10 @@ function startAnim() {
           '15%': { x: 20 },
           '100%': { x: randomXBis, y: randomYBis },
         },
-        duration: getRandomArbitrary(15, 20),
+        duration: getRandomArbitrary(10, 20),
         repeat: -1,
       },
-      getRandomArbitrary(0.4, 10),
+      getRandomArbitrary(0.4, 15),
     )
   })
 }

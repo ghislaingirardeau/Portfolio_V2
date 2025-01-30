@@ -48,7 +48,8 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 
 const animationSettings = useAnimationSettings()
-const { presentationMounted, isRobotClickable, logoMounted } = storeToRefs(animationSettings)
+const { presentationMounted, isRobotClickable, logoMounted, pageMounted } =
+  storeToRefs(animationSettings)
 
 const { t, locale } = useI18n({ useScope: 'global' })
 
@@ -87,6 +88,7 @@ function AnimeTitleLetters() {
 
   tl.call(() => {
     presentationMounted.value = true
+    pageMounted.value = true
     if (logoMounted.value) {
       isRobotClickable.value = true
     }
