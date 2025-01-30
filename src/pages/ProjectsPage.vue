@@ -74,8 +74,16 @@ const chatPage = ref(0)
 const chatMessageToDisplay = computed(() => {
   if (useIsMobile()) {
     return tab.value === 'mobile'
-      ? [...tm(`chatMessage.projectMobile.mobileTab.${chatPage.value}.description`)]
-      : [...tm(`chatMessage.projectMobile.desktopTab.${chatPage.value}.description`)]
+      ? [
+          ...tm(
+            `chatMessage.projectMobile.mobileTab.${currentSlide.value}.${chatPage.value}.description`,
+          ),
+        ]
+      : [
+          ...tm(
+            `chatMessage.projectDesktop.desktopTab.${currentSlide.value}.${chatPage.value}.description`,
+          ),
+        ]
   } else {
     return tab.value === 'mobile'
       ? [
@@ -83,22 +91,30 @@ const chatMessageToDisplay = computed(() => {
             `chatMessage.projectDesktop.mobileTab.${currentSlide.value}.${chatPage.value}.description`,
           ),
         ]
-      : [...tm(`chatMessage.projectDesktop.desktopTab.${chatPage.value}.description`)]
+      : [
+          ...tm(
+            `chatMessage.projectDesktop.desktopTab.${currentSlide.value}.${chatPage.value}.description`,
+          ),
+        ]
   }
 })
 
 const visitorChatMessageToDisplay = computed(() => {
   if (useIsMobile()) {
     if (tab.value === 'mobile') {
-      return t(`chatMessage.projectMobile.mobileTab.${chatPage.value}.title`)
+      return t(`chatMessage.projectMobile.mobileTab.${currentSlide.value}.${chatPage.value}.title`)
     } else {
-      return t(`chatMessage.projectMobile.desktopTab.${chatPage.value}.title`)
+      return t(
+        `chatMessage.projectDesktop.desktopTab.${currentSlide.value}.${chatPage.value}.title`,
+      )
     }
   } else {
     if (tab.value === 'mobile') {
       return t(`chatMessage.projectDesktop.mobileTab.${currentSlide.value}.${chatPage.value}.title`)
     } else {
-      return t(`chatMessage.projectDesktop.desktopTab.${chatPage.value}.title`)
+      return t(
+        `chatMessage.projectDesktop.desktopTab.${currentSlide.value}.${chatPage.value}.title`,
+      )
     }
   }
 })

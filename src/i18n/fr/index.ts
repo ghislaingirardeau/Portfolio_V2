@@ -24,14 +24,41 @@ export default {
     projectMobile: {
       mobileTab: {
         0: {
-          title: `Ce sont des applications mobiles ?`,
-          description: [
-            "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
-          ],
+          0: {
+            title: `Pourquoi avoir fait un mini jeu?`,
+            description: [
+              "Pour apprendre autres choses qu'une application ou site web. L'objectif ici était aussi de travailler les tests unitaires et fonctionnels",
+            ],
+          },
+          1: {
+            title: `Je peux y voir le détail ?`,
+            description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+          },
         },
         1: {
-          title: `Je peux y voir le détail ?`,
-          description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+          0: {
+            title: `Ce sont des applications mobiles ?`,
+            description: [
+              "Ce sont des PWA (Progressive Web App), c'est à dire une appli web et web mobile.",
+            ],
+          },
+          1: {
+            title: `Je peux y voir le détail ?`,
+            description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+          },
+        },
+        2: {
+          0: {
+            title: `Ce sont des projets persos ou pro ?`,
+            description: [
+              `Cela dépend. Si je n'ai pas de missions, je continue toujours à me former via des projets persos. 
+              Ce projet là est pro, il a été conçu pour réponsdre à une demande spécifique`,
+            ],
+          },
+          1: {
+            title: `Je peux y voir le détail ?`,
+            description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+          },
         },
       },
       desktopTab: {
@@ -58,7 +85,7 @@ export default {
             description: [
               "Oui, c'est un wordle. Je l'ai développé en Test Driven Development avec les librairies suivantes",
               `Typescript, VueJs 3, Vitest, JsDom, Tailwinds.`,
-              `L'objectif était d'en savoir plus sur les outils de test.`,
+              `L'objectif était d'en savoir plus sur les outils de test (tests unitaires et fonctionnels via Jest ou Vitest)`,
             ],
           },
           1: {
@@ -113,17 +140,68 @@ export default {
       },
       desktopTab: {
         0: {
-          title: `Ce sont toutes tes réalisations ?`,
-          description: [
-            "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
-            "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
-          ],
+          0: {
+            title: `C'est une application web ?`,
+            description: [
+              `Oui, developpée pour aider et informer une communauté`,
+              `Mise en place d'un simulateur de financements avec son plan d'amortissement.`,
+              `Elaboration du questionnaire pour la collecte de donnée avec authentification, une page administrateur pour le suivi et la synthèse des données`,
+            ],
+          },
+          1: {
+            title: `Qu'as tu appris sur ce projet ?`,
+            description: [
+              `Ce projet a été fait avec Nuxt, firebase auth & store, chart JS, notification par messagerie, export vers fichier excel`,
+              `J'y ai appris le traitement et l'analyse de donnée brute, la structuration de formulaire, l'affichage tableau ou sous graphique...`,
+            ],
+          },
         },
         1: {
-          title: `Et tu as fait la partie backend ?`,
-          description: [
-            `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
-          ],
+          0: {
+            title: `Tu as réalisé des projets persos ?`,
+            description: [
+              `Oui, cette application web de visualisation et gestion d'émotions en est un exemple`,
+              `En renseignant chaque jour l'émotion domniante de notre journée, cela permet d'avoir un rendu graphique globale entre nos émotions positives et négatives`,
+              `Cela peut etre un outil d'aide pour mieux nous comprendre et voir nos évolutions visuellement plutot que via des statistiques`,
+            ],
+          },
+          1: {
+            title: `Qu'as tu appris sur ce projet ?`,
+            description: [
+              `C'est un projet fullstack avec Node js, Express, Axios, bcrypt, Figma, Bootstrap, Nuxt js`,
+              `J'y ai appris comment personnaliser et animer le rendu d'une image SVG, rendre dynamique une image en fonction de la base de donnée de l'utilisateur, Gérer et implémenter un stockage de données à l'aide de SQL, Déployer le site Netlify et le serveur Heroku`,
+            ],
+          },
+        },
+        2: {
+          0: {
+            title: `Ce sont toutes tes réalisations ?`,
+            description: [
+              "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+              "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+            ],
+          },
+          1: {
+            title: `Et tu as fait la partie backend ?`,
+            description: [
+              `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+            ],
+          },
+        },
+        3: {
+          0: {
+            title: `Ce sont toutes tes réalisations ?`,
+            description: [
+              "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
+              "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+            ],
+          },
+          1: {
+            title: `Et tu as fait la partie backend ?`,
+            description: [
+              `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+            ],
+          },
         },
       },
     },

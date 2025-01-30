@@ -23,14 +23,47 @@ export default {
     projectMobile: {
       mobileTab: {
         0: {
-          title: `Are these mobile applications?`,
-          description: [
-            'These are PWAs (Progressive Web Apps), in other words a web and mobile web application.',
-          ],
+          0: {
+            title: `Why did you make a mini game ?`,
+            description: [
+              'To learn something other than an application or website. The aim here was also to work on unit and functional tests',
+            ],
+          },
+          1: {
+            title: `Can I see the details?`,
+            description: [
+              `You'll find out about the technologies used, the expected objectives...`,
+            ],
+          },
         },
         1: {
-          title: `Can I see the details?`,
-          description: [`You'll find out about the technologies used, the expected objectives...`],
+          0: {
+            title: `Are these mobile applications?`,
+            description: [
+              'These are PWAs (Progressive Web Apps), i.e. web and mobile web applications.',
+            ],
+          },
+          1: {
+            title: `Can I see the details?`,
+            description: [
+              `You'll find out about the technologies used, the expected objectives...`,
+            ],
+          },
+        },
+        2: {
+          0: {
+            title: `Are these personal or professional projects?`,
+            description: [
+              `It depends. If I don't have any assignments, I always continue to train via personal projects. 
+              This is a professional project, designed to meet a specific demand.`,
+            ],
+          },
+          1: {
+            title: `Can I see the details?`,
+            description: [
+              `You'll find out about the technologies used, the expected objectives...`,
+            ],
+          },
         },
       },
       desktopTab: {
@@ -44,21 +77,137 @@ export default {
         1: {
           title: `And you did the backend?`,
           description: [
-            `Yes, on many projects, I built the server (NodeJs and Express) as well as the database (SQL).`,
+            `Yes, on the desktop projects I worked on, I built the server as well as the database.`,
           ],
         },
       },
     },
 
     projectDesktop: {
-      mobile: [
-        'Ces projets ont été réalisés en Mobile First, mais fonctionnent aussi sur desktop',
-        'Voir aussi mes projets desktop public ?',
-      ],
-      desktop: [
-        "Ceci n'est qu'un échantillon des projets développés, pour des raisons de confidentialités, les projets privés ne sont pas visible ici ! ",
-        'Retour vers les projets mobiles ?',
-      ],
+      mobileTab: {
+        0: {
+          0: {
+            title: `Is it a mini game for mobiles?`,
+            description: [
+              "Yes, it's a wordle. I developed it using Test Driven Development with the following libraries",
+              `Typescript, VueJs 3, Vitest, JsDom, Tailwinds.`,
+              `The aim was to find out more about testing tools (unit and functional tests using Jest or Vitest).`,
+            ],
+          },
+          1: {
+            title: `What is test-driven development?`,
+            description: [
+              `It gives priority to testing for development using 3 stages.`,
+              `Red light: Write the test for the expected result.`,
+              `Green light: Write the code for the test to pass.`,
+              `Refactoring code and testing.`,
+            ],
+          },
+        },
+        1: {
+          0: {
+            title: `Is this a mobile application? What's it for?`,
+            description: [
+              "Yes, it's PWA (Progressive Web App), a web and mobile web application.",
+              `I made it from Typescript, Nuxt 3, PWA, i18n, Firebase and GitHub`,
+              `It's a tool that helped me learn the Khmer language. So when I translate a word, I can immediately categorise it to help me remember it. 
+              to remember it. A sort of personal flashcard ;)`,
+            ],
+          },
+          1: {
+            title: `What is a PWA?`,
+            description: [
+              `Like a website, a PWA can run on multiple platforms and devices from a single code base.`,
+              ` 
+                As a platform-specific application, it can be installed on the device, run offline and in the background, `,
+            ],
+          },
+        },
+        2: {
+          0: {
+            title: `Is this a mobile application? What's it for?`,
+            description: [
+              "Yes, it's PWA (Progressive Web App), a web and mobile web application.",
+              `I did it using Nuxt, vuetify, leaflet, Firebase, GeoJson-excel import/export, etc.`,
+              `It's a mapping tool created for a sociology researcher.`,
+            ],
+          },
+          1: {
+            title: `What is a PWA?`,
+            description: [
+              `Like a website, a PWA can run on multiple platforms and devices from a single code base.`,
+              ` 
+                As a platform-specific application, it can be installed on the device, run offline and in the background, `,
+            ],
+          },
+        },
+      },
+      desktopTab: {
+        0: {
+          0: {
+            title: `Is it a web application?`,
+            description: [
+              `Yes, developed to help and inform a community`,
+              `Setting up a financing simulator with an amortisation schedule.`,
+              `Development of a questionnaire for data collection with authentication, an administrator page for monitoring and summarising data`,
+            ],
+          },
+          1: {
+            title: `What did you learn on this project?`,
+            description: [
+              `This project was done with Nuxt, firebase auth & store, chart JS, email notification, export to excel file.`,
+              `I learnt how to process and analyse raw data, structure forms, display tables or sub-graphs...`,
+            ],
+          },
+        },
+        1: {
+          0: {
+            title: `Do you have any projects of your own?`,
+            description: [
+              `Yes, this web application for visualising and managing emotions is one example.`,
+              `By entering the dominant emotion of our day each day, we can obtain a global graph showing our positive and negative emotions.`,
+              `This could be a useful tool to help us understand each other better and see our progress visually rather than through statistics.`,
+            ],
+          },
+          1: {
+            title: `What did you learn on this project?`,
+            description: [
+              `It's a fullstack project with Node js, Express, Axios, bcrypt, Figma, Bootstrap, Nuxt js`,
+              `I learnt how to customise and animate the rendering of an SVG image, how to make an image dynamic depending on the user's database, how to manage and implement a data store using SQL, how to deploy the Netlify site and the Heroku server, etc.`,
+            ],
+          },
+        },
+        2: {
+          0: {
+            title: `Are these all your achievements?`,
+            description: [
+              'This is an overview of my work, some projects are confidential',
+              "Others are tutorial projects that I haven't included. Yes, you always have to be trained ;)",
+            ],
+          },
+          1: {
+            title: `And you did the backend?`,
+            description: [
+              `Yes, on the desktop projects I worked on, I built the server as well as the database.`,
+            ],
+          },
+        },
+        3: {
+          0: {
+            title: `Are these all your achievements?`,
+            description: [
+              'This is an overview of my work, some projects are confidential',
+              "Others are tutorial projects that I haven't included. Yes, you always have to be trained ;)",
+            ],
+          },
+          1: {
+            title: `And you did the backend?`,
+            description: [
+              `Yes, on the desktop projects I worked on, I built the server as well as the database.`,
+            ],
+          },
+        },
+      },
     },
     aboutDesktop: {
       perso: [
