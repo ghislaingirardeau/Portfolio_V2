@@ -20,14 +20,18 @@ import LogoAE from 'src/components/homePage/LogoAE.vue'
 
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { computed } from 'vue'
 const animationSettings = useAnimationSettings()
 
 const { headerMounted } = storeToRefs(animationSettings)
 
 const logoClass = computed(() => {
-  return useIsMobileTall() ? 'mt-28' : 'mt-5'
+  if (useIsMobile()) {
+    return useIsMobileTall() ? 'mt-28' : 'mt-5'
+  } else {
+    return 'mt-10'
+  }
 })
 </script>
 

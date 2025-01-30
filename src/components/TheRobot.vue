@@ -189,6 +189,7 @@ onMounted(() => {
     rgba(21, 149, 174) 50%,
     rgba(255, 255, 255, 0) 70%
   );
+  cursor: pointer;
 }
 
 .slow-motion-mobile {
@@ -204,6 +205,7 @@ onMounted(() => {
     rgba(30, 211, 247) 50%,
     rgba(0, 0, 0, 1) 75%
   );
+  cursor: pointer;
 }
 .is-loading-dark {
   background: rgb(255, 255, 255);

@@ -15,6 +15,8 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const isRobotTalk = ref(false)
   const isRobotFix = ref(false)
   const isRobotStepBack = ref(false)
+  const isRobotApplication = ref(false)
+  const isRobotServer = ref(false)
 
   const isCubeSpining = ref(false)
 
@@ -43,6 +45,8 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
       isRobotTalk.value = false
       isRobotFix.value = false
       isRobotStepBack.value = false
+      isRobotApplication.value = false
+      isRobotServer.value = false
     }, 500)
   }
 
@@ -53,6 +57,8 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotTalk.value = false
     isRobotFix.value = false
     isRobotStepBack.value = false
+    isRobotApplication.value = false
+    isRobotServer.value = false
   }
 
   return {
@@ -64,6 +70,8 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotFix,
     isRobotTalk,
     isRobotStepBack,
+    isRobotApplication,
+    isRobotServer,
     isRobotProcessing,
     isCubeSpining,
     resetRobotAction,

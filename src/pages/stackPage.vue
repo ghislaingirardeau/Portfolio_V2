@@ -7,7 +7,7 @@
         ref="chatContainer"
         :meTexts="chatTexts"
         :visitor-texts="visitorChatTexts"
-        :delay-animation="1.5"
+        :delay-animation="0.5"
         :key="'chat' + slideChat"
       />
     </transition>

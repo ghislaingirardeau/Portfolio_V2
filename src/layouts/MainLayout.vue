@@ -8,6 +8,7 @@
     <TheDrawer v-model:leftDrawerOpen="leftDrawerOpen" />
 
     <q-page-container>
+      <LogoAEContainer v-if="!useIsMobile()" />
       <router-view />
       <AppRobotStars v-if="useIsMobile()" />
       <AppRobotStarsDesktop v-else />
@@ -27,6 +28,7 @@ import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 import AppRobotStarsDesktop from 'src/components/common/AppRobotStarsDesktop.vue'
+import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)

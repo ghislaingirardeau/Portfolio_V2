@@ -2,7 +2,7 @@
   <q-page class="q-pa-lg column relative z-20" :key="locale + $q.dark.mode">
     <ThePresentation class="z-20" />
 
-    <LogoAEContainer />
+    <LogoAEContainer v-if="useIsMobile()" />
 
     <TheRobotContainer @robot-action="robotAction" />
 
@@ -23,6 +23,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { useQuasar } from 'quasar'
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 
 const { t, tm, locale } = useI18n()
 

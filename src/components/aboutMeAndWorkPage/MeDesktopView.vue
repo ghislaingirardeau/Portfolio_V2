@@ -6,7 +6,6 @@
         :key="image"
         :imageSrc="image"
         :isImageFixed="isImageFixed[index]"
-        @click="handleSwitchImage(index)"
       />
     </div>
 
@@ -33,7 +32,7 @@ import { useRoute } from 'vue-router'
 import AppMeImage from '../common/AppMeImage.vue'
 
 const animationSettings = useAnimationSettings()
-const { pageMounted } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSettings)
 const route = useRoute()
 
 const { tm, t } = useI18n({ useScope: 'global' })
@@ -61,6 +60,8 @@ const imagesToDisplay = computed(() => {
 
 onMounted(() => {
   pageMounted.value = true
+  isRobotClickable.value = true
+  isRobotTalk.value = true
 })
 
 function handleSwitchImage(index: number) {

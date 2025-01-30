@@ -125,6 +125,7 @@ function spinCubeAnimation() {
   perspective: 400px;
   perspective-origin: 50% 50px;
 }
+
 .anim_cube {
   animation: spin 2.4s 0.3s linear;
 }
@@ -369,7 +370,7 @@ function spinCubeAnimation() {
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 2000px) {
   .cube {
     width: 100px;
   }

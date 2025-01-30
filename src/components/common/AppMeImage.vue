@@ -34,7 +34,6 @@ const props = defineProps({
   -webkit-mask: var(--m);
   mask: var(--m);
   filter: grayscale();
-  cursor: pointer;
   transition: 0.3s linear;
 }
 .img-square-done {

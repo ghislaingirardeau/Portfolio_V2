@@ -32,7 +32,7 @@ import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 const emit = defineEmits(['robotAction'])
 
 const animationSettings = useAnimationSettings()
-const { isRobotProcessing, isRobotClickable, isRobotTalk, isRobotStepBack } =
+const { isRobotClickable, isRobotServer, isRobotApplication, pageMounted } =
   storeToRefs(animationSettings)
 
 const $q = useQuasar()
@@ -66,8 +66,10 @@ const atomDisplayClass = computed(() => {
 })
 
 onMounted(() => {
-  isRobotProcessing.value = true
+  pageMounted.value = false
   isRobotClickable.value = false
+  isRobotServer.value = true
+
   changeTitle()
   launchAnimation()
 })
@@ -75,7 +77,7 @@ onMounted(() => {
 watch(
   () => props.slideChat,
   () => {
-    isRobotProcessing.value = true
+    pageMounted.value = false
     isRobotClickable.value = false
     tl.duration(1.5)
     tl.reverse()
@@ -123,15 +125,15 @@ function launchAnimation() {
     }
   })
   tl.call(() => {
-    isRobotProcessing.value = false
+    pageMounted.value = true
     isRobotClickable.value = true
     if (props.slideChat === 0) {
-      isRobotTalk.value = true
-      isRobotStepBack.value = false
+      isRobotServer.value = true
+      isRobotApplication.value = false
     }
     if (props.slideChat === 1) {
-      isRobotTalk.value = false
-      isRobotStepBack.value = true
+      isRobotServer.value = false
+      isRobotApplication.value = true
     }
   })
 }

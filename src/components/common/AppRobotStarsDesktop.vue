@@ -43,7 +43,7 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 500)
+  }, 4000)
 })
 
 function startAnim() {
@@ -66,6 +66,7 @@ function startAnim() {
           '100%': { x: randomX, y: randomY },
         },
         duration: getRandomArbitrary(15, 20),
+        repeat: -1,
       },
       getRandomArbitrary(0.4, 10),
     ).to(
@@ -80,12 +81,10 @@ function startAnim() {
           '100%': { x: randomXBis, y: randomYBis },
         },
         duration: getRandomArbitrary(15, 20),
+        repeat: -1,
       },
       getRandomArbitrary(0.4, 10),
     )
-  })
-  tl.call(() => {
-    tl.repeat(-1)
   })
 }
 

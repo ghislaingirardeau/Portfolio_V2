@@ -15,6 +15,7 @@
           exact
           :to="menuItem.to"
           :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-primary'"
+          @click="isCubeSpining = true"
           class="q-py-lg"
         >
           <q-item-section avatar>
@@ -51,7 +52,7 @@ import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, drawerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, drawerMounted, isCubeSpining } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 const route = useRoute()

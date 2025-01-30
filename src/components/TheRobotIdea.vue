@@ -3,7 +3,7 @@
     :name="iconType"
     :color="$q.dark.mode ? 'dark-primary' : 'primary'"
     size="lg"
-    class="fixed robotIdea z-50"
+    class="fixed robotIdea z-50 cursor-pointer"
     ref="robotIdea"
   ></q-icon>
 </template>
@@ -18,14 +18,23 @@ import {
   mdiChat,
   mdiImageBroken,
   mdiStepBackward,
+  mdiApplicationVariableOutline,
+  mdiServer,
 } from '@quasar/extras/mdi-v7'
 import { useQuasar } from 'quasar'
 const $q = useQuasar()
 
 const robotIdea = ref()
 const animationSettings = useAnimationSettings()
-const { isRobotClickable, isRobotTalk, isRobotFix, isRobotStepBack } =
-  storeToRefs(animationSettings)
+const {
+  isRobotClickable,
+  isRobotTalk,
+  isRobotFix,
+  isRobotStepBack,
+  isAnimationDone,
+  isRobotApplication,
+  isRobotServer,
+} = storeToRefs(animationSettings)
 
 const iconType = computed(() => {
   if (isRobotTalk.value) {
@@ -33,6 +42,12 @@ const iconType = computed(() => {
   }
   if (isRobotFix.value) {
     return mdiImageBroken
+  }
+  if (isRobotApplication.value) {
+    return mdiApplicationVariableOutline
+  }
+  if (isRobotServer.value) {
+    return mdiServer
   }
   if (isRobotStepBack.value) {
     return mdiStepBackward
@@ -42,7 +57,7 @@ const iconType = computed(() => {
 })
 
 watch(
-  () => isRobotClickable.value,
+  () => isAnimationDone.value,
   (newValue) => {
     const duration = 0.5
     if (newValue) {
@@ -52,6 +67,19 @@ watch(
         opacity: 1,
       })
     } else {
+      gsap.to(robotIdea.value!.$el, {
+        duration,
+        y: 0,
+        opacity: 0,
+      })
+    }
+  },
+)
+watch(
+  () => isRobotClickable.value,
+  (newValue) => {
+    const duration = 0.5
+    if (!newValue) {
       gsap.to(robotIdea.value!.$el, {
         duration,
         y: 0,
