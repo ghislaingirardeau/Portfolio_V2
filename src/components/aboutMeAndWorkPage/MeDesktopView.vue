@@ -5,7 +5,7 @@
         v-for="(image, index) in imagesToDisplay"
         :key="image"
         :imageSrc="image"
-        :isImageFixed="isImageFixed[index]"
+        :isImageFixed="isImageFixed[index]!"
       />
     </div>
 
@@ -27,7 +27,6 @@ import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { gsap } from 'src/boot/gsap'
 import { useRoute } from 'vue-router'
 import AppMeImage from '../common/AppMeImage.vue'
 
@@ -35,7 +34,7 @@ const animationSettings = useAnimationSettings()
 const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSettings)
 const route = useRoute()
 
-const { tm, t } = useI18n({ useScope: 'global' })
+const { tm } = useI18n({ useScope: 'global' })
 
 const meSlide = ref(0)
 const isImageFixed = ref([true, false, false])

@@ -26,7 +26,6 @@
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 
 const starToLeft = useTemplateRefsList()

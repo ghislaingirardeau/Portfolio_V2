@@ -139,7 +139,7 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
 watch(
   () => locale.value,
   () => {
-    handleMenuAnimation(0, true)
+    handleMenuAnimation(0, false)
   },
 )
 </script>
