@@ -93,6 +93,7 @@ const slideNumber = computed(() => {
 })
 
 onMounted(() => {
+  isRobotFix.value = true
   animationImage()
 })
 
@@ -107,12 +108,12 @@ watch(
   },
 )
 
-watch(locale, (newValue) => {
-  console.log(newValue, 'load img')
-  setTimeout(() => {
-    animationImage()
-  }, 200)
-})
+// watch(locale, (newValue) => {
+//   console.log(newValue, 'load img')
+//   setTimeout(() => {
+//     animationImage()
+//   }, 200)
+// })
 
 // watch(
 //   () => fixImage.value,

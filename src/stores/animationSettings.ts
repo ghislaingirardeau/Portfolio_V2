@@ -40,14 +40,12 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotClickable.value = false
     isRobotProcessing.value = false
 
-    setTimeout(() => {
-      isRobotTap.value = false
-      isRobotTalk.value = false
-      isRobotFix.value = false
-      isRobotStepBack.value = false
-      isRobotApplication.value = false
-      isRobotServer.value = false
-    }, 500)
+    isRobotTap.value = false
+    isRobotTalk.value = false
+    isRobotFix.value = false
+    isRobotStepBack.value = false
+    isRobotApplication.value = false
+    isRobotServer.value = false
   }
 
   function navigationRestartRobot() {
