@@ -4,6 +4,12 @@
 
     <LogoAEContainer v-if="useIsMobile()" />
 
+    <!-- <div class="mt-28 ml-40">
+      <p class="text-xl text-dark-secondary">Freelance et Formateur occasionel</p>
+      <p class="text-xl text-dark-secondary">Spécialiste Javascript & Typescript</p>
+      <p class="text-xl text-dark-secondary">Vue & Nuxt JS / REST API</p>
+    </div> -->
+
     <TheRobotContainer @robot-action="robotAction" />
 
     <ChatMessageContainer
