@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-lg">
-    <div class="w-3/5 flex justify-center items-stretch" style="min-height: 80vh">
+    <div class="w-3/5 flex justify-center items-stretch" style="height: 75vh">
       <AppMeImage
         v-for="(image, index) in imagesToDisplay"
         :key="image"

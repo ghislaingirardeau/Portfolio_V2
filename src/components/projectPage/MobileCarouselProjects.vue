@@ -86,7 +86,7 @@ const slideContainerClass = computed(() => {
       return props.typeDesktop ? 'h-48 w-72' : 'w-44 h-72'
     }
   } else {
-    return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-64 h-4/5'
+    return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-60 h-3/5'
   }
 })
 
