@@ -105,7 +105,7 @@ function iconColor(currentRoute: string) {
 }
 
 function handleShowMenu() {
-  handleMenuAnimation(useIsMobile() ? 0 : 3, true)
+  handleMenuAnimation(0, true)
 }
 
 function handleMenuAnimation(delay: number, isFirstMount: boolean) {
