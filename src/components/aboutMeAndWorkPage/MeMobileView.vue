@@ -85,7 +85,7 @@ const imageToDisplay = computed(() => {
 })
 
 const imageWidth = computed(() => {
-  return useIsMobileTall() ? '100%' : '80%'
+  return useIsMobileTall() ? '80%' : '80%'
 })
 
 const slideNumber = computed(() => {

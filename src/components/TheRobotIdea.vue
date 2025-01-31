@@ -17,7 +17,7 @@ import {
   mdiLightbulbOnOutline,
   mdiChat,
   mdiImageBroken,
-  mdiStepBackward,
+  mdiChatSleepOutline,
   mdiApplicationVariableOutline,
   mdiServer,
 } from '@quasar/extras/mdi-v7'
@@ -50,7 +50,7 @@ const iconType = computed(() => {
     return mdiServer
   }
   if (isRobotStepBack.value) {
-    return mdiStepBackward
+    return mdiChatSleepOutline
   } else {
     return mdiLightbulbOnOutline
   }

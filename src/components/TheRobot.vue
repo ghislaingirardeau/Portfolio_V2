@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cursor-pointer">
     <TheRobotIdea />
     <div class="fixed eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
       <div

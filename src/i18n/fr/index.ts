@@ -428,16 +428,25 @@ export default {
         name: `Wordle Game`,
         summary: 'Test-Driven-Development',
         mobileFirst: true,
-        visitorChat: "Qu'est-ce que le développement piloté par les tests ?",
-        description: [
-          `
+        visitorChat: {
+          0: "Quel est l'objectif de l'app ?",
+          1: "Qu'est-ce que le développement piloté par les tests ?",
+        },
+        description: {
+          0: [
+            `L'objectif était d'en savoir plus sur les outils de test (tests unitaires et fonctionnels via Jest ou Vitest)`,
+          ],
+          1: [
+            `
            Il donne la priorité au test pour le développement en utilisant 3 étapes. 
-          <ul>
+          `,
+            `<ul>
             <li>Feux Rouge: Écrire le test du résultat attendu </li>
             <li>Feux Vert: Écrire le code pour que le test passe</li>
             <li>Refactoriser le code et le test.</li>
           </ul>`,
-        ],
+          ],
+        },
         tech: 'Typescript, VueJs 3, Vitest, JsDom, Tailwinds',
         imageURL: ['wordle2.png', 'wordle1.png'],
         link: 'https://wordle-game-gg-wev-dev.netlify.app/',
@@ -448,13 +457,22 @@ export default {
         name: 'Mon Vocabulaire en carte',
         summary: 'Application web PWA',
         mobileFirst: true,
-        visitorChat: "Qu'est-ce qu'une PWA ?",
-        description: [
-          `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
-          ` 
+        visitorChat: {
+          0: "Quel est l'objectif de l'app ?",
+          1: "Qu'est-ce qu'une PWA ?",
+        },
+        description: {
+          0: [
+            `C'est un outil qui m'a servi pour apprendre la langue du Khmer. Ainsi lors de la traduction d'un mot, je peux aussi de suite le 
+              catégoriser pour m'en souvenir. Sorte de flashcard perso ;)`,
+          ],
+          1: [
+            `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
+            ` 
           Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
           et peut s'intégrer à l'appareil et aux autres applications installées.`,
-        ],
+          ],
+        },
         tech: 'Typescript, Nuxt 3, PWA, i18n, Firebase GitHub',
         imageURL: [
           'carte_sample.png',
@@ -472,13 +490,20 @@ export default {
         name: 'Outil de cartographie',
         summary: 'Application web PWA',
         mobileFirst: true,
-        visitorChat: "Qu'est-ce qu'une PWA ?",
-        description: [
-          `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
-          ` 
-          Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
-          et peut s'intégrer à l'appareil et aux autres applications installées.`,
-        ],
+        visitorChat: {
+          0: "Quel est l'objectif de l'app ?",
+          1: "Qu'est-ce qu'une PWA ?",
+        },
+        description: {
+          0: [`C'est un outil de cartographie, réalisé pour une chercheuse en sociologie.`],
+          1: [
+            `Comme un site web, une PWA peut fonctionner sur plusieurs plateformes et appareils à partir d'une base de code unique.`,
+            ` 
+            Comme une application spécifique à une plate-forme, elle peut être installée sur l'appareil, fonctionner hors ligne et en arrière-plan, 
+            et peut s'intégrer à l'appareil et aux autres applications installées.`,
+          ],
+        },
+
         tech: 'Nuxt, vuetify, leaflet, Firebase, import/export GeoJson-excel',
         imageURL: [
           'mapping1.PNG',
