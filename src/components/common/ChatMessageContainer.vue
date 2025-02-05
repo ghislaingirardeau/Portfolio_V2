@@ -1,5 +1,8 @@
 <template>
-  <div class="fixed bottom-24 right-24 ml-3 z-50 md:w-3/5 lg:w-96">
+  <div
+    class="fixed bottom-24 right-24 ml-3 z-50 md:w-3/5 lg:w-96"
+    :class="useIsMobileLandscape ? 'absolute bottom-12' : ''"
+  >
     <q-chat-message
       v-if="visitorTexts"
       ref="receivedMessage"
@@ -25,7 +28,12 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobile, useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
+import {
+  useIsMobile,
+  useIsMobileLandscape,
+  useIsMobileTall,
+  useIsTablet,
+} from 'src/utils/useDeviceInfo'
 import { computed, onMounted, useTemplateRef, watch } from 'vue'
 
 const animationSettings = useAnimationSettings()
@@ -67,7 +75,7 @@ const chatReceivedColor = computed(() => {
 
 const fontSize = computed(() => {
   if (useIsTablet()) {
-    return '1.4rem'
+    return useIsMobileLandscape.value ? '0.8rem' : '1.4rem'
   }
   if (useIsMobile()) {
     return useIsMobileTall() ? '1rem' : '0.8rem'

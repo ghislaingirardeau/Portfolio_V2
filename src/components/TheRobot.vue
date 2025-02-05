@@ -1,7 +1,7 @@
 <template>
   <div class="cursor-pointer">
     <TheRobotIdea />
-    <div class="fixed eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
+    <div class="eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
       <div
         class="eye fixed grad"
         :class="{
@@ -13,6 +13,7 @@
           'is-clickable-dark':
             $q.dark.isActive && isRobotClickable && isAnimationDone && !isRobotProcessing,
           'slow-motion-mobile': useIsMobile(),
+          'eye-container-mobile-landscape': useIsMobileLandscape,
         }"
         ref="eyeBis"
       ></div>
@@ -22,7 +23,7 @@
       height="90px"
       width="90px"
       class="fixed bottom-14 right-5 z-50"
-      :class="moveEyes"
+      :class="[moveEyes, robotSvgClass]"
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +79,7 @@ import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
-import { useIsMobile } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileLandscape } from 'src/utils/useDeviceInfo'
 import TheRobotIdea from './TheRobotIdea.vue'
 
 // const eye = useTemplateRef<any>('eye')
@@ -99,6 +100,12 @@ const viewSizeX = computed(() => {
 
 const viewSizeY = computed(() => {
   return height.value / 12
+})
+
+const robotSvgClass = computed(() => {
+  const dark = $q.dark.isActive ? 'bg-dark' : ''
+  const position = useIsMobileLandscape.value ? 'absolute bottom-1' : ''
+  return position.concat(' ', dark)
 })
 
 const moveEyes = computed(() => {
@@ -132,6 +139,10 @@ onMounted(() => {
   height: 38px;
   bottom: 98px;
   right: 46px;
+}
+.eye-container-mobile-landscape {
+  position: absolute;
+  bottom: 48px !important;
 }
 .bg-light {
   background-color: white;

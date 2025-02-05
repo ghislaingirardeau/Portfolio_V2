@@ -1,4 +1,5 @@
 import { useBreakpoints, useScreenOrientation, useWindowSize } from '@vueuse/core'
+import { computed } from 'vue'
 
 const breakpoints = useBreakpoints({
   mobile: 0,
@@ -28,6 +29,10 @@ export function useIsTablet() {
 export function useDeviceOrientation() {
   return orientation.value === 'landscape-primary' ? 'desktop' : 'mobile'
 }
+
+export const useIsMobileLandscape = computed(() => {
+  return orientation.value === 'landscape-primary' && hasTouchEvent() && height.value < 600
+})
 
 function hasTouchEvent() {
   return 'ontouchstart' in window

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg column relative z-20" :key="locale + $q.dark.mode">
+  <q-page class="q-pa-lg column relative z-20" :class="pageClass" :key="locale + $q.dark.mode">
     <ThePresentation class="z-20" />
 
     <LogoAEContainer v-if="useIsMobile()" />
@@ -27,9 +27,9 @@ import ThePresentation from 'src/components/ThePresentation.vue'
 import { useI18n } from 'vue-i18n'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useQuasar } from 'quasar'
-import { useIsMobile } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileLandscape } from 'src/utils/useDeviceInfo'
 
 const { t, tm, locale } = useI18n()
 
@@ -37,6 +37,10 @@ const animationSettings = useAnimationSettings()
 const { pageMounted, isCubeSpining } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
+
+const pageClass = computed(() => {
+  return useIsMobileLandscape.value ? 'page-mobile-landscape' : ''
+})
 
 onMounted(() => {
   pageMounted.value = false
@@ -47,4 +51,8 @@ function robotAction() {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.page-mobile-landscape {
+  min-height: 567px !important;
+}
+</style>

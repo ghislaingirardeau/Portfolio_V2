@@ -3,7 +3,8 @@
     :name="iconType"
     :color="$q.dark.mode ? 'dark-primary' : 'primary'"
     size="lg"
-    class="fixed robotIdea z-50 cursor-pointer"
+    class="fixed robot-idea z-50 cursor-pointer"
+    :class="{ 'robot-idea-mobile-landscape': useIsMobileLandscape }"
     ref="robotIdea"
   ></q-icon>
 </template>
@@ -22,6 +23,7 @@ import {
   mdiServer,
 } from '@quasar/extras/mdi-v7'
 import { useQuasar } from 'quasar'
+import { useIsMobileLandscape } from 'src/utils/useDeviceInfo'
 const $q = useQuasar()
 
 const robotIdea = ref()
@@ -91,9 +93,13 @@ watch(
 </script>
 
 <style scoped>
-.robotIdea {
+.robot-idea {
   bottom: 135px;
   right: 45px;
   opacity: 0;
+}
+.robot-idea-mobile-landscape {
+  position: absolute;
+  bottom: 85px;
 }
 </style>
