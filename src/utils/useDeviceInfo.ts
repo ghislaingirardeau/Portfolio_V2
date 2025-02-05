@@ -22,7 +22,7 @@ export function useIsMobileTall() {
 }
 
 export function useIsTablet() {
-  return breakpoints.active().value === 'tablet' ? true : false
+  return breakpoints.active().value === 'tablet' && hasTouchEvent() ? true : false
 }
 
 export function useDeviceOrientation() {

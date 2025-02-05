@@ -1,35 +1,35 @@
 <template>
-  <div class="w-full flex flex-center md:-ml-20 kaushan-regular" :key="locale">
-    <div ref="blockHello" class="flex justify-end md:justify-start w-72 md:w-3/5">
+  <div class="w-full flex flex-center sm:-ml-20 kaushan-regular" :key="locale">
+    <div ref="blockHello" class="flex justify-end sm:justify-start w-72 sm:w-3/5">
       <div
         :ref="lettersHello.set"
         v-for="(letter, i) in t('index.me.p1')"
         :key="i"
-        class="text-3xl md:text-5xl opacity-0 z-50"
+        class="text-3xl sm:text-4xl md:text-5xl opacity-0 z-50"
         :class="modeColor"
       >
         {{ letter }}
       </div>
     </div>
 
-    <div ref="blockName" class="flex justify-end md:justify-start w-72 md:w-3/5 mt-4 md:mt-8">
+    <div ref="blockName" class="flex justify-end sm:justify-start w-72 sm:w-3/5 mt-4 sm:mt-8">
       <div
         :ref="lettersName.set"
         v-for="(letter, i) in t('index.me.p2')"
         :key="i"
-        class="text-3xl md:text-5xl opacity-0 z-50"
+        class="text-3xl sm:text-4xl md:text-5xl opacity-0 z-50"
         :class="modeColor"
       >
         {{ letter }}
       </div>
     </div>
 
-    <div ref="blockWork" class="flex justify-end md:justify-start w-72 md:w-3/5 mt-4 md:mt-8">
+    <div ref="blockWork" class="flex justify-end sm:justify-start w-72 sm:w-3/5 mt-4 sm:mt-8">
       <div
         :ref="letterWork.set"
         v-for="(letter, i) in t('index.me.p3')"
         :key="i"
-        class="text-3xl md:text-5xl opacity-0 z-50"
+        class="text-3xl sm:text-4xl md:text-5xl opacity-0 z-50"
         :class="modeColor"
       >
         {{ letter }}
