@@ -152,7 +152,7 @@ function spinCubeAnimation() {
   border-width: 2px;
   border-style: solid;
   border-radius: 7px;
-  animation: deployedBackLarge 2s ease both;
+  animation: deployedBackLarge 3s ease both;
   position: relative;
 
   &-color {
@@ -182,14 +182,14 @@ function spinCubeAnimation() {
   border-width: 5px;
   border-style: solid;
   border-radius: 12px;
-  animation: deployedTopLarge 2s ease both;
+  animation: deployedTopLarge 3s ease both;
   transform-origin: top center;
 }
 .bottom {
   border-width: 5px;
   border-style: solid;
   border-radius: 7px;
-  animation: deployedBottomLarge 2s ease both;
+  animation: deployedBottomLarge 3s ease both;
 
   transform-origin: bottom center;
 }
@@ -212,7 +212,7 @@ function spinCubeAnimation() {
   border-width: 2px;
   border-style: solid;
   border-radius: 7px;
-  animation: deployedFrontLarge 2s ease both;
+  animation: deployedFrontLarge 3s ease both;
   position: relative;
 
   &-color {
@@ -370,7 +370,7 @@ function spinCubeAnimation() {
   }
 }
 
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 673px), screen and (min-width: 1025px) {
   .cube {
     width: 100px;
   }
