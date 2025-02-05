@@ -22,7 +22,7 @@
       fill="#000000"
       height="90px"
       width="90px"
-      class="fixed bottom-14 right-5 z-50"
+      class="right-5 z-50"
       :class="[moveEyes, robotSvgClass]"
       version="1.1"
       id="Layer_1"
@@ -104,7 +104,7 @@ const viewSizeY = computed(() => {
 
 const robotSvgClass = computed(() => {
   const dark = $q.dark.isActive ? 'bg-dark' : ''
-  const position = useIsMobileLandscape.value ? 'absolute bottom-1' : ''
+  const position = useIsMobileLandscape.value ? 'absolute bottom-1' : 'fixed bottom-14'
   return position.concat(' ', dark)
 })
 
