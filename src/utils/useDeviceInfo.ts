@@ -10,7 +10,9 @@ const { height } = useWindowSize()
 const { orientation } = useScreenOrientation()
 
 export function useIsMobile() {
-  return breakpoints.active().value === 'mobile' || breakpoints.active().value === 'tablet'
+  return breakpoints.active().value === 'mobile' ||
+    breakpoints.active().value === 'tablet' ||
+    hasTouchEvent()
     ? true
     : false
 }
@@ -25,4 +27,8 @@ export function useIsTablet() {
 
 export function useDeviceOrientation() {
   return orientation.value === 'landscape-primary' ? 'desktop' : 'mobile'
+}
+
+function hasTouchEvent() {
+  return 'ontouchstart' in window
 }
