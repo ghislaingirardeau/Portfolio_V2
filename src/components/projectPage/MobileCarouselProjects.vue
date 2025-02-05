@@ -79,17 +79,17 @@ const endSlider = computed(() => {
 })
 
 const slideContainerClass = computed(() => {
+  if (useIsTablet()) {
+    return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-72 h-11/12'
+  }
   if (useIsMobile()) {
-    if (useIsTablet()) {
-      return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-60 h-4/5'
-    } else if (useIsMobileTall()) {
+    if (useIsMobileTall()) {
       return props.typeDesktop ? 'h-60 w-72' : 'w-48 h-96'
     } else {
-      return props.typeDesktop ? 'h-48 w-72' : 'w-44 h-72'
+      return props.typeDesktop ? 'h-48 w-72' : 'w-40 h-72'
     }
-  } else {
-    return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-60 h-3/5'
   }
+  return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-60 h-3/5'
 })
 
 const props = defineProps({

@@ -89,17 +89,17 @@ const imageTitleClass = computed(() => {
 })
 
 const imageClass = computed(() => {
+  if (useIsTablet()) {
+    return props.typeDesktop ? 'h-4/5' : 'h-11/12 cursor-pointer'
+  }
   if (useIsMobile()) {
-    if (useIsTablet()) {
-      return props.typeDesktop ? 'h-4/5' : 'h-4/5 cursor-pointer'
-    } else if (useIsMobileTall()) {
+    if (useIsMobileTall()) {
       return props.typeDesktop ? 'h-60' : 'h-96 cursor-pointer'
     } else {
       return props.typeDesktop ? 'h-48' : 'h-72 cursor-pointer'
     }
-  } else {
-    return props.typeDesktop ? 'h-4/5' : 'h-4/5 cursor-pointer'
   }
+  return props.typeDesktop ? 'h-4/5' : 'h-4/5 cursor-pointer'
 })
 
 function handleImgToShow(index: number) {
