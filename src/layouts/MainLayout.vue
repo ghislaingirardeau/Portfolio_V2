@@ -10,7 +10,7 @@
     <q-page-container>
       <LogoAEContainer v-if="!useIsMobile()" />
       <router-view :key="locale" />
-      <AppRobotStars v-if="useIsMobile()" />
+      <AppRobotStars v-if="useIsMobile()" :key="'reset' + orientation" />
       <AppRobotStarsDesktop v-else />
     </q-page-container>
 
@@ -30,6 +30,7 @@ import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 import AppRobotStarsDesktop from 'src/components/common/AppRobotStarsDesktop.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
+import { useScreenOrientation } from '@vueuse/core'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
@@ -37,6 +38,8 @@ const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animat
 const leftDrawerOpen = ref(false)
 
 const { locale } = useI18n({ useScope: 'global' })
+
+const { orientation } = useScreenOrientation()
 
 onMounted(() => {
   if (useIsMobile()) {

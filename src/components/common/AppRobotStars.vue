@@ -23,10 +23,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobileLandscape, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 
 const starToLeft = useTemplateRefsList()
@@ -46,11 +47,16 @@ onMounted(() => {
   }, 4000)
 })
 
+const heightSize = computed(() => {
+  // si mobile + lanscape: height de la page est défini en css à 670px + 100px to add pour header et footer
+  return useIsMobileLandscape.value ? 770 : height.value
+})
+
 function startAnim() {
   starToLeft.value.forEach((el, index) => {
-    const randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
+    const randomY = -heightSize.value + 130 + getRandomArbitrary(0, heightSize.value - 120)
     const randomX = -width.value + 97
-    const randomYBis = -height.value + 125
+    const randomYBis = -heightSize.value + 125
     const randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
     const starToTopElement = starToTop.value[index] as HTMLElement
     tl.to(
@@ -64,7 +70,10 @@ function startAnim() {
           '10%': { x: 0, y: 10 },
           '15%': { x: -20 },
           '60%': { x: randomX, y: randomY },
-          '100%': { x: -width.value / 2 + 92, y: -height.value + (useIsMobileTall() ? 350 : 300) },
+          '100%': {
+            x: -width.value / 2 + 92,
+            y: -heightSize.value + (useIsMobileTall() ? 350 : 300),
+          },
         },
         duration: getRandomArbitrary(15, 20),
       },
@@ -79,7 +88,10 @@ function startAnim() {
           '10%': { x: 0, y: 10 },
           '15%': { x: 20 },
           '60%': { x: randomXBis, y: randomYBis },
-          '100%': { x: -width.value / 2 + 28, y: -height.value + (useIsMobileTall() ? 350 : 300) },
+          '100%': {
+            x: -width.value / 2 + 28,
+            y: -heightSize.value + (useIsMobileTall() ? 350 : 300),
+          },
         },
         duration: getRandomArbitrary(15, 20),
       },
