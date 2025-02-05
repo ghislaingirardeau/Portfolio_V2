@@ -1,7 +1,7 @@
 <template>
   <div class="cursor-pointer">
     <TheRobotIdea />
-    <div class="eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
+    <div class="eye-container">
       <div
         :key="'reset-' + useIsMobileLandscape"
         class="eye fixed grad"
@@ -104,9 +104,7 @@ const viewSizeY = computed(() => {
 })
 
 const robotSvgClass = computed(() => {
-  const dark = $q.dark.isActive ? 'bg-dark' : ''
-  const position = useIsMobileLandscape.value ? 'absolute bottom-1' : 'fixed bottom-14'
-  return position.concat(' ', dark)
+  return useIsMobileLandscape.value ? 'absolute bottom-1' : 'fixed bottom-14'
 })
 
 const moveEyes = computed(() => {
