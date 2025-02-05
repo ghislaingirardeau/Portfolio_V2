@@ -8,9 +8,9 @@
       <q-img
         :src="imageToDisplay"
         ref="image"
-        alt="photo de Ghislain montagne"
+        alt="photo de Ghislain"
         fit="contain"
-        class="rounded-borders opacity-0 w-10/12 md:w-2/5 img-square"
+        class="rounded-borders opacity-0 w-10/12 sm:w-2/5 img-square"
         :width="imageWidth"
         :class="{ 'img-square-done': fixImage }"
         loading="eager"
@@ -43,7 +43,7 @@ import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSwipe } from '@vueuse/core'
-import { useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import AppImgOverlay from '../common/AppImgOverlay.vue'
 
 const route = useRoute()
@@ -85,7 +85,10 @@ const imageToDisplay = computed(() => {
 })
 
 const imageWidth = computed(() => {
-  return useIsMobileTall() ? '80%' : '80%'
+  if (useIsMobile()) {
+    return '80%'
+  }
+  return '60%'
 })
 
 const slideNumber = computed(() => {
