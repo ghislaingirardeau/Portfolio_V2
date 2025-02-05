@@ -1,7 +1,7 @@
 <template>
   <div class="cursor-pointer">
     <TheRobotIdea />
-    <div class="eye-container">
+    <div>
       <div
         :key="'reset-' + useIsMobileLandscape"
         class="eye fixed grad"
@@ -136,13 +136,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.eye-container {
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  bottom: 98px;
-  right: 46px;
-}
 .eye-container-mobile-landscape {
   position: absolute;
   bottom: 48px !important;
