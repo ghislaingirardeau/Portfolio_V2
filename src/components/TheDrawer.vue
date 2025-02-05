@@ -3,7 +3,7 @@
     v-model="leftDrawerOpen"
     ref="'drawer'"
     side="left"
-    :behavior="useDeviceOrientation()"
+    :behavior="useIsMobile() ? 'mobile' : 'desktop'"
     bordered
     :class="$q.dark.mode ? 'bg-dark' : 'bg-white'"
     :width="250"
@@ -47,7 +47,7 @@ import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import { useDeviceOrientation } from 'src/utils/useDeviceInfo'
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 
