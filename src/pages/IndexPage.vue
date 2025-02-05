@@ -1,5 +1,9 @@
 <template>
-  <q-page class="q-pa-lg column relative z-20" :class="pageClass" :key="locale + $q.dark.mode">
+  <q-page
+    class="q-pa-lg column relative z-20"
+    :class="usePageMobileLandscapeClass"
+    :key="locale + $q.dark.mode"
+  >
     <ThePresentation class="z-20" />
 
     <LogoAEContainer v-if="useIsMobile()" />
@@ -27,9 +31,9 @@ import ThePresentation from 'src/components/ThePresentation.vue'
 import { useI18n } from 'vue-i18n'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useQuasar } from 'quasar'
-import { useIsMobile, useIsMobileLandscape } from 'src/utils/useDeviceInfo'
+import { useIsMobile, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 
 const { t, tm, locale } = useI18n()
 
@@ -37,10 +41,6 @@ const animationSettings = useAnimationSettings()
 const { pageMounted, isCubeSpining } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
-
-const pageClass = computed(() => {
-  return useIsMobileLandscape.value ? 'page-mobile-landscape' : ''
-})
 
 onMounted(() => {
   pageMounted.value = false

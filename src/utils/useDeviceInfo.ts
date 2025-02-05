@@ -34,6 +34,10 @@ export const useIsMobileLandscape = computed(() => {
   return orientation.value === 'landscape-primary' && hasTouchEvent() && height.value < 600
 })
 
+export const usePageMobileLandscapeClass = computed(() => {
+  return useIsMobileLandscape.value ? 'page-mobile-landscape' : ''
+})
+
 function hasTouchEvent() {
   return 'ontouchstart' in window
 }

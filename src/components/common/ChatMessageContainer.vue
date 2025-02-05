@@ -1,7 +1,7 @@
 <template>
   <div
-    class="fixed bottom-24 right-24 ml-3 z-50 md:w-3/5 lg:w-96"
-    :class="useIsMobileLandscape ? 'absolute bottom-12' : ''"
+    class="right-24 ml-3 z-50 md:w-3/5 lg:w-96"
+    :class="useIsMobileLandscape ? 'absolute bottom-12' : 'fixed bottom-24'"
   >
     <q-chat-message
       v-if="visitorTexts"
