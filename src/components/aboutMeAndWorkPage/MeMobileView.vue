@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg" :key="locale">
+  <q-page class="q-pa-lg" :key="locale" :class="usePageMobileLandscapeClass">
     <div
       ref="imageContainer"
       class="w-full flex flex-center relative z-10"
@@ -43,7 +43,12 @@ import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSwipe } from '@vueuse/core'
-import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
+import {
+  useIsMobile,
+  useIsMobileLandscape,
+  useIsMobileTall,
+  usePageMobileLandscapeClass,
+} from 'src/utils/useDeviceInfo'
 import AppImgOverlay from '../common/AppImgOverlay.vue'
 
 const route = useRoute()
@@ -86,7 +91,7 @@ const imageToDisplay = computed(() => {
 
 const imageWidth = computed(() => {
   if (useIsMobile()) {
-    return '80%'
+    return useIsMobileLandscape.value ? '60%' : '80%'
   }
   return '60%'
 })

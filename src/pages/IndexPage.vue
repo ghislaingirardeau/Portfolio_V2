@@ -51,8 +51,4 @@ function robotAction() {
 }
 </script>
 
-<style scoped lang="scss">
-.page-mobile-landscape {
-  min-height: 567px !important;
-}
-</style>
+<style scoped lang="scss"></style>

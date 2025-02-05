@@ -60,7 +60,7 @@ const modeColor = computed(() => {
 
 const atomDisplayClass = computed(() => {
   if (useIsTablet()) {
-    return 'mt-28 atom-center scale-150'
+    return 'mt-16 atom-center scale-150'
   }
   if (useIsMobile()) {
     return useIsMobileTall() ? 'mt-10 atom-center' : 'atom-center'

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-lg relative">
+  <div class="q-pa-lg relative" :class="usePageMobileLandscapeClass">
     <AppAtom :slide-chat="slideChat" @robot-action="robotAction" />
     <TheRobotContainer @robot-action="robotAction" />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
@@ -18,6 +18,7 @@
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import AppAtom from 'src/components/stackPage/AppAtom.vue'
+import { usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
