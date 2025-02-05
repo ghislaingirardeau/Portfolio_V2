@@ -3,7 +3,7 @@
     <AppBackBtn ref="backButton" />
     <AppViewBtn ref="viewButton" v-if="findProject.link" :link="findProject.link" />
     <q-card
-      class="my-card text-center flex flex-center"
+      class="text-center flex flex-center"
       flat
       bordered
       :class="{ 'my-card-dark': $q.dark.mode }"
@@ -21,9 +21,8 @@
         transition-prev="jump-right"
         transition-next="jump-left"
         infinite
-        height="340"
-        class="px-2 opacity-0 scale-75 carousel"
-        :class="{ 'my-card-dark': $q.dark.mode }"
+        class="px-2 opacity-0 scale-75"
+        :class="[carouselClass, darkModeClass]"
       >
         <q-carousel-slide v-for="(image, index) in findProject.imageURL" :key="index" :name="index">
           <q-img
@@ -60,6 +59,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import { useQuasar } from 'quasar'
 import AppBackBtn from 'src/components/common/AppBackBtn.vue'
 import AppViewBtn from 'src/components/common/AppViewBtn.vue'
+import { useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)
@@ -109,6 +109,21 @@ const captionColor = computed(() => {
 
 const overlineColor = computed(() => {
   return $q.dark.mode ? 'text-dark-secondary' : 'text-secondary'
+})
+
+const carouselClass = computed(() => {
+  if (useIsTablet()) {
+    return 'w-6/12 h-full'
+  }
+  if (useIsMobileTall()) {
+    return 'w-4/5 h-11/12'
+  } else {
+    return 'w-4/5 h-10/12'
+  }
+})
+
+const darkModeClass = computed(() => {
+  return $q.dark.mode ? 'my-card-dark' : ''
 })
 
 onMounted(() => {
@@ -215,7 +230,8 @@ function robotAction() {
   background: #121212;
 }
 .carousel {
-  width: 270px;
+  width: 470px;
+  height: 600px;
 }
 .q-carousel__slide {
   border-radius: 5px;
