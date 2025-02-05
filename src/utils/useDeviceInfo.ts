@@ -19,6 +19,10 @@ export function useIsMobileTall() {
   return useIsMobile() && height.value > 800
 }
 
+export function useIsTablet() {
+  return breakpoints.active().value === 'tablet' ? true : false
+}
+
 export function useDeviceOrientation() {
   return orientation.value === 'landscape-primary' ? 'desktop' : 'mobile'
 }

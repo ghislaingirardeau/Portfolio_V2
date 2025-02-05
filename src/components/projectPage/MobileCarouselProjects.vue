@@ -46,7 +46,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
-import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
@@ -80,7 +80,9 @@ const endSlider = computed(() => {
 
 const slideContainerClass = computed(() => {
   if (useIsMobile()) {
-    if (useIsMobileTall()) {
+    if (useIsTablet()) {
+      return props.typeDesktop ? 'w-5/6 h-4/5' : 'w-60 h-4/5'
+    } else if (useIsMobileTall()) {
       return props.typeDesktop ? 'h-60 w-72' : 'w-48 h-96'
     } else {
       return props.typeDesktop ? 'h-48 w-72' : 'w-44 h-72'

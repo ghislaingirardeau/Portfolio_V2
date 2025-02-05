@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { Project } from 'src/types'
-import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -90,7 +90,9 @@ const imageTitleClass = computed(() => {
 
 const imageClass = computed(() => {
   if (useIsMobile()) {
-    if (useIsMobileTall()) {
+    if (useIsTablet()) {
+      return props.typeDesktop ? 'h-4/5' : 'h-4/5 cursor-pointer'
+    } else if (useIsMobileTall()) {
       return props.typeDesktop ? 'h-60' : 'h-96 cursor-pointer'
     } else {
       return props.typeDesktop ? 'h-48' : 'h-72 cursor-pointer'
