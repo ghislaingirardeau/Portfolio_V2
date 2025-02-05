@@ -3,6 +3,7 @@
     <TheRobotIdea />
     <div class="eye-container bg-light" :class="{ 'bg-dark': $q.dark.isActive }">
       <div
+        :key="'reset-' + useIsMobileLandscape"
         class="eye fixed grad"
         :class="{
           'is-clickable':
@@ -114,10 +115,14 @@ const moveEyes = computed(() => {
 
   const elementTarget = eyeBis.value as HTMLDivElement
 
+  // pour ne pas que l'oeil dépasse une certaine limite en dehors du cadre, je lui fixe cette limite max
+  const maxY = -0.36
+  const yNew = -0.06 * (6 - rawY)
+
   gsap.to(elementTarget, {
     duration: 0.1,
     x: -0.06 * (6 - rawX) + 'rem',
-    y: -0.06 * (6 - rawY) + 'rem',
+    y: yNew < maxY ? maxY + 'rem' : yNew + 'rem',
   })
 
   return rawX
