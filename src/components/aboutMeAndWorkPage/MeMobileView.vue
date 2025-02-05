@@ -10,7 +10,7 @@
         ref="image"
         alt="photo de Ghislain montagne"
         fit="contain"
-        class="rounded-borders opacity-0 w-10/12 lg:w-2/5 img-square"
+        class="rounded-borders opacity-0 w-10/12 md:w-2/5 img-square"
         :width="imageWidth"
         :class="{ 'img-square-done': fixImage }"
         loading="eager"

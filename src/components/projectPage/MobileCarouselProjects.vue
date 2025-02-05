@@ -2,7 +2,7 @@
   <q-tab-panel :name="name">
     <div
       ref="carousel"
-      class="row justify-around lg:justify-center items-center"
+      class="row justify-around md:justify-center items-center"
       :class="{ relative: typeDesktop, carousel_container: !useIsMobile() }"
     >
       <q-btn
@@ -12,7 +12,7 @@
         @click="previousSlide"
         :color="$q.dark.mode ? 'dark-primary' : 'primary'"
         icon="chevron_left"
-        class="opacity-0 scale-0 z-30 lg:mr-5"
+        class="opacity-0 scale-0 z-30 md:mr-5"
         :disable="currentSlide === 0"
         :class="{ 'absolute left-1 ': typeDesktop }"
       />
@@ -34,7 +34,7 @@
         icon="chevron_right"
         :class="{ 'absolute right-1 ': typeDesktop }"
         :disable="endSlider"
-        class="opacity-0 scale-0 z-30 lg:ml-5"
+        class="opacity-0 scale-0 z-30 md:ml-5"
       />
     </div>
   </q-tab-panel>
