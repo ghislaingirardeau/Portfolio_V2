@@ -26,6 +26,7 @@
     >
       <MobileCarouselProjects
         v-model:currentSlide="currentSlide"
+        :class="usePageMobileLandscapeClass"
         :type-desktop="tab === 'mobile' ? false : true"
         :name="tab"
         v-model:is-first-mounted="isFirstMounted"
@@ -52,7 +53,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'

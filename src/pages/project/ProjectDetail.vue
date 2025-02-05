@@ -22,7 +22,7 @@
         transition-next="jump-left"
         infinite
         class="px-2 opacity-0 scale-75"
-        :class="[carouselClass, darkModeClass]"
+        :class="[carouselClass, darkModeClass, usePageMobileLandscapeClass]"
       >
         <q-carousel-slide v-for="(image, index) in findProject.imageURL" :key="index" :name="index">
           <q-img
@@ -59,7 +59,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import { useQuasar } from 'quasar'
 import AppBackBtn from 'src/components/common/AppBackBtn.vue'
 import AppViewBtn from 'src/components/common/AppViewBtn.vue'
-import { useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
+import { useIsMobileTall, useIsTablet, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)
