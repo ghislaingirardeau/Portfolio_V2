@@ -24,7 +24,7 @@ import { storeToRefs } from 'pinia'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobile, useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobile, useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
 
 import { devIconSrc } from 'src/utils/useIconSources'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
@@ -59,6 +59,9 @@ const modeColor = computed(() => {
 })
 
 const atomDisplayClass = computed(() => {
+  if (useIsTablet()) {
+    return 'mt-28 atom-center scale-150'
+  }
   if (useIsMobile()) {
     return useIsMobileTall() ? 'mt-10 atom-center' : 'atom-center'
   }
