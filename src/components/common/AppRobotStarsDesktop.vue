@@ -26,15 +26,12 @@
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
-import { onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
 
 const starToLeft = useTemplateRefsList()
 const starToTop = useTemplateRefsList()
 
 const { height, width } = useWindowSize()
-
-const route = useRoute()
 
 const $q = useQuasar()
 

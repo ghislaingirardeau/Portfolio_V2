@@ -47,7 +47,7 @@ import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import { useDeviceOrientation, useIsMobile } from 'src/utils/useDeviceInfo'
+import { useDeviceOrientation } from 'src/utils/useDeviceInfo'
 import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 
