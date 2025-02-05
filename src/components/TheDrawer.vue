@@ -114,12 +114,16 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
   if (isFirstMount) {
     menuList.value.forEach((el, index) => {
       const elementTarget = menuIcon.value[index].$el as HTMLDivElement
-      tl.to(elementTarget, {
-        duration: ANIM_SHORT.value,
-        opacity: 1,
-        rotateZ: 0,
-        ease: 'none',
-      })
+      tl.to(
+        elementTarget,
+        {
+          duration: ANIM_SHORT.value,
+          opacity: 1,
+          rotateZ: 0,
+          ease: 'none',
+        },
+        '-=0.2',
+      )
     })
   }
 
