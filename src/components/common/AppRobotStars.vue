@@ -49,7 +49,7 @@ onMounted(() => {
 
 const heightSize = computed(() => {
   // si mobile + lanscape: height de la page est défini en css à 670px + 100px to add pour header et footer
-  return useIsMobileLandscape.value ? 770 : height.value
+  return useIsMobileLandscape.value ? 670 : height.value
 })
 
 function startAnim() {
