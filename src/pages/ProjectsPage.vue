@@ -163,7 +163,7 @@ function robotAction() {
 
 <style scoped lang="scss">
 .tab_panel_container {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 300px);
   background-color: rgba(0, 0, 0, 0);
 }
 
