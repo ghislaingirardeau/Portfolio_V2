@@ -5,7 +5,7 @@
       v-model="tab"
       dense
       class="text-grey h-0 lg:w-3/5"
-      :class="$q.dark.mode ? 'bg-dark-page' : 'bg-white'"
+      :class="[$q.dark.mode ? 'bg-dark-page' : 'bg-white', usePageMobileLandscapeClass]"
       :active-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       :indicator-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       align="justify"
@@ -26,7 +26,6 @@
     >
       <MobileCarouselProjects
         v-model:currentSlide="currentSlide"
-        :class="usePageMobileLandscapeClass"
         :type-desktop="tab === 'mobile' ? false : true"
         :name="tab"
         v-model:is-first-mounted="isFirstMounted"
