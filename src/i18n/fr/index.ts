@@ -18,7 +18,7 @@ export default {
       visitor: 'Pourquoi ce portfolio ?',
       me: [
         "Pour en savoir plus sur moi, comment je travaille, des exemples de projets. Ce portfolio est fait dans l'esprit d'un petit entretien ;)",
-        "Tu as déjà peut etre beaucoup d'informations sur les liens ci-dessous",
+        "Tu as déjà beaucoup d'autres informations sur les liens ci-dessous: Malt, Github et LinkedIn",
       ],
     },
     projectMobile: {
@@ -43,8 +43,8 @@ export default {
             ],
           },
           1: {
-            title: `Je peux y voir le détail ?`,
-            description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
+            title: `Tu peux m'en dire plus ?`,
+            description: ['Cliques sur le projet pour avoir plus détail'],
           },
         },
         2: {
@@ -52,7 +52,7 @@ export default {
             title: `Ce sont des projets persos ou pro ?`,
             description: [
               `Cela dépend. Si je n'ai pas de missions, je continue toujours à me former via des projets persos. 
-              Ce projet là est pro, il a été conçu pour réponsdre à une demande spécifique`,
+              Ce projet là est pro, il a été conçu pour répondre à une demande spécifique`,
             ],
           },
           1: {
@@ -66,13 +66,14 @@ export default {
           title: `Ce sont toutes tes réalisations ?`,
           description: [
             "C'est un aperçu de mes réalisations, certains projets sont confidentiels",
-            "D'autres sont des projets tutoriels que je n'ai pas mis. Oui il faut toujours se former ;)",
+            "D'autres sont des projets tutoriels que je n'ai pas mis. Et oui il faut toujours se former ;)",
           ],
         },
         1: {
           title: `Et tu as fait la partie backend ?`,
           description: [
-            `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+            `Oui, sur beaucoup de mes projets, j'ai construit le backend: le serveur et base de donnée`,
+            `Sur des projets moins complexes, j'ai utilisé Firebase `,
           ],
         },
       },
@@ -184,7 +185,8 @@ export default {
           1: {
             title: `Et tu as fait la partie backend ?`,
             description: [
-              `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+              `Oui, sur beaucoup de mes projets, j'ai construit le backend: le serveur et base de donnée`,
+              `Sur des projets moins complexes, j'ai utilisé Firebase `,
             ],
           },
         },
@@ -199,7 +201,8 @@ export default {
           1: {
             title: `Et tu as fait la partie backend ?`,
             description: [
-              `Oui, sur les projets desktop travaillés, j'ai construit le serveur ainsi que la base de donnée`,
+              `Oui, sur beaucoup de mes projets, j'ai construit le backend: le serveur et base de donnée`,
+              `Sur des projets moins complexes, j'ai utilisé Firebase `,
             ],
           },
         },
@@ -285,7 +288,7 @@ export default {
       0: {
         title: 'Pourquoi ce choix de stack ?',
         description: [
-          `Je fais le choix de me spécialiser.`,
+          `Je fais le choix de me spécialiser autour de Javascript / Typescript et VueJs.`,
           `Certe je réduis les opportunités, mais j'ouvre sur une expertise. 
           Je reste malgré tout ouvert et suit les tendances sur les langages les plus utilisés.
           `,
@@ -294,9 +297,11 @@ export default {
       1: {
         title: 'Coté front ou coté backend ?',
         description: [
-          `Le Front, c'est ma préférence si je devais choisir dans un développpement fullstack. Notamment du fait que je maitrise plus VueJs`,
-          `Mais j'apprécie également faire du backend notamment concevoir des API Rest.
+          `Le Front, c'est ma préférence si je devais choisir dans un développpement fullstack.`,
+          `Mais j'apprécie également faire du backend notamment concevoir des API Rest, modeliser la base de données...
           `,
+          `Pour moi, il est essentiel de connaitre et pratiquer le backend pour aussi comprendre les conditions et contraintes de mes 
+           futurs collaborateurs développeurs back`,
         ],
       },
     },

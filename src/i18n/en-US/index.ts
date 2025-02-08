@@ -17,7 +17,7 @@ export default {
       visitor: 'Why this portfolio ?',
       me: [
         "To show what is behind my resume and my work, to know more about me. It's has been made as a first interview ;)",
-        '...You can find out a lot more about me on the link below',
+        '...You can find out a lot more about me on the link below: Malt, Github et LinkedIn',
       ],
     },
     projectMobile: {
@@ -299,9 +299,11 @@ export default {
       1: {
         title: 'Front-end or back-end?',
         description: [
-          `Front is my preference if I had to choose a fullstack development option.`,
-          `Even if the backend is just as interesting.
+          `Front is my preference if I had to choose between fullstack development.`,
+          `But I also enjoy working on the backend, in particular designing API Rest, modelling the database, etc.
           `,
+          `For me, it is essential to know and practice the backend to also understand the conditions and constraints of my 
+           future backend developers.`,
         ],
       },
     },
