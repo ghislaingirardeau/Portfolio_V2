@@ -132,7 +132,6 @@ watch(
 // )
 
 function handleImageLoad() {
-  console.log('image loaded')
   animationOnSlideIn()
 }
 
