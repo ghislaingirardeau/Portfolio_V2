@@ -10,6 +10,7 @@
       >
         <q-btn
           :key="leftDrawerOpen ? 'close' : 'open'"
+          aria-label="menu"
           dense
           flat
           round
@@ -22,7 +23,7 @@
         class="kaushan-regular cursor-pointer"
         @click="router.push({ name: 'home' })"
       >
-        GG WebDev
+        <h1 class="text-xl">GG WebDev</h1>
       </q-toolbar-title>
       <q-space />
       <SwitchModeBtn />

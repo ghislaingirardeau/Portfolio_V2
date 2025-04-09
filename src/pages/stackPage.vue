@@ -4,7 +4,6 @@
     <TheRobotContainer @robot-action="robotAction" />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
-        ref="chatContainer"
         :meTexts="chatTexts"
         :visitor-texts="visitorChatTexts"
         :delay-animation="0.5"

@@ -15,7 +15,7 @@
         :class="{ 'img-square-done': fixImage }"
         loading="eager"
         fetchpriority="high"
-        @load="hasLoadImage = true"
+        @load="handleImageLoad"
       >
         <AppImgOverlay v-if="isFirstMount" />
       </q-img>
@@ -24,7 +24,6 @@
     <TheRobotContainer @robot-action="robotAction" />
 
     <ChatMessageContainer
-      ref="chatContainer"
       :key="'chatContainer' + meSlide"
       :meTexts="chatTexts"
       :visitor-texts="visitorChatTexts"
@@ -39,7 +38,7 @@ import { gsap } from 'src/boot/gsap'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSwipe } from '@vueuse/core'
@@ -58,16 +57,14 @@ const { pageMounted, isRobotClickable, isRobotFix, isRobotTap } = storeToRefs(an
 const meSlide = ref(0)
 const image = ref()
 const imageContainer = ref()
-const hasLoadImage = ref(false)
 const isFirstMount = ref(false)
-
-const chatContainer = useTemplateRef('chatContainer')
 
 const fixImage = ref(false)
 
 const { direction } = useSwipe(imageContainer)
 
 const tl = gsap.timeline()
+const duration = 0.5
 
 const { tm, locale } = useI18n({ useScope: 'global' })
 
@@ -134,23 +131,26 @@ watch(
 //   },
 // )
 
+function handleImageLoad() {
+  console.log('image loaded')
+  animationOnSlideIn()
+}
+
 function nextSlide() {
   if (meSlide.value === slideNumber.value) {
     return
   }
-  animationOnSlide(10, true)
+  animationOnSlideOut(10, true)
 }
 
 function previousSlide() {
   if (meSlide.value === 0) {
     return
   }
-  animationOnSlide(-10, false)
+  animationOnSlideOut(-10, false)
 }
 
-function animationOnSlide(x: number, increase: boolean) {
-  hasLoadImage.value = false
-  const duration = 0.5
+function animationOnSlideOut(x: number, increase: boolean) {
   if (!pageMounted.value) {
     return
   }
@@ -161,30 +161,22 @@ function animationOnSlide(x: number, increase: boolean) {
     onComplete() {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       increase ? meSlide.value++ : meSlide.value--
-      fixImage.value = false
       isRobotClickable.value = true
       isRobotFix.value = true
       isFirstMount.value = false
     },
   })
-    .to(
-      chatContainer.value!.$el,
-      {
-        duration,
-        opacity: 0,
-      },
-      '<',
-    )
-    .to(image.value.$el, {
-      duration,
-      x: 0,
-      opacity: 1,
-    })
-    .to(chatContainer.value!.$el, {
-      duration,
-      x: 0,
-      opacity: 1,
-    })
+}
+
+function animationOnSlideIn() {
+  tl.to(image.value.$el, {
+    duration,
+    x: 0,
+    opacity: 1,
+    onStart() {
+      fixImage.value = false
+    },
+  })
 }
 
 function robotAction() {

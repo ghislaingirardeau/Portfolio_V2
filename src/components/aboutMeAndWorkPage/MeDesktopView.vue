@@ -11,7 +11,6 @@
 
     <TheRobotContainer @robot-action="robotAction" />
     <ChatMessageContainer
-      ref="chatContainer"
       :key="'chatContainer' + meSlide"
       :meTexts="chatTexts"
       :visitor-texts="visitorChatTexts"

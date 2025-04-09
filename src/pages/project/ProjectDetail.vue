@@ -35,7 +35,6 @@
     </q-card>
 
     <ChatMessageContainer
-      ref="chatContainer"
       v-if="expanded"
       :key="'chat' + chatSlide"
       :delay-animation="0.2"
@@ -74,8 +73,6 @@ const { pageMounted, isRobotClickable, isRobotTalk, isRobotStepBack } =
 const slide = ref(0)
 const expanded = ref(false)
 const chatSlide = ref(-1)
-
-const chatContainer = useTemplateRef('chatContainer')
 
 const carousel = ref()
 const backButton = useTemplateRef('backButton')
