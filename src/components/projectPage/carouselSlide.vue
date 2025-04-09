@@ -9,8 +9,9 @@
       <q-img
         :src="`/images/projectsPage/${projectsToDisplay[currentSlide]!.imageURL[currentImg]}`"
         fit="fill"
-        loading="lazy"
-        spinner-color="white"
+        loading="eager"
+        fetchpriority="high"
+        spinner-color="primary"
         :class="imageClass"
         @click="goToProjectDetail(projectsToDisplay[currentSlide]!.id)"
       >
