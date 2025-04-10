@@ -31,6 +31,7 @@ export function useTestArgumentRef(list: MaybeRefOrGetter<string[]>, config?: Co
   const _list = toRef(list)
   const activeIndex = ref(0)
   // si je veux pouvoir changer le state d'une computed
+  console.log(_config)
   const state = computed({
     get() {
       return _list.value[activeIndex.value]
