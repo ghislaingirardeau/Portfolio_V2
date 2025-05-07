@@ -11,6 +11,7 @@ export default {
     stack: 'My stack',
     aboutWork: 'Work with me',
     aboutMe: 'About me',
+    game: 'Mini game',
   },
   chatMessage: {
     home: {

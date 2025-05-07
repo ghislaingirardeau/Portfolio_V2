@@ -10,6 +10,7 @@ export default {
     services: 'Mes services',
     stack: 'Mon stack',
     aboutWork: 'Travailler avec moi',
+    game: 'Mini jeu',
 
     aboutMe: 'A propos de moi',
   },

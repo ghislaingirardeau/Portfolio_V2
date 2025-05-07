@@ -38,6 +38,7 @@
 import {
   mdiAccountDetails,
   mdiCodeTagsCheck,
+  mdiGamepad,
   mdiHandshake,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
@@ -92,6 +93,13 @@ const menuList = computed(() => [
     label: t('navBar.aboutWork'),
     to: {
       name: 'aboutWork',
+    },
+  },
+  {
+    icon: mdiGamepad,
+    label: t('navBar.game'),
+    to: {
+      name: 'game',
     },
   },
 ])

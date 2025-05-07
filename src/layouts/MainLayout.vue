@@ -10,8 +10,8 @@
     <q-page-container>
       <LogoAEContainer v-if="!useIsMobile()" />
       <router-view :key="locale" />
-      <AppRobotStars v-if="useIsMobile()" :key="'reset' + orientation" />
-      <AppRobotStarsDesktop v-else />
+      <!-- <AppRobotStars v-if="useIsMobile()" :key="'reset' + orientation" />
+      <AppRobotStarsDesktop v-else /> -->
     </q-page-container>
 
     <TheFooter v-if="presentationMounted || headerMounted" />
@@ -26,11 +26,11 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
-import AppRobotStars from 'src/components/common/AppRobotStars.vue'
-import AppRobotStarsDesktop from 'src/components/common/AppRobotStarsDesktop.vue'
+// import AppRobotStars from 'src/components/common/AppRobotStars.vue'
+// import AppRobotStarsDesktop from 'src/components/common/AppRobotStarsDesktop.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
-import { useScreenOrientation } from '@vueuse/core'
+// import { useScreenOrientation } from '@vueuse/core'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
@@ -39,7 +39,7 @@ const leftDrawerOpen = ref(false)
 
 const { locale } = useI18n({ useScope: 'global' })
 
-const { orientation } = useScreenOrientation()
+// const { orientation } = useScreenOrientation()
 
 onMounted(() => {
   if (useIsMobile()) {

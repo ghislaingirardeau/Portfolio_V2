@@ -12,7 +12,9 @@ export default defineConfig((ctx) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['i18n', 'gsap', 'routeGuards'],
+
+    //! Vue DevTools en stand alone application
+    boot: ['i18n', 'gsap', 'routeGuards' /* , 'vueDevTools' */],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: ['app.scss', 'tailwind.css'],
@@ -64,6 +66,7 @@ export default defineConfig((ctx) => {
       // viteVuePluginOptions: {},
 
       vitePlugins: [
+        //! Vue DevTools directement à l'intérieur de l'application
         ['vite-plugin-vue-devtools'],
         [
           '@intlify/unplugin-vue-i18n/vite',
