@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
     <div class="flex gap-8 mb-4">
-      <p>Score: {{ scores }}</p>
-      <q-btn color="primary" label="Restart" @click="resetGame" />
+      <p class="text-xl font-bold">Score: {{ scores }}</p>
+      <!-- <q-btn color="primary" label="Restart" @click="resetGame" /> -->
       <q-btn color="primary" label="Start" @click="startGame" />
     </div>
     <div
@@ -62,20 +62,20 @@ function startGame() {
   ghostGoOn(GHOST_DIRECTION.value)
 }
 
-function resetGame() {
-  scores.value = 0
-  PACMAN_POSITION.value = 'c3'
-  GHOST_POSITION.value = 'a1'
-  GHOST_DIRECTION.value = 'down'
+// function resetGame() {
+//   scores.value = 0
+//   PACMAN_POSITION.value = 'c3'
+//   GHOST_POSITION.value = 'a1'
+//   GHOST_DIRECTION.value = 'down'
 
-  setInitialGridPoint()
-  setInitialPacmanPosition()
-  tl_ghost.to(ghost.value, {
-    x: 0,
-    y: 0,
-    duration: 0.1,
-  })
-}
+//   setInitialGridPoint()
+//   setInitialPacmanPosition()
+//   tl_ghost.to(ghost.value, {
+//     x: 0,
+//     y: 0,
+//     duration: 0.1,
+//   })
+// }
 
 function setInitialGridPoint() {
   PACMAN_LEVEL_GRID.value.forEach((row) => {
