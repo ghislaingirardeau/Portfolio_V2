@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="z-30 bg-white">
     <div class="flex gap-8 mb-4">
       <p class="text-xl font-bold">Score: {{ scores }}</p>
       <!-- <q-btn color="primary" label="Restart" @click="resetGame" /> -->
