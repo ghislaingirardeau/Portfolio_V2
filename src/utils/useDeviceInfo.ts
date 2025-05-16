@@ -38,6 +38,6 @@ export const usePageMobileLandscapeClass = computed(() => {
   return useIsMobileLandscape.value ? 'page-mobile-landscape' : ''
 })
 
-function hasTouchEvent() {
+export function hasTouchEvent() {
   return 'ontouchstart' in window
 }

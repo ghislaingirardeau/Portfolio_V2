@@ -12,7 +12,9 @@ export function drawPacman(ctx, pacman, tileSize) {
       1.75,
       tileSize / 10,
       tileSize / -4,
-    );
+      pacman.x * tileSize + tileSize + 2,
+      pacman.y * tileSize + tileSize / 2,
+    )
   }
   if (pacman.dx === -1 && pacman.dy === 0) {
     // left
@@ -26,7 +28,9 @@ export function drawPacman(ctx, pacman, tileSize) {
       2.75,
       tileSize / 10,
       tileSize / -4,
-    );
+      pacman.x * tileSize + 2,
+      pacman.y * tileSize + tileSize / 2,
+    )
   }
   if (pacman.dx === 0 && pacman.dy === 1) {
     // down
@@ -40,7 +44,9 @@ export function drawPacman(ctx, pacman, tileSize) {
       1.75,
       tileSize / -5,
       0,
-    );
+      pacman.x * tileSize + tileSize / 2 + 2,
+      pacman.y * tileSize + tileSize,
+    )
   }
   if (pacman.dx === 0 && pacman.dy === -1) {
     // up
@@ -54,7 +60,9 @@ export function drawPacman(ctx, pacman, tileSize) {
       2.75,
       tileSize / -5,
       0,
-    );
+      pacman.x * tileSize + tileSize / 2 + 2,
+      pacman.y * tileSize,
+    )
   }
 
   // Position par default
@@ -68,7 +76,9 @@ export function drawPacman(ctx, pacman, tileSize) {
     1.75,
     tileSize / 10,
     tileSize / -4,
-  );
+    pacman.x * tileSize + tileSize + 2,
+    pacman.y * tileSize + tileSize / 2,
+  )
 }
 
 /**
@@ -76,6 +86,7 @@ export function drawPacman(ctx, pacman, tileSize) {
  * x1 and y2 is the angle fill by the first arc
  * x2 and y2 is the angle fill by the second arc
  * eyeX and eyeY is the position of the eye
+ * if mouthclose, add a line stroke depend on direction
  */
 export function pacmanGoOnDirection(
   ctx,
@@ -87,29 +98,40 @@ export function pacmanGoOnDirection(
   y2,
   eyeX,
   eyeY,
+  mouthCloseX,
+  mouthCloseY,
 ) {
-  ctx.beginPath();
+  ctx.beginPath()
   ctx.arc(
     pacman.x * tileSize + tileSize / 2 + 2, // position du pacman légérement vers l'avant pour ne pas voir le point
     pacman.y * tileSize + tileSize / 2,
     tileSize / 2 - 2,
-    x1 * Math.PI,
-    y1 * Math.PI,
+    pacman.openMouth ? x1 * Math.PI : 0,
+    pacman.openMouth ? y1 * Math.PI : Math.PI * 2,
     false,
-  );
-  ctx.fillStyle = pacman.color;
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    pacman.x * tileSize + tileSize / 2 + 2,
-    pacman.y * tileSize + tileSize / 2,
-    tileSize / 2 - 2,
-    x2 * Math.PI,
-    y2 * Math.PI,
-    false,
-  );
-  ctx.fill();
-  ctx.beginPath();
+  )
+  ctx.fillStyle = pacman.color
+  ctx.fill()
+  if (pacman.openMouth) {
+    ctx.beginPath()
+    ctx.arc(
+      pacman.x * tileSize + tileSize / 2 + 2,
+      pacman.y * tileSize + tileSize / 2,
+      tileSize / 2 - 2,
+      x2 * Math.PI,
+      y2 * Math.PI,
+      false,
+    )
+    ctx.fill()
+  } else {
+    ctx.beginPath() // Start a new path
+    ctx.moveTo(pacman.x * tileSize + tileSize / 2 + 2, pacman.y * tileSize + tileSize / 2)
+    ctx.lineTo(mouthCloseX, mouthCloseY)
+    ctx.strokeStyle = 'black'
+    ctx.stroke()
+  }
+
+  ctx.beginPath()
   ctx.arc(
     pacman.x * tileSize + tileSize / 2 + eyeX,
     pacman.y * tileSize + tileSize / 2 + eyeY, // position de l'oeil
@@ -117,7 +139,7 @@ export function pacmanGoOnDirection(
     0,
     2 * Math.PI,
     false,
-  );
-  ctx.fillStyle = 'rgb(0, 0, 0)';
-  ctx.fill();
+  )
+  ctx.fillStyle = 'rgb(0, 0, 0)'
+  ctx.fill()
 }
