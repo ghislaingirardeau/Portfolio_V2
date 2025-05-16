@@ -63,7 +63,6 @@ function startGame() {
 }
 
 function gameIsOver(victory: boolean) {
-  AppFullscreen.exit()
   clearInterval(timerInterval)
   GAMES_SCORES.value.push({
     point: GAME_SCORE.value,
@@ -76,13 +75,16 @@ function gameIsOver(victory: boolean) {
     html: true,
     position: 'center',
     color: victory ? 'green' : 'red',
+    onDismiss() {
+      AppFullscreen.exit()
+    },
     actions: [
       {
         icon: 'close',
         color: 'white',
         round: true,
         handler: () => {
-          /* ... */
+          AppFullscreen.exit()
         },
       },
     ],

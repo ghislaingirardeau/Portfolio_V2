@@ -4,6 +4,8 @@
  * 1 ce sont les points
  * 2 case vide une fois que les points sont mangé
  * 3 mur intérieur, en bleu clair
+ * 4 les supers points
+ * 5 position initial de pacman
  */
 export function drawMaze(ctx, tileSize, cols, rows, maze) {
   // le contanier sera un rectangle noir
@@ -15,9 +17,11 @@ export function drawMaze(ctx, tileSize, cols, rows, maze) {
       // pour chaque rectangle de maze
       // si 0 c'est la bordure
       if (maze[row][col] === 0) {
-        ctx.fillStyle = '#005264'
-        // créer un rectangle avec (position x, position y, width et height)
-        ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize)
+        ctx.strokeStyle = '#42e6f5'
+        ctx.beginPath()
+        // ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
+        ctx.roundRect(col * tileSize, row * tileSize, tileSize, tileSize, [5])
+        ctx.stroke()
       } else if (maze[row][col] === 1) {
         // Si 1, c'est un petit point centré
         ctx.fillStyle = 'white'
@@ -45,7 +49,7 @@ export function drawMaze(ctx, tileSize, cols, rows, maze) {
       } else if (maze[row][col] === 3) {
         // c'est un mur
         // ctx.fillStyle = '#42e6f5';
-        ctx.strokeStyle = '#1ed3f7'
+        ctx.strokeStyle = '#42e6f5'
         ctx.beginPath()
         // ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
         ctx.roundRect(col * tileSize, row * tileSize, tileSize, tileSize, [5])
