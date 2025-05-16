@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar'
+import { useQuasar, AppFullscreen } from 'quasar'
 import PacmanCanvas from 'src/components/gamePage/PacmanCanvas.vue'
 import { formatMilliseconds } from 'src/utils/useTimeFormat'
 import { computed, ref } from 'vue'
@@ -52,6 +52,7 @@ function startGame() {
   isGameStart.value = true
   GAME_TIMER_END.value = Date.now()
   GAME_TIMER_START.value = Date.now()
+  AppFullscreen.request()
 
   // wait timer run game to end to start timer
   setTimeout(() => {
@@ -62,6 +63,7 @@ function startGame() {
 }
 
 function gameIsOver(victory: boolean) {
+  AppFullscreen.exit()
   clearInterval(timerInterval)
   GAMES_SCORES.value.push({
     point: GAME_SCORE.value,
