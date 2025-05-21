@@ -45,7 +45,7 @@ const { width } = useWindowSize()
 // to be responsive
 const tileSize = computed(() => {
   if (breakpoints.active().value === 'mobile') {
-    return width.value * 0.05
+    return 24
   }
   if (breakpoints.active().value === 'tablet') {
     return width.value * 0.04
@@ -55,8 +55,21 @@ const tileSize = computed(() => {
 })
 
 const canvas = ref(null)
-const rows = 18
-const cols = 18
+// const rows = 18
+// const cols = 18
+// to be responsive
+const rows = computed(() => {
+  if (breakpoints.active().value === 'mobile') {
+    return 14
+  }
+  return 18
+})
+const cols = computed(() => {
+  if (breakpoints.active().value === 'mobile') {
+    return 14
+  }
+  return 18
+})
 // 3s to start the game
 const countDownStart = shallowRef(3)
 
@@ -78,24 +91,28 @@ const { direction } = hasTouchEvent()
 
 // Chaque "case" est une tile qui a une valeur par defaut de 1
 // Si le point est mangé, si la case etait 1 alors passe a 2, si la case était 4 alors passe à 10
-const maze = ref<number[][]>(Array.from({ length: rows }, () => Array(cols).fill(1)))
+const maze = ref<number[][]>(Array.from({ length: rows.value }, () => Array(cols.value).fill(1)))
 
 // LES MURS EXTERNE
 // Chaque tile sur les bords a pour valeur 0, ce sont les murs exterieurs du labyrinthe
-for (let i = 0; i < cols; i++) maze.value[0]![i] = maze.value[rows - 1]![i] = 0
-for (let i = 0; i < rows; i++) maze.value[i]![0] = maze.value[i]![cols - 1] = 0
+for (let i = 0; i < cols.value; i++) maze.value[0]![i] = maze.value[rows.value - 1]![i] = 0
+for (let i = 0; i < rows.value; i++) maze.value[i]![0] = maze.value[i]![cols.value - 1] = 0
+maze.value[rows.value / 2]![cols.value / 2] = 5 // pacman spawn point
 
 // LES BLOCS INTERNES
 // Les "bloc" auront eux, une valeur de 3, ce sont les murs intérieurs du labyrinthe, défini de manière arbitraire
 let blockNumber = 0
-while (blockNumber < Math.round((rows * cols) / 6)) {
-  const randomCol = getRandomNumber(2, cols - 3)
-  const randomRow = getRandomNumber(2, rows - 3)
+while (blockNumber < Math.round((rows.value * cols.value) / 6)) {
+  const randomCol = getRandomNumber(2, cols.value - 3)
+  const randomRow = getRandomNumber(2, rows.value - 3)
   // condition (1) + (2) pour eviter qu'un bloc ne ferme complétement un point, ce qui le rendrait inacessible !
+  // condition (3) pour eviter de mettre pacman dans un bloc
   if (
     maze.value[randomRow]![randomCol] !== 3 && // la tile n'est pas deja en valeur 3
     maze.value[randomRow - 2]![randomCol] !== 3 && // (1)
-    maze.value[randomRow - 1]![randomCol - 1] !== 3 // (2)
+    maze.value[randomRow - 1]![randomCol - 1] !== 3 && // (2)
+    randomRow !== rows.value / 2 &&
+    randomCol !== cols.value / 2 // (3)
   ) {
     maze.value[randomRow]![randomCol] = 3
     blockNumber++
@@ -105,8 +122,8 @@ while (blockNumber < Math.round((rows * cols) / 6)) {
 // LES SUPER POINTS > à des positions valides aléatoires, valeur est de 4
 let n = 0
 while (n < 5) {
-  const xLength = rows / 2 // exemple base de 20, donne 10
-  const yLength = rows - 3 // exemple base de 20, donne 17
+  const xLength = rows.value / 2 // exemple base de 20, donne 10
+  const yLength = rows.value - 3 // exemple base de 20, donne 17
 
   const corner = [
     [xLength, yLength, 2, xLength], // haut a droite
@@ -152,8 +169,8 @@ function update(timestamp: number) {
 /* -------- PACMAN ------------ */
 
 const pacman = {
-  x: 10,
-  y: 9,
+  x: rows.value / 2,
+  y: cols.value / 2,
   dx: 0,
   dy: 0,
   color: 'yellow',
@@ -207,8 +224,8 @@ function movePacman() {
 
 const ghosts = [
   {
-    x: cols - 2,
-    y: rows - 2,
+    x: cols.value - 2,
+    y: rows.value - 2,
     color: 'rgba(255, 0, 0, 1)',
     added: false,
   },
@@ -356,13 +373,13 @@ function runGame() {
 
   // GAME LEVEL
   // 1 - Start moving 2 ghosts
-  setSpeedToGhostMove(500)
+  setSpeedToGhostMove(600)
 
   // 2 - Add one ghost
   timeoutLevelOneAddGhost = setTimeout(() => {
     ghosts.push({
       x: 1,
-      y: rows - 2,
+      y: rows.value - 2,
       color: 'rgba(255, 0, 0, 0.5)',
       added: true,
     })
@@ -371,7 +388,7 @@ function runGame() {
   // 3 - Add second ghost
   timeoutLevelSecondAddGhost = setTimeout(() => {
     ghosts.push({
-      x: cols - 2,
+      x: cols.value - 2,
       y: 1,
       color: 'rgba(255, 0, 0, 0.5)',
       added: true,
@@ -381,7 +398,7 @@ function runGame() {
   // 4 - speed up ghosts move
   timeoutLevelThreeIcreaseGhostSpeed = setTimeout(() => {
     ghosts.forEach((ghost) => (ghost.color = 'pink'))
-    setSpeedToGhostMove(220)
+    setSpeedToGhostMove(400)
   }, 35000)
 
   // 4 - speed up ghosts move again
@@ -465,8 +482,8 @@ onMounted(() => {
 
   // requestAnimationFrame() permet de synchroniser ton animation avec ces rafraîchissements, pour éviter les saccades 60 images / secondes
   const gameLoop = (timestamp: number) => {
-    ctx!.clearRect(0, 0, cols * tileSize.value, rows * tileSize.value)
-    drawMaze(ctx, tileSize.value, cols, rows, maze.value)
+    ctx!.clearRect(0, 0, cols.value * tileSize.value, rows.value * tileSize.value)
+    drawMaze(ctx, tileSize.value, cols.value, rows.value, maze.value)
     update(timestamp)
     drawPacman(ctx, pacman, tileSize.value)
     drawGhosts(ctx, ghosts, tileSize.value)
