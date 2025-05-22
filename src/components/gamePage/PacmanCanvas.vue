@@ -97,7 +97,6 @@ const maze = ref<number[][]>(Array.from({ length: rows.value }, () => Array(cols
 // Chaque tile sur les bords a pour valeur 0, ce sont les murs exterieurs du labyrinthe
 for (let i = 0; i < cols.value; i++) maze.value[0]![i] = maze.value[rows.value - 1]![i] = 0
 for (let i = 0; i < rows.value; i++) maze.value[i]![0] = maze.value[i]![cols.value - 1] = 0
-maze.value[rows.value / 2]![cols.value / 2] = 5 // pacman spawn point
 
 // LES BLOCS INTERNES
 // Les "bloc" auront eux, une valeur de 3, ce sont les murs intérieurs du labyrinthe, défini de manière arbitraire
@@ -177,7 +176,8 @@ const pacman = {
   openMouth: false,
 }
 
-maze.value[pacman.x - 1]![pacman.y + 1] = 5
+// pacman spawn point
+maze.value[pacman.x]![pacman.y] = 5
 
 function movePacman() {
   const nextX = pacman.x + pacman.dx // sa nouvelle position sur x => en ajoutant 1, 0 ou -1
@@ -443,7 +443,7 @@ const touchKeys = {
 
 function onTouchSwipe(direction: string) {
   const touchKey = direction as keyof typeof touchKeys
-  if (touchKeys[touchKey]) {
+  if (touchKeys[touchKey] && countDownStart.value === 0) {
     // donne la direction a pacman
     // si axe x => alors prends le 1er element. Comme c'est sur axe x, on aura -1 ou 1 suivant gauche ou droite
     pacman.dx = touchKeys[touchKey][0]!
