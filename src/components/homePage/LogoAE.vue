@@ -109,7 +109,7 @@ function spinCubeAnimation() {
   cubeRender.value++
   setTimeout(() => {
     pageMounted.value = true
-    isRobotClickable.value = true
+    // isRobotClickable.value = true
     isCubeSpining.value = false
   }, 2700)
 }

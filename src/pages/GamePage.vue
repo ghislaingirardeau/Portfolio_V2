@@ -58,16 +58,32 @@
       :GAMES_SCORES="GAMES_SCORES"
       :hasCurrentGame="!!GAME_SCORE"
     />
+    <TheRobotContainer />
+    <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <ChatMessageContainer
+        :meTexts="chatTexts"
+        :visitor-texts="t(`chatMessage.game.visitor`)"
+        :delay-animation="0.5"
+      />
+    </transition>
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { useLocalStorage } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
+import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
+import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import GameRunInfos from 'src/components/gamePage/GameRunInfos.vue'
 import PacmanCanvas from 'src/components/gamePage/PacmanCanvas.vue'
 import ScoreDialog from 'src/components/gamePage/ScoreDialog.vue'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { hasTouchEvent } from 'src/utils/useDeviceInfo'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { tm, t } = useI18n({ useScope: 'global' })
+
 const gameContainer = ref<HTMLElement | null>(null)
 
 const GAME_COUNTER = ref(0)
@@ -122,6 +138,19 @@ function gameIsOver(victory: boolean) {
   isScoresDialog.value = true
   isVictory.value = victory
 }
+
+/* CHAT MESSAGES */
+
+const animationSettings = useAnimationSettings()
+const { isRobotClickable } = storeToRefs(animationSettings)
+
+onMounted(() => {
+  isRobotClickable.value = false
+})
+
+const chatTexts = computed(() => {
+  return tm(`chatMessage.game.me`) as string[]
+})
 </script>
 
 <style scoped></style>

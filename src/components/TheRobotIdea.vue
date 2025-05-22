@@ -53,8 +53,11 @@ const iconType = computed(() => {
   }
   if (isRobotStepBack.value) {
     return mdiChatSleepOutline
-  } else {
+  }
+  if (isRobotClickable.value) {
     return mdiLightbulbOnOutline
+  } else {
+    return undefined
   }
 })
 

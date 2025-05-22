@@ -21,6 +21,13 @@ export default {
         '...You can find out a lot more about me on the link below: Malt, Github et LinkedIn',
       ],
     },
+    game: {
+      visitor: 'Pourquoi ce petit jeu ?',
+      me: [
+        "J'étais curieux de savoir comment cela fonctionne, et comment le faire en HTML, JS.",
+        "J'ai donc décidé de le faire moi-même.",
+      ],
+    },
     projectMobile: {
       mobileTab: {
         0: {
