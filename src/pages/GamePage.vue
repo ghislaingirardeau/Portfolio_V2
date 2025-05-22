@@ -27,17 +27,7 @@
           <q-btn color="primary" label="Scores" @click="isScoresDialog = true" class="m-2" />
         </div>
 
-        <!-- Game infos -->
-        <div class="w-full flex lg:flex-col justify-around" v-else>
-          <div class="flex lg:flex-col items-center mx-4 lg:mx-0 lg:my-4">
-            <span class="m-2 text-lg">Timer</span>
-            <span class="m-2 text-3xl">{{ formatMilliseconds(TIMER_SCORE) }}</span>
-          </div>
-          <div class="flex lg:flex-col items-center">
-            <span class="m-2 text-lg">Points</span>
-            <span class="m-2 text-3xl">{{ GAME_SCORE }}</span>
-          </div>
-        </div>
+        <GameRunInfos v-else :TIMER_SCORE="TIMER_SCORE" :GAME_SCORE="GAME_SCORE" />
       </transition>
     </header>
 
@@ -50,6 +40,18 @@
       @game-is-over="gameIsOver"
     />
 
+    <div class="m-3 flex flex-col lg:justify-center">
+      <p class="text-lg underline italic">How to play ?</p>
+      <p class="text-lg">
+        {{
+          hasTouchEvent()
+            ? 'Just swipe the screen to move pacman'
+            : 'Move pacman with the keyboard arrows'
+        }}
+        !
+      </p>
+    </div>
+
     <ScoreDialog
       v-model:isScoresDialog="isScoresDialog"
       :isVictory="isVictory"
@@ -61,9 +63,10 @@
 
 <script setup lang="ts">
 import { useLocalStorage } from '@vueuse/core'
+import GameRunInfos from 'src/components/gamePage/GameRunInfos.vue'
 import PacmanCanvas from 'src/components/gamePage/PacmanCanvas.vue'
 import ScoreDialog from 'src/components/gamePage/ScoreDialog.vue'
-import { formatMilliseconds } from 'src/utils/useTimeFormat'
+import { hasTouchEvent } from 'src/utils/useDeviceInfo'
 import { computed, ref } from 'vue'
 const gameContainer = ref<HTMLElement | null>(null)
 
