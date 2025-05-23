@@ -22,11 +22,10 @@ export default {
       ],
     },
     game: {
-      visitor: 'Pourquoi ce petit jeu ?',
-      me: [
-        "J'étais curieux de savoir comment cela fonctionne, et comment le faire en HTML, JS.",
-        "J'ai donc décidé de le faire moi-même.",
-      ],
+      visitor: 'Why this little game? And how to play it?',
+      me: 'I was curious to know how it works, so I decided to do it myself.',
+      me_desktop: "At 'Start', use the arrows on your keyboard",
+      me_mobile: "At 'Start', slide your finger to control Pacman",
     },
     projectMobile: {
       mobileTab: {

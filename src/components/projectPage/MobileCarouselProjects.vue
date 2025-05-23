@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { useSwipe } from '@vueuse/core'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useI18n } from 'vue-i18n'
 import CarouselSlide from './carouselSlide.vue'
@@ -109,6 +109,11 @@ onMounted(() => {
   pageMounted.value = false
   animationSlide()
   animationSlideButtons()
+})
+
+onUnmounted(() => {
+  tl.kill()
+  tl.clear()
 })
 
 watch(

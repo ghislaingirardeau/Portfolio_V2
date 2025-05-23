@@ -27,7 +27,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobile, useIsMobileTall, useIsTablet } from 'src/utils/useDeviceInfo'
 
 import { devIconSrc } from 'src/utils/useIconSources'
-import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 
 const emit = defineEmits(['robotAction'])
 
@@ -75,6 +75,11 @@ onMounted(() => {
 
   changeTitle()
   launchAnimation()
+})
+
+onUnmounted(() => {
+  tl.kill()
+  tl.clear()
 })
 
 watch(

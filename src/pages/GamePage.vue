@@ -40,18 +40,6 @@
       @game-is-over="gameIsOver"
     />
 
-    <div class="m-3 flex flex-col lg:justify-center">
-      <p class="text-lg underline italic">How to play ?</p>
-      <p class="text-lg">
-        {{
-          hasTouchEvent()
-            ? 'Just swipe the screen to move pacman'
-            : 'Move pacman with the keyboard arrows'
-        }}
-        !
-      </p>
-    </div>
-
     <ScoreDialog
       v-model:isScoresDialog="isScoresDialog"
       :isVictory="isVictory"
@@ -61,9 +49,10 @@
     <TheRobotContainer />
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
+        v-if="!isGameStart"
         :meTexts="chatTexts"
         :visitor-texts="t(`chatMessage.game.visitor`)"
-        :delay-animation="0.5"
+        :delay-animation="0.1"
       />
     </transition>
   </q-page>
@@ -82,7 +71,7 @@ import { hasTouchEvent } from 'src/utils/useDeviceInfo'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const { tm, t } = useI18n({ useScope: 'global' })
+const { t } = useI18n()
 
 const gameContainer = ref<HTMLElement | null>(null)
 
@@ -149,7 +138,10 @@ onMounted(() => {
 })
 
 const chatTexts = computed(() => {
-  return tm(`chatMessage.game.me`) as string[]
+  return [
+    t(`chatMessage.game.me`),
+    t(`chatMessage.game.me_${hasTouchEvent() ? 'mobile' : 'desktop'}`),
+  ] as string[]
 })
 </script>
 
