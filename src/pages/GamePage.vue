@@ -1,5 +1,5 @@
 <template>
-  <q-page padding ref="gameContainer" class="lg:flex">
+  <q-page padding ref="gameContainer" class="no-pull-refresh lg:flex">
     <header class="my-2 flex flex-center lg:justify-start lg:flex-col lg:w-40">
       <transition
         enter-active-class="animated fadeIn"
@@ -147,4 +147,10 @@ const chatTexts = computed(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.no-pull-refresh {
+  height: 100vh;
+  overflow: auto;
+  overscroll-behavior-y: contain;
+}
+</style>
