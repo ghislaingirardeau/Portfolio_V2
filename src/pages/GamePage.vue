@@ -70,6 +70,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { hasTouchEvent } from 'src/utils/useDeviceInfo'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { AppFullscreen } from 'quasar'
 
 const { t } = useI18n()
 
@@ -103,6 +104,7 @@ function resetGame() {
 }
 
 function startGame() {
+  AppFullscreen.request()
   isGameStart.value = true
   isGameReady.value = false
 

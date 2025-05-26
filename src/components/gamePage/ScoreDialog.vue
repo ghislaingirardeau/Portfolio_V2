@@ -8,7 +8,14 @@
         <div v-else-if="props.GAMES_SCORES.length === 0" class="text-h6">No game played yet !</div>
         <div v-else class="text-h6">Ranking</div>
         <q-space />
-        <q-btn flat :icon="mdiCloseCircleOutline" color="primary" v-close-popup />
+
+        <q-btn
+          flat
+          :icon="mdiCloseCircleOutline"
+          color="primary"
+          v-close-popup
+          @click="AppFullscreen.exit()"
+        />
       </q-card-section>
 
       <ScoresTable
@@ -26,6 +33,7 @@
 import { ref } from 'vue'
 import ScoresTable from './ScoresTable.vue'
 import { mdiCloseCircleOutline } from '@quasar/extras/mdi-v7'
+import { AppFullscreen } from 'quasar'
 
 const backdropFilter = ref('blur(4px)')
 
