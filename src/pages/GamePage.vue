@@ -149,7 +149,6 @@ const chatTexts = computed(() => {
 
 <style scoped>
 .no-pull-refresh {
-  height: 100vh;
   overflow: auto;
   overscroll-behavior-y: contain;
 }
