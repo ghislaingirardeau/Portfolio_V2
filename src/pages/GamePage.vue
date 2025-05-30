@@ -15,8 +15,8 @@
           >
             <q-btn
               v-if="isGameReady"
-              outline
-              color="dark-primary"
+              :outline="$q.dark.isActive"
+              :color="buttonColor"
               label="Start"
               @click="startGame"
               class="m-2"
@@ -24,8 +24,8 @@
 
             <q-btn
               v-else
-              outline
-              color="dark-primary"
+              :outline="$q.dark.isActive"
+              :color="buttonColor"
               label="Restart"
               @click="resetGame"
               class="m-2"
@@ -33,8 +33,8 @@
           </transition>
 
           <q-btn
-            outline
-            color="dark-primary"
+            :outline="$q.dark.isActive"
+            :color="buttonColor"
             label="Scores"
             @click="isScoresDialog = true"
             class="m-2"
@@ -84,9 +84,10 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { hasTouchEvent } from 'src/utils/useDeviceInfo'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { AppFullscreen } from 'quasar'
+import { AppFullscreen, useQuasar } from 'quasar'
 
 const { t } = useI18n()
+const $q = useQuasar()
 
 const gameContainer = ref<HTMLElement | null>(null)
 
@@ -105,6 +106,10 @@ let timerInterval: NodeJS.Timeout
 
 const TIMER_SCORE = computed(() => {
   return GAME_TIMER_END.value - GAME_TIMER_START.value
+})
+
+const buttonColor = computed(() => {
+  return $q.dark.mode ? 'dark-primary' : 'primary'
 })
 
 function resetGame() {
