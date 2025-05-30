@@ -2,7 +2,7 @@
   <div class="atom h-0 w-0" :class="atomDisplayClass">
     <div
       ref="nucleus"
-      class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200"
+      class="atome-nucleus flex flex-center scale-75 opacity-0 text-grey-200 cursor-pointer"
       :class="modeColor"
       @click="emit('robotAction')"
     >
