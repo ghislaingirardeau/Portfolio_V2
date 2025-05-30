@@ -120,8 +120,8 @@ function getRandomArbitrary(min: number, max: number) {
 .star {
   display: block;
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   bottom: 65px;
   opacity: 0;
   background: radial-gradient(
