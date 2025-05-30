@@ -16,7 +16,8 @@
           :to="menuItem.to"
           :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
           @click="isCubeSpining = true"
-          class="q-py-lg bg-transparent"
+          class="q-py-lg"
+          :class="useIsMobile() ? '' : 'bg-transparent'"
         >
           <q-item-section avatar>
             <q-icon
@@ -105,7 +106,13 @@ const menuList = computed(() => [
 ])
 
 const drawerColor = computed(() => {
-  return $q.dark.mode ? 'border-r-2 border-dark-primary' : 'border-r-2 border-secondary'
+  if (useIsMobile()) {
+    return $q.dark.mode
+      ? 'bg-[rgba(0,0,0,0.8)] border-r-2 border-dark-primary'
+      : 'bg-[rgba(250,250,250,0.8)] border-r-2 border-secondary'
+  } else {
+    return $q.dark.mode ? 'border-r-2 border-dark-primary' : ' border-r-2 border-secondary'
+  }
 })
 
 function iconColor(currentRoute: string) {

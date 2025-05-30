@@ -12,6 +12,7 @@
           :key="leftDrawerOpen ? 'close' : 'open'"
           aria-label="menu"
           dense
+          :class="headerTextColor"
           flat
           round
           :icon="leftDrawerOpen ? mdiClose : mdiMenu"
