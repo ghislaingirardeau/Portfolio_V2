@@ -2,7 +2,18 @@
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    borderColor: (theme) => ({
+      ...theme('colors'),
+      DEFAULT: theme('colors.gray.300', 'currentColor'),
+      primary: '#1595ae',
+      ['dark-primary']: '#1ed3f7',
+    }),
+    extend: {
+      backgroundImage: {
+        space: "url('/public/space.jpg')",
+        electricity: "url('/public/images/2.jpg')",
+      },
+    },
     rotate: {
       20: '20deg',
     },

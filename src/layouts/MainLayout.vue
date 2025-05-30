@@ -1,5 +1,9 @@
 <template>
-  <q-layout view="hHh lpR fFf" class="indie-flower-regular">
+  <q-layout
+    view="hHh lpR fFf"
+    class="indie-flower-regular"
+    :class="$q.dark.isActive ? 'space-bg-container-dark' : 'space-bg-container'"
+  >
     <TheHeader
       v-model:leftDrawerOpen="leftDrawerOpen"
       v-if="presentationMounted || headerMounted"
@@ -32,6 +36,9 @@ import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
 import { useScreenOrientation } from '@vueuse/core'
 import { useRoute } from 'vue-router'
+import { useQuasar } from 'quasar'
+
+const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
@@ -66,4 +73,34 @@ watch(
 // quasar tag html
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.space-bg-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/public/space.jpg');
+  filter: invert(1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.space-bg-container-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/public/space.jpg');
+  filter: invert(0);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+</style>

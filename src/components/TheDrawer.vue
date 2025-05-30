@@ -5,7 +5,8 @@
     side="left"
     :behavior="useIsMobile() ? 'mobile' : 'desktop'"
     bordered
-    :class="$q.dark.mode ? 'bg-dark' : 'bg-white'"
+    class="border-r-4"
+    :class="drawerColor"
     :width="250"
     @show.once="handleShowMenu"
   >
@@ -16,7 +17,7 @@
           :to="menuItem.to"
           :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-primary'"
           @click="isCubeSpining = true"
-          class="q-py-lg"
+          class="q-py-lg bg-transparent text-white"
         >
           <q-item-section avatar>
             <q-icon
@@ -104,6 +105,10 @@ const menuList = computed(() => [
   },
 ])
 
+const drawerColor = computed(() => {
+  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+})
+
 function iconColor(currentRoute: string) {
   if (currentRoute === route.name) {
     return $q.dark.mode ? 'dark-primary' : 'primary'
@@ -159,5 +164,8 @@ watch(
 <style>
 .q-drawer {
   opacity: 0.9 !important;
+}
+aside {
+  background-color: transparent !important;
 }
 </style>

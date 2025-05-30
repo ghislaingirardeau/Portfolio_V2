@@ -1,5 +1,10 @@
 <template>
-  <q-footer elevated ref="footer" class="opacity-0 h-0 bg-dark text-white">
+  <q-footer
+    elevated
+    ref="footer"
+    class="opacity-0 h-0 bg-transparent text-white border-t-4"
+    :class="footerColor"
+  >
     <q-toolbar>
       <q-space />
 
@@ -26,12 +31,15 @@
 
 <script setup lang="ts">
 import { mdiGithub, mdiLinkedin } from '@quasar/extras/mdi-v7'
-import { useTemplateRef, onMounted } from 'vue'
+import { useTemplateRef, onMounted, computed } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
+import { useQuasar } from 'quasar'
+
+const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, footerMounted } = storeToRefs(animationSettings)
@@ -42,6 +50,10 @@ const footer = useTemplateRef<any>('footer')
 const footerIcons = useTemplateRefsList<any>()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const logoMalt = useTemplateRef<any>('logoMalt')
+
+const footerColor = computed(() => {
+  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+})
 
 const icons = [
   {
