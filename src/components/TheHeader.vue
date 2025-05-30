@@ -27,6 +27,7 @@
       <q-toolbar-title
         ref="header_title"
         class="opacity-0 kaushan-regular cursor-pointer"
+        :class="headerTextColor"
         @click="router.push({ name: 'home' })"
       >
         <h1 class="text-xl">GG WebDev</h1>
@@ -66,6 +67,10 @@ const router = useRouter()
 
 const headerColor = computed(() => {
   return $q.dark.mode ? 'border-dark-primary' : 'border-dark-primary'
+})
+
+const headerTextColor = computed(() => {
+  return $q.dark.mode ? 'text-white' : 'text-dark'
 })
 
 function headerAnimation() {
