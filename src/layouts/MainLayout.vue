@@ -74,7 +74,7 @@ watch(
 </script>
 
 <style scoped lang="scss">
-.space-bg-container::before {
+@mixin bg-image() {
   content: '';
   position: absolute;
   top: 0;
@@ -82,25 +82,20 @@ watch(
   right: 0;
   bottom: 0;
   background-image: url('/public/space.jpg');
-  filter: invert(1);
+  opacity: 0.8;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
 }
 
+.space-bg-container::before {
+  @include bg-image();
+  filter: invert(1);
+}
+
 .space-bg-container-dark::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/public/space.jpg');
+  @include bg-image();
   filter: invert(0);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
 }
 </style>
