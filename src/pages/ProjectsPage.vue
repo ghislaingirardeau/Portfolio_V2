@@ -4,8 +4,7 @@
       ref="tabs"
       v-model="tab"
       dense
-      class="text-grey h-0 lg:w-3/5"
-      :class="[$q.dark.mode ? 'bg-dark-page' : 'bg-white']"
+      class="text-white h-0 lg:w-3/5 bg-transparent"
       :active-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       :indicator-color="$q.dark.mode ? 'dark-primary' : 'primary'"
       align="justify"
