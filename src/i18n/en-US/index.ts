@@ -359,7 +359,7 @@ export default {
     },
   },
   footer: {
-    title: 'Find me on :',
+    title: 'Web Developer Fullstack JS/TS',
     contact: 'My email :',
     animation: 'Disable Animation',
     description: `

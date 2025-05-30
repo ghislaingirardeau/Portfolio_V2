@@ -6,6 +6,9 @@
     :class="footerColor"
   >
     <q-toolbar>
+      <q-toolbar-title class="kaushan-regular cursor-pointer">
+        <h1 class="text-xl">{{ t('footer.title') }}</h1>
+      </q-toolbar-title>
       <q-space />
 
       <div>
@@ -38,8 +41,10 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
 import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 
 const $q = useQuasar()
+const { t } = useI18n()
 
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, footerMounted } = storeToRefs(animationSettings)

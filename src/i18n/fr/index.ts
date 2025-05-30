@@ -371,7 +371,7 @@ export default {
     },
   },
   footer: {
-    title: 'Retrouver moi sur :',
+    title: 'Développeur & Formateur Fullstack JS/TS',
     contact: 'Mon email :',
     animation: "Désactiver l'animation",
     description: `Ce portofolio a été (et est toujours un peu) mon laboratoire de
