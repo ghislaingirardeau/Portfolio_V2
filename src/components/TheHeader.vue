@@ -25,7 +25,8 @@
       </transition>
 
       <q-toolbar-title
-        class="kaushan-regular cursor-pointer"
+        ref="header_title"
+        class="opacity-0 kaushan-regular cursor-pointer"
         @click="router.push({ name: 'home' })"
       >
         <h1 class="text-xl">GG WebDev</h1>
@@ -55,9 +56,12 @@ const animationSettings = useAnimationSettings()
 const { ANIM_LONG, headerMounted } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
+const tl = gsap.timeline()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const header = useTemplateRef<any>('header')
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const headerTitle = useTemplateRef<any>('header_title')
 const router = useRouter()
 
 const headerColor = computed(() => {
@@ -66,14 +70,24 @@ const headerColor = computed(() => {
 
 function headerAnimation() {
   const elementTarget = header.value?.$el as HTMLDivElement
-  gsap.to(elementTarget, {
+  const elementTargetTitle = headerTitle.value?.$el as HTMLDivElement
+
+  tl.to(elementTarget, {
     duration: ANIM_LONG.value,
     height: '50px',
     opacity: 1,
     onComplete() {
       headerMounted.value = true
     },
-  })
+  }).to(
+    elementTargetTitle,
+    {
+      duration: ANIM_LONG.value,
+      opacity: 1,
+      ease: 'power2.out',
+    },
+    '>-0.5',
+  )
 }
 
 function toggleLeftDrawer() {
