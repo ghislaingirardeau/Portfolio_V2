@@ -15,16 +15,30 @@
           >
             <q-btn
               v-if="isGameReady"
-              color="primary"
+              outline
+              color="dark-primary"
               label="Start"
               @click="startGame"
               class="m-2"
             />
 
-            <q-btn v-else color="primary" label="Restart" @click="resetGame" class="m-2" />
+            <q-btn
+              v-else
+              outline
+              color="dark-primary"
+              label="Restart"
+              @click="resetGame"
+              class="m-2"
+            />
           </transition>
 
-          <q-btn color="primary" label="Scores" @click="isScoresDialog = true" class="m-2" />
+          <q-btn
+            outline
+            color="dark-primary"
+            label="Scores"
+            @click="isScoresDialog = true"
+            class="m-2"
+          />
         </div>
 
         <GameRunInfos v-else :TIMER_SCORE="TIMER_SCORE" :GAME_SCORE="GAME_SCORE" />

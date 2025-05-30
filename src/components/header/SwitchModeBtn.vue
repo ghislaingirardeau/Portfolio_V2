@@ -1,13 +1,20 @@
 <template>
   <q-toggle
     ref="toggleModeBtn"
-    color="blue-grey-8"
     class="opacity-0 -translate-x-32"
+    color="dark-primary"
     dark
     @click="handleMode"
     v-model="dark"
   >
-    <template #default> <q-icon flat :name="mdiThemeLightDark" size="sm" /> </template>
+    <template #default>
+      <q-icon
+        flat
+        :name="mdiThemeLightDark"
+        size="sm"
+        :color="$q.dark.isActive ? 'dark-primary' : 'primary'"
+      />
+    </template>
   </q-toggle>
 </template>
 
@@ -16,7 +23,7 @@ import { mdiThemeLightDark } from '@quasar/extras/mdi-v7'
 import { onMounted, ref, useTemplateRef } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { Dark } from 'quasar'
+import { Dark, useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
 
@@ -25,7 +32,9 @@ const route = useRoute()
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT, headerMounted, isAnimationDone } = storeToRefs(animationSettings)
 
-const dark = ref(false)
+const $q = useQuasar()
+
+const dark = ref(true)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleModeBtn = useTemplateRef<any>('toggleModeBtn')
 

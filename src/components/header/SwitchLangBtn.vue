@@ -2,6 +2,7 @@
   <q-btn
     ref="toggleLangBtn"
     class="kaushan-regular opacity-0 -translate-x-60"
+    :color="$q.dark.isActive ? 'dark-primary' : 'primary'"
     flat
     @click="switchLang"
     >{{ langLocale }}</q-btn
@@ -15,10 +16,12 @@ import { gsap } from 'src/boot/gsap'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 
 import { storeToRefs } from 'pinia'
+import { useQuasar } from 'quasar'
 
 const { locale } = useI18n({ useScope: 'global' })
 const animationSettings = useAnimationSettings()
 const { ANIM_SHORT } = storeToRefs(animationSettings)
+const $q = useQuasar()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleLangBtn = useTemplateRef<any>('toggleLangBtn')
