@@ -20,6 +20,8 @@
     <q-tab-panels
       v-model="tab"
       animated
+      transition-prev="scale"
+      transition-next="scale"
       class="tab_panel_container flex z-10 lg:w-3/5 lg:flex-center lg:item-center"
       :class="{ tab_panel_dark: $q.dark.mode, 'pt-10': useIsMobileTall() }"
     >
