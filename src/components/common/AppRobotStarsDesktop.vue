@@ -61,8 +61,8 @@ onMounted(() => {
 function startAnim() {
   starToLeft.value.forEach((el, index) => {
     const randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
-    const randomX = -width.value + 97 + 250
-    const randomYBis = -height.value + 125
+    const randomX = -width.value + 97
+    const randomYBis = -height.value + 75
     const randomXBis = -width.value + 35 + getRandomArbitrary(250, width.value - 15)
     const starToTopElement = starToTop.value[index] as HTMLElement
     tl.to(
