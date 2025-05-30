@@ -66,7 +66,7 @@ const headerTitle = useTemplateRef<any>('header_title')
 const router = useRouter()
 
 const headerColor = computed(() => {
-  return $q.dark.mode ? 'border-dark-primary' : 'border-dark-primary'
+  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
 })
 
 const headerTextColor = computed(() => {

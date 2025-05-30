@@ -1,8 +1,9 @@
 <template>
   <q-toggle
     ref="toggleModeBtn"
-    class="opacity-0 -translate-x-32"
-    color="dark-primary"
+    class="opacity-0 -translate-x-32 text-red-600"
+    :color="$q.dark.isActive ? 'dark-primary' : 'secondary'"
+    keep-color
     dark
     @click="handleMode"
     v-model="dark"
@@ -12,7 +13,7 @@
         flat
         :name="mdiThemeLightDark"
         size="sm"
-        :color="$q.dark.isActive ? 'dark-primary' : 'primary'"
+        :color="$q.dark.isActive ? 'dark-primary' : 'secondary'"
       />
     </template>
   </q-toggle>

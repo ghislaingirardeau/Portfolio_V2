@@ -52,6 +52,7 @@ const { orientation } = useScreenOrientation()
 const route = useRoute()
 
 onMounted(() => {
+  $q.dark.toggle()
   if (useIsMobile()) {
     drawerMounted.value = true
   }

@@ -2,7 +2,7 @@
   <q-btn
     ref="toggleLangBtn"
     class="kaushan-regular opacity-0 -translate-x-60"
-    :color="$q.dark.isActive ? 'dark-primary' : 'primary'"
+    :color="$q.dark.isActive ? 'dark-primary' : 'secondary'"
     flat
     @click="switchLang"
     >{{ langLocale }}</q-btn

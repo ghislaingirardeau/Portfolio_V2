@@ -15,9 +15,9 @@
         <q-item
           exact
           :to="menuItem.to"
-          :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-primary'"
+          :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
           @click="isCubeSpining = true"
-          class="q-py-lg bg-transparent text-white"
+          class="q-py-lg bg-transparent"
         >
           <q-item-section avatar>
             <q-icon
@@ -113,7 +113,7 @@ function iconColor(currentRoute: string) {
   if (currentRoute === route.name) {
     return $q.dark.mode ? 'dark-primary' : 'primary'
   } else {
-    return $q.dark.mode ? 'white' : 'dark'
+    return $q.dark.mode ? 'white' : 'dark font-bold'
   }
 }
 
