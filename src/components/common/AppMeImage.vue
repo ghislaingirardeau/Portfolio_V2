@@ -5,7 +5,7 @@
     alt="photo de Ghislain montagne"
     fit="contain"
     class="rounded-borders md:w-2/5 img-square z-10"
-    width="43%"
+    width="40%"
     :class="{ 'img-square-done': props.isImageFixed }"
     loading="eager"
     fetchpriority="high"
