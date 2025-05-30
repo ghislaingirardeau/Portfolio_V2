@@ -5,7 +5,7 @@ export default {
     borderColor: (theme) => ({
       ...theme('colors'),
       DEFAULT: theme('colors.gray.300', 'currentColor'),
-      primary: '#1595ae',
+      secondary: '#005264',
       ['dark-primary']: '#1ed3f7',
     }),
     extend: {

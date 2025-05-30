@@ -1,10 +1,5 @@
 <template>
-  <q-header
-    elevated
-    ref="header"
-    class="opacity-0 h-0 bg-transparent border-b-2"
-    :class="headerColor"
-  >
+  <q-header elevated ref="header" class="opacity-0 h-0 bg-transparent" :class="headerColor">
     <q-toolbar>
       <transition
         v-if="useIsMobile()"
@@ -66,7 +61,7 @@ const headerTitle = useTemplateRef<any>('header_title')
 const router = useRouter()
 
 const headerColor = computed(() => {
-  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+  return $q.dark.isActive ? 'border-b-2 !border-dark-primary' : 'border-b-2 border-secondary'
 })
 
 const headerTextColor = computed(() => {

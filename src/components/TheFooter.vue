@@ -1,10 +1,5 @@
 <template>
-  <q-footer
-    elevated
-    ref="footer"
-    class="opacity-0 h-0 bg-transparent border-t-2"
-    :class="footerColor"
-  >
+  <q-footer elevated ref="footer" class="opacity-0 h-0 bg-transparent" :class="footerColor">
     <q-toolbar>
       <q-toolbar-title class="kaushan-regular cursor-pointer" :class="footerTextColor">
         <h1 class="text-xl">{{ t('footer.title') }}</h1>
@@ -58,7 +53,7 @@ const footerIcons = useTemplateRefsList<any>()
 const logoMalt = useTemplateRef<any>('logoMalt')
 
 const footerColor = computed(() => {
-  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+  return $q.dark.mode ? 'border-t-2 !border-dark-primary' : 'border-t-2 border-secondary'
 })
 
 const footerTextColor = computed(() => {

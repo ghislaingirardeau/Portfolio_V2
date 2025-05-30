@@ -5,7 +5,6 @@
     side="left"
     :behavior="useIsMobile() ? 'mobile' : 'desktop'"
     bordered
-    class="border-r-2"
     :class="drawerColor"
     :width="250"
     @show.once="handleShowMenu"
@@ -106,7 +105,7 @@ const menuList = computed(() => [
 ])
 
 const drawerColor = computed(() => {
-  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+  return $q.dark.mode ? 'border-r-2 border-dark-primary' : 'border-r-2 border-secondary'
 })
 
 function iconColor(currentRoute: string) {
