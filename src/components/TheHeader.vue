@@ -2,7 +2,7 @@
   <q-header
     elevated
     ref="header"
-    class="opacity-0 h-0 bg-transparent border-b-4"
+    class="opacity-0 h-0 bg-transparent border-b-2"
     :class="headerColor"
   >
     <q-toolbar>
@@ -61,7 +61,7 @@ const header = useTemplateRef<any>('header')
 const router = useRouter()
 
 const headerColor = computed(() => {
-  return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+  return $q.dark.mode ? 'border-dark-primary' : 'border-dark-primary'
 })
 
 function headerAnimation() {

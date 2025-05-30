@@ -2,7 +2,7 @@
   <q-footer
     elevated
     ref="footer"
-    class="opacity-0 h-0 bg-transparent text-white border-t-4"
+    class="opacity-0 h-0 bg-transparent text-white border-t-2"
     :class="footerColor"
   >
     <q-toolbar>

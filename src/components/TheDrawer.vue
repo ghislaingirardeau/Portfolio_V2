@@ -5,7 +5,7 @@
     side="left"
     :behavior="useIsMobile() ? 'mobile' : 'desktop'"
     bordered
-    class="border-r-4"
+    class="border-r-2"
     :class="drawerColor"
     :width="250"
     @show.once="handleShowMenu"
