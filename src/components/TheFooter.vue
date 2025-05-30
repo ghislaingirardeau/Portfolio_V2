@@ -1,7 +1,11 @@
 <template>
   <q-footer elevated ref="footer" class="opacity-0 h-0 bg-transparent" :class="footerColor">
     <q-toolbar>
-      <q-toolbar-title class="kaushan-regular cursor-pointer" :class="footerTextColor">
+      <q-toolbar-title
+        v-if="!useIsMobile()"
+        class="kaushan-regular cursor-pointer"
+        :class="footerTextColor"
+      >
         <h1 class="text-xl">{{ t('footer.title') }}</h1>
       </q-toolbar-title>
       <q-space />
@@ -34,6 +38,7 @@ import { useTemplateRef, onMounted, computed } from 'vue'
 import { gsap } from 'src/boot/gsap'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useAnimationSettings } from 'src/stores/animationSettings'
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { storeToRefs } from 'pinia'
 import LogoImage from './common/LogoImage.vue'
 import { useQuasar } from 'quasar'
