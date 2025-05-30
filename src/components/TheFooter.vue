@@ -2,11 +2,11 @@
   <q-footer
     elevated
     ref="footer"
-    class="opacity-0 h-0 bg-transparent text-white border-t-2"
+    class="opacity-0 h-0 bg-transparent border-t-2"
     :class="footerColor"
   >
     <q-toolbar>
-      <q-toolbar-title class="kaushan-regular cursor-pointer">
+      <q-toolbar-title class="kaushan-regular cursor-pointer" :class="footerTextColor">
         <h1 class="text-xl">{{ t('footer.title') }}</h1>
       </q-toolbar-title>
       <q-space />
@@ -25,6 +25,7 @@
           size="lg"
           :name="icon.name"
           class="cursor-pointer mx-2 opacity-0 -translate-x-60"
+          :class="$q.dark.mode ? '' : 'filter invert brightness-75'"
           @click="goToExternalLink(icon.link)"
         />
       </div>
@@ -58,6 +59,10 @@ const logoMalt = useTemplateRef<any>('logoMalt')
 
 const footerColor = computed(() => {
   return $q.dark.mode ? 'border-dark-primary' : 'border-primary'
+})
+
+const footerTextColor = computed(() => {
+  return $q.dark.mode ? 'text-white' : 'text-dark'
 })
 
 const icons = [
