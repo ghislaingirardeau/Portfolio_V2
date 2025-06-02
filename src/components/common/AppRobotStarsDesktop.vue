@@ -26,7 +26,7 @@
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 
 const starToLeft = useTemplateRefsList()
 const starToTop = useTemplateRefsList()
@@ -42,7 +42,7 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 4000)
+  }, 400)
 })
 
 // watch(
@@ -57,6 +57,34 @@ onMounted(() => {
 //   },
 //   { deep: true },
 // )
+
+const radientColorStart = computed(() => {
+  return $q.dark.isActive
+    ? `radial-gradient(
+      hsl(27, 91%, 61%),
+      hsl(11, 100%, 58%) 10%,
+      hsla(180, 100%, 80%, 0) 40%
+    )`
+    : `radial-gradient(
+      hsl(52, 98%, 53%),
+      hsl(36, 100%, 58%) 10%,
+      hsla(180, 100%, 80%, 0) 40%
+    )`
+})
+
+const radientColorEnd = computed(() => {
+  return $q.dark.isActive
+    ? `radial-gradient(
+      hsl(186, 89%, 86%),
+      hsl(186, 89%, 86%) 10%,
+      hsla(180, 100%, 80%, 0) 56%
+    )`
+    : `radial-gradient(
+      hsl(191, 100%, 20%),
+      hsl(191, 100%, 20%) 10%,
+      hsla(180, 100%, 80%, 0) 40%
+    )`
+})
 
 function startAnim() {
   starToLeft.value.forEach((el, index) => {
@@ -75,6 +103,13 @@ function startAnim() {
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: -20 },
+          '50%': {
+            backgroundImage: radientColorStart.value,
+          },
+
+          '55%': {
+            backgroundImage: radientColorEnd.value,
+          },
           '100%': { x: randomX, y: randomY },
         },
         duration: getRandomArbitrary(10, 20),
@@ -87,9 +122,18 @@ function startAnim() {
         keyframes: {
           scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
           opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
-          '0%': { x: 0 },
+          '0%': {
+            x: 0,
+          },
           '10%': { x: 0, y: 10 },
           '15%': { x: 20 },
+          '50%': {
+            backgroundImage: radientColorStart.value,
+          },
+
+          '55%': {
+            backgroundImage: radientColorEnd.value,
+          },
           '100%': { x: randomXBis, y: randomYBis },
         },
         duration: getRandomArbitrary(10, 20),
@@ -124,17 +168,17 @@ function getRandomArbitrary(min: number, max: number) {
   height: 4px;
   bottom: 65px;
   opacity: 0;
-  background: radial-gradient(
-    hsl(191, 100%, 20%),
-    hsl(191, 100%, 20%) 10%,
+  background-image: radial-gradient(
+    hsl(27, 91%, 61%),
+    hsl(11, 100%, 58%) 10%,
     hsla(180, 100%, 80%, 0) 40%
   );
 }
 
 .star-dark {
-  background: radial-gradient(
-    hsl(186, 89%, 86%),
-    hsl(186, 89%, 86%) 10%,
+  background-image: radial-gradient(
+    hsl(27, 89%, 86%),
+    hsl(57, 89%, 86%) 10%,
     hsla(180, 100%, 80%, 0) 56%
   );
 }
