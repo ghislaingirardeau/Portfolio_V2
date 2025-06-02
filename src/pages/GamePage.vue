@@ -123,7 +123,9 @@ function resetGame() {
 }
 
 function startGame() {
-  AppFullscreen.request()
+  if (hasTouchEvent()) {
+    AppFullscreen.request()
+  }
   isGameStart.value = true
   isGameReady.value = false
 

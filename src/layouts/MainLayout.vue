@@ -82,17 +82,18 @@ watch(
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('/public/space.jpg');
+  background-image: url('/space_2.jpg');
   opacity: 0.8;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
+  background-position: 80% center;
 }
 
 .space-bg-container::before {
   @include bg-image();
-  filter: invert(1);
+  filter: invert(1) hue-rotate(160deg) saturate(1.4) brightness(0.8);
 }
 
 .space-bg-container-dark::before {

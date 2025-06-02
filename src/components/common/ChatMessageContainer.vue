@@ -5,13 +5,21 @@
   >
     <q-chat-message
       v-if="visitorTexts"
+      :class="{ 'opacity-70': $q.dark.isActive }"
       ref="receivedMessage"
       :bg-color="chatReceivedBg"
       :text-color="chatReceivedColor"
       :text="[visitorTexts]"
       :style="{ 'font-size': fontSize }"
     />
-    <q-chat-message sent name="Me" :text-color="chatColor" :bg-color="chatBg" ref="sentMessages">
+    <q-chat-message
+      sent
+      name="Me"
+      :text-color="chatColor"
+      :bg-color="chatBg"
+      ref="sentMessages"
+      :class="{ 'opacity-70': $q.dark.isActive }"
+    >
       <div
         v-for="(text, index) in props.meTexts"
         :key="'text-' + index"
