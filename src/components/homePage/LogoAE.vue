@@ -8,22 +8,22 @@
         :key="cubeRender"
       >
         <div ref="front" class="front" :class="cubeColor">
-          <span class="front-color">g</span>
+          <span class="front-color cube_letter-radient">g</span>
         </div>
         <div ref="back" class="back" :class="cubeColor">
           <span class="reverse-letter back-color" :class="{ anim_revert_web: launchSpin }">
-            <span>w</span>
-            <span>e</span>
-            <span>b</span>
+            <span class="cube_letter-radient">w</span>
+            <span class="cube_letter-radient">e</span>
+            <span class="cube_letter-radient">b</span>
           </span>
         </div>
         <div ref="top" class="top" :class="cubeColor"></div>
         <div ref="bottom" class="bottom" :class="cubeColor"></div>
         <div ref="left" class="left" :class="cubeColor">
-          <span class="left-color">G</span>
+          <span class="left-color cube_letter-radient">G</span>
         </div>
         <div ref="right" class="right" :class="cubeColor">
-          <span class="right-color">dev</span>
+          <span class="right-color cube_letter-radient">dev</span>
         </div>
       </div>
     </div>

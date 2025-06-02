@@ -54,6 +54,13 @@
   border-color: $secondary;
 }
 .cube-dark {
-  color: $dark-primary;
-  border-color: $dark-primary;
+  color: $primary;
+  border-image: $radient 1;
+}
+.cube_letter-radient {
+  background: $radient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback */
 }
