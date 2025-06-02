@@ -1,7 +1,7 @@
 <template>
   <q-icon
     :name="iconType"
-    :color="$q.dark.mode ? 'dark-primary' : 'primary'"
+    color="accent"
     size="lg"
     class="fixed robot-idea z-50 cursor-pointer"
     :class="{ 'robot-idea-mobile-landscape': useIsMobileLandscape }"
@@ -22,9 +22,7 @@ import {
   mdiApplicationVariableOutline,
   mdiServer,
 } from '@quasar/extras/mdi-v7'
-import { useQuasar } from 'quasar'
 import { useIsMobileLandscape } from 'src/utils/useDeviceInfo'
-const $q = useQuasar()
 
 const robotIdea = ref()
 const animationSettings = useAnimationSettings()
