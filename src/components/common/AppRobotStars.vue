@@ -44,7 +44,7 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 4000)
+  }, 400)
 })
 
 const heightSize = computed(() => {
@@ -56,7 +56,7 @@ function startAnim() {
   starToLeft.value.forEach((el, index) => {
     const randomY = -heightSize.value + 130 + getRandomArbitrary(0, heightSize.value - 120)
     const randomX = -width.value + 97
-    const randomYBis = -heightSize.value + 125
+    const randomYBis = -heightSize.value + 75
     const randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
     const starToTopElement = starToTop.value[index] as HTMLElement
     tl.to(
@@ -127,19 +127,11 @@ function getRandomArbitrary(min: number, max: number) {
   height: 4px;
   bottom: 65px;
   opacity: 0;
-  background: radial-gradient(
-    hsl(191, 100%, 20%),
-    hsl(191, 100%, 20%) 10%,
-    hsla(180, 100%, 80%, 0) 40%
-  );
+  background: radial-gradient(hsl(6, 94%, 35%), hsl(10, 89%, 55%) 10%, hsla(180, 100%, 80%, 0) 56%);
 }
 
 .star-dark {
-  background: radial-gradient(
-    hsl(186, 89%, 86%),
-    hsl(186, 89%, 86%) 10%,
-    hsla(180, 100%, 80%, 0) 56%
-  );
+  background: radial-gradient(hsl(6, 79%, 66%), hsl(10, 92%, 67%) 10%, hsla(180, 100%, 80%, 0) 56%);
 }
 
 .leg-left {
