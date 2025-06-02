@@ -42,7 +42,7 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 400)
+  }, 4000)
 })
 
 // watch(
@@ -65,11 +65,7 @@ const radientColorStart = computed(() => {
       hsl(11, 100%, 58%) 10%,
       hsla(180, 100%, 80%, 0) 40%
     )`
-    : `radial-gradient(
-      hsl(52, 98%, 53%),
-      hsl(36, 100%, 58%) 10%,
-      hsla(180, 100%, 80%, 0) 40%
-    )`
+    : `radial-gradient(hsl(6, 94%, 35%), hsl(10, 89%, 55%) 10%, hsla(180, 100%, 80%, 0) 56%);`
 })
 
 const radientColorEnd = computed(() => {
@@ -80,10 +76,10 @@ const radientColorEnd = computed(() => {
       hsla(180, 100%, 80%, 0) 56%
     )`
     : `radial-gradient(
-      hsl(191, 100%, 20%),
-      hsl(191, 100%, 20%) 10%,
-      hsla(180, 100%, 80%, 0) 40%
-    )`
+    hsl(228, 94%, 35%),
+    hsl(225, 100%, 28%) 10%,
+    hsla(180, 100%, 80%, 0) 56%
+  )`
 })
 
 function startAnim() {
@@ -169,9 +165,9 @@ function getRandomArbitrary(min: number, max: number) {
   bottom: 65px;
   opacity: 0;
   background-image: radial-gradient(
-    hsl(27, 91%, 61%),
-    hsl(11, 100%, 58%) 10%,
-    hsla(180, 100%, 80%, 0) 40%
+    hsl(6, 94%, 35%),
+    hsl(10, 89%, 55%) 10%,
+    hsla(180, 100%, 80%, 0) 56%
   );
 }
 

@@ -110,7 +110,7 @@ const drawerColor = computed(() => {
       ? 'bg-[rgba(0,0,0,0.8)] border-r-2 border-dark-primary'
       : 'bg-[rgba(250,250,250,0.8)] border-r-2 border-secondary'
   } else {
-    return $q.dark.mode ? 'border-r-2 border-dark-primary' : ' border-r-2 border-secondary'
+    return $q.dark.mode ? 'border_drawer-gradient' : ' border-r-2 border-secondary'
   }
 })
 
@@ -172,5 +172,9 @@ watch(
 }
 aside {
   background-color: transparent !important;
+}
+.border_drawer-gradient {
+  border-right: 2px solid;
+  border-image: linear-gradient(5deg, #000000, #1ed3f7) 1;
 }
 </style>

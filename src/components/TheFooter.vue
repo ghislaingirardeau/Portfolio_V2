@@ -58,7 +58,7 @@ const footerIcons = useTemplateRefsList<any>()
 const logoMalt = useTemplateRef<any>('logoMalt')
 
 const footerColor = computed(() => {
-  return $q.dark.mode ? 'border-t-2 !border-dark-primary' : 'border-t-2 border-secondary'
+  return $q.dark.mode ? 'border_footer-gradient' : 'border-t-2 border-secondary'
 })
 
 const footerTextColor = computed(() => {
@@ -117,4 +117,9 @@ function animationAppear() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.border_footer-gradient {
+  border-top: 2px solid;
+  border-image: linear-gradient(45deg, #1ed3f7, #fd4925) 1;
+}
+</style>

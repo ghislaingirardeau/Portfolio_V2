@@ -44,7 +44,7 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 400)
+  }, 4000)
 })
 
 const heightSize = computed(() => {
