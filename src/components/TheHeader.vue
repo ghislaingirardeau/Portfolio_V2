@@ -100,12 +100,12 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .q-toolbar__title {
   min-width: 150px;
 }
 .border_header-gradient {
   border-bottom: 2px solid;
-  border-image: linear-gradient(5deg, #1ed3f7, #fd4925) 1;
+  border-image: linear-gradient(5deg, #1ed3f7, $accent) 1;
 }
 </style>

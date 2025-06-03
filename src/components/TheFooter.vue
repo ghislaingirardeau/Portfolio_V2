@@ -117,9 +117,9 @@ function animationAppear() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .border_footer-gradient {
   border-top: 2px solid;
-  border-image: linear-gradient(45deg, #1ed3f7, #fd4925) 1;
+  border-image: linear-gradient(45deg, #1ed3f7, $accent) 1;
 }
 </style>

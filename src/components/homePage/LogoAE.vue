@@ -8,7 +8,7 @@
         :key="cubeRender"
       >
         <div ref="front" class="front" :class="cubeColor">
-          <span class="front-color cube_letter-radient">g</span>
+          <span class="front-color cube_letter-radient p-1">g</span>
         </div>
         <div ref="back" class="back" :class="cubeColor">
           <span class="reverse-letter back-color" :class="{ anim_revert_web: launchSpin }">
@@ -20,10 +20,10 @@
         <div ref="top" class="top" :class="cubeColor"></div>
         <div ref="bottom" class="bottom" :class="cubeColor"></div>
         <div ref="left" class="left" :class="cubeColor">
-          <span class="left-color cube_letter-radient">G</span>
+          <span class="left-color cube_letter-radient p-1">G</span>
         </div>
         <div ref="right" class="right" :class="cubeColor">
-          <span class="right-color cube_letter-radient">dev</span>
+          <span class="right-color cube_letter-radient p-1 top-3">dev</span>
         </div>
       </div>
     </div>
@@ -165,12 +165,12 @@ function spinCubeAnimation() {
   }
 }
 .right {
+  position: relative;
   border-width: 2px;
   border-style: solid;
   border-radius: 7px;
   transform: rotateY(-270deg) translateX(52px);
   transform-origin: top right;
-  position: relative;
 
   &-color {
     position: absolute;
@@ -381,8 +381,8 @@ function spinCubeAnimation() {
   }
   .right {
     &-color {
-      top: 45px;
-      left: 35%;
+      top: 40px;
+      left: 30%;
     }
   }
   .left {
@@ -394,7 +394,7 @@ function spinCubeAnimation() {
     animation: deployedFront 3s ease both;
     &-color {
       top: 30px;
-      right: 28%;
+      right: 23%;
     }
   }
   .top {
