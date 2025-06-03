@@ -48,7 +48,7 @@
         <g>
           <path
             stroke="black"
-            stroke-width="7"
+            :stroke-width="`${$q.dark.isActive ? '4' : '0'}`"
             :fill="`${colored}`"
             stroke-linejoin="round"
             stroke-linecap="round"
