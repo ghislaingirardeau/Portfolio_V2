@@ -171,7 +171,7 @@ function animationOnSlideIn() {
   tl.to(image.value.$el, {
     duration,
     x: 0,
-    opacity: 1,
+    opacity: 0.7,
     onStart() {
       fixImage.value = false
     },
@@ -197,7 +197,7 @@ function animationImage() {
   const duration = 0.5
   tl.to(image.value.$el, {
     duration,
-    opacity: 0.9,
+    opacity: 0.6,
   })
   tl.call(() => {
     isRobotClickable.value = true
