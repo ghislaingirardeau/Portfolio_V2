@@ -23,17 +23,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onUpdated } from 'vue'
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
 import { useIsMobileLandscape, useIsMobileTall } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
+import { useStarSettings } from 'src/utils/useStarSettings'
 
 const starToLeft = useTemplateRefsList()
 const starToTop = useTemplateRefsList()
 
 const { height, width } = useWindowSize()
+const { radientColorEnd, radientColorStart } = useStarSettings()
 
 const $q = useQuasar()
 
@@ -41,39 +43,26 @@ const starNumber = 20
 
 const tl = gsap.timeline()
 
+let starsMounted = false
+
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 400)
+    starsMounted = true
+  }, 4000)
+})
+
+/* Dark mode toogle - if the component is mounted, change stars colors */
+onUpdated(() => {
+  if (starsMounted) {
+    tl.clear()
+    startAnim()
+  }
 })
 
 const heightSize = computed(() => {
   // si mobile + lanscape: height de la page est défini en css à 670px + 100px to add pour header et footer
   return useIsMobileLandscape.value ? 770 : height.value
-})
-
-const radientColorStart = computed(() => {
-  return $q.dark.isActive
-    ? `radial-gradient(
-      hsl(27, 91%, 61%),
-      hsl(11, 100%, 58%) 10%,
-      hsla(180, 100%, 80%, 0) 40%
-    )`
-    : `radial-gradient(hsl(6, 94%, 35%), hsl(10, 89%, 55%) 10%, hsla(180, 100%, 80%, 0) 56%);`
-})
-
-const radientColorEnd = computed(() => {
-  return $q.dark.isActive
-    ? `radial-gradient(
-      hsl(186, 89%, 86%),
-      hsl(186, 89%, 86%) 10%,
-      hsla(180, 100%, 80%, 0) 56%
-    )`
-    : `radial-gradient(
-    hsl(228, 94%, 35%),
-    hsl(225, 100%, 28%) 10%,
-    hsla(180, 100%, 80%, 0) 56%
-  )`
 })
 
 function startAnim() {
