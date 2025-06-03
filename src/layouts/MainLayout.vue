@@ -82,7 +82,7 @@ watch(
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('/space_2.jpg');
+  background-image: url('/space_2_mobile.jpg');
   opacity: 0.8;
   background-size: cover;
   background-position: center;
@@ -94,10 +94,22 @@ watch(
 .space-bg-container::before {
   @include bg-image();
   filter: invert(1) hue-rotate(160deg) saturate(1.4) brightness(0.8);
+  background-image: url('/space_2_mobile.jpg');
 }
 
 .space-bg-container-dark::before {
   @include bg-image();
   filter: invert(0);
+  background-image: url('/space_2_mobile.jpg');
+}
+
+@media screen and (min-width: 1025px) {
+  .space-bg-container::before {
+    background-image: url('/space_2.jpg');
+  }
+
+  .space-bg-container-dark::before {
+    background-image: url('/space_2.jpg');
+  }
 }
 </style>

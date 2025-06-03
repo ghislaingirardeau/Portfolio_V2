@@ -44,12 +44,36 @@ const tl = gsap.timeline()
 onMounted(() => {
   setTimeout(() => {
     startAnim()
-  }, 4000)
+  }, 400)
 })
 
 const heightSize = computed(() => {
   // si mobile + lanscape: height de la page est défini en css à 670px + 100px to add pour header et footer
   return useIsMobileLandscape.value ? 770 : height.value
+})
+
+const radientColorStart = computed(() => {
+  return $q.dark.isActive
+    ? `radial-gradient(
+      hsl(27, 91%, 61%),
+      hsl(11, 100%, 58%) 10%,
+      hsla(180, 100%, 80%, 0) 40%
+    )`
+    : `radial-gradient(hsl(6, 94%, 35%), hsl(10, 89%, 55%) 10%, hsla(180, 100%, 80%, 0) 56%);`
+})
+
+const radientColorEnd = computed(() => {
+  return $q.dark.isActive
+    ? `radial-gradient(
+      hsl(186, 89%, 86%),
+      hsl(186, 89%, 86%) 10%,
+      hsla(180, 100%, 80%, 0) 56%
+    )`
+    : `radial-gradient(
+    hsl(228, 94%, 35%),
+    hsl(225, 100%, 28%) 10%,
+    hsla(180, 100%, 80%, 0) 56%
+  )`
 })
 
 function startAnim() {
@@ -69,6 +93,13 @@ function startAnim() {
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: -20 },
+          '40%': {
+            backgroundImage: radientColorStart.value,
+          },
+
+          '45%': {
+            backgroundImage: radientColorEnd.value,
+          },
           '60%': { x: randomX, y: randomY },
           '100%': {
             x: -width.value / 2 + 92,
@@ -87,6 +118,13 @@ function startAnim() {
           '0%': { x: 0 },
           '10%': { x: 0, y: 10 },
           '15%': { x: 20 },
+          '40%': {
+            backgroundImage: radientColorStart.value,
+          },
+
+          '45%': {
+            backgroundImage: radientColorEnd.value,
+          },
           '60%': { x: randomXBis, y: randomYBis },
           '100%': {
             x: -width.value / 2 + 28,
