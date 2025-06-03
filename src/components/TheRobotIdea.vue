@@ -88,6 +88,12 @@ watch(
         y: 0,
         opacity: 0,
       })
+    } else {
+      gsap.to(robotIdea.value!.$el, {
+        duration,
+        y: -10,
+        opacity: 1,
+      })
     }
   },
 )
