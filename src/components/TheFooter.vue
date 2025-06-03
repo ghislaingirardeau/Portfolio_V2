@@ -119,7 +119,14 @@ function animationAppear() {
 
 <style scoped lang="scss">
 .border_footer-gradient {
-  border-top: 2px solid;
-  border-image: linear-gradient(45deg, #1ed3f7, $accent) 1;
+  border-top: 2px solid !important;
+  // border-color: red !important;
+  border-image: linear-gradient(45deg, $accent, #271200) 1 !important;
+}
+
+@media screen and (min-width: 673px) {
+  .border_footer-gradient {
+    border-image: linear-gradient(45deg, #1ed3f7, $accent) 1 !important;
+  }
 }
 </style>
