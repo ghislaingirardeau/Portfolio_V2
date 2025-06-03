@@ -18,6 +18,8 @@
       <AppRobotStarsDesktop v-else-if="route.name !== 'game'" />
     </q-page-container>
 
+    <TheRobotSkeleton />
+
     <TheFooter v-if="presentationMounted || headerMounted" />
   </q-layout>
 </template>
@@ -37,6 +39,7 @@ import { useI18n } from 'vue-i18n'
 import { useScreenOrientation } from '@vueuse/core'
 import { useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
+import TheRobotSkeleton from 'src/components/TheRobotSkeleton.vue'
 
 const $q = useQuasar()
 

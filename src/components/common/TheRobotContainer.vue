@@ -4,7 +4,7 @@
     enter-active-class="animated fadeIn slow"
     leave-active-class="animated fadeOut slow"
   >
-    <TheRobot v-if="presentationMounted || headerMounted" @click="handleRobotAction" />
+    <TheRobot @click="handleRobotAction" />
   </transition>
 </template>
 
@@ -15,7 +15,7 @@ import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 const animationSettings = useAnimationSettings()
 
-const { headerMounted, presentationMounted, isRobotClickable } = storeToRefs(animationSettings)
+const { isRobotClickable } = storeToRefs(animationSettings)
 
 const emit = defineEmits(['robotAction'])
 
