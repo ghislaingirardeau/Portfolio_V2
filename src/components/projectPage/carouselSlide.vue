@@ -1,37 +1,34 @@
 <template>
-  <transition
-    appear
-    enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOut"
-    mode="out-in"
-  >
-    <q-card>
-      <q-img
-        :src="`/images/projectsPage/${projectsToDisplay[currentSlide]!.imageURL[currentImg]}`"
-        fit="fill"
-        loading="eager"
-        fetchpriority="high"
-        spinner-color="primary"
-        :class="imageClass"
-        @click="goToProjectDetail(projectsToDisplay[currentSlide]!.id)"
-      >
-        <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" />
-        <div class="text-subtitle2 text-center" @click.stop="" :class="imageTitleClass">
-          <p>{{ projectsToDisplay[currentSlide]!.name }}</p>
-          <div v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
-            <q-img
-              v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
-              :key="image"
-              :src="`/images/projectsPage/${image}`"
-              @click.stop="handleImgToShow(index)"
-              :class="{ 'active-thumbnail': index === currentImg, thumbnail: index !== currentImg }"
-              class="rounded cursor-pointer"
-              width="10%"
-            ></q-img>
-          </div>
+  <q-card>
+    <q-img
+      :src="`/images/projectsPage/${projectsToDisplay[currentSlide]!.imageURL[currentImg]}`"
+      fit="fill"
+      loading="eager"
+      fetchpriority="high"
+      spinner-color="primary"
+      :class="imageClass"
+      @click="goToProjectDetail(projectsToDisplay[currentSlide]!.id)"
+    >
+      <!-- For mobile only -->
+      <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" />
+
+      <!-- To display img title & thumbnail image inside it -->
+      <div class="text-subtitle2 text-center" @click.stop="" :class="imageTitleClass">
+        <p>{{ projectsToDisplay[currentSlide]!.name }}</p>
+        <div v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
+          <q-img
+            v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
+            :key="image"
+            :src="`/images/projectsPage/${image}`"
+            @click.stop="handleImgToShow(index)"
+            :class="{ 'active-thumbnail': index === currentImg, thumbnail: index !== currentImg }"
+            class="rounded cursor-pointer"
+            width="10%"
+          ></q-img>
         </div>
-      </q-img>
-      <!-- <q-card-section v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
+      </div>
+    </q-img>
+    <!-- <q-card-section v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
         <q-img
           v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
           :key="image"
@@ -42,8 +39,7 @@
           width="10%"
         ></q-img>
       </q-card-section> -->
-    </q-card>
-  </transition>
+  </q-card>
 </template>
 
 <script setup lang="ts">
