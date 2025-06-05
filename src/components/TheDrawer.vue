@@ -11,53 +11,11 @@
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
-        <div v-if="menuItem.children">
-          <q-item class="q-py-sm" :class="useIsMobile() ? '' : 'bg-transparent'">
-            <q-item-section avatar>
-              <q-icon
-                :ref="menuIcon.set"
-                class="opacity-0 rotate-90"
-                size="lg"
-                :color="iconColor(menuItem.to.name)"
-                :name="menuItem.icon"
-              />
-            </q-item-section>
-            <q-item-section :ref="menuLabel.set" class="text-h6" :data-label="menuItem.label">
-            </q-item-section>
-          </q-item>
-          <q-item
-            v-for="(child, childIndex) in menuItem.children"
-            :key="childIndex"
-            exact
-            :to="child.to"
-            :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
-            class="q-py-lg"
-            :class="useIsMobile() ? '' : 'bg-transparent'"
-          >
-            <q-item-section avatar class="ml-10">
-              <q-icon
-                :ref="menuIcon.set"
-                class="opacity-0 rotate-90"
-                size="sm"
-                :color="iconColor(child.to.name)"
-                :name="child.icon"
-              />
-            </q-item-section>
-            <q-item-section
-              :ref="menuLabel.set"
-              class="text-h6"
-              :data-label="child.label"
-            ></q-item-section>
-          </q-item>
-        </div>
-
         <q-item
-          v-else
-          exact
-          :to="menuItem.to"
+          :exact="!menuItem.children"
+          :to="menuItem.children ? null : menuItem.to"
           :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
-          class="q-py-lg"
-          :class="useIsMobile() ? '' : 'bg-transparent'"
+          :class="{ 'q-py-sm': menuItem.children, 'q-py-lg': !menuItem.children }"
         >
           <q-item-section avatar>
             <q-icon
@@ -71,6 +29,29 @@
           <q-item-section :ref="menuLabel.set" class="text-h6" :data-label="menuItem.label">
           </q-item-section>
         </q-item>
+        <div v-if="menuItem.children">
+          <q-item
+            v-for="(child, childIndex) in menuItem.children"
+            :key="childIndex"
+            exact
+            :to="child.to"
+            :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
+            class="q-py-lg"
+          >
+            <q-icon
+              :ref="menuIcon.set"
+              class="opacity-0 rotate-90 ml-10 mr-5"
+              size="sm"
+              :color="iconColor(child.to.name)"
+              :name="child.icon"
+            />
+            <q-item-section
+              :ref="menuLabel.set"
+              class="text-h6"
+              :data-label="child.label"
+            ></q-item-section>
+          </q-item>
+        </div>
       </template>
     </q-list>
   </q-drawer>
@@ -117,7 +98,7 @@ const menuList = computed(() => [
     children: [
       {
         icon: mdiCellphone,
-        label: 'Mobile',
+        label: 'Mobile First',
         to: { name: 'projects-mobile' },
       },
       {
@@ -171,6 +152,9 @@ const drawerColor = computed(() => {
 })
 
 function iconColor(currentRoute: string) {
+  if ((route.name! as string).includes(currentRoute)) {
+    return $q.dark.mode ? 'dark-primary' : 'primary'
+  }
   if (currentRoute === route.name) {
     return $q.dark.mode ? 'dark-primary' : 'primary'
   } else {
