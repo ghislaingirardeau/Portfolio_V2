@@ -11,7 +11,48 @@
   >
     <q-list>
       <template v-for="(menuItem, index) in menuList" :key="index">
+        <div v-if="menuItem.children">
+          <q-item class="q-py-sm" :class="useIsMobile() ? '' : 'bg-transparent'">
+            <q-item-section avatar>
+              <q-icon
+                :ref="menuIcon.set"
+                class="opacity-0 rotate-90"
+                size="lg"
+                :color="iconColor(menuItem.to.name)"
+                :name="menuItem.icon"
+              />
+            </q-item-section>
+            <q-item-section :ref="menuLabel.set" class="text-h6" :data-label="menuItem.label">
+            </q-item-section>
+          </q-item>
+          <q-item
+            v-for="(child, childIndex) in menuItem.children"
+            :key="childIndex"
+            exact
+            :to="child.to"
+            :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
+            class="q-py-lg"
+            :class="useIsMobile() ? '' : 'bg-transparent'"
+          >
+            <q-item-section avatar class="ml-10">
+              <q-icon
+                :ref="menuIcon.set"
+                class="opacity-0 rotate-90"
+                size="sm"
+                :color="iconColor(child.to.name)"
+                :name="child.icon"
+              />
+            </q-item-section>
+            <q-item-section
+              :ref="menuLabel.set"
+              class="text-h6"
+              :data-label="child.label"
+            ></q-item-section>
+          </q-item>
+        </div>
+
         <q-item
+          v-else
           exact
           :to="menuItem.to"
           :active-class="$q.dark.mode ? 'text-dark-primary' : 'text-secondary'"
@@ -27,7 +68,8 @@
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section :ref="menuLabel.set" class="text-h6"> </q-item-section>
+          <q-item-section :ref="menuLabel.set" class="text-h6" :data-label="menuItem.label">
+          </q-item-section>
         </q-item>
       </template>
     </q-list>
@@ -37,9 +79,11 @@
 <script setup lang="ts">
 import {
   mdiAccountDetails,
+  mdiCellphone,
   mdiCodeTagsCheck,
   mdiGamepad,
   mdiHandshake,
+  mdiMonitor,
   mdiSourceRepository,
 } from '@quasar/extras/mdi-v7'
 import { computed, watch } from 'vue'
@@ -70,6 +114,18 @@ const menuList = computed(() => [
   {
     icon: mdiSourceRepository,
     label: t('navBar.projects'),
+    children: [
+      {
+        icon: mdiCellphone,
+        label: 'Mobile',
+        to: { name: 'projects-mobile' },
+      },
+      {
+        icon: mdiMonitor,
+        label: 'Desktop',
+        to: { name: 'projects-desktop' },
+      },
+    ],
     to: {
       name: 'project',
     },
@@ -129,9 +185,10 @@ function handleShowMenu() {
 function handleMenuAnimation(delay: number, isFirstMount: boolean) {
   drawerMounted.value = false
   const tl = gsap.timeline({ delay: delay })
+
   if (isFirstMount) {
-    menuList.value.forEach((el, index) => {
-      const elementTarget = menuIcon.value[index].$el as HTMLDivElement
+    menuIcon.value.forEach((el) => {
+      const elementTarget = el.$el as HTMLDivElement
       tl.to(
         elementTarget,
         {
@@ -145,11 +202,16 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
     })
   }
 
-  menuList.value.forEach((el, index) => {
-    const elementTarget = menuLabel.value[index].$el as HTMLDivElement
+  menuLabel.value.forEach((el) => {
+    const elementTarget = el.$el as HTMLDivElement
+    console.log(elementTarget.dataset.label)
+    const label = elementTarget.dataset.label as string
     tl.to(elementTarget, {
       duration: ANIM_SHORT.value,
-      text: { value: el.label, newClass: `text-h6 ${$q.dark.mode ? 'white' : 'dark'}` },
+      text: {
+        value: label,
+        newClass: `text-h6 ${$q.dark.mode ? 'white' : 'dark'}`,
+      },
       ease: 'none',
     })
   })

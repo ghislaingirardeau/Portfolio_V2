@@ -1,11 +1,12 @@
 <template>
-  <q-card>
+  <q-card class="bg-transparent" flat>
     <q-img
       :src="`/images/projectsPage/${projectsToDisplay[currentSlide]!.imageURL[currentImg]}`"
-      fit="fill"
+      fit="contain"
       loading="eager"
       fetchpriority="high"
       spinner-color="primary"
+      class="cursor-pointer"
       :class="imageClass"
       @click="goToProjectDetail(projectsToDisplay[currentSlide]!.id)"
     >
@@ -13,9 +14,15 @@
       <AppImgOverlay v-if="!typeDesktop && isRobotProcessing" :tap="true" />
 
       <!-- To display img title & thumbnail image inside it -->
-      <div class="text-subtitle2 text-center" @click.stop="" :class="imageTitleClass">
+      <div class="md:text-3xl lg:text-base text-center absolute top-0 w-full" @click.stop="">
         <p>{{ projectsToDisplay[currentSlide]!.name }}</p>
-        <div v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
+      </div>
+      <div
+        v-if="!useIsMobile() && projectsToDisplay[currentSlide]!.imageURL.length > 1"
+        class="absolute bottom-0 w-full"
+        @click.stop=""
+      >
+        <div class="flex justify-center q-gutter-sm">
           <q-img
             v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
             :key="image"
@@ -28,17 +35,6 @@
         </div>
       </div>
     </q-img>
-    <!-- <q-card-section v-if="!useIsMobile()" class="flex justify-center q-gutter-sm">
-        <q-img
-          v-for="(image, index) in projectsToDisplay[currentSlide]!.imageURL"
-          :key="image"
-          :src="`/images/projectsPage/${image}`"
-          @click="handleImgToShow(index)"
-          :class="{ 'active-thumbnail': index === currentImg }"
-          class="rounded cursor-pointer"
-          width="10%"
-        ></q-img>
-      </q-card-section> -->
   </q-card>
 </template>
 
@@ -81,22 +77,18 @@ const projectsToDisplay = computed(() => {
     : ([...tm('projects.mobile')] as Project[])
 })
 
-const imageTitleClass = computed(() => {
-  return props.typeDesktop ? 'absolute-top' : 'absolute-bottom'
-})
-
 const imageClass = computed(() => {
   if (useIsTablet()) {
-    return props.typeDesktop ? 'h-4/5' : 'h-11/12 cursor-pointer'
+    return props.typeDesktop ? 'h-4/5' : 'image_container '
   }
   if (useIsMobile()) {
     if (useIsMobileTall()) {
-      return props.typeDesktop ? 'h-60' : 'h-96 cursor-pointer'
+      return props.typeDesktop ? 'h-60' : 'image_container '
     } else {
-      return props.typeDesktop ? 'h-48' : 'h-72 cursor-pointer'
+      return props.typeDesktop ? 'h-48' : 'image_container '
     }
   }
-  return props.typeDesktop ? 'h-4/5' : 'h-4/5 cursor-pointer'
+  return props.typeDesktop ? '' : ''
 })
 
 function handleImgToShow(index: number) {
@@ -121,5 +113,8 @@ function goToProjectDetail(id: string) {
 }
 .thumbnail {
   border: 2px white solid;
+}
+.image_container {
+  min-height: calc(100vh - 250px);
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div
     ref="carousel"
-    class="row justify-around lg:items-center lg:justify-start lg:ml-16"
+    class="row justify-around lg:items-center lg:justify-start lg:ml-4 lg:w-1/2"
     :class="{ relative: typeDesktop, carousel_container: !useIsMobile() }"
   >
-    <div class="flex flex-center w-10">
+    <div class="absolute left-1 top-1/2">
       <q-btn
         v-show="currentSlide !== 0"
         ref="carouselPrevious"
@@ -17,7 +17,7 @@
       />
     </div>
 
-    <div class="relative w-48 md:w-96 lg:w-64">
+    <div class="relative w-11/12 md:w-4/5 lg:w-full">
       <div ref="carouselSlide" class="opacity-0 scale-75">
         <CarouselSlide
           :key="currentSlide"
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="flex flex-center w-10">
+    <div class="absolute right-1 top-1/2">
       <q-btn
         v-show="!endSlider"
         ref="carouselNext"
@@ -160,6 +160,9 @@ function animationSlideButtons() {
 
 <style scoped>
 .carousel_container {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 250px);
+}
+.slide_container {
+  min-height: calc(100vh - 350px);
 }
 </style>
