@@ -1,0 +1,14 @@
+@mixin border-radient-light($position) {
+  border-#{$position}: 2px solid !important;
+  border-image: linear-gradient(45deg, $primary, $accent) 1 !important;
+}
+
+@mixin border-radient-dark($position) {
+  border-#{$position}: 2px solid !important;
+  border-image: linear-gradient(45deg, $dark-primary, $accent) 1 !important;
+}
+
+@mixin border-radient($position, $from, $to) {
+  border-#{$position}: 2px solid !important;
+  border-image: linear-gradient(45deg, $from, $to) 1 !important;
+}

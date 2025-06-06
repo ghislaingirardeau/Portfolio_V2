@@ -62,7 +62,7 @@ const headerTitle = useTemplateRef<any>('header_title')
 const router = useRouter()
 
 const headerColor = computed(() => {
-  return $q.dark.isActive ? 'border_header-gradient ' : 'border-b-2 border-secondary'
+  return $q.dark.isActive ? 'border_header-gradient ' : 'border_header-gradient--light'
 })
 
 const headerTextColor = computed(() => {
@@ -101,11 +101,15 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import 'src/css/layout.scss';
+
 .q-toolbar__title {
   min-width: 150px;
 }
 .border_header-gradient {
-  border-bottom: 2px solid;
-  border-image: linear-gradient(5deg, #1ed3f7, $accent) 1;
+  @include border-radient('bottom', $dark-primary, $accent);
+}
+.border_header-gradient--light {
+  @include border-radient('bottom', $primary, $accent);
 }
 </style>

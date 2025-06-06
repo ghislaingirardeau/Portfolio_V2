@@ -58,7 +58,7 @@ const footerIcons = useTemplateRefsList<any>()
 const logoMalt = useTemplateRef<any>('logoMalt')
 
 const footerColor = computed(() => {
-  return $q.dark.mode ? 'border_footer-gradient' : 'border-t-2 border-secondary'
+  return $q.dark.mode ? 'border_footer-gradient' : 'border_footer-gradient--light'
 })
 
 const footerTextColor = computed(() => {
@@ -118,14 +118,19 @@ function animationAppear() {
 </script>
 
 <style scoped lang="scss">
+@import 'src/css/layout.scss';
+
 .border_footer-gradient {
-  border-top: 2px solid !important;
-  border-image: linear-gradient(45deg, $accent, #271200) 1 !important;
+  @include border-radient('top', $accent, #271200);
+}
+
+.border_footer-gradient--light {
+  @include border-radient('top', $primary, $accent);
 }
 
 @media screen and (min-width: 673px) {
   .border_footer-gradient {
-    border-image: linear-gradient(45deg, #1ed3f7, $accent) 1 !important;
+    @include border-radient('top', $dark-primary, $accent);
   }
 }
 </style>
