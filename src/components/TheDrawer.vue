@@ -26,8 +26,7 @@
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section :ref="menuLabel.set" class="text-h6" :data-label="menuItem.label">
-          </q-item-section>
+          <q-item-section :ref="menuLabel.set" class="text-h6"> </q-item-section>
         </q-item>
         <div v-if="menuItem.children">
           <q-item
@@ -45,11 +44,7 @@
               :color="iconColor(child.to.name)"
               :name="child.icon"
             />
-            <q-item-section
-              :ref="menuLabel.set"
-              class="text-h6"
-              :data-label="child.label"
-            ></q-item-section>
+            <q-item-section :ref="menuLabel.set" class="text-h6"></q-item-section>
           </q-item>
         </div>
       </template>
@@ -103,7 +98,7 @@ const menuList = computed(() => [
       },
       {
         icon: mdiMonitor,
-        label: 'Desktop',
+        label: 'Web apps',
         to: { name: 'projects-desktop' },
       },
     ],
@@ -170,9 +165,17 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
   drawerMounted.value = false
   const tl = gsap.timeline({ delay: delay })
 
+  const flatMenuAndSubMenu = menuList.value.flatMap((item) => {
+    if (item.children) {
+      return [item.label, ...item.children.map((child) => child.label)]
+    } else {
+      return item.label
+    }
+  })
+
   if (isFirstMount) {
-    menuIcon.value.forEach((el) => {
-      const elementTarget = el.$el as HTMLDivElement
+    flatMenuAndSubMenu.forEach((_, index) => {
+      const elementTarget = menuIcon.value[index].$el as HTMLDivElement
       tl.to(
         elementTarget,
         {
@@ -186,10 +189,8 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
     })
   }
 
-  menuLabel.value.forEach((el) => {
-    const elementTarget = el.$el as HTMLDivElement
-    console.log(elementTarget.dataset.label)
-    const label = elementTarget.dataset.label as string
+  flatMenuAndSubMenu.forEach((label, index) => {
+    const elementTarget = menuLabel.value[index].$el as HTMLDivElement
     tl.to(elementTarget, {
       duration: ANIM_SHORT.value,
       text: {
