@@ -60,7 +60,6 @@ const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSett
 const $q = useQuasar()
 
 const currentSlide = defineModel('currentSlide', { type: Number, required: true })
-const isFirstMounted = defineModel('isFirstMounted', { type: Boolean, required: true })
 
 const emits = defineEmits(['slide-change'])
 
@@ -68,7 +67,7 @@ const carousel = ref()
 const carouselPrevious = ref()
 const carouselNext = ref()
 const carouselSlide = ref()
-const tl = gsap.timeline({ delay: isFirstMounted.value ? 1 : 0 })
+const tl = gsap.timeline()
 
 const { direction } = useSwipe(carousel)
 
@@ -149,7 +148,6 @@ function animationSlideButtons() {
     onComplete() {
       pageMounted.value = true
       isRobotClickable.value = true
-      isFirstMounted.value = false
     },
   }
 

@@ -5,7 +5,6 @@
       :class="usePageMobileLandscapeClass"
       :type-desktop="true"
       name="desktop"
-      v-model:is-first-mounted="isFirstMounted"
       @slide-change="resetChat"
     />
     <TheRobotContainer @robot-action="robotAction" />
@@ -37,7 +36,6 @@ const animationSettings = useAnimationSettings()
 const { isRobotClickable, isRobotTalk, pageMounted } = storeToRefs(animationSettings)
 
 const currentSlide = ref(0)
-const isFirstMounted = ref(true)
 const chatPage = ref(0)
 
 const chatMessageToDisplay = computed(() => {
@@ -66,7 +64,6 @@ const visitorChatMessageToDisplay = computed(() => {
 
 onMounted(() => {
   pageMounted.value = false
-
   isRobotTalk.value = true
 })
 
