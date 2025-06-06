@@ -89,55 +89,59 @@ function generateStarsArbitraryEndPosition() {
   return { randomY, randomX, randomYBis, randomXBis, mobileLeftEndX, mobileTopEndX, mobileEndY }
 }
 
-function keyframesDesktop(left: boolean, starsArbitraryEndPosition: PositionStars) {
-  return {
+function keyframes(left: boolean, starsArbitraryEndPosition: PositionStars, mobile: boolean) {
+  const target = {
     '0%': { x: 0, opacity: 0 },
     '10%': { x: 0, y: 10, opacity: 0.7 },
     '15%': { x: left ? -20 : 20, opacity: 1 },
-    '50%': {
-      backgroundImage: radientColorStart.value,
-    },
-    '55%': {
-      backgroundImage: radientColorEnd.value,
-      scale: 0.8,
-      opacity: 0.8,
-    },
     '95%': { opacity: 0.7 },
-    '100%': {
-      x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
-      y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
-      scale: 0.5,
-      opacity: 0,
-    },
   }
-}
 
-function keyframesMobile(left: boolean, starsArbitraryEndPosition: PositionStars) {
-  return {
-    '0%': { x: 0, opacity: 0 },
-    '10%': { x: 0, y: 10, opacity: 0.7 },
-    '15%': { x: left ? -20 : 20, opacity: 1 },
-    '40%': {
-      backgroundImage: radientColorStart.value,
-    },
+  Object.assign(
+    target,
+    mobile
+      ? {
+          '40%': {
+            backgroundImage: radientColorStart.value,
+          },
 
-    '45%': {
-      backgroundImage: radientColorEnd.value,
-      opacity: 0.8,
-      scale: 0.8,
-    },
-    '60%': {
-      x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
-      y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
-    },
-    '95%': { opacity: 0.7 },
-    '100%': {
-      x: left ? starsArbitraryEndPosition.mobileLeftEndX : starsArbitraryEndPosition.mobileTopEndX,
-      y: starsArbitraryEndPosition.mobileEndY,
-      scale: 0.5,
-      opacity: 0,
-    },
-  }
+          '45%': {
+            backgroundImage: radientColorEnd.value,
+            opacity: 0.8,
+            scale: 0.8,
+          },
+          '60%': {
+            x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
+            y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
+          },
+          '100%': {
+            x: left
+              ? starsArbitraryEndPosition.mobileLeftEndX
+              : starsArbitraryEndPosition.mobileTopEndX,
+            y: starsArbitraryEndPosition.mobileEndY,
+            scale: 0.5,
+            opacity: 0,
+          },
+        }
+      : {
+          '50%': {
+            backgroundImage: radientColorStart.value,
+          },
+          '55%': {
+            backgroundImage: radientColorEnd.value,
+            scale: 0.8,
+            opacity: 0.8,
+          },
+          '100%': {
+            x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
+            y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
+            scale: 0.5,
+            opacity: 0,
+          },
+        },
+  )
+
+  return target
 }
 
 function startAnim() {
@@ -149,8 +153,8 @@ function startAnim() {
 
       {
         keyframes: useIsMobile()
-          ? keyframesMobile(true, starsArbitraryEndPosition)
-          : keyframesDesktop(true, starsArbitraryEndPosition),
+          ? keyframes(true, starsArbitraryEndPosition, true)
+          : keyframes(true, starsArbitraryEndPosition, false),
         duration: getRandomArbitrary(15, 20),
       },
       getRandomArbitrary(0.4, 15),
@@ -158,8 +162,8 @@ function startAnim() {
       starToTopElement,
       {
         keyframes: useIsMobile()
-          ? keyframesMobile(false, starsArbitraryEndPosition)
-          : keyframesDesktop(false, starsArbitraryEndPosition),
+          ? keyframes(false, starsArbitraryEndPosition, true)
+          : keyframes(false, starsArbitraryEndPosition, false),
         duration: getRandomArbitrary(10, 20),
       },
       getRandomArbitrary(0.4, 15),
