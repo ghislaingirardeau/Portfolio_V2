@@ -1,8 +1,14 @@
 <template>
   <q-layout
     view="hHh lpR fFf"
-    class="indie-flower-regular"
-    :class="$q.dark.isActive ? 'space-bg-container-dark' : 'space-bg-container'"
+    class="indie-flower-regular bg-image"
+    :class="
+      isBackgroundMount
+        ? $q.dark.isActive
+          ? ' space-bg-container-dark'
+          : 'space-bg-container'
+        : null
+    "
   >
     <TheHeader
       v-model:leftDrawerOpen="leftDrawerOpen"
@@ -36,15 +42,13 @@ import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
 import { useScreenOrientation } from '@vueuse/core'
 import { useRoute } from 'vue-router'
-import { useQuasar } from 'quasar'
 import TheRobotSkeleton from 'src/components/TheRobotSkeleton.vue'
-
-const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
 
 const leftDrawerOpen = ref(false)
+const isBackgroundMount = ref(false)
 
 const { locale } = useI18n({ useScope: 'global' })
 
@@ -53,7 +57,9 @@ const { orientation } = useScreenOrientation()
 const route = useRoute()
 
 onMounted(() => {
-  $q.dark.toggle()
+  setTimeout(() => {
+    isBackgroundMount.value = true
+  }, 50)
   if (useIsMobile()) {
     drawerMounted.value = true
   }
@@ -83,7 +89,6 @@ watch(
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('/space_2_mobile.jpg');
   opacity: 0.8;
   background-size: cover;
   background-position: center;
@@ -92,24 +97,36 @@ watch(
   background-position: 80% center;
 }
 
-.space-bg-container::before {
-  @include bg-image();
-  filter: invert(1) hue-rotate(160deg) saturate(1.4) brightness(0.8);
+.bg-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  background-position: 80% center;
   background-image: url('/space_2_mobile.jpg');
+}
+
+.space-bg-container::before {
+  transition: all 2s ease-in-out;
+  filter: invert(1) hue-rotate(160deg) saturate(1.4) brightness(0.8);
+  opacity: 1;
 }
 
 .space-bg-container-dark::before {
-  @include bg-image();
+  transition: all 2s ease-in-out;
   filter: invert(0);
-  background-image: url('/space_2_mobile.jpg');
+  opacity: 1;
 }
 
 @media screen and (min-width: 1025px) {
-  .space-bg-container::before {
-    background-image: url('/space_2.jpg');
-  }
-
-  .space-bg-container-dark::before {
+  .bg-image::before {
     background-image: url('/space_2.jpg');
   }
 }

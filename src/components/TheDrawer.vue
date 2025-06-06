@@ -138,11 +138,9 @@ const menuList = computed(() => [
 
 const drawerColor = computed(() => {
   if (useIsMobile()) {
-    return $q.dark.mode
-      ? 'bg-[rgba(0,0,0,0.8)] border-r-2 border-dark-primary'
-      : 'bg-[rgba(250,250,250,0.8)] border-r-2 border-secondary'
+    return $q.dark.mode ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-[rgba(250,250,250,0.8)]'
   } else {
-    return $q.dark.mode ? 'border_drawer-gradient' : ' border-r-2 border-secondary'
+    return $q.dark.mode ? 'border_drawer-gradient' : ' border_drawer-gradient--light'
   }
 })
 
@@ -213,7 +211,7 @@ watch(
 )
 </script>
 
-<style>
+<style lang="scss">
 .q-drawer {
   opacity: 0.9 !important;
 }
@@ -221,7 +219,11 @@ aside {
   background-color: transparent !important;
 }
 .border_drawer-gradient {
-  border-right: 2px solid;
-  border-image: linear-gradient(5deg, #000000, #1ed3f7) 1;
+  border-right: 2px solid !important;
+  border-image: linear-gradient(to top, #00000000, $dark-primary) 1 !important;
+}
+.border_drawer-gradient--light {
+  border-right: 2px solid !important;
+  border-image: linear-gradient(to top, #ffffff00, $primary) 1 !important;
 }
 </style>

@@ -121,7 +121,7 @@ function animationAppear() {
 @import 'src/css/layout.scss';
 
 .border_footer-gradient {
-  @include border-radient('top', $accent, #271200);
+  @include border-radient('top', #271200, $accent);
 }
 
 .border_footer-gradient--light {
