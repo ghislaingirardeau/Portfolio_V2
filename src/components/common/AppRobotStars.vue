@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <q-btn color="primary" class="z-20" @click="startAnim">Start</q-btn>
-    <q-btn color="primary" class="z-20" @click="stopAnim">Stop</q-btn>
-    <q-btn color="primary" class="z-20" @click="reverseAnim">reverse</q-btn>
-    <q-btn color="primary" class="z-20" @click="resumeAnim">resume</q-btn> -->
-
     <div
       v-for="index in starNumber"
       :key="index"
@@ -27,9 +22,19 @@ import { computed, onUpdated } from 'vue'
 import { useTemplateRefsList, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar'
 import { gsap } from 'src/boot/gsap'
-import { useIsMobileLandscape, useIsMobileTall } from 'src/utils/useDeviceInfo'
+import { useIsMobileLandscape, useIsMobileTall, useIsMobile } from 'src/utils/useDeviceInfo'
 import { onMounted } from 'vue'
 import { useStarSettings } from 'src/utils/useStarSettings'
+
+interface PositionStars {
+  randomY: number
+  randomX: number
+  randomYBis: number
+  randomXBis: number
+  mobileLeftEndX?: number
+  mobileTopEndX?: number
+  mobileEndY?: number
+}
 
 const starToLeft = useTemplateRefsList()
 const starToTop = useTemplateRefsList()
@@ -39,7 +44,7 @@ const { radientColorEnd, radientColorStart } = useStarSettings()
 
 const $q = useQuasar()
 
-const starNumber = 20
+const starNumber = useIsMobile() ? 20 : 80
 
 const tl = gsap.timeline()
 
@@ -49,7 +54,7 @@ onMounted(() => {
   setTimeout(() => {
     startAnim()
     starsMounted = true
-  }, 4000)
+  }, 400)
 })
 
 /* Dark mode toogle - if the component is mounted, change stars colors */
@@ -65,87 +70,105 @@ const heightSize = computed(() => {
   return useIsMobileLandscape.value ? 770 : height.value
 })
 
+function generateStarsArbitraryEndPosition() {
+  let randomY, randomX, randomYBis, randomXBis, mobileLeftEndX, mobileTopEndX, mobileEndY
+  if (useIsMobile()) {
+    randomY = -heightSize.value + 130 + getRandomArbitrary(0, heightSize.value - 120)
+    randomX = -width.value + 97
+    randomYBis = -heightSize.value + 75
+    randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
+    mobileLeftEndX = -width.value / 2 + 92
+    mobileTopEndX = -width.value / 2 + 28
+    mobileEndY = -heightSize.value + (useIsMobileTall() ? 350 : 300)
+  } else {
+    randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
+    randomX = -width.value + 97
+    randomYBis = -height.value + 75
+    randomXBis = -width.value + 35 + getRandomArbitrary(250, width.value - 15)
+  }
+  return { randomY, randomX, randomYBis, randomXBis, mobileLeftEndX, mobileTopEndX, mobileEndY }
+}
+
+function keyframesDesktop(left: boolean, starsArbitraryEndPosition: PositionStars) {
+  return {
+    '0%': { x: 0, opacity: 0 },
+    '10%': { x: 0, y: 10, opacity: 0.7 },
+    '15%': { x: left ? -20 : 20, opacity: 1 },
+    '50%': {
+      backgroundImage: radientColorStart.value,
+    },
+    '55%': {
+      backgroundImage: radientColorEnd.value,
+      scale: 0.8,
+      opacity: 0.8,
+    },
+    '95%': { opacity: 0.7 },
+    '100%': {
+      x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
+      y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
+      scale: 0.5,
+      opacity: 0,
+    },
+  }
+}
+
+function keyframesMobile(left: boolean, starsArbitraryEndPosition: PositionStars) {
+  return {
+    '0%': { x: 0, opacity: 0 },
+    '10%': { x: 0, y: 10, opacity: 0.7 },
+    '15%': { x: left ? -20 : 20, opacity: 1 },
+    '40%': {
+      backgroundImage: radientColorStart.value,
+    },
+
+    '45%': {
+      backgroundImage: radientColorEnd.value,
+      opacity: 0.8,
+      scale: 0.8,
+    },
+    '60%': {
+      x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
+      y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
+    },
+    '95%': { opacity: 0.7 },
+    '100%': {
+      x: left ? starsArbitraryEndPosition.mobileLeftEndX : starsArbitraryEndPosition.mobileTopEndX,
+      y: starsArbitraryEndPosition.mobileEndY,
+      scale: 0.5,
+      opacity: 0,
+    },
+  }
+}
+
 function startAnim() {
   starToLeft.value.forEach((el, index) => {
-    const randomY = -heightSize.value + 130 + getRandomArbitrary(0, heightSize.value - 120)
-    const randomX = -width.value + 97
-    const randomYBis = -heightSize.value + 75
-    const randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
+    const starsArbitraryEndPosition = generateStarsArbitraryEndPosition() as PositionStars
     const starToTopElement = starToTop.value[index] as HTMLElement
     tl.to(
       el,
 
       {
-        keyframes: {
-          '0%': { x: 0, opacity: 0 },
-          '10%': { x: 0, y: 10, opacity: 0.7 },
-          '15%': { x: -20, opacity: 1 },
-          '40%': {
-            backgroundImage: radientColorStart.value,
-          },
-
-          '45%': {
-            backgroundImage: radientColorEnd.value,
-            opacity: 0.8,
-            scale: 0.8,
-          },
-          '60%': { x: randomX, y: randomY },
-          '95%': { opacity: 0.7 },
-          '100%': {
-            x: -width.value / 2 + 92,
-            y: -heightSize.value + (useIsMobileTall() ? 350 : 300),
-            scale: 0.5,
-            opacity: 0,
-          },
-        },
+        keyframes: useIsMobile()
+          ? keyframesMobile(true, starsArbitraryEndPosition)
+          : keyframesDesktop(true, starsArbitraryEndPosition),
         duration: getRandomArbitrary(15, 20),
       },
-      getRandomArbitrary(0.4, 10),
+      getRandomArbitrary(0.4, 15),
     ).to(
       starToTopElement,
       {
-        keyframes: {
-          '0%': { x: 0, opacity: 0 },
-          '10%': { x: 0, y: 10, opacity: 0.7 },
-          '15%': { x: 20, opacity: 1 },
-          '40%': {
-            backgroundImage: radientColorStart.value,
-          },
-
-          '45%': {
-            backgroundImage: radientColorEnd.value,
-            scale: 0.8,
-            opacity: 0.8,
-          },
-          '60%': { x: randomXBis, y: randomYBis },
-          '95%': { opacity: 0.5 },
-          '100%': {
-            x: -width.value / 2 + 28,
-            y: -heightSize.value + (useIsMobileTall() ? 350 : 300),
-            scale: 0.5,
-            opacity: 0,
-          },
-        },
-        duration: getRandomArbitrary(15, 20),
+        keyframes: useIsMobile()
+          ? keyframesMobile(false, starsArbitraryEndPosition)
+          : keyframesDesktop(false, starsArbitraryEndPosition),
+        duration: getRandomArbitrary(10, 20),
       },
-      getRandomArbitrary(0.4, 10),
+      getRandomArbitrary(0.4, 15),
     )
   })
   tl.call(() => {
     tl.repeat(-1)
   })
 }
-
-// function stopAnim() {
-//   tl.pause()
-// }
-// function reverseAnim() {
-//   tl.reverse()
-// }
-
-// function resumeAnim() {
-//   tl.play()
-// }
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min

@@ -14,8 +14,7 @@
     <q-page-container>
       <LogoAEContainer v-if="!useIsMobile()" />
       <router-view :key="locale" />
-      <AppRobotStars v-if="useIsMobile() && route.name !== 'game'" :key="'reset' + orientation" />
-      <AppRobotStarsDesktop v-else-if="route.name !== 'game'" />
+      <AppRobotStars v-if="route.name !== 'game'" :key="'reset' + orientation" />
     </q-page-container>
 
     <TheRobotSkeleton />
@@ -33,7 +32,6 @@ import { onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import AppRobotStars from 'src/components/common/AppRobotStars.vue'
-import AppRobotStarsDesktop from 'src/components/common/AppRobotStarsDesktop.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
 import { useScreenOrientation } from '@vueuse/core'
