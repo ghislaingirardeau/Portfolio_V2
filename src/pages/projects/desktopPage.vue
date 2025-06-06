@@ -13,7 +13,7 @@
         :visitor-texts="visitorChatMessageToDisplay"
         :meTexts="chatMessageToDisplay"
         :key="chatPage + currentSlide"
-        :delay-animation="0.5"
+        :delay-animation="0.1"
       />
     </transition>
   </q-page>
