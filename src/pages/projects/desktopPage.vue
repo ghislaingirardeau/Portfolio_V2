@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg">
+  <q-page class="q-pa-sm pt-4 lg:q-pa-lg lg:pt-0">
     <DesktopCarouselProjects
       v-model:currentSlide="currentSlide"
       :class="usePageMobileLandscapeClass"

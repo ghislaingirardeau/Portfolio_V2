@@ -17,7 +17,7 @@
       />
     </div>
 
-    <div class="relative w-11/12 md:w-4/5 lg:w-full">
+    <div class="relative w-full md:w-4/5 lg:w-full">
       <div ref="carouselSlide" class="opacity-0 scale-75">
         <CarouselSlide
           :key="currentSlide"

@@ -18,7 +18,7 @@
         <p>{{ projectsToDisplay[currentSlide]!.name }}</p>
       </div>
       <div
-        v-if="!useIsMobile() && projectsToDisplay[currentSlide]!.imageURL.length > 1"
+        v-if="showThumbnail && projectsToDisplay[currentSlide]!.imageURL.length > 1"
         class="absolute bottom-0 w-full"
         @click.stop=""
       >
@@ -65,6 +65,14 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+})
+
+const showThumbnail = computed(() => {
+  if (useIsMobile()) {
+    return props.typeDesktop
+  } else {
+    return true
+  }
 })
 
 const projectsMobile = computed(() => {
