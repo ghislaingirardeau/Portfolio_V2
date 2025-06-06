@@ -77,22 +77,25 @@ function startAnim() {
 
       {
         keyframes: {
-          scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
-          opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
-          '0%': { x: 0 },
-          '10%': { x: 0, y: 10 },
-          '15%': { x: -20 },
+          '0%': { x: 0, opacity: 0 },
+          '10%': { x: 0, y: 10, opacity: 0.7 },
+          '15%': { x: -20, opacity: 1 },
           '40%': {
             backgroundImage: radientColorStart.value,
           },
 
           '45%': {
             backgroundImage: radientColorEnd.value,
+            opacity: 0.8,
+            scale: 0.8,
           },
           '60%': { x: randomX, y: randomY },
+          '95%': { opacity: 0.7 },
           '100%': {
             x: -width.value / 2 + 92,
             y: -heightSize.value + (useIsMobileTall() ? 350 : 300),
+            scale: 0.5,
+            opacity: 0,
           },
         },
         duration: getRandomArbitrary(15, 20),
@@ -102,22 +105,25 @@ function startAnim() {
       starToTopElement,
       {
         keyframes: {
-          scale: [1, 1.2, 2, 1.2, 1, 1.4, 1.2, 1.4, 1.2, 1],
-          opacity: [0.8, 0.7, 1, 0.7, 1, 0.9, 0.7, 1, 0.7, 0],
-          '0%': { x: 0 },
-          '10%': { x: 0, y: 10 },
-          '15%': { x: 20 },
+          '0%': { x: 0, opacity: 0 },
+          '10%': { x: 0, y: 10, opacity: 0.7 },
+          '15%': { x: 20, opacity: 1 },
           '40%': {
             backgroundImage: radientColorStart.value,
           },
 
           '45%': {
             backgroundImage: radientColorEnd.value,
+            scale: 0.8,
+            opacity: 0.8,
           },
           '60%': { x: randomXBis, y: randomYBis },
+          '95%': { opacity: 0.5 },
           '100%': {
             x: -width.value / 2 + 28,
             y: -heightSize.value + (useIsMobileTall() ? 350 : 300),
+            scale: 0.5,
+            opacity: 0,
           },
         },
         duration: getRandomArbitrary(15, 20),
@@ -150,8 +156,8 @@ function getRandomArbitrary(min: number, max: number) {
 .star {
   display: block;
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   bottom: 65px;
   opacity: 0;
   background: radial-gradient(hsl(6, 94%, 35%), hsl(10, 89%, 55%) 10%, hsla(180, 100%, 80%, 0) 56%);
