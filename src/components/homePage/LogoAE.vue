@@ -8,22 +8,46 @@
         :key="cubeRender"
       >
         <div ref="front" class="front" :class="cubeColor">
-          <span class="front-color cube_letter-radient p-1">g</span>
+          <span
+            class="front-color cube_letter-radient p-1"
+            :class="$q.dark.isActive ? 'cube_letter-radient--dark' : 'cube_letter-radient--light'"
+            >g</span
+          >
         </div>
         <div ref="back" class="back" :class="cubeColor">
           <span class="reverse-letter back-color" :class="{ anim_revert_web: launchSpin }">
-            <span class="cube_letter-radient">w</span>
-            <span class="cube_letter-radient">e</span>
-            <span class="cube_letter-radient">b</span>
+            <span
+              class="cube_letter-radient"
+              :class="$q.dark.isActive ? 'cube_letter-radient--dark' : 'cube_letter-radient--light'"
+              >w</span
+            >
+            <span
+              class="cube_letter-radient"
+              :class="$q.dark.isActive ? 'cube_letter-radient--dark' : 'cube_letter-radient--light'"
+              >e</span
+            >
+            <span
+              class="cube_letter-radient"
+              :class="$q.dark.isActive ? 'cube_letter-radient--dark' : 'cube_letter-radient--light'"
+              >b</span
+            >
           </span>
         </div>
         <div ref="top" class="top" :class="cubeColor"></div>
         <div ref="bottom" class="bottom" :class="cubeColor"></div>
         <div ref="left" class="left" :class="cubeColor">
-          <span class="left-color cube_letter-radient p-1">G</span>
+          <span
+            class="left-color cube_letter-radient p-1"
+            :class="$q.dark.isActive ? 'cube_letter-radient--dark' : 'cube_letter-radient--light'"
+            >G</span
+          >
         </div>
         <div ref="right" class="right" :class="cubeColor">
-          <span class="right-color cube_letter-radient p-1 top-3">dev</span>
+          <span
+            class="right-color cube_letter-radient p-1 top-3"
+            :class="$q.dark.isActive ? 'cube_letter-radient--dark' : 'cube_letter-radient--light'"
+            >dev</span
+          >
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 @import 'pages.scss';
@@ -9,11 +9,11 @@
   font-style: normal;
 }
 
-.delicious-handrawn-regular {
-  font-family: 'Delicious Handrawn', serif;
-  font-weight: 400;
-  font-style: normal;
-}
+// .delicious-handrawn-regular {
+//   font-family: 'Delicious Handrawn', serif;
+//   font-weight: 400;
+//   font-style: normal;
+// }
 
 .indie-flower-regular {
   font-family: 'Indie Flower', serif;
@@ -57,8 +57,14 @@
   color: $primary;
   border-image: $radient 1;
 }
-.cube_letter-radient {
+.cube_letter-radient--light {
+  background: $radient-light;
+}
+.cube_letter-radient--dark {
   background: $radient;
+}
+
+.cube_letter-radient {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -16,8 +16,9 @@ $primary: #1595ae;
 $dark-primary: #1ed3f7;
 $secondary: #005264;
 $dark-secondary: #bcf5fb;
-$accent: #bf6314;
-$radient: linear-gradient(45deg, $accent, #1ed3f7);
+$accent: #bf4a14;
+$radient: linear-gradient(45deg, $accent, $dark-primary);
+$radient-light: linear-gradient(45deg, $accent, $secondary);
 
 $dark: #4e4e4e;
 $dark-page: #252525;

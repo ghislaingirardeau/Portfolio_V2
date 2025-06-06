@@ -4,9 +4,9 @@
     ref="image"
     alt="photo de Ghislain montagne"
     fit="contain"
-    class="rounded-borders opacity-60 md:w-2/5 img-square z-10"
+    class="rounded-borders md:w-2/5 img-square z-10"
     width="40%"
-    :class="{ 'img-square-done': props.isImageFixed }"
+    :class="imageClasses"
     loading="eager"
     fetchpriority="high"
   >
@@ -14,6 +14,11 @@
 </template>
 
 <script setup lang="ts">
+import { useQuasar } from 'quasar'
+import { computed } from 'vue'
+
+const $q = useQuasar()
+
 const props = defineProps({
   imageSrc: {
     type: String,
@@ -23,6 +28,16 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+})
+
+const imageClasses = computed(() => {
+  let dynamiqClass = props.isImageFixed ? 'img-square-done' : ''
+  if ($q.dark.isActive) {
+    dynamiqClass += ' opacity-60'
+  } else {
+    dynamiqClass += ' opacity-80'
+  }
+  return dynamiqClass
 })
 </script>
 

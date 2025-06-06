@@ -148,10 +148,10 @@ const drawerColor = computed(() => {
 
 function iconColor(currentRoute: string) {
   if ((route.name! as string).includes(currentRoute)) {
-    return $q.dark.mode ? 'dark-primary' : 'primary'
+    return $q.dark.mode ? 'dark-primary' : 'secondary'
   }
   if (currentRoute === route.name) {
-    return $q.dark.mode ? 'dark-primary' : 'primary'
+    return $q.dark.mode ? 'dark-primary' : 'secondary'
   } else {
     return $q.dark.mode ? 'white' : 'dark font-bold'
   }
@@ -195,7 +195,7 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
       duration: ANIM_SHORT.value,
       text: {
         value: label,
-        newClass: `text-h6 ${$q.dark.mode ? 'white' : 'dark'}`,
+        newClass: `text-h6 ${$q.dark.mode ? 'white' : 'dark bold'}`,
       },
       ease: 'none',
     })

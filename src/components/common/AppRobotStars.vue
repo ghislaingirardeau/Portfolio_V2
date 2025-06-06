@@ -97,6 +97,7 @@ function keyframes(left: boolean, starsArbitraryEndPosition: PositionStars, mobi
     '95%': { opacity: 0.7 },
   }
 
+  // If mobile or desktop, the keyframes are different, so add different key/value to to target
   Object.assign(
     target,
     mobile
