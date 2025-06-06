@@ -3,7 +3,7 @@
     <AppBackBtn ref="backButton" />
     <AppViewBtn ref="viewButton" v-if="findProject.link" :link="findProject.link" />
     <q-card
-      class="text-center flex flex-center"
+      class="text-center flex flex-center bg-transparent"
       flat
       bordered
       :class="{ 'my-card-dark': $q.dark.mode }"
@@ -21,7 +21,7 @@
         transition-prev="jump-right"
         transition-next="jump-left"
         infinite
-        class="px-2 opacity-0 scale-75"
+        class="px-2 opacity-0 scale-75 bg-transparent"
         :class="[carouselClass, darkModeClass, usePageMobileLandscapeClass]"
       >
         <q-carousel-slide v-for="(image, index) in findProject.imageURL" :key="index" :name="index">
