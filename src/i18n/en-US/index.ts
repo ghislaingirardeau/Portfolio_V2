@@ -18,6 +18,7 @@ export default {
       visitor: 'Why this portfolio ?',
       me: [
         "To show what is behind my resume and my work, to know more about me. It's has been made as a first interview ;)",
+        'Click on the robot to be guide or to continue',
         '...You can find out a lot more about me on the link below: Malt, Github et LinkedIn',
       ],
     },

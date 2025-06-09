@@ -19,6 +19,8 @@ export default {
       visitor: 'Pourquoi ce portfolio ?',
       me: [
         "Pour en savoir plus sur moi, comment je travaille, des exemples de projets. Ce portfolio est fait dans l'esprit d'un petit entretien ;)",
+        'Touches le robot pour etre guider ou continuer',
+
         "Tu as déjà beaucoup d'autres informations sur les liens ci-dessous: Malt, Github et LinkedIn",
       ],
     },
