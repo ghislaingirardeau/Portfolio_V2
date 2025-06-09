@@ -5,14 +5,14 @@
       :key="index"
       class="star leg-left"
       :class="{ 'star-dark': $q.dark.mode }"
-      ref="starToLeft"
+      ref="starFromLeftLeg"
     ></div>
     <div
       v-for="index in starNumber"
       :key="index"
       class="star leg-right"
       :class="{ 'star-dark': $q.dark.mode }"
-      ref="starToTop"
+      ref="starFromRightLeg"
     ></div>
   </div>
 </template>
@@ -27,17 +27,17 @@ import { onMounted } from 'vue'
 import { useStarSettings } from 'src/utils/useStarSettings'
 
 interface PositionStars {
-  randomY: number
-  randomX: number
-  randomYBis: number
-  randomXBis: number
+  randomLeftEdgeAxisY: number
+  randomLeftEdgeAxisX: number
+  randomRightEdgeAxisY: number
+  randomRightEdgeAxisX: number
   mobileLeftEndX?: number
-  mobileTopEndX?: number
+  mobileRightEndX?: number
   mobileEndY?: number
 }
 
-const starToLeft = useTemplateRefsList()
-const starToTop = useTemplateRefsList()
+const starFromLeftLeg = useTemplateRefsList()
+const starFromRightLeg = useTemplateRefsList()
 
 const { height, width } = useWindowSize()
 const { radientColorEnd, radientColorStart } = useStarSettings()
@@ -71,22 +71,36 @@ const heightSize = computed(() => {
 })
 
 function generateStarsArbitraryEndPosition() {
-  let randomY, randomX, randomYBis, randomXBis, mobileLeftEndX, mobileTopEndX, mobileEndY
+  let randomLeftEdgeAxisY, // robot star from left leg
+    randomLeftEdgeAxisX, // robot star from left leg
+    randomRightEdgeAxisY, // robot star from right leg
+    randomRightEdgeAxisX, // robot star from right leg
+    mobileLeftEndX,
+    mobileRightEndX,
+    mobileEndY
   if (useIsMobile()) {
-    randomY = -heightSize.value + 130 + getRandomArbitrary(0, heightSize.value - 120)
-    randomX = -width.value + 97
-    randomYBis = -heightSize.value + 75
-    randomXBis = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
-    mobileLeftEndX = -width.value / 2 + 92
-    mobileTopEndX = -width.value / 2 + 28
-    mobileEndY = -heightSize.value + (useIsMobileTall() ? 350 : 300)
+    randomLeftEdgeAxisY = -heightSize.value + 130 + getRandomArbitrary(0, heightSize.value - 120)
+    randomLeftEdgeAxisX = -width.value + 97
+    randomRightEdgeAxisY = -heightSize.value + 75
+    randomRightEdgeAxisX = -width.value + 35 + getRandomArbitrary(0, width.value - 15)
+    mobileLeftEndX = -width.value / 2 + 92 // will move the star  to the center of the screen
+    mobileRightEndX = -width.value / 2 + 28 // will move the star  to the center of the screen
+    mobileEndY = -heightSize.value + (useIsMobileTall() ? 350 : 300) // will move the star  to the center of the screen
   } else {
-    randomY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
-    randomX = -width.value + 97
-    randomYBis = -height.value + 75
-    randomXBis = -width.value + 35 + getRandomArbitrary(250, width.value - 15)
+    randomLeftEdgeAxisY = -height.value + 130 + getRandomArbitrary(0, height.value - 120)
+    randomLeftEdgeAxisX = -width.value + 97
+    randomRightEdgeAxisY = -height.value + 75
+    randomRightEdgeAxisX = -width.value + 35 + getRandomArbitrary(250, width.value - 15)
   }
-  return { randomY, randomX, randomYBis, randomXBis, mobileLeftEndX, mobileTopEndX, mobileEndY }
+  return {
+    randomLeftEdgeAxisY,
+    randomLeftEdgeAxisX,
+    randomRightEdgeAxisY,
+    randomRightEdgeAxisX,
+    mobileLeftEndX,
+    mobileRightEndX,
+    mobileEndY,
+  }
 }
 
 function keyframes(left: boolean, starsArbitraryEndPosition: PositionStars, mobile: boolean) {
@@ -112,13 +126,17 @@ function keyframes(left: boolean, starsArbitraryEndPosition: PositionStars, mobi
             scale: 0.8,
           },
           '60%': {
-            x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
-            y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
+            x: left
+              ? starsArbitraryEndPosition.randomLeftEdgeAxisX
+              : starsArbitraryEndPosition.randomRightEdgeAxisX,
+            y: left
+              ? starsArbitraryEndPosition.randomLeftEdgeAxisY
+              : starsArbitraryEndPosition.randomRightEdgeAxisY,
           },
           '100%': {
             x: left
               ? starsArbitraryEndPosition.mobileLeftEndX
-              : starsArbitraryEndPosition.mobileTopEndX,
+              : starsArbitraryEndPosition.mobileRightEndX,
             y: starsArbitraryEndPosition.mobileEndY,
             scale: 0.5,
             opacity: 0,
@@ -134,8 +152,12 @@ function keyframes(left: boolean, starsArbitraryEndPosition: PositionStars, mobi
             opacity: 0.8,
           },
           '100%': {
-            x: left ? starsArbitraryEndPosition.randomX : starsArbitraryEndPosition.randomXBis,
-            y: left ? starsArbitraryEndPosition.randomY : starsArbitraryEndPosition.randomYBis,
+            x: left
+              ? starsArbitraryEndPosition.randomLeftEdgeAxisX
+              : starsArbitraryEndPosition.randomRightEdgeAxisX,
+            y: left
+              ? starsArbitraryEndPosition.randomLeftEdgeAxisY
+              : starsArbitraryEndPosition.randomRightEdgeAxisY,
             scale: 0.5,
             opacity: 0,
           },
@@ -146,9 +168,9 @@ function keyframes(left: boolean, starsArbitraryEndPosition: PositionStars, mobi
 }
 
 function startAnim() {
-  starToLeft.value.forEach((el, index) => {
+  starFromLeftLeg.value.forEach((el, index) => {
     const starsArbitraryEndPosition = generateStarsArbitraryEndPosition() as PositionStars
-    const starToTopElement = starToTop.value[index] as HTMLElement
+    const starFromRightLegElement = starFromRightLeg.value[index] as HTMLElement
     tl.to(
       el,
 
@@ -160,7 +182,7 @@ function startAnim() {
       },
       getRandomArbitrary(0.4, 15),
     ).to(
-      starToTopElement,
+      starFromRightLegElement,
       {
         keyframes: useIsMobile()
           ? keyframes(false, starsArbitraryEndPosition, true)
