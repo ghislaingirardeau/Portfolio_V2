@@ -1,10 +1,10 @@
 <template>
   <div
     ref="carousel"
-    class="row justify-around lg:items-center lg:justify-start lg:ml-4 lg:w-1/2"
-    :class="{ relative: typeDesktop, carousel_container: !useIsMobile() }"
+    class="row justify-around lg:items-center lg:justify-start"
+    :class="carouselClasses.carousel"
   >
-    <div class="absolute left-1 top-1/2">
+    <div :class="carouselClasses.btnPrevious">
       <q-btn
         v-show="currentSlide !== 0"
         ref="carouselPrevious"
@@ -17,7 +17,7 @@
       />
     </div>
 
-    <div class="relative w-full md:w-4/5 lg:w-full">
+    <div class="relative" :class="carouselClasses.carouselSlide">
       <div ref="carouselSlide" class="opacity-0 scale-75">
         <CarouselSlide
           :key="currentSlide"
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="absolute right-1 top-1/2">
+    <div :class="carouselClasses.btnNext">
       <q-btn
         v-show="!endSlider"
         ref="carouselNext"
@@ -63,11 +63,31 @@ const currentSlide = defineModel('currentSlide', { type: Number, required: true 
 
 const emits = defineEmits(['slide-change'])
 
+const props = defineProps({
+  typeDesktop: {
+    type: Boolean,
+    required: true,
+  },
+})
+
 const carousel = ref()
 const carouselPrevious = ref()
 const carouselNext = ref()
 const carouselSlide = ref()
 const tl = gsap.timeline()
+
+const carouselClasses = computed(() => {
+  const classes = {
+    carousel: props.typeDesktop ? 'lg:ml-4 lg:w-1/2 relative' : 'lg:ml-16',
+    btnPrevious: props.typeDesktop ? 'absolute left-1 top-1/2' : 'flex flex-center w-10',
+    btnNext: props.typeDesktop ? 'absolute right-1 top-1/2' : 'flex flex-center w-10',
+    carouselSlide: props.typeDesktop ? 'w-full md:w-4/5 lg:w-full' : 'w-48 md:w-96 lg:w-64',
+  }
+  if (!useIsMobile()) {
+    classes.carousel += ' carousel_container_desktop'
+  }
+  return classes
+})
 
 const { direction } = useSwipe(carousel)
 
@@ -77,17 +97,6 @@ const slideNumber = computed(() => {
 
 const endSlider = computed(() => {
   return currentSlide.value === slideNumber.value - 1
-})
-
-const props = defineProps({
-  typeDesktop: {
-    type: Boolean,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
 })
 
 onMounted(() => {
@@ -157,10 +166,10 @@ function animationSlideButtons() {
 </script>
 
 <style scoped>
-.carousel_container {
-  min-height: calc(100vh - 250px);
+.carousel_container_mobile {
+  min-height: calc(100vh - 200px);
 }
-.slide_container {
-  min-height: calc(100vh - 350px);
+.carousel_container_desktop {
+  height: calc(100vh - 150px);
 }
 </style>

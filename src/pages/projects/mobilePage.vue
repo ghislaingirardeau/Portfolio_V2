@@ -1,10 +1,8 @@
 <template>
   <q-page class="q-pa-lg">
-    <MobileCarouselProjects
+    <CarouselProjectsContainer
       v-model:currentSlide="currentSlide"
-      :class="usePageMobileLandscapeClass"
       :type-desktop="false"
-      name="mobile"
       @slide-change="resetChat"
     />
     <TheRobotContainer @robot-action="robotAction" />
@@ -23,9 +21,9 @@
 import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
-import MobileCarouselProjects from 'src/components/projectPage/MobileCarouselProjects.vue'
+import CarouselProjectsContainer from 'src/components/projectPage/CarouselProjectsContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { useIsMobile, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
+import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
