@@ -34,6 +34,8 @@
       </q-carousel>
     </q-card>
 
+    <TheRobotIdea @click="robotAction" />
+
     <ChatMessageContainer
       v-if="expanded"
       :key="'chat' + chatSlide"
@@ -41,7 +43,6 @@
       :meTexts="chatMeTexts"
       :visitor-texts="chatVisitorTexts"
     />
-    <TheRobotContainer @robot-action="robotAction" />
   </q-page>
 </template>
 
@@ -53,12 +54,12 @@ import type { Project, Description, VisitorChat } from 'src/types/index'
 import { gsap } from 'src/boot/gsap'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import { useQuasar } from 'quasar'
 import AppBackBtn from 'src/components/common/AppBackBtn.vue'
 import AppViewBtn from 'src/components/common/AppViewBtn.vue'
 import { useIsMobileTall, useIsTablet, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)
@@ -198,22 +199,24 @@ function animationImage() {
 }
 
 function robotAction() {
-  if (!expanded.value) {
-    expanded.value = !expanded.value
-    chatSlide.value = 0
-    return
-  }
-  if (expanded.value && chatSlide.value === 0) {
-    chatSlide.value++
-    isRobotTalk.value = false
-    isRobotStepBack.value = true
-    return
-  }
-  if (expanded.value && chatSlide.value === 1) {
-    expanded.value = false
-    isRobotTalk.value = true
-    isRobotStepBack.value = false
-    return
+  if (isRobotClickable.value) {
+    if (!expanded.value) {
+      expanded.value = !expanded.value
+      chatSlide.value = 0
+      return
+    }
+    if (expanded.value && chatSlide.value === 0) {
+      chatSlide.value++
+      isRobotTalk.value = false
+      isRobotStepBack.value = true
+      return
+    }
+    if (expanded.value && chatSlide.value === 1) {
+      expanded.value = false
+      isRobotTalk.value = true
+      isRobotStepBack.value = false
+      return
+    }
   }
 }
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div class="q-pa-lg relative" :class="usePageMobileLandscapeClass">
     <AppAtom :slide-chat="slideChat" @robot-action="robotAction" />
-    <TheRobotContainer @robot-action="robotAction" />
+
+    <TheRobotIdea @click="robotAction" />
+
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :meTexts="chatTexts"
@@ -15,13 +17,18 @@
 
 <script setup lang="ts">
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import AppAtom from 'src/components/stackPage/AppAtom.vue'
 import { usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const { tm } = useI18n({ useScope: 'global' })
+
+const animationSettings = useAnimationSettings()
+const { isRobotClickable } = storeToRefs(animationSettings)
 
 const slideChat = ref(0)
 
@@ -34,10 +41,12 @@ const visitorChatTexts = computed(() => {
 })
 
 function robotAction() {
-  if (slideChat.value === 1) {
-    slideChat.value = 0
-  } else {
-    slideChat.value++
+  if (isRobotClickable.value) {
+    if (slideChat.value === 1) {
+      slideChat.value = 0
+    } else {
+      slideChat.value++
+    }
   }
 }
 </script>

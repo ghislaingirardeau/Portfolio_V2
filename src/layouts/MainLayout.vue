@@ -24,6 +24,7 @@
     </q-page-container>
 
     <TheRobotSkeleton />
+    <TheRobotEye />
 
     <TheFooter v-if="presentationMounted || headerMounted" />
   </q-layout>
@@ -42,7 +43,8 @@ import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
 import { useScreenOrientation } from '@vueuse/core'
 import { useRoute } from 'vue-router'
-import TheRobotSkeleton from 'src/components/TheRobotSkeleton.vue'
+import TheRobotSkeleton from 'src/components/robot/TheRobotSkeleton.vue'
+import TheRobotEye from 'src/components/robot/TheRobotEye.vue'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)

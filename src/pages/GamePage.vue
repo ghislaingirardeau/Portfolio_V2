@@ -60,7 +60,8 @@
       :GAMES_SCORES="GAMES_SCORES"
       :hasCurrentGame="!!GAME_SCORE"
     />
-    <TheRobotContainer />
+    <TheRobotIdea />
+
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         v-if="!isGameStart"
@@ -76,7 +77,7 @@
 import { useLocalStorage } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import GameRunInfos from 'src/components/gamePage/GameRunInfos.vue'
 import PacmanCanvas from 'src/components/gamePage/PacmanCanvas.vue'
 import ScoreDialog from 'src/components/gamePage/ScoreDialog.vue'

@@ -8,13 +8,7 @@
 
     <LogoAEContainer v-if="useIsMobile()" />
 
-    <!-- <div class="mt-28 ml-40">
-      <p class="text-xl text-dark-secondary">Freelance et Formateur occasionel</p>
-      <p class="text-xl text-dark-secondary">Spécialiste Javascript & Typescript</p>
-      <p class="text-xl text-dark-secondary">Vue & Nuxt JS / REST API</p>
-    </div> -->
-
-    <TheRobotContainer @robot-action="robotAction" />
+    <TheRobotIdea @click="robotAction" />
 
     <ChatMessageContainer
       :meTexts="tm('chatMessage.home.me')"
@@ -26,7 +20,7 @@
 <script setup lang="ts">
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import ThePresentation from 'src/components/ThePresentation.vue'
 import { useI18n } from 'vue-i18n'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -38,7 +32,7 @@ import { useIsMobile, usePageMobileLandscapeClass } from 'src/utils/useDeviceInf
 const { t, tm, locale } = useI18n()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isCubeSpining } = storeToRefs(animationSettings)
+const { pageMounted, isCubeSpining, isRobotClickable } = storeToRefs(animationSettings)
 
 const $q = useQuasar()
 
@@ -47,7 +41,9 @@ onMounted(() => {
 })
 
 function robotAction() {
-  isCubeSpining.value = true
+  if (isRobotClickable.value) {
+    isCubeSpining.value = true
+  }
 }
 </script>
 

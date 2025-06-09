@@ -21,7 +21,7 @@
       </q-img>
     </div>
 
-    <TheRobotContainer @robot-action="robotAction" />
+    <TheRobotIdea @click="robotAction" />
 
     <ChatMessageContainer
       :key="'chatContainer' + meSlide"
@@ -36,7 +36,7 @@
 import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -179,17 +179,19 @@ function animationOnSlideIn() {
 }
 
 function robotAction() {
-  if (isRobotFix.value) {
-    fixImage.value = true
-    isRobotTap.value = true
-    isRobotFix.value = false
-    return
-  }
-  if (isRobotTap.value) {
-    isFirstMount.value = true
-    isRobotTap.value = false
-    isRobotFix.value = false
-    return
+  if (isRobotClickable.value) {
+    if (isRobotFix.value) {
+      fixImage.value = true
+      isRobotTap.value = true
+      isRobotFix.value = false
+      return
+    }
+    if (isRobotTap.value) {
+      isFirstMount.value = true
+      isRobotTap.value = false
+      isRobotFix.value = false
+      return
+    }
   }
 }
 

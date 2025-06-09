@@ -3,7 +3,7 @@
     fill="#000000"
     height="90px"
     width="90px"
-    class="right-5 z-50"
+    class="right-5 z-40"
     :class="[robotSvgClass]"
     version="1.1"
     id="Layer_1"

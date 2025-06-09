@@ -3,8 +3,8 @@
     :name="iconType"
     color="accent"
     size="lg"
-    class="fixed robot-idea z-50 cursor-pointer"
-    :class="{ 'robot-idea-mobile-landscape': useIsMobileLandscape }"
+    class="fixed robot-idea-position z-50 opacity-0"
+    :class="{ 'robot-idea-mobile-landscape': useIsMobileLandscape, 'cursor-pointer': iconType }"
     ref="robotIdea"
   ></q-icon>
 </template>
@@ -100,10 +100,9 @@ watch(
 </script>
 
 <style scoped>
-.robot-idea {
-  bottom: 135px;
+.robot-idea-position {
+  bottom: 140px;
   right: 45px;
-  opacity: 0;
 }
 .robot-idea-mobile-landscape {
   position: absolute;

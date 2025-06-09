@@ -9,7 +9,7 @@
       />
     </div>
 
-    <TheRobotContainer @robot-action="robotAction" />
+    <TheRobotIdea @click="robotAction" />
     <ChatMessageContainer
       :key="'chatContainer' + meSlide"
       :meTexts="chatTexts"
@@ -22,12 +22,12 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import AppMeImage from '../common/AppMeImage.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 
 const animationSettings = useAnimationSettings()
 const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSettings)
@@ -70,12 +70,14 @@ function handleSwitchImage(index: number) {
 }
 
 function robotAction() {
-  if (meSlide.value === 2) {
-    handleSwitchImage(0)
-    meSlide.value = 0
-  } else {
-    meSlide.value++
-    handleSwitchImage(meSlide.value)
+  if (isRobotClickable.value) {
+    if (meSlide.value === 2) {
+      handleSwitchImage(0)
+      meSlide.value = 0
+    } else {
+      meSlide.value++
+      handleSwitchImage(meSlide.value)
+    }
   }
 }
 </script>

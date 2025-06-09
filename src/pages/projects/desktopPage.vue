@@ -5,7 +5,9 @@
       :type-desktop="true"
       @slide-change="resetChat"
     />
-    <TheRobotContainer @robot-action="robotAction" />
+
+    <TheRobotIdea @click="robotAction" />
+
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :visitor-texts="visitorChatMessageToDisplay"
@@ -20,8 +22,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotContainer from 'src/components/common/TheRobotContainer.vue'
 import CarouselProjectsContainer from 'src/components/projectPage/CarouselProjectsContainer.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { computed, onMounted } from 'vue'
@@ -72,10 +74,12 @@ function resetChat() {
 }
 
 function robotAction() {
-  if (chatPage.value === 0) {
-    chatPage.value++
-    animationSettings.resetRobotAction()
-    return
+  if (isRobotClickable.value) {
+    if (chatPage.value === 0) {
+      chatPage.value++
+      animationSettings.resetRobotAction()
+      return
+    }
   }
 }
 </script>

@@ -1,26 +1,21 @@
 <template>
-  <div class="cursor-pointer">
-    <TheRobotIdea />
-    <div>
-      <div
-        :key="'reset-' + useIsMobileLandscape"
-        class="eye fixed grad"
-        :class="{
-          'is-clickable':
-            isRobotClickable && !$q.dark.isActive && isAnimationDone && !isRobotProcessing,
-          'is-loading': (!isAnimationDone || isRobotProcessing) && !$q.dark.isActive,
-          'grad-dark': $q.dark.isActive,
-          'is-loading-dark': $q.dark.isActive && !isAnimationDone,
-          'is-clickable-dark':
-            $q.dark.isActive && isRobotClickable && isAnimationDone && !isRobotProcessing,
-          'slow-motion-mobile': useIsMobile(),
-          'eye-container-mobile-landscape': useIsMobileLandscape,
-          moveEyes,
-        }"
-        ref="eye"
-      ></div>
-    </div>
-  </div>
+  <div
+    :key="'reset-' + useIsMobileLandscape"
+    class="eye fixed grad"
+    :class="{
+      'is-clickable':
+        isRobotClickable && !$q.dark.isActive && isAnimationDone && !isRobotProcessing,
+      'is-loading': (!isAnimationDone || isRobotProcessing) && !$q.dark.isActive,
+      'grad-dark': $q.dark.isActive,
+      'is-loading-dark': $q.dark.isActive && !isAnimationDone,
+      'is-clickable-dark':
+        $q.dark.isActive && isRobotClickable && isAnimationDone && !isRobotProcessing,
+      'slow-motion-mobile': useIsMobile(),
+      'eye-container-mobile-landscape': useIsMobileLandscape,
+      moveEyes,
+    }"
+    ref="eye"
+  ></div>
 </template>
 
 <script setup lang="ts">
@@ -32,7 +27,6 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { useIsMobile, useIsMobileLandscape } from 'src/utils/useDeviceInfo'
-import TheRobotIdea from './TheRobotIdea.vue'
 
 // const eye = useTemplateRef<any>('eye')
 const eye = ref()
