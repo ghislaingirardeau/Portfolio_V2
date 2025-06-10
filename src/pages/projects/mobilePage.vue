@@ -26,15 +26,21 @@ import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import CarouselProjectsContainer from 'src/components/projectPage/CarouselProjectsContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { tm, t } = useI18n({ useScope: 'global' })
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable, isRobotTap, isRobotTalk, isRobotProcessing, pageMounted } =
-  storeToRefs(animationSettings)
+const {
+  isRobotClickable,
+  isRobotTap,
+  isRobotTalk,
+  isRobotProcessing,
+  pageMounted,
+  executeRobotAction,
+} = storeToRefs(animationSettings)
 
 const currentSlide = ref(0)
 const chatPage = ref(0)
@@ -74,6 +80,17 @@ function resetChat() {
   isRobotTalk.value = true
   isRobotClickable.value = true
 }
+
+// When click on the robot inside the layout, it will execute the action
+watch(
+  () => executeRobotAction.value,
+  (newValue: boolean) => {
+    if (newValue) {
+      robotAction()
+      executeRobotAction.value = false
+    }
+  },
+)
 
 function robotAction() {
   if (isRobotClickable.value) {

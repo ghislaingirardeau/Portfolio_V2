@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type { Project, Description, VisitorChat } from 'src/types/index'
@@ -68,7 +68,7 @@ const route = useRoute()
 const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable, isRobotTalk, isRobotStepBack } =
+const { pageMounted, isRobotClickable, isRobotTalk, isRobotStepBack, executeRobotAction } =
   storeToRefs(animationSettings)
 
 const slide = ref(0)
@@ -197,6 +197,17 @@ function animationImage() {
     isRobotTalk.value = true
   })
 }
+
+// When click on the robot inside the layout, it will execute the action
+watch(
+  () => executeRobotAction.value,
+  (newValue: boolean) => {
+    if (newValue) {
+      robotAction()
+      executeRobotAction.value = false
+    }
+  },
+)
 
 function robotAction() {
   if (isRobotClickable.value) {

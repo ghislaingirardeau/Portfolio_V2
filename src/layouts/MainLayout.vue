@@ -23,7 +23,7 @@
       <AppRobotStars v-if="route.name !== 'game'" :key="'reset' + orientation" />
     </q-page-container>
 
-    <TheRobotSkeleton />
+    <TheRobotSkeleton @click="robotAction" />
     <TheRobotEye />
 
     <TheFooter v-if="presentationMounted || headerMounted" />
@@ -47,7 +47,8 @@ import TheRobotSkeleton from 'src/components/robot/TheRobotSkeleton.vue'
 import TheRobotEye from 'src/components/robot/TheRobotEye.vue'
 
 const animationSettings = useAnimationSettings()
-const { headerMounted, presentationMounted, drawerMounted } = storeToRefs(animationSettings)
+const { headerMounted, presentationMounted, drawerMounted, executeRobotAction, isRobotClickable } =
+  storeToRefs(animationSettings)
 
 const leftDrawerOpen = ref(false)
 const isBackgroundMount = ref(false)
@@ -77,10 +78,11 @@ watch(
   { once: true },
 )
 
-//TODO:
-// block click on is animating
-// un fond ecran spé desktop + mobile avec anim (les techs en fond écran ?)
-// quasar tag html
+function robotAction() {
+  if (isRobotClickable.value) {
+    executeRobotAction.value = true
+  }
+}
 </script>
 
 <style scoped lang="scss">

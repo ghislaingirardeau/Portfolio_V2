@@ -20,7 +20,7 @@ import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue
 import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import AppAtom from 'src/components/stackPage/AppAtom.vue'
 import { usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -28,7 +28,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 const { tm } = useI18n({ useScope: 'global' })
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable } = storeToRefs(animationSettings)
+const { isRobotClickable, executeRobotAction } = storeToRefs(animationSettings)
 
 const slideChat = ref(0)
 
@@ -39,6 +39,17 @@ const chatTexts = computed(() => {
 const visitorChatTexts = computed(() => {
   return tm(`chatMessage.stack.${slideChat.value}.title`) as string
 })
+
+// When click on the robot inside the layout, it will execute the action
+watch(
+  () => executeRobotAction.value,
+  (newValue: boolean) => {
+    if (newValue) {
+      robotAction()
+      executeRobotAction.value = false
+    }
+  },
+)
 
 function robotAction() {
   if (isRobotClickable.value) {

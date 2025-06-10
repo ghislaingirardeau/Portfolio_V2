@@ -25,20 +25,32 @@ import ThePresentation from 'src/components/ThePresentation.vue'
 import { useI18n } from 'vue-i18n'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { useIsMobile, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 
 const { t, tm, locale } = useI18n()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isCubeSpining, isRobotClickable } = storeToRefs(animationSettings)
+const { pageMounted, isCubeSpining, isRobotClickable, executeRobotAction } =
+  storeToRefs(animationSettings)
 
 const $q = useQuasar()
 
 onMounted(() => {
   pageMounted.value = false
 })
+
+// When click on the robot inside the layout, it will execute the action
+watch(
+  () => executeRobotAction.value,
+  (newValue: boolean) => {
+    if (newValue) {
+      robotAction()
+      executeRobotAction.value = false
+    }
+  },
+)
 
 function robotAction() {
   if (isRobotClickable.value) {

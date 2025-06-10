@@ -55,7 +55,7 @@ const iconType = computed(() => {
   if (isRobotClickable.value) {
     return mdiLightbulbOnOutline
   } else {
-    return undefined
+    return mdiLightbulbOnOutline
   }
 })
 
@@ -63,7 +63,7 @@ watch(
   () => isAnimationDone.value,
   (newValue) => {
     const duration = 0.5
-    if (newValue) {
+    if (newValue && isRobotClickable.value) {
       gsap.to(robotIdea.value!.$el, {
         duration,
         y: -10,
@@ -82,6 +82,7 @@ watch(
   () => isRobotClickable.value,
   (newValue) => {
     const duration = 0.5
+
     if (!newValue) {
       gsap.to(robotIdea.value!.$el, {
         duration,

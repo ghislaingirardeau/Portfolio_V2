@@ -36,6 +36,8 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
 
   const isRobotProcessing = ref(false)
 
+  const executeRobotAction = ref(false)
+
   function resetRobotAction() {
     isRobotClickable.value = false
     isRobotProcessing.value = false
@@ -81,5 +83,6 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     presentationMounted,
     pageMounted,
     isAnimationDone,
+    executeRobotAction,
   }
 })

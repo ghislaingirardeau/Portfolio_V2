@@ -23,14 +23,15 @@
 import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import AppMeImage from '../common/AppMeImage.vue'
 import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable, isRobotTalk } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotTalk, executeRobotAction } =
+  storeToRefs(animationSettings)
 const route = useRoute()
 
 const { tm } = useI18n({ useScope: 'global' })
@@ -61,6 +62,17 @@ onMounted(() => {
   isRobotClickable.value = true
   isRobotTalk.value = true
 })
+
+// When click on the robot inside the layout, it will execute the action
+watch(
+  () => executeRobotAction.value,
+  (newValue: boolean) => {
+    if (newValue) {
+      robotAction()
+      executeRobotAction.value = false
+    }
+  },
+)
 
 function handleSwitchImage(index: number) {
   const imgPrevIndex = isImageFixed.value.findIndex((el) => el === true)

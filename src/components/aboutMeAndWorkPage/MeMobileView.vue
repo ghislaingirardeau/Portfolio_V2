@@ -52,7 +52,8 @@ import AppImgOverlay from '../common/AppImgOverlay.vue'
 
 const route = useRoute()
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable, isRobotFix, isRobotTap } = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotFix, isRobotTap, executeRobotAction } =
+  storeToRefs(animationSettings)
 
 const meSlide = ref(0)
 const image = ref()
@@ -109,6 +110,17 @@ watch(
       nextSlide()
     } else if (newValue === 'right') {
       previousSlide()
+    }
+  },
+)
+
+// When click on the robot inside the layout, it will execute the action
+watch(
+  () => executeRobotAction.value,
+  (newValue: boolean) => {
+    if (newValue) {
+      robotAction()
+      executeRobotAction.value = false
     }
   },
 )
