@@ -10,7 +10,7 @@
       <ChatMessageContainer
         :visitor-texts="visitorChatMessageToDisplay"
         :meTexts="chatMessageToDisplay"
-        :key="chatPage + currentSlide"
+        :key="`${chatPage}${currentSlide}`"
         :delay-animation="0.1"
       />
     </transition>
