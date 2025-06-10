@@ -23,7 +23,7 @@
       <AppRobotStars v-if="route.name !== 'game'" :key="'reset' + orientation" />
     </q-page-container>
 
-    <TheRobotSkeleton @click="robotAction" />
+    <TheRobotSkeleton @click="robotAction" :class="isRobotClickable ? 'cursor-pointer' : ''" />
     <TheRobotEye />
     <TheRobotIdea />
 

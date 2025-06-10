@@ -4,7 +4,7 @@
     color="accent"
     size="lg"
     class="fixed robot-idea-position z-50 opacity-0"
-    :class="{ 'robot-idea-mobile-landscape': useIsMobileLandscape, 'cursor-pointer': iconType }"
+    :class="{ 'robot-idea-mobile-landscape': useIsMobileLandscape }"
     ref="robotIdea"
   ></q-icon>
 </template>
