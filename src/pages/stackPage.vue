@@ -2,8 +2,6 @@
   <div class="q-pa-lg relative" :class="usePageMobileLandscapeClass">
     <AppAtom :slide-chat="slideChat" @robot-action="robotAction" />
 
-    <TheRobotIdea @click="robotAction" />
-
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :meTexts="chatTexts"
@@ -17,7 +15,6 @@
 
 <script setup lang="ts">
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import AppAtom from 'src/components/stackPage/AppAtom.vue'
 import { usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
 import { computed, ref, watch } from 'vue'

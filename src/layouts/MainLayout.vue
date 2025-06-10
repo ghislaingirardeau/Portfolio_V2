@@ -25,6 +25,7 @@
 
     <TheRobotSkeleton @click="robotAction" />
     <TheRobotEye />
+    <TheRobotIdea />
 
     <TheFooter v-if="presentationMounted || headerMounted" />
   </q-layout>
@@ -45,6 +46,7 @@ import { useScreenOrientation } from '@vueuse/core'
 import { useRoute } from 'vue-router'
 import TheRobotSkeleton from 'src/components/robot/TheRobotSkeleton.vue'
 import TheRobotEye from 'src/components/robot/TheRobotEye.vue'
+import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted, executeRobotAction, isRobotClickable } =

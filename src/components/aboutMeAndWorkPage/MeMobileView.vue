@@ -21,8 +21,6 @@
       </q-img>
     </div>
 
-    <TheRobotIdea @click="robotAction" />
-
     <ChatMessageContainer
       :key="'chatContainer' + meSlide"
       :meTexts="chatTexts"
@@ -36,7 +34,6 @@
 import { storeToRefs } from 'pinia'
 import { gsap } from 'src/boot/gsap'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
-import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'

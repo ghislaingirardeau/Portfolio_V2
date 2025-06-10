@@ -34,8 +34,6 @@
       </q-carousel>
     </q-card>
 
-    <TheRobotIdea @click="robotAction" />
-
     <ChatMessageContainer
       v-if="expanded"
       :key="'chat' + chatSlide"
@@ -59,7 +57,6 @@ import { useQuasar } from 'quasar'
 import AppBackBtn from 'src/components/common/AppBackBtn.vue'
 import AppViewBtn from 'src/components/common/AppViewBtn.vue'
 import { useIsMobileTall, useIsTablet, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
-import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)

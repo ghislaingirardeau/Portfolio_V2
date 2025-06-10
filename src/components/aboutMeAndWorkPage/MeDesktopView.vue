@@ -9,7 +9,6 @@
       />
     </div>
 
-    <TheRobotIdea @click="robotAction" />
     <ChatMessageContainer
       :key="'chatContainer' + meSlide"
       :meTexts="chatTexts"
@@ -27,7 +26,6 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import AppMeImage from '../common/AppMeImage.vue'
-import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 
 const animationSettings = useAnimationSettings()
 const { pageMounted, isRobotClickable, isRobotTalk, executeRobotAction } =

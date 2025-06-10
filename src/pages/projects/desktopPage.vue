@@ -6,8 +6,6 @@
       @slide-change="resetChat"
     />
 
-    <TheRobotIdea @click="robotAction" />
-
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <ChatMessageContainer
         :visitor-texts="visitorChatMessageToDisplay"
@@ -23,7 +21,6 @@
 import { storeToRefs } from 'pinia'
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import CarouselProjectsContainer from 'src/components/projectPage/CarouselProjectsContainer.vue'
-import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobile } from 'src/utils/useDeviceInfo'
 import { computed, onMounted, watch } from 'vue'

@@ -8,8 +8,6 @@
 
     <LogoAEContainer v-if="useIsMobile()" />
 
-    <TheRobotIdea @click="robotAction" />
-
     <ChatMessageContainer
       :meTexts="tm('chatMessage.home.me')"
       :visitor-texts="t('chatMessage.home.visitor')"
@@ -20,7 +18,6 @@
 <script setup lang="ts">
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
-import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
 import ThePresentation from 'src/components/ThePresentation.vue'
 import { useI18n } from 'vue-i18n'
 import { useAnimationSettings } from 'src/stores/animationSettings'
