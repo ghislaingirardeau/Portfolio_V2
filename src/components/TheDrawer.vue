@@ -211,13 +211,12 @@ watch(
 )
 </script>
 
-<style lang="scss">
-.q-drawer {
+<style scoped lang="scss">
+:deep(.q-drawer) {
   opacity: 0.9 !important;
-}
-aside {
   background-color: transparent !important;
 }
+
 .border_drawer-gradient {
   border-right: 2px solid !important;
   border-image: linear-gradient(to top, #00000000, $dark-primary) 1 !important;
