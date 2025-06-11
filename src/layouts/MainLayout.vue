@@ -2,6 +2,7 @@
   <q-layout
     view="hHh lpR fFf"
     class="indie-flower-regular bg-image"
+    :key="`${breakpoints.active().value}`"
     :class="
       isBackgroundMount
         ? $q.dark.isActive
@@ -38,7 +39,7 @@ import TheHeader from 'src/components/TheHeader.vue'
 import { useAnimationSettings } from 'src/stores/animationSettings'
 import { onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useIsMobile } from 'src/utils/useDeviceInfo'
+import { useIsMobile, breakpoints } from 'src/utils/useDeviceInfo'
 import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
@@ -64,7 +65,7 @@ const route = useRoute()
 onMounted(() => {
   setTimeout(() => {
     isBackgroundMount.value = true
-  }, 50)
+  }, 200)
   if (useIsMobile()) {
     drawerMounted.value = true
   }
@@ -88,21 +89,6 @@ function robotAction() {
 </script>
 
 <style scoped lang="scss">
-@mixin bg-image() {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.8;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-  background-position: 80% center;
-}
-
 .bg-image::before {
   content: '';
   position: absolute;

@@ -1,7 +1,7 @@
 import { useBreakpoints, useScreenOrientation, useWindowSize } from '@vueuse/core'
 import { computed } from 'vue'
 
-const breakpoints = useBreakpoints({
+export const breakpoints = useBreakpoints({
   mobile: 0,
   tablet: 640,
   laptop: 1024,
