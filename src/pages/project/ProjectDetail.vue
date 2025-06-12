@@ -65,8 +65,14 @@ const route = useRoute()
 const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
-const { pageMounted, isRobotClickable, isRobotTalk, isRobotStepBack, executeRobotAction } =
-  storeToRefs(animationSettings)
+const {
+  pageMounted,
+  isRobotClickable,
+  isRobotTalk,
+  isRobotStepBack,
+  executeRobotAction,
+  presentationMounted,
+} = storeToRefs(animationSettings)
 
 const slide = ref(0)
 const expanded = ref(false)
@@ -122,6 +128,9 @@ const darkModeClass = computed(() => {
 })
 
 onMounted(() => {
+  if (!presentationMounted.value) {
+    presentationMounted.value = true
+  }
   pageMounted.value = false
   isRobotTalk.value = true
   animationCardTitle()

@@ -17,7 +17,7 @@
 import ChatMessageContainer from 'src/components/common/ChatMessageContainer.vue'
 import AppAtom from 'src/components/stackPage/AppAtom.vue'
 import { usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import { useAnimationSettings } from 'src/stores/animationSettings'
@@ -25,7 +25,8 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 const { tm } = useI18n({ useScope: 'global' })
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable, executeRobotAction } = storeToRefs(animationSettings)
+const { isRobotClickable, executeRobotAction, presentationMounted, pageMounted } =
+  storeToRefs(animationSettings)
 
 const slideChat = ref(0)
 
@@ -35,6 +36,14 @@ const chatTexts = computed(() => {
 
 const visitorChatTexts = computed(() => {
   return tm(`chatMessage.stack.${slideChat.value}.title`) as string
+})
+
+onMounted(() => {
+  // Ensure the presentation is mounted when the page is loaded, other load the page
+  if (!presentationMounted.value) {
+    presentationMounted.value = true
+  }
+  pageMounted.value = false
 })
 
 // When click on the robot inside the layout, it will execute the action

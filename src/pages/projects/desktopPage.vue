@@ -30,7 +30,7 @@ import { useI18n } from 'vue-i18n'
 const { tm, t } = useI18n({ useScope: 'global' })
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable, isRobotTalk, pageMounted, executeRobotAction } =
+const { isRobotClickable, isRobotTalk, pageMounted, executeRobotAction, presentationMounted } =
   storeToRefs(animationSettings)
 
 const currentSlide = ref(0)
@@ -61,6 +61,9 @@ const visitorChatMessageToDisplay = computed(() => {
 })
 
 onMounted(() => {
+  if (!presentationMounted.value) {
+    presentationMounted.value = true
+  }
   pageMounted.value = false
   isRobotTalk.value = true
 })

@@ -3,7 +3,7 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 
 const animationSettings = useAnimationSettings()
 
-export default boot(({ router, redirect }) => {
+export default boot(({ router /* redirect */ }) => {
   router.beforeEach((to, from, next) => {
     animationSettings.resetRobotAction()
     // if (!from.name && to.name !== 'home') {

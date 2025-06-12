@@ -27,6 +27,7 @@ const loadComponent = computed(() => {
 })
 
 onMounted(() => {
+  // Ensure the presentation is mounted when the page is loaded, other load the page
   if (!presentationMounted.value) {
     presentationMounted.value = true
   }

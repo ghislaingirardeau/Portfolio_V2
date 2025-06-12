@@ -26,14 +26,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/pages/project/ProjectDetail.vue'),
       },
       { path: '/game', name: 'game', component: () => import('pages/GamePage.vue') },
+      {
+        path: '/:catchAll(.*)*',
+        name: 'error',
+        component: () => import('pages/ErrorNotFound.vue'),
+      },
     ],
-  },
-
-  // Always leave this as last one,
-  // but you can also remove it
-  {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
   },
 ]
 

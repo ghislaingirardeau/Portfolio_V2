@@ -155,9 +155,14 @@ function gameIsOver(victory: boolean) {
 /* CHAT MESSAGES */
 
 const animationSettings = useAnimationSettings()
-const { isRobotClickable } = storeToRefs(animationSettings)
+const { isRobotClickable, presentationMounted, pageMounted } = storeToRefs(animationSettings)
 
 onMounted(() => {
+  // Ensure the presentation is mounted when the page is loaded, other load the page
+  if (!presentationMounted.value) {
+    presentationMounted.value = true
+  }
+  pageMounted.value = false
   isRobotClickable.value = false
 })
 

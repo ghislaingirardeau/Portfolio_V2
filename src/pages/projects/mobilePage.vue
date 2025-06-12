@@ -37,6 +37,7 @@ const {
   isRobotProcessing,
   pageMounted,
   executeRobotAction,
+  presentationMounted,
 } = storeToRefs(animationSettings)
 
 const currentSlide = ref(0)
@@ -67,6 +68,9 @@ const visitorChatMessageToDisplay = computed(() => {
 })
 
 onMounted(() => {
+  if (!presentationMounted.value) {
+    presentationMounted.value = true
+  }
   pageMounted.value = false
 
   isRobotTalk.value = true
