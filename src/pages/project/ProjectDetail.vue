@@ -9,7 +9,7 @@
       :class="{ 'my-card-dark': $q.dark.mode }"
     >
       <q-card-section class="my-card-title w-full">
-        <div ref="cardOverline" class="text-h6 opacity-50" :class="overlineColor"></div>
+        <div ref="cardOverline" class="text-h5 opacity-50" :class="overlineColor"></div>
         <div ref="cardTitle" class="text-h5 q-mt-sm q-mb-xs opacity-20 scale-50"></div>
         <div ref="cardCaption" class="text-h7 my-1 opacity-50" :class="captionColor"></div>
       </q-card-section>
@@ -105,7 +105,7 @@ const chatVisitorTexts = computed(() => {
 })
 
 const captionColor = computed(() => {
-  return $q.dark.mode ? 'text-gray-300' : 'text-gray-400'
+  return $q.dark.mode ? 'text-gray-300' : 'text-gray-800'
 })
 
 const overlineColor = computed(() => {

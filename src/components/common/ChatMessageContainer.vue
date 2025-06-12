@@ -5,7 +5,7 @@
   >
     <q-chat-message
       v-if="visitorTexts"
-      :class="{ 'opacity-70': $q.dark.isActive }"
+      :class="[chatOpacityClass]"
       ref="receivedMessage"
       :bg-color="chatReceivedBg"
       :text-color="chatReceivedColor"
@@ -18,7 +18,7 @@
       :text-color="chatColor"
       :bg-color="chatBg"
       ref="sentMessages"
-      :class="{ 'opacity-70': $q.dark.isActive }"
+      :class="[chatOpacityClass]"
     >
       <div
         v-for="(text, index) in props.meTexts"
@@ -43,9 +43,11 @@ import {
   useIsTablet,
 } from 'src/utils/useDeviceInfo'
 import { computed, onMounted, useTemplateRef, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const animationSettings = useAnimationSettings()
 const $q = useQuasar()
+const route = useRoute()
 
 const { pageMounted } = storeToRefs(animationSettings)
 
@@ -79,6 +81,10 @@ const chatReceivedBg = computed(() => {
 
 const chatReceivedColor = computed(() => {
   return $q.dark.mode ? 'white' : 'dark'
+})
+
+const chatOpacityClass = computed(() => {
+  return $q.dark.isActive && route.name !== 'project-detail' ? 'opacity-70' : 'opacity-100'
 })
 
 const fontSize = computed(() => {
