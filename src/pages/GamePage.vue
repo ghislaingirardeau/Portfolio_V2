@@ -162,8 +162,8 @@ onMounted(() => {
   if (!presentationMounted.value) {
     presentationMounted.value = true
   }
-  pageMounted.value = false
   isRobotClickable.value = false
+  pageMounted.value = true
 })
 
 const chatTexts = computed(() => {
