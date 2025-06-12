@@ -161,7 +161,6 @@ function spinCubeAnimation() {
   width: 150px;
   transform-style: preserve-3d;
   transform: rotateY(-50deg) rotateX(10deg);
-  cursor: pointer;
 }
 .cube div {
   position: absolute;
