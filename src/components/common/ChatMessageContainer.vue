@@ -140,17 +140,20 @@ watch(pageMounted, (newValue) => {
 })
 </script>
 
-<style lang="scss">
-.q-message-text {
-  opacity: 0;
-  transform: translateX(-30px);
-  &:last-child {
-    min-height: unset;
+<style lang="scss" scoped>
+// :deep => to get the child element inside quasar component inside a scoped
+:deep() {
+  .q-message-text {
+    opacity: 0;
+    transform: translateX(-30px);
+    &:last-child {
+      min-height: unset;
+    }
   }
-}
 
-.q-message-name {
-  opacity: 0;
-  transform: translateX(-30px);
+  .q-message-name {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
 }
 </style>
