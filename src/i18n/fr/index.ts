@@ -25,7 +25,7 @@ export default {
     },
     game: {
       visitor: 'Pourquoi ce petit jeu ? Et comment y jouer ?',
-      me: "J'étais curieux de savoir comment cela fonctionne. J'ai donc décidé de le faire moi-même.",
+      me: "J'étais curieux de savoir comment cela le faire en HTML/CSS/JS. J'ai donc décidé de le faire moi-même.",
       me_desktop: "Au 'Start', utilises les flèches de ton clavier",
       me_mobile: "Au 'Start', glisse ton doigt pour diriger Pacman",
     },

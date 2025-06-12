@@ -100,7 +100,7 @@ const endSlider = computed(() => {
 })
 
 onMounted(() => {
-  animationSettings.navigationRestartRobot()
+  animationSettings.resetRobotAction()
   isRobotTalk.value = true
   pageMounted.value = false
   animationSlide()

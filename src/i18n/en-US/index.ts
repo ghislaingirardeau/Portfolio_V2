@@ -24,7 +24,7 @@ export default {
     },
     game: {
       visitor: 'Why this little game? And how to play it?',
-      me: 'I was curious to know how it works, so I decided to do it myself.',
+      me: 'I was curious to know how it works using HTML/CSS/JS, so I decided to do it myself.',
       me_desktop: "At 'Start', use the arrows on your keyboard",
       me_mobile: "At 'Start', slide your finger to control Pacman",
     },
