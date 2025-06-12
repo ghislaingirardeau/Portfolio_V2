@@ -24,6 +24,7 @@
       <AppRobotStars v-if="route.name !== 'game'" :key="'reset' + orientation" />
     </q-page-container>
 
+    <!-- robot container -->
     <TheRobotSkeleton @click="robotAction" :class="isRobotClickable ? 'cursor-pointer' : ''" />
     <TheRobotEye />
     <TheRobotIdea />
@@ -63,6 +64,7 @@ const { orientation } = useScreenOrientation()
 const route = useRoute()
 
 onMounted(() => {
+  // to apply the background image after the layout is mounted so the animation can be applied
   setTimeout(() => {
     isBackgroundMount.value = true
   }, 200)
@@ -71,6 +73,7 @@ onMounted(() => {
   }
 })
 
+// by default the drawner is closed on mobile devices, on desktop it will open when header is mounted
 watch(
   () => headerMounted.value,
   (newValue) => {
@@ -81,6 +84,7 @@ watch(
   { once: true },
 )
 
+// It will execute the robot action spread inside the current page component using watch in it
 function robotAction() {
   if (isRobotClickable.value) {
     executeRobotAction.value = true

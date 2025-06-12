@@ -28,8 +28,11 @@
       >
         <h1 class="text-xl">GG WebDev</h1>
       </q-toolbar-title>
+
       <q-space />
+
       <SwitchModeBtn />
+
       <SwitchLangBtn />
     </q-toolbar>
   </q-header>

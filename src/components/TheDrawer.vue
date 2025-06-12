@@ -86,6 +86,7 @@ const menuIcon = useTemplateRefsList<any>()
 
 const leftDrawerOpen = defineModel('leftDrawerOpen', { type: Boolean, required: true })
 
+// menu content with submenus
 const menuList = computed(() => [
   {
     icon: mdiSourceRepository,
@@ -159,7 +160,7 @@ function handleShowMenu() {
   handleMenuAnimation(0, true)
 }
 
-function handleMenuAnimation(delay: number, isFirstMount: boolean) {
+function handleMenuAnimation(delay: number, hasToAnimateIcon: boolean) {
   drawerMounted.value = false
   const tl = gsap.timeline({ delay: delay })
 
@@ -171,7 +172,7 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
     }
   })
 
-  if (isFirstMount) {
+  if (hasToAnimateIcon) {
     flatMenuAndSubMenu.forEach((_, index) => {
       const elementTarget = menuIcon.value[index].$el as HTMLDivElement
       tl.to(
@@ -198,11 +199,14 @@ function handleMenuAnimation(delay: number, isFirstMount: boolean) {
       ease: 'none',
     })
   })
+
+  // at the end of the animation, set the drawerMounted to true
   tl.call(() => {
     drawerMounted.value = true
   })
 }
 
+// if language changes, reset the menu animation but no need to reset icons rotation, only text
 watch(
   () => locale.value,
   () => {
@@ -212,17 +216,18 @@ watch(
 </script>
 
 <style scoped lang="scss">
-:deep(.q-drawer) {
-  opacity: 0.9 !important;
-  background-color: transparent !important;
-}
-
-.border_drawer-gradient {
-  border-right: 2px solid !important;
-  border-image: linear-gradient(to top, #00000000, $dark-primary) 1 !important;
-}
-.border_drawer-gradient--light {
-  border-right: 2px solid !important;
-  border-image: linear-gradient(to top, #ffffff00, $primary) 1 !important;
+:deep() {
+  .q-drawer {
+    opacity: 0.9 !important;
+    background-color: transparent !important;
+  }
+  .border_drawer-gradient {
+    border-right: 2px solid !important;
+    border-image: linear-gradient(to top, #00000000, $dark-primary) 1 !important;
+  }
+  .border_drawer-gradient--light {
+    border-right: 2px solid !important;
+    border-image: linear-gradient(to top, #ffffff00, $primary) 1 !important;
+  }
 }
 </style>

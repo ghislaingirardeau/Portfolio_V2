@@ -63,6 +63,7 @@ watch(
   () => isAnimationDone.value,
   (newValue) => {
     const duration = 0.5
+    // is animation and one action possible next, show the icon
     if (newValue && isRobotClickable.value) {
       gsap.to(robotIdea.value!.$el, {
         duration,
@@ -70,6 +71,7 @@ watch(
         opacity: 1,
       })
     } else {
+      // is animation and no action possible next, hide the icon
       gsap.to(robotIdea.value!.$el, {
         duration,
         y: 0,
