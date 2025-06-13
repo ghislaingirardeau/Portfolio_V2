@@ -32,6 +32,19 @@ export default {
       mobileTab: {
         0: {
           0: {
+            title: `A shopping list app, why?`,
+            description: [
+              `My latest purchases are saved. My list is sorted by department. I have direct access to my loyalty card. I can see its code to redeem my discounts. It takes very little time to load.`,
+              `This app aims to solve all these problems ;)`,
+            ],
+          },
+          1: {
+            title: `I want to know more?`,
+            description: ['Follow me...'],
+          },
+        },
+        1: {
+          0: {
             title: `Why did you make a mini game ?`,
             description: [
               'To learn something other than an application or website. The aim here was also to work on unit and functional tests',
@@ -44,7 +57,7 @@ export default {
             ],
           },
         },
-        1: {
+        2: {
           0: {
             title: `Are these mobile applications?`,
             description: [
@@ -58,7 +71,7 @@ export default {
             ],
           },
         },
-        2: {
+        3: {
           0: {
             title: `Are these personal or professional projects?`,
             description: [
@@ -95,6 +108,23 @@ export default {
       mobileTab: {
         0: {
           0: {
+            title: `A shopping list app, why?`,
+            description: [
+              `With existing apps: I have to retype all the words on my shopping list when I delete it. My list isn't sorted by department, so I have to go back and forth. I have to open one app for my shopping and another for my loyalty card, which takes too long to load. I have several loyalty cards and I never remember the code to redeem my discounts!`,
+              `This app aims to solve all these problems ;)`,
+            ],
+          },
+          1: {
+            title: `What's your promise?`,
+            description: [
+              `Speed: Internal data storage and therefore few API requests, the list grows as you enter information (no need to retype everything), at the end of your shopping, select your loyalty card`,
+              `Simple: Scan the barcode to save it quickly, associate the loyalty card password`,
+              `Authentication: Fast with Google Auth or Passkey`,
+            ],
+          },
+        },
+        1: {
+          0: {
             title: `Is it a mini game for mobiles?`,
             description: [
               "Yes, it's a wordle. I developed it using Test Driven Development with the following libraries",
@@ -112,7 +142,7 @@ export default {
             ],
           },
         },
-        1: {
+        2: {
           0: {
             title: `Is this a mobile application? What's it for?`,
             description: [
@@ -131,7 +161,7 @@ export default {
             ],
           },
         },
-        2: {
+        3: {
           0: {
             title: `Is this a mobile application? What's it for?`,
             description: [
@@ -420,6 +450,37 @@ export default {
   },
   projects: {
     mobile: [
+      {
+        id: '14',
+        date: 'January 2025 - Today',
+        name: `Shopping Tool`,
+        summary: 'PWA web application',
+        mobileFirst: true,
+        tech: 'Typescript, VueJs 3, Quasar, Service Worker, Vitest, JsDom, Tailwinds',
+        visitorChat: {
+          0: 'A shopping list app, why?',
+          1: "What's your promise?",
+        },
+        description: {
+          0: [
+            `With existing apps: I have to retype all the words on my shopping list when I delete it. My list isn't sorted by department, so I go back and forth. I have to open one app for my shopping and another for my loyalty card, which takes too long to load. I have several loyalty cards and I never remember the code to redeem my discounts!`,
+            `Download the app on your mobile ;)`,
+          ],
+          1: [
+            `Speed: Internal data storage and therefore few API requests, the list grows as you enter information (no need to retype everything), at the end of your shopping, select your loyalty card`,
+            `Simple: Scan the barcode to save it quickly, associate the loyalty card password`,
+            `Authentication: Fast with Google Auth or Passkey`,
+          ],
+        },
+        imageURL: [
+          'shop_tool_1.png',
+          'shop_tool_2.png',
+          'shop_tool_3.png',
+          'shop_tool_4.jpg',
+          'shop_tool_5.jpg',
+        ],
+        link: 'https://shops-tools.onrender.com',
+      },
       {
         id: '13',
         date: 'march 2024 - Today',
