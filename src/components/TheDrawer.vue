@@ -26,7 +26,7 @@
               :name="menuItem.icon"
             />
           </q-item-section>
-          <q-item-section :ref="menuLabel.set" class="text-h6"> </q-item-section>
+          <q-item-section :ref="menuLabel.set"> </q-item-section>
         </q-item>
         <div v-if="menuItem.children">
           <q-item
@@ -44,7 +44,7 @@
               :color="iconColor(child.to.name)"
               :name="child.icon"
             />
-            <q-item-section :ref="menuLabel.set" class="text-h6"></q-item-section>
+            <q-item-section :ref="menuLabel.set"></q-item-section>
           </q-item>
         </div>
       </template>
@@ -220,6 +220,11 @@ watch(
   .q-drawer {
     opacity: 0.9 !important;
     background-color: transparent !important;
+    a {
+      height: 86px;
+      display: flex;
+      align-items: center;
+    }
   }
   .border_drawer-gradient {
     border-right: 2px solid !important;
