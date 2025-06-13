@@ -14,7 +14,6 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const isRobotTap = ref(false)
   const isRobotTalk = ref(false)
   const isRobotFix = ref(false)
-  const isRobotStepBack = ref(false)
   const isRobotApplication = ref(false)
   const isRobotServer = ref(false)
 
@@ -44,7 +43,6 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotTap.value = false
     isRobotTalk.value = false
     isRobotFix.value = false
-    isRobotStepBack.value = false
     isRobotApplication.value = false
     isRobotServer.value = false
   }
@@ -57,7 +55,6 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     isRobotTap,
     isRobotFix,
     isRobotTalk,
-    isRobotStepBack,
     isRobotApplication,
     isRobotServer,
     isRobotProcessing,

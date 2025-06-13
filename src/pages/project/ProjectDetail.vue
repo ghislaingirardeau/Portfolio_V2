@@ -29,7 +29,9 @@
             class="rounded-borders full-height"
             :src="`/images/projectsPage/${image}`"
             fit="contain"
-          />
+          >
+            <AppImgOverlay v-if="showSlideOverlay" :tap="false" />
+          </q-img>
         </q-carousel-slide>
       </q-carousel>
     </q-card>
@@ -57,6 +59,7 @@ import { useQuasar } from 'quasar'
 import AppBackBtn from 'src/components/common/AppBackBtn.vue'
 import AppViewBtn from 'src/components/common/AppViewBtn.vue'
 import { useIsMobileTall, useIsTablet, usePageMobileLandscapeClass } from 'src/utils/useDeviceInfo'
+import AppImgOverlay from 'src/components/common/AppImgOverlay.vue'
 
 const { tm } = useI18n({ useScope: 'global' })
 const el = ref<HTMLElement | null>(null)
@@ -65,18 +68,13 @@ const route = useRoute()
 const $q = useQuasar()
 
 const animationSettings = useAnimationSettings()
-const {
-  pageMounted,
-  isRobotClickable,
-  isRobotTalk,
-  isRobotStepBack,
-  executeRobotAction,
-  presentationMounted,
-} = storeToRefs(animationSettings)
+const { pageMounted, isRobotClickable, isRobotTalk, executeRobotAction, presentationMounted } =
+  storeToRefs(animationSettings)
 
 const slide = ref(0)
-const expanded = ref(false)
-const chatSlide = ref(-1)
+const expanded = ref(true)
+const showSlideOverlay = ref(false)
+const chatSlide = ref(0)
 
 const carousel = ref()
 const backButton = useTemplateRef('backButton')
@@ -201,6 +199,7 @@ function animationImage() {
     pageMounted.value = true
     isRobotClickable.value = true
     isRobotTalk.value = true
+    showSlideOverlay.value = false
   })
 }
 
@@ -215,23 +214,30 @@ watch(
   },
 )
 
+watch(
+  () => slide.value,
+  (newValue: number) => {
+    if (newValue === 0) {
+      chatSlide.value = 0
+      isRobotClickable.value = true
+      isRobotTalk.value = true
+      expanded.value = true
+    } else {
+      showSlideOverlay.value = false
+    }
+  },
+)
+
 function robotAction() {
   if (isRobotClickable.value) {
-    if (!expanded.value) {
-      expanded.value = !expanded.value
-      chatSlide.value = 0
-      return
-    }
     if (expanded.value && chatSlide.value === 0) {
       chatSlide.value++
       isRobotTalk.value = false
-      isRobotStepBack.value = true
       return
     }
     if (expanded.value && chatSlide.value === 1) {
       expanded.value = false
-      isRobotTalk.value = true
-      isRobotStepBack.value = false
+      showSlideOverlay.value = true
       return
     }
   }

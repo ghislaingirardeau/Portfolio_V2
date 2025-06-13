@@ -18,7 +18,6 @@ import {
   mdiLightbulbOnOutline,
   mdiChat,
   mdiImageBroken,
-  mdiChatSleepOutline,
   mdiApplicationVariableOutline,
   mdiServer,
 } from '@quasar/extras/mdi-v7'
@@ -30,7 +29,6 @@ const {
   isRobotClickable,
   isRobotTalk,
   isRobotFix,
-  isRobotStepBack,
   isAnimationDone,
   isRobotApplication,
   isRobotServer,
@@ -49,9 +47,7 @@ const iconType = computed(() => {
   if (isRobotServer.value) {
     return mdiServer
   }
-  if (isRobotStepBack.value) {
-    return mdiChatSleepOutline
-  }
+
   if (isRobotClickable.value) {
     return mdiLightbulbOnOutline
   } else {
