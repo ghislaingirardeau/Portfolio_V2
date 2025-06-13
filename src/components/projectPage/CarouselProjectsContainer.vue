@@ -6,7 +6,7 @@
   >
     <div :class="carouselClasses.btnPrevious">
       <q-btn
-        v-show="currentSlide !== 0"
+        :disable="currentSlide === 0"
         ref="carouselPrevious"
         round
         size="sm"
@@ -29,7 +29,7 @@
 
     <div :class="carouselClasses.btnNext">
       <q-btn
-        v-show="!endSlider"
+        :disable="endSlider"
         ref="carouselNext"
         round
         size="sm"
@@ -165,11 +165,17 @@ function animationSlideButtons() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .carousel_container_mobile {
   min-height: calc(100vh - 200px);
 }
 .carousel_container_desktop {
   height: calc(100vh - 150px);
+}
+
+:deep() {
+  .q-btn.disabled {
+    background-color: $dark !important;
+  }
 }
 </style>
