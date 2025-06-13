@@ -54,7 +54,7 @@ onMounted(() => {
   setTimeout(() => {
     startAnim()
     starsMounted = true
-  }, 400)
+  }, 4000)
 })
 
 /* Dark mode toogle - if the component is mounted, change stars colors */
