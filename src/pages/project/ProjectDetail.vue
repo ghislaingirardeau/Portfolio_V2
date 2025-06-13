@@ -18,8 +18,8 @@
         swipeable
         animated
         v-model="slide"
-        transition-prev="jump-right"
-        transition-next="jump-left"
+        transition-prev="slide-right"
+        transition-next="slide-left"
         infinite
         class="px-2 opacity-0 scale-75 bg-transparent"
         :class="[carouselClass, darkModeClass, usePageMobileLandscapeClass]"
