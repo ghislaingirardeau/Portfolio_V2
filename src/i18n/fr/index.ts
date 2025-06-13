@@ -33,6 +33,19 @@ export default {
       mobileTab: {
         0: {
           0: {
+            title: `Une app shopping list, pourquoi ?`,
+            description: [
+              `Mes derniers achats sont enregistrés. Ma liste est classée par rayon. J'ai accès directement à ma carte fidélité. Je peux voir le code de celle-ci pour utiliser mes réductions. Peu de temps de chargement.`,
+              `Cette application a pour but de résoudre toutes ces contraintes ;)`,
+            ],
+          },
+          1: {
+            title: `Je veux en savoir plus ?`,
+            description: ['Suis moi...'],
+          },
+        },
+        1: {
+          0: {
             title: `Pourquoi avoir fait un mini jeu?`,
             description: [
               "Pour apprendre autres choses qu'une application ou site web. L'objectif ici était aussi de travailler les tests unitaires et fonctionnels",
@@ -43,7 +56,7 @@ export default {
             description: ['Tu y retrouveras les technologies utilisées, les objectifs attendus...'],
           },
         },
-        1: {
+        2: {
           0: {
             title: `Ce sont des applications mobiles ?`,
             description: [
@@ -55,7 +68,7 @@ export default {
             description: ['Cliques sur le projet pour avoir plus détail'],
           },
         },
-        2: {
+        3: {
           0: {
             title: `Ce sont des projets persos ou pro ?`,
             description: [
@@ -90,6 +103,23 @@ export default {
       mobileTab: {
         0: {
           0: {
+            title: `Une app shopping list, pourquoi ?`,
+            description: [
+              `Avec les applis existantes: je dois retaper tous les mots de ma liste de courses quand je la supprime. Ma liste n'est pas classé par rayon et donc je fais des allers-retours. Je dois ouvrir une appli pour mes courses et une pour ma carte fidélité avec un temps de chargement trop long. J'ai plusieurs cartes fidélités et je ne me souviens jamais du code pour utiliser mes réductions !`,
+              `Cette application a pour but de résoudre toutes ces contraintes ;)`,
+            ],
+          },
+          1: {
+            title: `C'est quoi ta promesse ?`,
+            description: [
+              `Rapidité: Un stockage interne des données et donc peu de requete API, la liste augmente au fur et à mesure de tes saisies (pas besoin de tout retaper), à la fin de tes courses, sélectionne ta carte fidélité`,
+              `Simple: Scanne le code barre pour qu'il soit enregistrer rapidement, associe le mot de passe de carte de fidèlité`,
+              `Authentification: rapide avec Google Auth ou Passkey`,
+            ],
+          },
+        },
+        1: {
+          0: {
             title: `C'est un mini jeu pour mobiles ?`,
             description: [
               "Oui, c'est un wordle. Je l'ai développé en Test Driven Development avec les librairies suivantes",
@@ -107,7 +137,7 @@ export default {
             ],
           },
         },
-        1: {
+        2: {
           0: {
             title: `C'est une application mobile ? Dans quel but ?`,
             description: [
@@ -127,7 +157,7 @@ export default {
             ],
           },
         },
-        2: {
+        3: {
           0: {
             title: `C'est une application mobile ? Dans quel but ?`,
             description: [
@@ -436,8 +466,39 @@ export default {
   projects: {
     mobile: [
       {
+        id: '14',
+        date: "janvier 2025 - Aujourd'hui",
+        name: `Shopping Tool`,
+        summary: 'Application web PWA',
+        mobileFirst: true,
+        tech: 'Typescript, VueJs 3, Quasar, Service Worker, Vitest, JsDom, Tailwinds',
+        visitorChat: {
+          0: 'Une app shopping list, pourquoi ?',
+          1: "C'est quoi ta promesse ?",
+        },
+        description: {
+          0: [
+            `Avec les applis existantes: je dois retaper tous les mots de ma liste de courses quand je la supprime. Ma liste n'est pas classé par rayon et donc je fais des allers-retours. Je dois ouvrir une appli pour mes courses et une pour ma carte fidélité avec un temps de chargement trop long. J'ai plusieurs cartes fidélités et je ne me souviens jamais du code pour utiliser mes réductions !`,
+            `Télécharge l'app dans ton mobile ;)`,
+          ],
+          1: [
+            `Rapidité: Un stockage interne des données et donc peu de requete API, la liste augmente au fur et à mesure de tes saisies (pas besoin de tout retaper), à la fin de tes courses, sélectionne ta carte fidélité`,
+            `Simple: Scanne le code barre pour qu'il soit enregistrer rapidement, associe le mot de passe de carte de fidèlité`,
+            `Authentification: rapide avec Google Auth ou Passkey`,
+          ],
+        },
+        imageURL: [
+          'shop_tool_1.png',
+          'shop_tool_2.png',
+          'shop_tool_3.png',
+          'shop_tool_4.jpg',
+          'shop_tool_5.jpg',
+        ],
+        link: 'https://shops-tools.onrender.com',
+      },
+      {
         id: '13',
-        date: "mars 2024 - Aujourd'hui",
+        date: 'mars 2024 - juin 2024',
         name: `Wordle Game`,
         summary: 'Test-Driven-Development',
         mobileFirst: true,
