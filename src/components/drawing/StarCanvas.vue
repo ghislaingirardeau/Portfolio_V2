@@ -31,8 +31,9 @@ onMounted(() => {
   canvas.value!.height = window.innerHeight
   ctx = canvas.value!.getContext('2d')
   for (let i = 0; i < starCount; i++) {
-    stars.push(createFlake())
+    stars.push(createStar())
   }
+  // animate()
   window.addEventListener('resize', resizeCanvas)
 })
 
@@ -45,11 +46,12 @@ function resizeCanvas() {
   canvas.value!.height = window.innerHeight
 }
 
-function createFlake() {
-  const startX = canvas.value!.width - 30
+function createStar() {
+  const toTop = Math.random() < 0.5
+
+  const startX = canvas.value!.width - (toTop ? 30 : 95) // start point to go out: 30 is robot right leg & 95 is robot left leg
   const startY = canvas.value!.height - 55
 
-  const toTop = Math.random() < 0.5
   const destX = toTop ? Math.random() * canvas.value!.width : 0
   const destY = toTop ? 0 : Math.random() * canvas.value!.height
 
@@ -77,8 +79,8 @@ function createFlake() {
 function drawStars() {
   ctx!.clearRect(0, 0, canvas.value!.width, canvas.value!.height)
 
-  for (const f of stars) {
-    const ratio = f.progress / f.distance
+  for (const star of stars) {
+    const ratio = star.progress / star.distance
     // Interpolation du rouge vers le cyan
     const r = Math.floor(255 * (1 - ratio))
     const g = Math.floor(155 * ratio)
@@ -86,7 +88,7 @@ function drawStars() {
 
     ctx!.fillStyle = `rgb(${r}, ${g}, ${b}, ${ratio > 0.9 ? (1 - ratio + 0.02) * 10 : 1})`
     ctx!.beginPath()
-    ctx!.arc(f.x, f.y, f.r, 0, Math.PI * 2)
+    ctx!.arc(star.x, star.y, star.r, 0, Math.PI * 2)
     ctx!.fill()
   }
 
@@ -95,15 +97,15 @@ function drawStars() {
 
 function moveStars() {
   for (let i = 0; i < stars.length; i++) {
-    const f = stars[i] as Stars
-    f.progress += f.d
-    const ratio = f.progress / f.distance
+    const star = stars[i] as Stars
+    star.progress += star.d
+    const ratio = star.progress / star.distance
 
-    f.x = f.startX + f.dx * ratio
-    f.y = f.startY + f.dy * ratio
+    star.x = star.startX + star.dx * ratio
+    star.y = star.startY + star.dy * ratio
 
     if (ratio >= 1) {
-      stars[i] = createFlake()
+      stars[i] = createStar()
     }
   }
 }
