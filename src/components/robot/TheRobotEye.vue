@@ -1,7 +1,7 @@
 <template>
   <div
     :key="'reset-' + useIsMobileLandscape"
-    class="eye fixed grad"
+    class="eye fixed grad z-20"
     :class="{
       'is-clickable':
         isRobotClickable && !$q.dark.isActive && isAnimationDone && !isRobotProcessing,

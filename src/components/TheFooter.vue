@@ -48,7 +48,7 @@ const $q = useQuasar()
 const { t } = useI18n()
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, footerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, footerMounted, isStarsAnimated } = storeToRefs(animationSettings)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const footer = useTemplateRef<any>('footer')
@@ -113,6 +113,10 @@ function animationAppear() {
   })
   tl.call(() => {
     footerMounted.value = true
+    // launch star animation now if mobile
+    if (useIsMobile()) {
+      isStarsAnimated.value = true
+    }
   })
 }
 </script>

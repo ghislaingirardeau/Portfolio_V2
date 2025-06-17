@@ -18,6 +18,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
   const isRobotServer = ref(false)
 
   const isCubeSpining = ref(false)
+  const isStarsAnimated = ref(false)
 
   const ANIM_SHORT = ref(0.5)
   const ANIM_LONG = ref(1)
@@ -66,6 +67,7 @@ export const useAnimationSettings = defineStore('animationSettings', () => {
     footerMounted,
     presentationMounted,
     pageMounted,
+    isStarsAnimated,
     isAnimationDone,
     executeRobotAction,
   }

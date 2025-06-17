@@ -1,5 +1,5 @@
 <template>
-  <q-page padding ref="gameContainer" class="no-pull-refresh lg:flex">
+  <q-page padding ref="gameContainer" class="no-pull-refresh lg:flex z-20">
     <header class="my-2 flex flex-center lg:flex-col lg:w-40">
       <transition
         enter-active-class="animated fadeIn"

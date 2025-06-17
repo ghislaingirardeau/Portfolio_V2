@@ -11,6 +11,7 @@
         : null
     "
   >
+    <StarCanvas />
     <TheHeader
       v-model:leftDrawerOpen="leftDrawerOpen"
       v-if="presentationMounted || headerMounted"
@@ -21,7 +22,7 @@
     <q-page-container>
       <LogoAEContainer v-if="!useIsMobile()" />
       <router-view :key="locale" />
-      <AppRobotStars v-if="route.name !== 'game'" :key="'reset' + orientation" />
+      <!-- <AppRobotStars v-if="route.name !== 'game'" :key="'reset' + orientation" /> -->
     </q-page-container>
 
     <!-- robot container -->
@@ -41,14 +42,15 @@ import { useAnimationSettings } from 'src/stores/animationSettings'
 import { onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useIsMobile, breakpoints } from 'src/utils/useDeviceInfo'
-import AppRobotStars from 'src/components/common/AppRobotStars.vue'
+// import AppRobotStars from 'src/components/common/AppRobotStars.vue'
 import LogoAEContainer from 'src/components/homePage/LogoAEContainer.vue'
 import { useI18n } from 'vue-i18n'
-import { useScreenOrientation } from '@vueuse/core'
-import { useRoute } from 'vue-router'
+// import { useScreenOrientation } from '@vueuse/core'
+// import { useRoute } from 'vue-router'
 import TheRobotSkeleton from 'src/components/robot/TheRobotSkeleton.vue'
 import TheRobotEye from 'src/components/robot/TheRobotEye.vue'
 import TheRobotIdea from 'src/components/robot/TheRobotIdea.vue'
+import StarCanvas from 'src/components/drawing/StarCanvas.vue'
 
 const animationSettings = useAnimationSettings()
 const { headerMounted, presentationMounted, drawerMounted, executeRobotAction, isRobotClickable } =
@@ -59,9 +61,9 @@ const isBackgroundMount = ref(false)
 
 const { locale } = useI18n({ useScope: 'global' })
 
-const { orientation } = useScreenOrientation()
+// const { orientation } = useScreenOrientation()
 
-const route = useRoute()
+// const route = useRoute()
 
 onMounted(() => {
   // to apply the background image after the layout is mounted so the animation can be applied

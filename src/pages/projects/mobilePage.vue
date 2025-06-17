@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg">
+  <q-page class="q-pa-lg z-20">
     <CarouselProjectsContainer
       v-model:currentSlide="currentSlide"
       :type-desktop="false"

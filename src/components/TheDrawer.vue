@@ -73,7 +73,7 @@ import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 
 const animationSettings = useAnimationSettings()
-const { ANIM_SHORT, drawerMounted } = storeToRefs(animationSettings)
+const { ANIM_SHORT, drawerMounted, isStarsAnimated } = storeToRefs(animationSettings)
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -133,6 +133,13 @@ const menuList = computed(() => [
     label: t('navBar.game'),
     to: {
       name: 'game',
+    },
+  },
+  {
+    icon: mdiGamepad,
+    label: 'test',
+    to: {
+      name: 'test',
     },
   },
 ])
@@ -203,6 +210,10 @@ function handleMenuAnimation(delay: number, hasToAnimateIcon: boolean) {
   // at the end of the animation, set the drawerMounted to true
   tl.call(() => {
     drawerMounted.value = true
+    // launch star animation now if desktop
+    if (!useIsMobile()) {
+      isStarsAnimated.value = true
+    }
   })
 }
 

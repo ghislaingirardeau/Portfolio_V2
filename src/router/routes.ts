@@ -26,6 +26,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/pages/project/ProjectDetail.vue'),
       },
       { path: '/game', name: 'game', component: () => import('pages/GamePage.vue') },
+      { path: '/test', name: 'test', component: () => import('pages/testPage.vue') },
+
       {
         path: '/:catchAll(.*)*',
         name: 'error',
