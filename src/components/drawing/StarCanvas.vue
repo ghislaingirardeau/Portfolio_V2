@@ -33,7 +33,6 @@ onMounted(() => {
   for (let i = 0; i < starCount; i++) {
     stars.push(createFlake())
   }
-
   window.addEventListener('resize', resizeCanvas)
 })
 
