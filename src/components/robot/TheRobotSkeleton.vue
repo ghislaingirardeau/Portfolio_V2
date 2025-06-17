@@ -41,9 +41,9 @@
         />
         <!-- -->
         <path
-          stroke="red"
+          :stroke="`${animationSettings.isStarsAnimated ? 'red' : null}`"
           :stroke-width="`${$q.dark.isActive ? '4' : '0'}`"
-          fill="red"
+          :fill="`${animationSettings.isStarsAnimated ? 'red' : null}`"
           stroke-linejoin="round"
           stroke-linecap="round"
           d="M435.974,313.427c5.063,0,9.18,4.118,9.18,9.18c0,5.062-4.118,9.179-9.18,9.179
@@ -57,10 +57,12 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar'
+import { useAnimationSettings } from 'src/stores/animationSettings'
 import { useIsMobileLandscape } from 'src/utils/useDeviceInfo'
 import { computed } from 'vue'
 
 const $q = useQuasar()
+const animationSettings = useAnimationSettings()
 
 const robotSvgClass = computed(() => {
   return useIsMobileLandscape.value ? 'absolute bottom-1' : 'fixed bottom-14'
