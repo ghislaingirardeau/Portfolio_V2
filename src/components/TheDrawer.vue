@@ -135,13 +135,13 @@ const menuList = computed(() => [
       name: 'game',
     },
   },
-  // {
-  //   icon: mdiGamepad,
-  //   label: 'test',
-  //   to: {
-  //     name: 'test',
-  //   },
-  // },
+  {
+    icon: mdiGamepad,
+    label: 'test',
+    to: {
+      name: 'test',
+    },
+  },
 ])
 
 const drawerColor = computed(() => {

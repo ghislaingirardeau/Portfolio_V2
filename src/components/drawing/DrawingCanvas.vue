@@ -1,6 +1,7 @@
-<!-- filepath: c:\Users\ghisl\site_lab\Portfolio_V2\Quasar\src\components\DrawingCanvas.vue -->
 <template>
   <div style="touch-action: none">
+    <button @click="saveCanvas">Save Image</button>
+
     <canvas
       ref="canvasRef"
       :width="width"
@@ -91,6 +92,13 @@ function stopDrawing() {
   drawing.value = false
 }
 
+function saveCanvas() {
+  const link = document.createElement('a')
+  link.download = 'canvas.png' // File name
+  link.href = canvasRef.value!.toDataURL('image/png') // Get image data
+  link.click() // Trigger download
+}
+
 onMounted(() => {
   const ctx = canvasRef.value!.getContext('2d')!
   ctx.clearRect(0, 0, width, height)
@@ -103,18 +111,21 @@ onMounted(() => {
 
   function animateLine(now: number) {
     const elapsed = now - startTime
-    const t = Math.min(elapsed / duration, 1) // progress [0,1]
+    const t = Math.min(elapsed / duration, 1) // progress of animation [0,1], can not be greater than 1
     const currentX = start.x + (end.x - start.x) * t
+    // valeur de départ + ecart de la progression
     const currentY = start.y + (end.y - start.y) * t
 
     ctx.clearRect(0, 0, width, height)
     ctx.beginPath()
     ctx.moveTo(start.x, start.y)
-    ctx.lineTo(currentX, currentY)
+    // ctx.lineTo(currentX, currentY)
+    ctx.bezierCurveTo(start.x, start.y, currentX + -250 * t, currentY + 150 * t, currentX, currentY)
     ctx.strokeStyle = 'blue'
     ctx.lineWidth = 2
     ctx.stroke()
 
+    // t greater than 1, stop animation, meaning the duration of animation is over
     if (t < 1) {
       requestAnimationFrame(animateLine)
     }
